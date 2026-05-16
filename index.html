@@ -84,6 +84,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .exec-credit .ec-orgs{font-size:13px;line-height:1.6;color:var(--ink);font-weight:600;letter-spacing:.005em;margin-bottom:4px}
 .exec-credit .ec-orgs strong{font-weight:700}
 .exec-credit .ec-sub{font-family:var(--en);font-size:9.5px;letter-spacing:.2em;color:var(--g2);font-weight:600;text-transform:uppercase;margin-top:9px}
+.exec-credit .ec-credits{margin-top:16px;padding-top:14px;border-top:1px dashed var(--g3);display:flex;flex-direction:column;gap:8px}
+.exec-credit .ec-credit-row{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;font-size:11.5px;line-height:1.5;color:var(--g1)}
+.exec-credit .ec-credit-label{font-family:var(--en);font-size:9px;letter-spacing:.22em;color:var(--g2);font-weight:700;text-transform:uppercase;padding:2px 8px;background:var(--cream);border-radius:100px;border:1px solid var(--g3)}
+.exec-credit .ec-credit-row a{color:var(--black);font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--lime);transition:.18s;padding-bottom:1px;letter-spacing:.005em}
+.exec-credit .ec-credit-row a:hover{background:var(--lime-soft);border-bottom-color:var(--lime-dk)}
+.exec-credit .ec-credit-row .ec-credit-handle{font-family:var(--en);font-size:10.5px;color:var(--g2);font-weight:600;letter-spacing:.01em}
 .intro-title{font-size:clamp(38px,9.5vw,62px);font-weight:900;line-height:1.02;letter-spacing:-.02em;margin-bottom:18px}
 .intro-title em{font-style:normal;position:relative;display:inline-block}
 .intro-title em::after{content:'';position:absolute;inset:auto -4px 4px;height:.42em;background:var(--lime);z-index:-1;transform:skew(-6deg)}
@@ -591,28 +597,78 @@ body.picking #lang-pick{display:block!important}
 .dl-card-btn .dl-icon{font-size:18px}
 
 /* Share card (off-screen render target) */
-#shareCard{position:fixed;left:-9999px;top:0;width:1080px;height:1350px;background:var(--cream);font-family:var(--zh);padding:80px 70px;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box}
+#shareCard{position:fixed;left:-9999px;top:0;width:1080px;height:1350px;background:var(--cream);font-family:var(--zh);padding:60px 60px 50px;display:flex;flex-direction:column;box-sizing:border-box;overflow:hidden}
 #shareCard *{box-sizing:border-box}
-.sc-top{display:flex;justify-content:space-between;align-items:flex-start}
-.sc-brand{font-family:var(--en);font-size:18px;letter-spacing:.22em;color:var(--g2);font-weight:600;text-transform:uppercase}
-.sc-brand-dot{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 5px rgba(200,212,0,.2);vertical-align:middle;margin-right:14px}
-.sc-rarity{display:inline-flex;align-items:center;gap:10px;background:rgba(0,0,0,.06);border:2px solid var(--black);padding:10px 18px;border-radius:100px;font-family:var(--en);font-size:18px;letter-spacing:.16em;color:var(--black);font-weight:700}
-.sc-rarity::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--lime)}
+#shareCard::before{content:'';position:absolute;top:0;left:0;right:0;height:10px;background:var(--lime);z-index:1}
+#shareCard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:10px;background:var(--black);z-index:1}
 
-.sc-body{text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center}
-.sc-code{font-family:var(--en);font-size:32px;letter-spacing:.38em;color:var(--lime-dk);font-weight:700;margin-bottom:30px}
-.sc-emoji{font-size:280px;line-height:1;margin-bottom:30px;filter:drop-shadow(8px 8px 0 rgba(0,0,0,.08))}
-.sc-name{font-size:96px;font-weight:900;letter-spacing:.02em;line-height:1.1;margin-bottom:18px;color:var(--black)}
+/* TOP BAR — brand + rarity */
+.sc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.sc-brand{font-family:var(--en);font-size:20px;letter-spacing:.22em;color:var(--g1);font-weight:700;text-transform:uppercase;display:inline-flex;align-items:center}
+.sc-brand-dot{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 5px rgba(200,212,0,.22);vertical-align:middle;margin-right:14px}
+.sc-rarity{display:inline-flex;align-items:center;gap:10px;background:var(--black);padding:11px 20px 11px 16px;border-radius:100px;font-family:var(--en);color:var(--lime);font-weight:700}
+.sc-rarity-icon{font-size:18px;color:var(--lime);line-height:1}
+.sc-rarity-num{font-size:21px;letter-spacing:.04em;font-weight:900;line-height:1}
+.sc-rarity-lbl{font-size:14px;letter-spacing:.16em;color:rgba(200,212,0,.7);font-weight:600;text-transform:uppercase;padding-left:8px;border-left:1.5px solid rgba(200,212,0,.3)}
+
+/* BODY */
+.sc-body{text-align:center;flex:1;display:flex;flex-direction:column;align-items:center;padding:14px 0 0}
+
+/* CODE + OWNER row */
+.sc-code-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap;justify-content:center}
+.sc-code{font-family:var(--en);font-size:26px;letter-spacing:.34em;color:var(--lime-dk);font-weight:800;text-indent:.34em}
+.sc-owner{display:inline-flex;align-items:center;gap:9px;font-family:var(--zh);font-size:22px;color:var(--ink);font-weight:700;padding:8px 18px 8px 13px;background:var(--paper);border:2px solid var(--black);border-radius:100px;margin-bottom:0;letter-spacing:.005em}
+.sc-owner-dot{width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 3px rgba(200,212,0,.28)}
+.sc-owner-name{font-weight:900;letter-spacing:.01em}
+.sc-owner-suffix{font-weight:600;color:var(--g1)}
+
+/* MAIN EMOJI — reduced from 280 to 165 */
+.sc-emoji{font-size:165px;line-height:1;margin-bottom:14px;filter:drop-shadow(6px 6px 0 rgba(0,0,0,.07))}
+
+/* NAME */
+.sc-name{font-size:72px;font-weight:900;letter-spacing:.02em;line-height:1.05;margin-bottom:8px;color:var(--black)}
 .sc-name em{font-style:normal;position:relative;display:inline-block}
-.sc-name em::after{content:'';position:absolute;inset:auto -10px 12px;height:.4em;background:var(--lime);z-index:-1;transform:skew(-6deg)}
-.sc-name-en{font-family:var(--serif);font-size:42px;color:var(--g1);font-style:italic;margin-bottom:38px}
-.sc-quote{font-family:var(--serif);font-size:34px;color:var(--ink);line-height:1.5;max-width:880px;letter-spacing:.005em}
+.sc-name em::after{content:'';position:absolute;inset:auto -10px 8px;height:.32em;background:var(--lime);z-index:-1;transform:skew(-6deg)}
+.sc-name-en{font-family:var(--serif);font-size:30px;color:var(--g1);font-style:italic;margin-bottom:22px}
 
-.sc-bottom{display:flex;justify-content:space-between;align-items:flex-end;padding-top:30px;border-top:3px solid var(--black)}
-.sc-axes{display:flex;gap:10px}
-.sc-axis{background:var(--black);color:var(--lime);font-family:var(--en);font-size:18px;letter-spacing:.18em;padding:10px 18px;border-radius:100px;font-weight:700}
-.sc-cta{text-align:right;font-family:var(--en);font-size:15px;letter-spacing:.16em;color:var(--g1);line-height:1.7;font-weight:600;text-transform:uppercase}
-.sc-cta strong{color:var(--black);display:block;font-size:18px;letter-spacing:.18em}
+/* QUOTE */
+.sc-quote{font-family:var(--serif);font-size:25px;color:var(--ink);line-height:1.5;max-width:880px;letter-spacing:.005em;margin-bottom:22px;padding:0 30px;position:relative}
+.sc-quote::before, .sc-quote::after{content:'"';font-family:var(--serif);font-size:50px;color:var(--lime-dk);line-height:0;vertical-align:-22px;opacity:.55}
+.sc-quote::before{margin-right:6px}
+.sc-quote::after{margin-left:4px}
+
+/* SECTIONS — traits / dream city / demand */
+.sc-section{margin-top:0}
+.sc-section-label{font-family:var(--en);font-size:13px;letter-spacing:.22em;color:var(--g2);font-weight:700;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px}
+.sc-section-label::before, .sc-section-label::after{content:'';display:inline-block;width:22px;height:1.5px;background:var(--g3)}
+
+/* TRAIT PILLS — bigger, 2x2 grid */
+.sc-traits{width:100%;margin-bottom:30px;padding:0 30px}
+.sc-pills{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;max-width:760px;margin:0 auto}
+.sc-pill{display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:20px 24px;background:var(--paper);border:2.5px solid var(--black);border-radius:100px;font-family:var(--zh);font-size:32px;font-weight:900;color:var(--black);letter-spacing:.02em;box-shadow:4px 4px 0 var(--black)}
+.sc-pill-emoji{font-size:38px;line-height:1}
+.sc-pill-text{line-height:1}
+
+/* VERTICAL INFO SECTIONS — replaces two-column row */
+.sc-info-section{width:100%;padding:0 30px;margin-bottom:20px}
+.sc-info-divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0 16px}
+.sc-info-divider::before, .sc-info-divider::after{content:'';flex:1;height:1.5px;background:var(--g3);max-width:120px}
+.sc-info-divider-label{font-family:var(--en);font-size:14px;letter-spacing:.24em;color:var(--g2);font-weight:700;text-transform:uppercase}
+.sc-info-divider-zh{font-family:var(--zh);font-size:15px;color:var(--g1);font-weight:700;letter-spacing:.02em;margin-right:4px}
+
+.sc-info-line{display:flex;align-items:center;gap:24px;justify-content:center;padding:8px 0}
+.sc-info-marker{font-size:64px;line-height:1;flex-shrink:0;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.06))}
+.sc-info-marker-num{font-family:var(--en);font-size:72px;font-weight:900;color:var(--lime-dk);line-height:.9;letter-spacing:-.02em;flex-shrink:0;min-width:90px;text-align:center}
+.sc-info-body{display:flex;flex-direction:column;gap:2px}
+.sc-info-zh{font-size:42px;font-weight:900;color:var(--black);line-height:1.1;letter-spacing:.01em}
+.sc-info-en{font-family:var(--serif);font-size:22px;color:var(--g1);font-style:italic;line-height:1.2;letter-spacing:.005em}
+
+/* BOTTOM CTA bar */
+.sc-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding:18px 28px;background:var(--black);border-radius:16px}
+.sc-bottom-l{display:flex;flex-direction:column;gap:4px}
+.sc-cta-zh{font-family:var(--zh);font-size:19px;color:rgba(251,247,236,.72);font-weight:500;letter-spacing:.01em}
+.sc-cta-url{font-family:var(--en);font-size:26px;color:var(--lime);font-weight:900;letter-spacing:.18em}
+.sc-bottom-arrow{font-family:var(--en);font-size:52px;color:var(--lime);font-weight:900;line-height:1}
 
 /* Image preview modal (after card generation) */
 .img-modal{position:fixed;inset:0;background:rgba(26,26,26,.88);z-index:1000;display:flex;align-items:center;justify-content:center;padding:18px;animation:fadeIn .3s ease-out;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -2129,6 +2185,19 @@ function showResult(){
         <div class="ec-orgs zh-only"><strong>還路於民行人路權促進會</strong> × <strong>台灣氣候行動網絡</strong></div>
         <div class="ec-orgs en-only"><strong>Vision Zero Taiwan</strong> × <strong>Taiwan Climate Action Network</strong></div>
         <div class="ec-sub">A JOINT INITIATIVE · 2026</div>
+
+        <div class="ec-credits">
+          <div class="ec-credit-row">
+            <span class="ec-credit-label">Mascot</span>
+            <span class="zh-only">吉祥物設計 <a href="https://www.instagram.com/tsaowenzee/" target="_blank" rel="noopener">艸文子</a> <span class="ec-credit-handle">@tsaowenzee</span></span>
+            <span class="en-only">Character design by <a href="https://www.instagram.com/tsaowenzee/" target="_blank" rel="noopener">Tsaowenzee</a> <span class="ec-credit-handle">@tsaowenzee</span></span>
+          </div>
+          <div class="ec-credit-row">
+            <span class="ec-credit-label">Built by</span>
+            <span class="zh-only">企劃製作 <a href="https://www.linkedin.com/in/yunching0513/" target="_blank" rel="noopener">吳昀慶</a></span>
+            <span class="en-only">Produced by <a href="https://www.linkedin.com/in/yunching0513/" target="_blank" rel="noopener">Yun-Ching Wu</a></span>
+          </div>
+        </div>
       </div>
     `;
     showScreen('result');
@@ -2196,6 +2265,18 @@ function isIOS(){
          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 }
 
+/* Trait pill mapping — converts 4-axis code into 4 human-readable trait pills */
+const TRAIT_PILLS = {
+  'M':{emoji:'🌿', zh:'慢節奏', en:'Slow pace'},
+  'R':{emoji:'⚡', zh:'快步調', en:'Fast paced'},
+  'E':{emoji:'🔍', zh:'愛探索', en:'Explorer'},
+  'H':{emoji:'🏠', zh:'熟悉路', en:'Routine'},
+  'C':{emoji:'🤝', zh:'群體感', en:'Crew'},
+  'S':{emoji:'🎧', zh:'獨行者', en:'Solo'},
+  'Y':{emoji:'🌐', zh:'看系統', en:'Systems view'},
+  'I':{emoji:'💭', zh:'重個人', en:'Self-focused'}
+};
+
 async function downloadShareCard(){
   const code = calculateType();
   const t = TYPES[code];
@@ -2223,34 +2304,82 @@ async function downloadShareCard(){
   const axisLabels = {M:'Mellow',R:'Rapid',E:'Explorer',H:'Habit',C:'Crew',S:'Solo',Y:'System',I:'Self'};
   const a1=code[0],a2=code[1],a3=code[2],a4=code[3];
 
+  // Look up demand for this type
+  const demandKey = TYPE_TO_DEMAND[code];
+  const demand = demandKey ? DEMANDS[demandKey] : null;
+
+  // Build 4 trait pills
+  const pillsHtml = [a1,a2,a3,a4].map(letter => {
+    const p = TRAIT_PILLS[letter];
+    if(!p) return '';
+    return `<div class="sc-pill">
+      <span class="sc-pill-emoji">${p.emoji}</span>
+      <span class="sc-pill-text">${isEn ? p.en : p.zh}</span>
+    </div>`;
+  }).join('');
+
   card.innerHTML = `
     <div class="sc-top">
       <div class="sc-brand"><span class="sc-brand-dot"></span>VZT × TCAN</div>
-      <div class="sc-rarity">RARITY ${t.rarity}</div>
+      <div class="sc-rarity">
+        <span class="sc-rarity-icon">★</span>
+        <span class="sc-rarity-num">${t.rarity}</span>
+        <span class="sc-rarity-lbl">${isEn ? 'RARE' : '稀有'}</span>
+      </div>
     </div>
+
     <div class="sc-body">
-      <div class="sc-code">TYPE · ${code}</div>
-      ${demographics.nickname ? `
-        <div class="sc-owner">
-          <span class="sc-owner-dot"></span>
-          <span><span class="sc-owner-name">${escapeHtml(demographics.nickname)}</span> ${isEn ? 'of' : '的'}</span>
-        </div>
-      ` : ''}
       <div class="sc-emoji">${t.emoji}</div>
       <div class="sc-name">${isEn ? t.en_name : t.zh_name}</div>
       <div class="sc-name-en">${isEn ? t.zh_name : t.en_name}</div>
       <div class="sc-quote">${isEn ? t.quote_en : t.quote_zh}</div>
-    </div>
-    <div class="sc-bottom">
-      <div class="sc-axes">
-        <div class="sc-axis">${a1} · ${axisLabels[a1]}</div>
-        <div class="sc-axis">${a2} · ${axisLabels[a2]}</div>
-        <div class="sc-axis">${a3} · ${axisLabels[a3]}</div>
-        <div class="sc-axis">${a4} · ${axisLabels[a4]}</div>
+
+      <div class="sc-section sc-traits">
+        <div class="sc-info-divider">
+          <span class="sc-info-divider-zh">${isEn ? 'YOUR TRAITS' : '你的特質'}</span>
+          <span class="sc-info-divider-label">${isEn ? '你的特質' : 'YOUR TRAITS'}</span>
+        </div>
+        <div class="sc-pills">${pillsHtml}</div>
       </div>
-      <div class="sc-cta">
-        ${isEn ? 'TAKE THE QUIZ' : '街道靈魂測驗'}<br>
-        <strong>${isEn ? 'STREET SOUL' : 'STREETSOUL.TW'}</strong>
+
+      <div class="sc-info-section">
+        <div class="sc-info-divider">
+          <span class="sc-info-divider-zh">${isEn ? 'DREAM CITY' : '夢想城市'}</span>
+          <span class="sc-info-divider-label">${isEn ? '夢想城市' : 'DREAM CITY'}</span>
+        </div>
+        <div class="sc-info-line">
+          <span class="sc-info-marker">${t.match_emoji}</span>
+          <div class="sc-info-body">
+            <div class="sc-info-zh">${isEn ? t.match_en : t.match_zh}</div>
+            <div class="sc-info-en">${isEn ? t.match_zh : t.match_en}</div>
+          </div>
+        </div>
+      </div>
+
+      ${demand ? `
+      <div class="sc-info-section">
+        <div class="sc-info-divider">
+          <span class="sc-info-divider-zh">${isEn ? 'YOUR DEMAND' : '共鳴訴求'}</span>
+          <span class="sc-info-divider-label">${isEn ? '共鳴訴求' : 'YOUR DEMAND'}</span>
+        </div>
+        <div class="sc-info-line">
+          <span class="sc-info-marker-num">${demand.num}</span>
+          <div class="sc-info-body">
+            <div class="sc-info-zh">${isEn ? demand.en_title : demand.zh_title}</div>
+            <div class="sc-info-en">${isEn ? demand.zh_title : demand.en_title}</div>
+          </div>
+        </div>
+      </div>
+      ` : ''}
+    </div>
+
+    <div class="sc-bottom">
+      <div class="sc-bottom-l">
+        <div class="sc-cta-zh">${isEn ? 'Take the quiz' : '測測你的街道靈魂'}</div>
+        <div class="sc-cta-url">STREETSOUL.TW</div>
+      </div>
+      <div class="sc-bottom-r">
+        <div class="sc-bottom-arrow">→</div>
       </div>
     </div>
   `;
