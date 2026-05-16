@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>交通雙齊零城市 — 連署號召 | Dual-Zero City — Sign the Petition</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --lime:    #C8D400;
+  --lime-dk: #A8B200;
+  --black:   #1A1A1A;
+  --g1:      #4A4A4A;
+  --g2:      #888888;
+  --g3:      #D0D0D0;
+  --g4:      #F5F5F3;
+  --white:   #FFFFFF;
+  --zh: 'Noto Sans TC', sans-serif;
+  --en: 'Space Grotesk', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--zh);
+  background: var(--white);
+  color: var(--black);
+  line-height: 1.85;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── LANG TOGGLE ── */
+.lang-toggle {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  z-index: 999;
+  display: flex;
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.lang-btn {
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.lang-btn.active {
+  background: var(--lime);
+  color: var(--black);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--black);
+  color: var(--white);
+  padding: 64px 80px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 2;
+  position: relative;
+}
+.hero-logo {
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 8px 16px;
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.hero-meta-top {
+  font-family: var(--en);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.3);
+  text-align: right;
+  line-height: 1.9;
+}
+
+/* Background large number */
+.hero-bg-num {
+  position: absolute;
+  bottom: -60px;
+  right: -40px;
+  font-family: var(--en);
+  font-size: 500px;
+  font-weight: 700;
+  line-height: 0.85;
+  color: rgba(200, 212, 0, 0.04);
+  letter-spacing: -0.06em;
+  user-select: none;
+  z-index: 1;
+}
+
+.hero-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 80px;
+  z-index: 2;
+  position: relative;
+}
+.hero-label {
+  font-family: var(--en);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 24px;
+}
+.hero-h1 {
+  font-size: 84px;
+  font-weight: 100;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.hero-h1 span {
+  color: var(--lime);
+  font-weight: 300;
+}
+.hero-h1-en {
+  font-family: var(--en);
+  font-size: 52px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  display: none;
+}
+.hero-h1-en span { color: var(--lime); }
+
+.hero-desc {
+  font-size: 18px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.9;
+  border-left: 3px solid var(--lime);
+  padding-left: 20px;
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+.hero-desc-en {
+  font-family: var(--en);
+  font-size: 17px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.9;
+  border-left: 3px solid var(--lime);
+  padding-left: 20px;
+  max-width: 600px;
+  margin-bottom: 48px;
+  display: none;
+}
+
+.hero-cta {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--black);
+  font-family: var(--en);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 18px 40px;
+  transition: background 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.hero-cta:hover { background: #d9e600; }
+
+.hero-stats {
+  display: flex;
+  gap: 64px;
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.stat-item {}
+.stat-num {
+  font-family: var(--en);
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--lime);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.stat-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 8px;
+  letter-spacing: 0.04em;
+}
+.stat-label-en {
+  font-family: var(--en);
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 8px;
+  letter-spacing: 0.04em;
+}
+
+/* ── URGENCY BAND ── */
+.urgency {
+  background: var(--lime);
+  color: var(--black);
+  padding: 20px 80px;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  overflow: hidden;
+}
+.urgency-label {
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.urgency-scroll {
+  font-family: var(--zh);
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+  animation: scroll-left 25s linear infinite;
+}
+.urgency-scroll-en {
+  font-family: var(--en);
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  animation: scroll-left 25s linear infinite;
+  display: none;
+}
+@keyframes scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── PETITION BODY ── */
+.petition-body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 120px 80px;
+}
+.section-label {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 64px;
+}
+.section-num {
+  font-family: var(--en);
+  font-size: 80px;
+  font-weight: 300;
+  line-height: 0.9;
+  color: var(--lime);
+  letter-spacing: -0.02em;
+}
+.section-title-block {}
+.section-en {
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--g2);
+  margin-bottom: 6px;
+}
+.section-zh {
+  font-size: 36px;
+  font-weight: 100;
+  letter-spacing: 0.06em;
+}
+.section-zh strong { font-weight: 700; }
+
+/* ── MANIFESTO ── */
+.manifesto {
+  max-width: 800px;
+  margin-bottom: 80px;
+}
+.manifesto p {
+  font-size: 19px;
+  line-height: 2;
+  color: var(--g1);
+  margin-bottom: 24px;
+  font-weight: 300;
+}
+.manifesto p strong {
+  color: var(--black);
+  font-weight: 700;
+}
+.manifesto-en p {
+  font-family: var(--en);
+  font-size: 17px;
+  line-height: 1.9;
+  color: var(--g1);
+  margin-bottom: 24px;
+  font-weight: 300;
+  display: none;
+}
+.manifesto-en p strong { color: var(--black); font-weight: 600; }
+
+/* ── FIVE DEMANDS ── */
+.demands-section {
+  background: var(--black);
+  color: var(--white);
+  padding: 120px 80px;
+}
+.demands-header {
+  max-width: 1280px;
+  margin: 0 auto 80px;
+}
+.demands-header-label {
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--lime);
+  margin-bottom: 24px;
+}
+.demands-header-zh {
+  font-size: 56px;
+  font-weight: 100;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+.demands-header-zh strong { font-weight: 700; }
+.demands-header-en {
+  font-family: var(--en);
+  font-size: 40px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  display: none;
+}
+.demands-header-en strong { font-weight: 700; }
+
+.demands-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.demand-card {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 48px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+.demand-card:hover { border-color: rgba(200,212,0,0.4); }
+.demand-card.full-width {
+  grid-column: 1 / -1;
+}
+.demand-num {
+  font-family: var(--en);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--lime);
+  margin-bottom: 24px;
+}
+.demand-tag {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--black);
+  font-family: var(--en);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 4px 10px;
+  margin-bottom: 20px;
+}
+.demand-title-zh {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.demand-subtitle-zh {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 24px;
+}
+.demand-title-en {
+  font-family: var(--en);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  display: none;
+}
+.demand-subtitle-en {
+  font-family: var(--en);
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 24px;
+  display: none;
+}
+.demand-body-zh {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.9;
+}
+.demand-body-en {
+  font-family: var(--en);
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.85;
+  display: none;
+}
+
+/* ── CALL TO ACTION ── */
+.cta-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 120px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
+  align-items: center;
+}
+.cta-left {}
+.cta-overline {
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--lime-dk);
+  margin-bottom: 24px;
+}
+.cta-headline-zh {
+  font-size: 52px;
+  font-weight: 100;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  margin-bottom: 32px;
+}
+.cta-headline-zh strong { font-weight: 900; color: var(--black); }
+.cta-headline-en {
+  font-family: var(--en);
+  font-size: 40px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 32px;
+  display: none;
+}
+.cta-headline-en strong { font-weight: 700; }
+.cta-body-zh {
+  font-size: 16px;
+  color: var(--g1);
+  line-height: 2;
+  margin-bottom: 48px;
+}
+.cta-body-en {
+  font-family: var(--en);
+  font-size: 15px;
+  color: var(--g1);
+  line-height: 1.9;
+  margin-bottom: 48px;
+  display: none;
+}
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--en);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 18px 40px;
+  border: 2px solid var(--black);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--lime); color: var(--black); border-color: var(--lime); }
+.btn-secondary {
+  background: transparent;
+  color: var(--black);
+  font-family: var(--en);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 18px 40px;
+  border: 1px solid var(--g3);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-secondary:hover { border-color: var(--black); }
+
+/* Signature card */
+.sig-card {
+  background: var(--g4);
+  padding: 56px;
+  border-top: 4px solid var(--lime);
+}
+.sig-card-label {
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: var(--g2);
+  margin-bottom: 32px;
+}
+.sig-pledge-zh {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 2;
+  color: var(--g1);
+  margin-bottom: 40px;
+  padding-left: 20px;
+  border-left: 3px solid var(--lime);
+}
+.sig-pledge-en {
+  font-family: var(--en);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--g1);
+  margin-bottom: 40px;
+  padding-left: 20px;
+  border-left: 3px solid var(--lime);
+  display: none;
+}
+.sig-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.sig-counter-num {
+  font-family: var(--en);
+  font-size: 56px;
+  font-weight: 300;
+  color: var(--black);
+  letter-spacing: -0.02em;
+}
+.sig-counter-label {
+  font-size: 14px;
+  color: var(--g2);
+}
+.sig-bar {
+  height: 4px;
+  background: var(--g3);
+  margin-bottom: 40px;
+  position: relative;
+}
+.sig-bar-fill {
+  height: 100%;
+  background: var(--lime);
+  width: 23%;
+  transition: width 1.5s ease;
+}
+
+.sig-input-row {
+  display: flex;
+  gap: 0;
+  margin-bottom: 16px;
+}
+.sig-input {
+  flex: 1;
+  border: 1px solid var(--g3);
+  border-right: none;
+  padding: 14px 20px;
+  font-family: var(--zh);
+  font-size: 15px;
+  color: var(--black);
+  background: var(--white);
+  outline: none;
+}
+.sig-input:focus { border-color: var(--black); }
+.sig-input::placeholder { color: var(--g2); }
+.sig-submit {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--en);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  padding: 0 32px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sig-submit:hover { background: var(--lime); color: var(--black); }
+.sig-consent-zh {
+  font-size: 12px;
+  color: var(--g2);
+  line-height: 1.7;
+}
+.sig-consent-en {
+  font-family: var(--en);
+  font-size: 12px;
+  color: var(--g2);
+  line-height: 1.7;
+  display: none;
+}
+
+/* ── VISION BAND ── */
+.vision-band {
+  background: var(--lime);
+  padding: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.vision-item-center {
+  text-align: center;
+}
+.vision-year {
+  font-family: var(--en);
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 0.9;
+  color: var(--black);
+  letter-spacing: -0.04em;
+}
+.vision-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  margin-top: 12px;
+  letter-spacing: 0.08em;
+}
+.vision-label-en {
+  font-family: var(--en);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  margin-top: 12px;
+  letter-spacing: 0.04em;
+  display: none;
+}
+.vision-body {
+  border-left: 3px solid var(--black);
+  padding-left: 24px;
+}
+.vision-body-text-zh {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--black);
+  line-height: 2;
+}
+.vision-body-text-en {
+  font-family: var(--en);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--black);
+  line-height: 1.9;
+  display: none;
+}
+.vision-body-right {
+  border-left: none;
+  border-right: 3px solid var(--black);
+  padding-left: 0;
+  padding-right: 24px;
+  text-align: right;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  color: var(--white);
+  padding: 64px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+}
+.foot-org {
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+}
+.foot-title-zh {
+  font-size: 22px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+}
+.foot-title-en {
+  font-family: var(--en);
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  display: none;
+}
+.foot-right {
+  text-align: right;
+}
+.foot-credit {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.9;
+}
+.foot-bottom {
+  grid-column: 1 / -1;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.foot-bottom-left {
+  font-family: var(--en);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.3);
+}
+.foot-bottom-right {
+  font-family: var(--en);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--g3); }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-body { animation: fadeUp 1s ease both 0.2s; }
+.hero-stats { animation: fadeUp 1s ease both 0.5s; }
+
+/* ── LANG STATE ── */
+body.lang-en .zh { display: none !important; }
+body.lang-en .en { display: block !important; }
+body.lang-en .stat-label { display: none !important; }
+body.lang-en .stat-label-en { display: block !important; }
+body.lang-en .manifesto p { display: none !important; }
+body.lang-en .manifesto-en p { display: block !important; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero { padding: 40px 32px; }
+  .hero-h1 { font-size: 52px; }
+  .hero-h1-en { font-size: 36px; }
+  .hero-stats { gap: 32px; flex-wrap: wrap; }
+  .petition-body { padding: 80px 32px; }
+  .demands-section { padding: 80px 32px; }
+  .demands-grid { grid-template-columns: 1fr; }
+  .demand-card.full-width { grid-column: 1; }
+  .cta-section { grid-template-columns: 1fr; gap: 64px; padding: 80px 32px; }
+  .vision-band { grid-template-columns: 1fr; padding: 64px 32px; gap: 40px; }
+  .vision-body-right { border-right: none; border-left: 3px solid var(--black); padding-left: 24px; padding-right: 0; text-align: left; }
+  footer { grid-template-columns: 1fr; padding: 48px 32px; }
+  .foot-right { text-align: left; }
+  .urgency { padding: 20px 32px; }
+}
+</style>
+</head>
+<body class="lang-zh">
+
+<!-- LANG TOGGLE -->
+<div class="lang-toggle">
+  <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg-num">00</div>
+
+  <div class="hero-top">
+    <div class="hero-logo">VZT × TCAN · 2026</div>
+    <div class="hero-meta-top">
+      VISION ZERO TAIWAN<br>
+      還路於民行人路權促進會<br>
+      台灣氣候行動網路 TCAN
+    </div>
+  </div>
+
+  <div class="hero-body">
+    <div class="hero-label zh">2026 地方選舉 · 公民連署行動</div>
+    <div class="hero-label en" style="display:none">2026 LOCAL ELECTION · CITIZEN PETITION</div>
+
+    <h1 class="hero-h1 zh">
+      每一條命，<br>都不該是<span>意外</span>。
+    </h1>
+    <h1 class="hero-h1-en en">
+      No life should be lost<br>to <span>"accident."</span>
+    </h1>
+
+    <p class="hero-desc zh">
+      台灣每年有超過 <strong>2,800 人</strong>死於道路事故，超過 <strong>46 萬件</strong>車禍造成傷亡。
+      這不是命運，這是系統設計的失敗。<br>
+      2026 年，我們要求每一位縣市長與議員候選人，以行動承諾改變。
+    </p>
+    <p class="hero-desc-en en" style="display:none">
+      Over <strong>2,800 people</strong> die on Taiwan's roads each year. Over <strong>460,000 crashes</strong> cause injury or death.
+      This is not fate — it is a failure of system design.<br>
+      In 2026, we demand every local candidate commit to real change.
+    </p>
+
+    <a class="hero-cta" href="#petition">
+      <span class="zh">立即連署 →</span>
+      <span class="en" style="display:none">Sign Now →</span>
+    </a>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2,800+</div>
+        <div class="stat-label">年均道路死亡人數</div>
+        <div class="stat-label-en">annual road deaths</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">460,000+</div>
+        <div class="stat-label">年均車禍傷亡件數</div>
+        <div class="stat-label-en">crashes with casualties annually</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2050</div>
+        <div class="stat-label">零死亡 × 零碳排願景年</div>
+        <div class="stat-label-en">target year for zero death × zero carbon</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5</div>
+        <div class="stat-label">五大政策訴求</div>
+        <div class="stat-label-en">policy demands</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ URGENCY TICKER ═══ -->
+<div class="urgency">
+  <div class="urgency-label">URGENT</div>
+  <div class="urgency-scroll zh">
+    台灣每天約有 8 人死於道路事故 · 每 1.2 分鐘發生一件車禍 · 道路死亡不是意外，是系統失靈 · 2026，選舉是改變的起點 · 我們要求候選人簽署五大訴求承諾書 · 台灣每天約有 8 人死於道路事故 · 每 1.2 分鐘發生一件車禍 · 道路死亡不是意外，是系統失靈 · 2026，選舉是改變的起點 · 我們要求候選人簽署五大訴求承諾書 ·
+  </div>
+  <div class="urgency-scroll-en en" style="display:none">
+    8 people die on Taiwan's roads every day · A crash occurs every 1.2 minutes · Road deaths are not accidents — they are system failures · 2026: elections are the turning point · We demand candidates sign the Five-Demand Pledge · 8 people die on Taiwan's roads every day · A crash occurs every 1.2 minutes · Road deaths are not accidents — they are system failures · 2026: elections are the turning point · We demand candidates sign the Five-Demand Pledge ·
+  </div>
+</div>
+
+<!-- ═══ MANIFESTO ═══ -->
+<div class="petition-body">
+  <div class="section-label">
+    <div class="section-num">01</div>
+    <div class="section-title-block">
+      <div class="section-en">WHY WE SIGN</div>
+      <div class="section-zh zh"><strong>我們為何</strong>連署</div>
+      <div class="section-zh en" style="display:none"><strong>Why</strong> We Sign</div>
+    </div>
+  </div>
+
+  <div class="manifesto zh">
+    <p>台灣的道路，正在奪走人命。不是偶爾，而是每一天。</p>
+    <p>
+      過去十年，我們聽過太多「加強宣導」、「駕駛人不守規矩」的說法。
+      但數據告訴我們：<strong>個人行為不是核心問題，道路設計才是</strong>。
+      當系統允許高速行駛穿越住宅區，當自行車道只剩地面白漆，
+      當行人被迫與機車共用人行道——人命傷亡是可預測的結果，不是運氣。
+    </p>
+    <p>
+      2026 年的地方選舉，是我們手中最直接的政策工具。
+      我們不要求候選人做到完美，<strong>我們要求他們承諾方向</strong>——
+      以「2035 年交通死傷減半、2050 年零死亡與零碳排」為願景，
+      透過五項具體政策訴求，讓每一條台灣的街道，值得我們稱之為「家」。
+    </p>
+    <p>
+      請你加入連署，告訴每一位候選人：<strong>選票來自安全的城市</strong>。
+    </p>
+  </div>
+
+  <div class="manifesto manifesto-en en">
+    <p style="display:block;font-family:var(--en);font-size:17px;font-weight:300;color:var(--g1);line-height:2;margin-bottom:24px">Taiwan's roads are taking lives — not occasionally, but every single day.</p>
+    <p style="display:block;font-family:var(--en);font-size:17px;font-weight:300;color:var(--g1);line-height:2;margin-bottom:24px">
+      For too long, we have been told that the problem is careless drivers.
+      But the data is clear: <strong>individual behaviour is not the root cause — road design is.</strong>
+      When the system permits high-speed traffic through residential zones,
+      when bike lanes are nothing more than painted lines,
+      when pedestrians share footpaths with motorcycles —
+      casualties are a predictable outcome, not bad luck.
+    </p>
+    <p style="display:block;font-family:var(--en);font-size:17px;font-weight:300;color:var(--g1);line-height:2;margin-bottom:24px">
+      The 2026 local elections are our most direct policy lever.
+      We don't ask candidates to be perfect — <strong>we ask them to commit to a direction:</strong>
+      halve road deaths by 2035, reach zero deaths and zero carbon by 2050,
+      through five concrete policy demands.
+    </p>
+    <p style="display:block;font-family:var(--en);font-size:17px;font-weight:300;color:var(--g1);line-height:2;margin-bottom:24px">
+      Sign with us. Tell every candidate: <strong>votes come from safe cities.</strong>
+    </p>
+  </div>
+</div>
+
+<!-- ═══ FIVE DEMANDS ═══ -->
+<div class="demands-section">
+  <div class="demands-header">
+    <div class="demands-header-label">FIVE DEMANDS · 五大訴求</div>
+    <div class="demands-header-zh zh">我們要求候選人<strong>承諾</strong>什麼</div>
+    <div class="demands-header-en en" style="display:none">What We Demand Candidates <strong>Commit To</strong></div>
+  </div>
+
+  <div class="demands-grid">
+
+    <!-- D01 -->
+    <div class="demand-card">
+      <div class="demand-num">DEMAND 01 · 訴求一</div>
+      <div class="demand-tag">LAW · 立法</div>
+      <div class="demand-title-zh zh">立法保障</div>
+      <div class="demand-subtitle-zh zh">制定《雙零交通願景自治條例》</div>
+      <div class="demand-title-en en" style="display:none">Legislative Protection</div>
+      <div class="demand-subtitle-en en" style="display:none">Enact the Dual-Zero Transport Vision Ordinance</div>
+      <div class="demand-body-zh zh">
+        推動地方立法，設立副市長層級以上統籌的跨局處轉型機制；
+        設置永續交通轉型基金，納入至少 50% 交通罰鍰收入及停車收益；
+        法制化專家與公民參與，確保決策透明。
+      </div>
+      <div class="demand-body-en en" style="display:none">
+        Enact local legislation to establish cross-department coordination at deputy mayor level or above.
+        Create a Sustainable Transport Transition Fund drawing at least 50% of traffic fine revenue and parking fees.
+        Mandate expert and civic participation in transparent decision-making.
+      </div>
+    </div>
+
+    <!-- D02 -->
+    <div class="demand-card">
+      <div class="demand-num">DEMAND 02 · 訴求二</div>
+      <div class="demand-tag">SPACE · 空間</div>
+      <div class="demand-title-zh zh">道路空間重分配</div>
+      <div class="demand-subtitle-zh zh">打造實體防護的主動運輸路網</div>
+      <div class="demand-title-en en" style="display:none">Road Space Redistribution</div>
+      <div class="demand-subtitle-en en" style="display:none">Build a physically protected active transport network</div>
+      <div class="demand-body-zh zh">
+        於慢車道建置具實體庇護及遮蔭之自行車路網，推動連續無障礙人行道；
+        三年內優先完成大眾運輸場站及各級學校周邊之行人友善改造；
+        每年以增加 1–2% 公共運輸市佔率為執行目標。
+      </div>
+      <div class="demand-body-en en" style="display:none">
+        Build a physically protected, shaded cycling network in slow-traffic lanes, alongside continuous barrier-free footpaths.
+        Prioritise pedestrian-friendly improvements near transit stations and schools within three years.
+        Target a 1–2% annual increase in public transport modal share.
+      </div>
+    </div>
+
+    <!-- D03 -->
+    <div class="demand-card">
+      <div class="demand-num">DEMAND 03 · 訴求三</div>
+      <div class="demand-tag">STREET · 街道</div>
+      <div class="demand-title-zh zh">友善宜居生活街道</div>
+      <div class="demand-subtitle-zh zh">落實住宅區生活街道建設</div>
+      <div class="demand-title-en en" style="display:none">Liveable Living Streets</div>
+      <div class="demand-subtitle-en en" style="display:none">Create residential streets built for people</div>
+      <div class="demand-body-zh zh">
+        界定轄區內穿越型道路與服務街道，於住宅區推動交通寧靜化改造；
+        導入路幅縮減、減速平台等實體降速設施；
+        推動大眾運輸導向發展（TOD），於場站周邊保障社會住宅比例。
+      </div>
+      <div class="demand-body-en en" style="display:none">
+        Classify through-roads and local service streets across the district.
+        Introduce traffic calming in residential zones: road narrowing, speed tables, and physical speed reduction measures.
+        Advance Transit-Oriented Development (TOD) with guaranteed social housing near transit hubs.
+      </div>
+    </div>
+
+    <!-- D04 -->
+    <div class="demand-card">
+      <div class="demand-num">DEMAND 04 · 訴求四</div>
+      <div class="demand-tag">VOLUME · 總量</div>
+      <div class="demand-title-zh zh">總量管理</div>
+      <div class="demand-subtitle-zh zh">以價制量與低碳管控</div>
+      <div class="demand-title-en en" style="display:none">Volume Management</div>
+      <div class="demand-subtitle-en en" style="display:none">Price-based demand control and low-carbon regulation</div>
+      <div class="demand-body-zh zh">
+        訂定路外及路邊停車空間總量上限，將道路空間轉換為綠樹與自行車道；
+        任期內推動並指定「低碳交通區」；
+        協調中央推動燃油車輛數量管理，結合精進之駕駛訓練制度。
+      </div>
+      <div class="demand-body-en en" style="display:none">
+        Cap on-street and off-street parking supply; repurpose freed road space for trees and cycling infrastructure.
+        Designate Low-Carbon Transport Zones within the term of office.
+        Coordinate with central government on fuel vehicle fleet management and improved driver training standards.
+      </div>
+    </div>
+
+    <!-- D05 full width -->
+    <div class="demand-card full-width">
+      <div class="demand-num">DEMAND 05 · 訴求五</div>
+      <div class="demand-tag">WELFARE · 幸福</div>
+      <div class="demand-title-zh zh">幸福交通</div>
+      <div class="demand-subtitle-zh zh">友善勞動通勤與企業獎助 · 不遺落任何人</div>
+      <div class="demand-title-en en" style="display:none">Happy Commute &amp; Welfare</div>
+      <div class="demand-subtitle-en en" style="display:none">Worker-friendly commuting, enterprise incentives, leaving no one behind</div>
+      <div class="demand-body-zh zh">
+        輔導並獎勵企業推動「綠色通勤獎勵制度」，補助員工大眾運輸及單車通勤費用，鼓勵彈性工時；
+        全面落實包容性設計，保障孩童、青少年、身障者、高齡者及各類多元使用者之通行權利，
+        確保交通轉型不遺落任何人。
+      </div>
+      <div class="demand-body-en en" style="display:none">
+        Guide and incentivise businesses to adopt Green Commute Reward schemes, subsidising employees' public transport and cycling costs, and encouraging flexible hours.
+        Embed inclusive design principles across all transport interventions — protecting the mobility rights of children, youth, persons with disabilities, older adults, and all users.
+        No one gets left behind in the transport transition.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ PETITION CTA ═══ -->
+<div class="cta-section" id="petition">
+  <div class="cta-left">
+    <div class="cta-overline">CITIZEN ACTION · 公民行動</div>
+    <div class="cta-headline-zh zh">
+      你的連署，<br>
+      是<strong>候選人的功課</strong>。
+    </div>
+    <div class="cta-headline-en en" style="display:none">
+      Your signature<br>
+      is <strong>their homework.</strong>
+    </div>
+    <p class="cta-body-zh zh">
+      我們不是在請求，我們是在要求。<br>
+      每一個簽名都是一份選票壓力，每一份壓力都是一次政策推動。<br>
+      連署結果將公開提交各縣市候選人，並同步追蹤承諾執行進度。<br>
+      讓他們知道：<strong>安全的街道，是我們的底線</strong>。
+    </p>
+    <p class="cta-body-en en" style="display:none">
+      We are not asking. We are demanding.<br>
+      Every signature is electoral pressure. Every act of pressure drives policy.<br>
+      Petition results will be submitted publicly to all local candidates,
+      with ongoing tracking of their commitment progress.<br>
+      Let them know: <strong>safe streets are our non-negotiable.</strong>
+    </p>
+    <div class="cta-actions">
+      <a class="btn-primary" href="#sig-form">
+        <span class="zh">我要連署</span>
+        <span class="en" style="display:none">Sign the Petition</span>
+      </a>
+      <a class="btn-secondary" href="#" target="_blank">
+        <span class="zh">下載承諾書</span>
+        <span class="en" style="display:none">Download Pledge Form</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Signature Card -->
+  <div class="sig-card" id="sig-form">
+    <div class="sig-card-label">PETITION · 連署聲明</div>
+    <div class="sig-pledge-zh zh">
+      我支持「交通雙齊零城市」，<br>
+      要求 2026 年各縣市長與議員候選人<br>
+      公開承諾五大訴求，以行動捍衛每一條生命。
+    </div>
+    <div class="sig-pledge-en en" style="display:none">
+      I support the Dual-Zero City initiative<br>
+      and demand that all 2026 local candidates<br>
+      publicly commit to the Five Demands — protecting every life through action.
+    </div>
+
+    <div class="sig-counter">
+      <div class="sig-counter-num" id="counter">1,147</div>
+      <div class="sig-counter-label">
+        <span class="zh">人已連署</span>
+        <span class="en" style="display:none">signatures</span>
+      </div>
+    </div>
+    <div class="sig-bar"><div class="sig-bar-fill" id="sig-progress"></div></div>
+
+    <div class="sig-input-row">
+      <input class="sig-input zh" type="text" placeholder="你的姓名（選填）" id="name-input-zh">
+      <input class="sig-input en" type="text" placeholder="Your name (optional)" id="name-input-en" style="display:none">
+      <button class="sig-submit" onclick="handleSign()">
+        <span class="zh">連署</span>
+        <span class="en" style="display:none">SIGN</span>
+      </button>
+    </div>
+    <div class="sig-consent-zh zh">
+      本連署僅用於政策倡議，不作商業用途。<br>
+      由「還路於民行人路權促進會」及「台灣氣候行動網路」共同收存與監督。
+    </div>
+    <div class="sig-consent-en en" style="display:none">
+      This petition is for policy advocacy purposes only and will not be used commercially.<br>
+      Collected and monitored jointly by Vision Zero Taiwan and TCAN.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ VISION BAND ═══ -->
+<div class="vision-band">
+  <div class="vision-body">
+    <div class="vision-body-text-zh zh">
+      我們承諾每年減少<br>
+      <strong>10 件</strong>死亡車禍<br>
+      <strong>2,000 件</strong>車禍傷亡
+    </div>
+    <div class="vision-body-text-en en" style="display:none">
+      We commit to reducing<br>
+      <strong>10</strong> fatal crashes per year<br>
+      <strong>2,000</strong> injury crashes per year
+    </div>
+  </div>
+  <div class="vision-item-center">
+    <div class="vision-year">2050</div>
+    <div class="vision-label zh">零死亡 × 零碳排</div>
+    <div class="vision-label-en en" style="display:none">Zero Death × Zero Carbon</div>
+  </div>
+  <div class="vision-body vision-body-right">
+    <div class="vision-body-text-zh zh">
+      2035 年<br>交通死傷<strong>減半</strong><br><br>
+      2050 年<br>交通<strong>零死亡</strong><br>交通<strong>零碳排</strong>
+    </div>
+    <div class="vision-body-text-en en" style="display:none">
+      By 2035<br>Road deaths &amp; injuries <strong>halved</strong><br><br>
+      By 2050<br><strong>Zero</strong> road deaths<br><strong>Zero</strong> carbon emissions
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div>
+    <div class="foot-org">VISION ZERO TAIWAN · 還路於民行人路權促進會</div>
+    <div class="foot-title-zh zh">
+      社團法人還路於民行人路權促進會<br>
+      × 台灣氣候行動網路 TCAN
+    </div>
+    <div class="foot-title-en en" style="display:none">
+      Vision Zero Taiwan<br>
+      (Give Roads Back to the People Association)<br>
+      × Taiwan Climate Action Network (TCAN)
+    </div>
+  </div>
+  <div class="foot-right">
+    <div class="foot-credit">
+      整理製作 · Compiled by<br>
+      Yun Ching Wu<br>
+      VZT × TCAN · 2026<br>
+      —<br>
+      版本 v1.0 · Version v1.0
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-bottom-left">
+      DUAL-ZERO CITY · 交通雙齊零城市 · 2026 LOCAL ELECTION CAMPAIGN
+    </div>
+    <div class="foot-bottom-right">
+      VISION ZERO × NET ZERO
+    </div>
+  </div>
+</footer>
+
+<script>
+// Language toggle
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.getElementById('btn-zh').className = 'lang-btn' + (lang === 'zh' ? ' active' : '');
+  document.getElementById('btn-en').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
+
+  // Show/hide zh/en elements
+  document.querySelectorAll('.zh').forEach(el => {
+    el.style.display = lang === 'zh' ? '' : 'none';
+  });
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? '' : 'none';
+  });
+
+  // Restore specific display types
+  if (lang === 'en') {
+    document.querySelectorAll('.hero-h1-en').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.lang-toggle').forEach(el => el.style.display = 'flex');
+    document.querySelectorAll('.demands-grid').forEach(el => el.style.display = 'grid');
+    document.querySelectorAll('.vision-band').forEach(el => el.style.display = 'grid');
+    document.querySelectorAll('.cta-section').forEach(el => el.style.display = 'grid');
+    document.querySelectorAll('.hero-stats').forEach(el => el.style.display = 'flex');
+    document.querySelectorAll('.petition-body').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.demands-section').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.demands-header').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.manifesto').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.section-label').forEach(el => el.style.display = 'flex');
+    document.querySelector('.lang-toggle').style.display = 'flex';
+    document.querySelectorAll('.urgency').forEach(el => el.style.display = 'flex');
+    document.querySelectorAll('footer').forEach(el => el.style.display = 'grid');
+    document.querySelectorAll('.sig-card').forEach(el => el.style.display = 'block');
+    document.querySelectorAll('.cta-left').forEach(el => el.style.display = 'block');
+  }
+}
+
+// Counter animation
+let count = 1147;
+function handleSign() {
+  count++;
+  document.getElementById('counter').textContent = count.toLocaleString();
+  const pct = Math.min(100, (count / 5000) * 100);
+  document.getElementById('sig-progress').style.width = pct + '%';
+
+  const zh = document.getElementById('name-input-zh').value;
+  const en = document.getElementById('name-input-en').value;
+  const name = zh || en;
+
+  const btn = document.querySelector('.sig-submit');
+  const origZh = btn.querySelector('.zh').textContent;
+  const origEn = btn.querySelector('.en').textContent;
+  btn.querySelector('.zh').textContent = name ? '謝謝 ' + name + ' ！' : '感謝你！';
+  btn.querySelector('.en').textContent = name ? 'Thank you, ' + name + '!' : 'Thank you!';
+  btn.style.background = 'var(--lime)';
+  btn.style.color = 'var(--black)';
+  setTimeout(() => {
+    btn.querySelector('.zh').textContent = origZh;
+    btn.querySelector('.en').textContent = origEn;
+    btn.style.background = '';
+    btn.style.color = '';
+  }, 3000);
+}
+
+// Animate progress bar on load
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const pct = (1147 / 5000) * 100;
+    document.getElementById('sig-progress').style.width = pct + '%';
+  }, 800);
+});
+
+// Intersection observer for subtle entrance
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.demand-card, .cta-section, .vision-band').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
