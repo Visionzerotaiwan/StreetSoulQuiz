@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>街道靈魂統計儀表板 · VZT × TCAN</title>
+<meta name="description" content="台灣街道靈魂測驗即時分布統計 — Vision Zero Taiwan × TCAN">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="街道靈魂統計儀表板 · Street Soul Dashboard">
+<meta property="og:description" content="即時看見台灣的「街道人格分布」 — 一份不一樣的城市調查。">
+<meta property="og:locale" content="zh_TW">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=DM+Serif+Display&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lime:#C8D400; --lime-dk:#A8B200; --lime-soft:#E8EE8C;
+  --coral:#FF6B5B;
+  --cream:#FBF7EC; --paper:#FFFCF2;
+  --black:#1A1A1A; --ink:#252525;
+  --g1:#4A4A4A; --g2:#8a8a8a; --g3:#D0D0D0; --g4:#F0F0EC;
+  --white:#FFFFFF;
+  --zh:'Noto Sans TC',sans-serif;
+  --en:'Space Grotesk',sans-serif;
+  --serif:'DM Serif Display',serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{font-family:var(--zh);background:var(--cream);color:var(--black);min-height:100vh;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");pointer-events:none;opacity:.045;z-index:1;mix-blend-mode:multiply}
+.wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:24px 28px 60px}
+
+/* Header */
+.head{margin-bottom:36px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
+.head-left{flex:1;min-width:280px}
+.tag{display:inline-flex;align-items:center;gap:9px;background:var(--black);color:var(--lime);font-family:var(--en);font-size:10px;font-weight:700;letter-spacing:.22em;padding:7px 14px;border-radius:100px;margin-bottom:16px}
+.tag .dot{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 6px var(--lime);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.title{font-size:clamp(34px,5.5vw,52px);font-weight:900;line-height:1.05;letter-spacing:-.015em;margin-bottom:10px}
+.title em{font-style:normal;position:relative;display:inline-block}
+.title em::after{content:'';position:absolute;inset:auto -3px 4px;height:.42em;background:var(--lime);z-index:-1;transform:skew(-6deg)}
+.sub{font-family:var(--serif);font-size:18px;color:var(--g1);font-style:italic;line-height:1.5;max-width:560px}
+.head-right{font-family:var(--en);font-size:10.5px;letter-spacing:.18em;color:var(--g2);text-transform:uppercase;line-height:1.9;font-weight:600;text-align:right}
+.head-right strong{color:var(--black)}
+
+/* Stat strip */
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+@media(max-width:760px){.stats-strip{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--white);border:1.5px solid var(--black);padding:22px 20px;border-radius:18px;position:relative;overflow:hidden;transition:.3s}
+.stat:hover{transform:translateY(-3px);box-shadow:4px 4px 0 var(--black)}
+.stat::before{content:'';position:absolute;top:0;left:0;width:40%;height:5px;background:var(--lime)}
+.stat:nth-child(2)::before{background:var(--coral)}
+.stat:nth-child(3)::before{background:var(--black)}
+.stat:nth-child(4)::before{background:var(--lime-dk)}
+.stat-label{font-family:var(--en);font-size:10px;letter-spacing:.2em;color:var(--g2);font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.stat-num{font-family:var(--en);font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--black)}
+.stat-unit{font-family:var(--en);font-size:13px;color:var(--g2);font-weight:500;margin-left:4px}
+.stat-meta{margin-top:8px;font-size:12px;color:var(--g1);line-height:1.5}
+
+/* Layout grid */
+.grid{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:920px){.grid{grid-template-columns:1fr}}
+.card{background:var(--white);border:1.5px solid var(--black);border-radius:20px;padding:24px 22px;position:relative;overflow:hidden}
+.card-label{font-family:var(--en);font-size:10px;letter-spacing:.24em;color:var(--lime-dk);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.card-title{font-size:22px;font-weight:900;letter-spacing:.005em;line-height:1.3;margin-bottom:4px}
+.card-sub{font-family:var(--serif);font-size:13.5px;color:var(--g2);font-style:italic;margin-bottom:22px}
+
+/* Type ranking bars */
+.types-list{display:flex;flex-direction:column;gap:9px}
+.tline{display:grid;grid-template-columns:32px 1fr 70px;gap:12px;align-items:center;padding:8px 10px;border-radius:12px;transition:.2s;cursor:default}
+.tline:hover{background:var(--lime-soft)}
+.tline-rank{font-family:var(--en);font-size:12px;letter-spacing:.1em;color:var(--g3);font-weight:700}
+.tline-rank.top{color:var(--lime-dk)}
+.tline-body{display:flex;align-items:center;gap:10px}
+.tline-emoji{font-size:24px;line-height:1}
+.tline-info{flex:1;min-width:0}
+.tline-name{font-size:14px;font-weight:700;letter-spacing:.01em;line-height:1.2;display:flex;align-items:center;gap:6px}
+.tline-name .code{font-family:var(--en);font-size:10px;color:var(--g2);background:var(--g4);padding:2px 6px;border-radius:4px;letter-spacing:.1em;font-weight:600}
+.tline-bar-wrap{height:6px;background:var(--g4);border-radius:100px;margin-top:5px;overflow:hidden}
+.tline-bar{height:100%;background:var(--lime);border-radius:100px;transition:width 1s cubic-bezier(.16,1,.3,1)}
+.tline:nth-child(-n+3) .tline-bar{background:var(--black)}
+.tline-pct{font-family:var(--en);font-size:14px;font-weight:700;text-align:right;color:var(--black)}
+.tline-pct .n{font-family:var(--en);font-size:11px;color:var(--g2);font-weight:500;display:block;letter-spacing:.05em}
+
+/* Axis bars (4 axes split) */
+.axes-list{display:flex;flex-direction:column;gap:18px;margin-top:6px}
+.axis-row{display:block}
+.axis-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+.axis-side{display:flex;align-items:center;gap:7px;font-size:13.5px}
+.axis-side .ico{font-size:18px}
+.axis-side .name{font-weight:700}
+.axis-side .pct{font-family:var(--en);font-size:13px;font-weight:700;color:var(--black)}
+.axis-side.right{text-align:right;flex-direction:row-reverse}
+.axis-name-bar{font-family:var(--en);font-size:9px;letter-spacing:.2em;color:var(--g2);font-weight:700;text-transform:uppercase;text-align:center;margin-bottom:4px}
+.axis-bar{height:18px;background:var(--g4);border:1.5px solid var(--black);border-radius:100px;overflow:hidden;position:relative;display:flex}
+.axis-bar-left{background:var(--lime);transition:width 1s cubic-bezier(.16,1,.3,1)}
+.axis-bar-right{background:var(--coral);transition:width 1s cubic-bezier(.16,1,.3,1);margin-left:auto}
+.axis-divider{position:absolute;top:0;bottom:0;width:1.5px;background:var(--black);left:50%;opacity:.3}
+
+/* Headlines panel */
+.headlines{background:var(--black);color:var(--white);padding:26px 22px;border-radius:20px;margin-bottom:14px;position:relative;overflow:hidden}
+.headlines::after{content:'';position:absolute;top:-30%;right:-20%;width:60%;height:160%;background:radial-gradient(ellipse,var(--lime) 0%,transparent 60%);opacity:.15;pointer-events:none}
+.h-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;position:relative;z-index:1}
+@media(max-width:760px){.h-grid{grid-template-columns:1fr}}
+.h-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:18px 16px}
+.h-card-label{font-family:var(--en);font-size:9px;letter-spacing:.22em;color:var(--lime);font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.h-card-text{font-family:var(--serif);font-size:18px;line-height:1.45;color:var(--white);letter-spacing:.005em}
+.h-card-text strong{color:var(--lime);font-weight:400}
+
+/* Geo card */
+.geo-list{display:flex;flex-direction:column;gap:8px}
+.geo-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:9px 12px;background:var(--paper);border-radius:10px;font-size:13.5px}
+.geo-row .place{display:flex;align-items:center;gap:8px}
+.geo-row .place .em{font-size:18px}
+.geo-row .pct{font-family:var(--en);font-weight:700;color:var(--black)}
+.geo-row .pct .n{font-family:var(--en);font-size:11px;color:var(--g2);font-weight:500;letter-spacing:.05em;margin-left:5px}
+
+/* Age donut placeholder + bars */
+.age-list{display:flex;flex-direction:column;gap:6px}
+.age-row{display:grid;grid-template-columns:80px 1fr 50px;gap:10px;align-items:center;font-size:12.5px}
+.age-row .label{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--g1)}
+.age-row .bar-w{height:14px;background:var(--g4);border-radius:100px;overflow:hidden;border:1px solid var(--g3)}
+.age-row .bar{height:100%;background:var(--lime);transition:width 1s cubic-bezier(.16,1,.3,1)}
+.age-row .v{font-family:var(--en);font-size:12px;font-weight:700;color:var(--black);text-align:right}
+
+/* Question card */
+.q-card{margin-bottom:14px}
+.q-row{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:14px 0;border-bottom:1px dashed var(--g3)}
+.q-row:last-child{border:none}
+.q-rank{font-family:var(--en);font-size:18px;font-weight:700;color:var(--lime-dk);letter-spacing:.08em}
+.q-text{font-size:14px;line-height:1.55;color:var(--ink);margin-bottom:9px;font-weight:500}
+.q-bar-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.q-side{font-size:11.5px}
+.q-side-pct{font-family:var(--en);font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px}
+.q-side-txt{color:var(--g1);line-height:1.4;margin-bottom:5px}
+.q-side-bar{height:5px;background:var(--g4);border-radius:100px;overflow:hidden}
+.q-side-bar div{height:100%;background:var(--lime);transition:width 1s cubic-bezier(.16,1,.3,1)}
+.q-side:nth-child(2) .q-side-bar div{background:var(--coral)}
+
+/* States */
+.loading-state,.error-state,.empty-state{padding:60px 30px;text-align:center;background:var(--white);border:1.5px dashed var(--g3);border-radius:20px;margin:20px 0}
+.loading-state .emoji,.error-state .emoji,.empty-state .emoji{font-size:48px;margin-bottom:14px;display:inline-block;line-height:1}
+.loading-state .emoji{animation:spin 2s linear infinite}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.state-title{font-size:18px;font-weight:700;margin-bottom:6px}
+.state-msg{font-size:14px;color:var(--g1);line-height:1.6;max-width:440px;margin:0 auto}
+.state-msg code{font-family:var(--mono);background:var(--g4);padding:2px 6px;border-radius:4px;font-size:12px}
+
+/* Footer */
+.footer{text-align:center;font-family:var(--en);font-size:10px;letter-spacing:.18em;color:var(--g2);padding-top:36px;margin-top:30px;border-top:1px solid var(--g3);text-transform:uppercase;line-height:1.9}
+.footer strong{color:var(--black);font-weight:700}
+
+/* Refresh button */
+.refresh-btn{background:var(--white);border:1.5px solid var(--g3);padding:7px 13px;border-radius:100px;font-family:var(--en);font-size:10px;font-weight:600;letter-spacing:.12em;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:6px}
+.refresh-btn:hover{border-color:var(--black);background:var(--lime-soft)}
+.refresh-btn.spinning .ico{animation:spin 1s linear infinite;display:inline-block}
+
+/* iframe mode (compact view) */
+body.iframe-mode .head-right,
+body.iframe-mode .footer{display:none}
+body.iframe-mode .wrap{padding:14px 16px}
+body.iframe-mode .head{margin-bottom:18px}
+body.iframe-mode .title{font-size:24px}
+body.iframe-mode .sub{font-size:13px;display:none}
+body.iframe-mode .stats-strip{margin-bottom:14px}
+body.iframe-mode .stat{padding:14px 12px}
+body.iframe-mode .stat-num{font-size:24px}
+body.iframe-mode .headlines{padding:18px 14px}
+body.iframe-mode .h-card-text{font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <div class="head-left">
+      <div class="tag"><span class="dot"></span>LIVE DASHBOARD · 即時統計</div>
+      <h1 class="title">街道<em>靈魂</em>分布</h1>
+      <p class="sub">Real-time map of who walks, rides, and dreams about Taiwan's streets — based on the Street Soul Quiz.</p>
+    </div>
+    <div class="head-right">
+      VZT × TCAN<br>
+      CURATION · <strong>YUN CHING WU</strong><br>
+      <button class="refresh-btn" onclick="loadData()" id="refreshBtn"><span class="ico">↻</span> REFRESH</button>
+    </div>
+  </div>
+
+  <!-- Top-line stats -->
+  <div class="stats-strip">
+    <div class="stat">
+      <div class="stat-label">TOTAL · 累計參與</div>
+      <div class="stat-num" id="totalCount">—</div>
+      <div class="stat-meta" id="totalMeta">since launch</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">TODAY · 今日</div>
+      <div class="stat-num" id="todayCount">—</div>
+      <div class="stat-meta" id="todayMeta">last 24h</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">MOST COMMON · 最常見</div>
+      <div class="stat-num" id="topType" style="font-family:var(--zh);font-size:24px">—</div>
+      <div class="stat-meta" id="topTypeMeta">—</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">RAREST · 最稀有</div>
+      <div class="stat-num" id="rareType" style="font-family:var(--zh);font-size:24px">—</div>
+      <div class="stat-meta" id="rareTypeMeta">—</div>
+    </div>
+  </div>
+
+  <!-- Loading / error states -->
+  <div id="loadingState" class="loading-state">
+    <div class="emoji">🚦</div>
+    <div class="state-title">讀取資料中…</div>
+    <div class="state-msg">Loading data from Google Sheet</div>
+  </div>
+
+  <div id="errorState" class="error-state" style="display:none">
+    <div class="emoji">⚠️</div>
+    <div class="state-title">無法載入資料</div>
+    <div class="state-msg">
+      請確認 <code>SHEET_CSV_URL</code> 已正確設定。<br>
+      Apps Script 已部署並開放公開讀取。
+    </div>
+  </div>
+
+  <div id="emptyState" class="empty-state" style="display:none">
+    <div class="emoji">📊</div>
+    <div class="state-title">還沒有資料</div>
+    <div class="state-msg">等待第一份測驗結果送出後，資料會自動出現在這裡。</div>
+  </div>
+
+  <!-- Content (hidden until data ready) -->
+  <div id="content" style="display:none">
+
+    <!-- Auto-generated headlines -->
+    <div class="headlines">
+      <div class="h-grid" id="headlinesGrid"></div>
+    </div>
+
+    <!-- Type ranking + Axis split -->
+    <div class="grid">
+      <div class="card">
+        <div class="card-label">RANKING · 16 型分布</div>
+        <h2 class="card-title">16 種街道靈魂，誰最多？</h2>
+        <p class="card-sub">From most to least common among all participants</p>
+        <div class="types-list" id="typesList"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">AXES · 四軸光譜</div>
+        <h2 class="card-title">台灣人是怎麼想街道的？</h2>
+        <p class="card-sub">The four axes that make up your Street Soul</p>
+        <div class="axes-list" id="axesList"></div>
+      </div>
+    </div>
+
+    <!-- Question Insights -->
+    <div class="card q-card">
+      <div class="card-label">QUESTION INSIGHTS · 題目洞察</div>
+      <h2 class="card-title">爭議最大的 3 道題</h2>
+      <p class="card-sub">Most polarizing questions — closest to 50/50</p>
+      <div id="qInsights"></div>
+    </div>
+
+    <!-- Geography + Age -->
+    <div class="grid">
+      <div class="card">
+        <div class="card-label">GEOGRAPHY · 地區</div>
+        <h2 class="card-title">參與者來自哪裡？</h2>
+        <p class="card-sub">Top regions (Taiwan focus)</p>
+        <div class="geo-list" id="geoList"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">AGE · 年齡</div>
+        <h2 class="card-title">不同年齡的街道靈魂</h2>
+        <p class="card-sub">Participation by age bracket</p>
+        <div class="age-list" id="ageList"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    A PROJECT BY <strong>Vision Zero Taiwan</strong> × <strong>TCAN</strong> · 還路於民行人路權促進會 · 台灣氣候行動網路<br>
+    CURATION & DATA · <strong>Yun Ching Wu</strong> · LAST UPDATED <span id="lastUpdate">—</span>
+  </div>
+</div>
+
+<script>
+/* ============================================
+   CONFIG — 設定你的 Google Sheet CSV URL
+   ============================================
+   How to get this URL:
+   1. Open your Google Sheet (with the quiz data)
+   2. File → Share → Publish to web
+   3. Select the sheet tab, format "Comma-separated values (.csv)"
+   4. Click Publish, copy the URL, paste below
+   ============================================ */
+const SHEET_CSV_URL = 'PASTE_YOUR_PUBLISHED_CSV_URL_HERE';
+
+/* Type metadata (must match quiz) */
+const TYPES = {
+  'MECY':{e:'🦉',zh:'城市觀察家',en:'The Urban Observer'},
+  'MECI':{e:'🐱',zh:'街角分享家',en:'The Corner Connector'},
+  'MESY':{e:'🐢',zh:'漫遊思考者',en:'The Wandering Thinker'},
+  'MESI':{e:'🦋',zh:'散步詩人',en:'The Stroll Poet'},
+  'MHCY':{e:'🐶',zh:'鄰里大使',en:'The Neighborhood Ambassador'},
+  'MHCI':{e:'🐰',zh:'早市好朋友',en:'The Market Mingler'},
+  'MHSY':{e:'🐼',zh:'街道守護者',en:'The Street Steward'},
+  'MHSI':{e:'🦔',zh:'黃昏散步家',en:'The Twilight Stroller'},
+  'RECY':{e:'🦊',zh:'通勤革新者',en:'The Commute Innovator'},
+  'RECI':{e:'🐬',zh:'城市衝浪者',en:'The City Surfer'},
+  'RESY':{e:'🦅',zh:'路線設計師',en:'The Route Architect'},
+  'RESI':{e:'🐎',zh:'自由騎士',en:'The Free Rider'},
+  'RHCY':{e:'🐘',zh:'大眾運輸推手',en:'The Transit Advocate'},
+  'RHCI':{e:'🐝',zh:'通勤好夥伴',en:'The Commute Companion'},
+  'RHSY':{e:'🐜',zh:'高效規劃師',en:'The Efficiency Designer'},
+  'RHSI':{e:'🦝',zh:'通勤忍者',en:'The Commute Ninja'}
+};
+
+const AXIS_LABELS = {
+  PACE:{left:{k:'M',zh:'漫',en:'Mellow',ico:'🐢'}, right:{k:'R',zh:'速',en:'Rapid',ico:'⚡'}},
+  PATH:{left:{k:'E',zh:'探',en:'Explorer',ico:'🗺️'}, right:{k:'H',zh:'熟',en:'Habit',ico:'📍'}},
+  PARTNER:{left:{k:'C',zh:'群',en:'Crew',ico:'👥'}, right:{k:'S',zh:'獨',en:'Solo',ico:'🚶'}},
+  PERSPECTIVE:{left:{k:'Y',zh:'系統',en:'System',ico:'🛤️'}, right:{k:'I',zh:'我',en:'Self',ico:'👤'}}
+};
+
+const COUNTRY_LABELS = {
+  TW:{em:'🇹🇼',name:'台灣'}, JP:{em:'🇯🇵',name:'日本'}, KR:{em:'🇰🇷',name:'韓國'},
+  HK:{em:'🇭🇰',name:'香港'}, SG:{em:'🇸🇬',name:'新加坡'}, MY:{em:'🇲🇾',name:'馬來西亞'},
+  CN:{em:'🇨🇳',name:'中國'}, US:{em:'🇺🇸',name:'美國'}, CA:{em:'🇨🇦',name:'加拿大'},
+  UK:{em:'🇬🇧',name:'英國'}, DE:{em:'🇩🇪',name:'德國'}, FR:{em:'🇫🇷',name:'法國'},
+  NL:{em:'🇳🇱',name:'荷蘭'}, AU:{em:'🇦🇺',name:'澳洲'}, OTHER:{em:'🌍',name:'其他'}
+};
+
+const AGE_LABELS = {
+  'under14':'< 14','15-17':'15–17','18-24':'18–24','25-34':'25–34',
+  '35-44':'35–44','45-54':'45–54','55-64':'55–64','65plus':'65+'
+};
+
+// Q&A axes mapping for question insights
+const Q_AXES = ['PACE','PACE','PACE','PATH','PATH','PATH','PARTNER','PARTNER','PARTNER','PERSPECTIVE','PERSPECTIVE','PERSPECTIVE'];
+const Q_TEXT = [
+  '下班路上，距離家走路 15 分鐘、騎車 5 分鐘',
+  '紅燈倒數還有 30 秒，你的心情是',
+  '理想的週末早晨',
+  '通勤路線你的習慣是',
+  '路過一條沒走過的小巷子',
+  '出國旅遊你比較像',
+  '通勤時你最享受的時刻',
+  '週末想出門走走',
+  '理想的街道氣氛',
+  '看到車禍新聞，第一個想到的',
+  '要讓街道更安全，最關鍵的是',
+  '看到國小生騎電動自行車差點被撞'
+];
+
+/* ============================
+   DATA LOADING
+   ============================ */
+async function loadData(){
+  const refreshBtn = document.getElementById('refreshBtn');
+  refreshBtn.classList.add('spinning');
+
+  document.getElementById('loadingState').style.display = 'block';
+  document.getElementById('errorState').style.display = 'none';
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('content').style.display = 'none';
+
+  if(!SHEET_CSV_URL || SHEET_CSV_URL.includes('PASTE_YOUR')){
+    showError('尚未設定 Sheet CSV URL，請編輯 dashboard.html 中的 SHEET_CSV_URL');
+    refreshBtn.classList.remove('spinning');
+    return;
+  }
+
+  try{
+    const sep = SHEET_CSV_URL.includes('?') ? '&' : '?';
+    const res = await fetch(SHEET_CSV_URL + sep + 'cb=' + Date.now());
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const csv = await res.text();
+    const rows = parseCSV(csv);
+    refreshBtn.classList.remove('spinning');
+
+    if(rows.length === 0){
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('emptyState').style.display = 'block';
+      return;
+    }
+
+    renderDashboard(rows);
+  }catch(err){
+    console.error(err);
+    refreshBtn.classList.remove('spinning');
+    showError('資料讀取失敗：' + err.message);
+  }
+}
+
+function showError(msg){
+  document.getElementById('loadingState').style.display = 'none';
+  document.getElementById('errorState').style.display = 'block';
+  document.getElementById('errorState').querySelector('.state-msg').innerHTML = msg;
+}
+
+/* Robust CSV parser (handles quotes, commas in values) */
+function parseCSV(text){
+  const lines = text.trim().split(/\r?\n/);
+  if(lines.length < 2) return [];
+  const headers = parseLine(lines[0]);
+  const rows = [];
+  for(let i = 1; i < lines.length; i++){
+    const cells = parseLine(lines[i]);
+    if(cells.length < 2) continue;
+    const obj = {};
+    headers.forEach((h, idx)=>{ obj[h.trim()] = (cells[idx] || '').trim(); });
+    rows.push(obj);
+  }
+  return rows;
+}
+function parseLine(line){
+  const result = [];
+  let cur = '';
+  let inQ = false;
+  for(let i = 0; i < line.length; i++){
+    const ch = line[i];
+    if(ch === '"'){
+      if(inQ && line[i+1] === '"'){ cur += '"'; i++; }
+      else inQ = !inQ;
+    } else if(ch === ',' && !inQ){
+      result.push(cur); cur = '';
+    } else cur += ch;
+  }
+  result.push(cur);
+  return result;
+}
+
+/* ============================
+   RENDER
+   ============================ */
+function renderDashboard(rows){
+  document.getElementById('loadingState').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+
+  // ---- Top-line stats ----
+  document.getElementById('totalCount').innerHTML = rows.length.toLocaleString() + '<span class="stat-unit">人</span>';
+
+  const now = Date.now();
+  const today = rows.filter(r=>{
+    const t = new Date(r.timestamp || r.Timestamp).getTime();
+    return !isNaN(t) && (now - t) < 86400*1000;
+  }).length;
+  document.getElementById('todayCount').innerHTML = today.toLocaleString() + '<span class="stat-unit">人</span>';
+
+  // ---- Type distribution ----
+  const typeCounts = {};
+  Object.keys(TYPES).forEach(t=>{typeCounts[t]=0});
+  rows.forEach(r=>{
+    const c = (r.type_code || '').toUpperCase();
+    if(TYPES[c]) typeCounts[c]++;
+  });
+  const typeTotal = Object.values(typeCounts).reduce((a,b)=>a+b,0) || 1;
+  const sortedTypes = Object.entries(typeCounts).sort((a,b)=>b[1]-a[1]);
+  const topT = sortedTypes[0]; const rareT = sortedTypes[sortedTypes.length-1];
+
+  document.getElementById('topType').innerHTML = `${TYPES[topT[0]].e} ${TYPES[topT[0]].zh}`;
+  document.getElementById('topTypeMeta').textContent = `${topT[0]} · ${(topT[1]/typeTotal*100).toFixed(1)}% · ${topT[1]} 人`;
+  document.getElementById('rareType').innerHTML = `${TYPES[rareT[0]].e} ${TYPES[rareT[0]].zh}`;
+  document.getElementById('rareTypeMeta').textContent = `${rareT[0]} · ${(rareT[1]/typeTotal*100).toFixed(1)}% · ${rareT[1]} 人`;
+
+  // ---- Type ranking list ----
+  const typesEl = document.getElementById('typesList');
+  const maxCount = sortedTypes[0][1] || 1;
+  typesEl.innerHTML = sortedTypes.map(([code,count],i)=>{
+    const t = TYPES[code];
+    const pct = (count/typeTotal*100).toFixed(1);
+    const w = (count/maxCount*100).toFixed(1);
+    return `
+      <div class="tline">
+        <div class="tline-rank ${i<3?'top':''}">${String(i+1).padStart(2,'0')}</div>
+        <div class="tline-body">
+          <div class="tline-emoji">${t.e}</div>
+          <div class="tline-info">
+            <div class="tline-name">${t.zh} <span class="code">${code}</span></div>
+            <div class="tline-bar-wrap"><div class="tline-bar" style="width:${w}%"></div></div>
+          </div>
+        </div>
+        <div class="tline-pct">${pct}%<span class="n">${count} 人</span></div>
+      </div>
+    `;
+  }).join('');
+
+  // ---- Axis split ----
+  const axisData = {PACE:{M:0,R:0},PATH:{E:0,H:0},PARTNER:{C:0,S:0},PERSPECTIVE:{Y:0,I:0}};
+  rows.forEach(r=>{
+    const c = (r.type_code || '').toUpperCase();
+    if(!TYPES[c]) return;
+    axisData.PACE[c[0]]++;
+    axisData.PATH[c[1]]++;
+    axisData.PARTNER[c[2]]++;
+    axisData.PERSPECTIVE[c[3]]++;
+  });
+  const axesEl = document.getElementById('axesList');
+  axesEl.innerHTML = Object.entries(axisData).map(([axis,d])=>{
+    const cfg = AXIS_LABELS[axis];
+    const total = Object.values(d).reduce((a,b)=>a+b,0) || 1;
+    const lk = cfg.left.k; const rk = cfg.right.k;
+    const lp = (d[lk]/total*100).toFixed(0);
+    const rp = (d[rk]/total*100).toFixed(0);
+    return `
+      <div class="axis-row">
+        <div class="axis-name-bar">${axis}</div>
+        <div class="axis-top">
+          <div class="axis-side">
+            <span class="ico">${cfg.left.ico}</span>
+            <span class="name">${cfg.left.zh}</span>
+            <span class="pct">${lp}%</span>
+          </div>
+          <div class="axis-side right">
+            <span class="ico">${cfg.right.ico}</span>
+            <span class="name">${cfg.right.zh}</span>
+            <span class="pct">${rp}%</span>
+          </div>
+        </div>
+        <div class="axis-bar">
+          <div class="axis-bar-left" style="width:${lp}%"></div>
+          <div class="axis-bar-right" style="width:${rp}%"></div>
+          <div class="axis-divider"></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // ---- Headlines (3 punchy stats) ----
+  renderHeadlines(rows, axisData, sortedTypes, typeTotal);
+
+  // ---- Q insights (most polarizing) ----
+  renderQuestionInsights(rows);
+
+  // ---- Geo ----
+  renderGeo(rows);
+
+  // ---- Age ----
+  renderAge(rows);
+
+  // Update timestamp
+  const d = new Date();
+  document.getElementById('lastUpdate').textContent =
+    d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' +
+    String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+}
+
+function renderHeadlines(rows, axisData, sortedTypes, total){
+  const el = document.getElementById('headlinesGrid');
+  // Headline 1: System vs Self split
+  const persTotal = axisData.PERSPECTIVE.Y + axisData.PERSPECTIVE.I;
+  const sysPct = persTotal > 0 ? Math.round(axisData.PERSPECTIVE.Y/persTotal*100) : 0;
+  // Headline 2: top type leadership
+  const topPct = ((sortedTypes[0][1]/total)*100).toFixed(0);
+  const topT = TYPES[sortedTypes[0][0]];
+  // Headline 3: average duration if available
+  const durations = rows.map(r=>parseFloat(r.duration_sec || '0')).filter(d=>d>0 && d<600);
+  const avgDur = durations.length ? Math.round(durations.reduce((a,b)=>a+b,0)/durations.length) : 0;
+
+  el.innerHTML = `
+    <div class="h-card">
+      <div class="h-card-label">SYSTEM VIEW</div>
+      <div class="h-card-text"><strong>${sysPct}%</strong> 的參與者認為街道安全是<strong>系統設計問題</strong>，而非個人責任</div>
+    </div>
+    <div class="h-card">
+      <div class="h-card-label">TOP TYPE</div>
+      <div class="h-card-text">${topT.e} 最常見的是<strong>${topT.zh}</strong>，佔 <strong>${topPct}%</strong></div>
+    </div>
+    <div class="h-card">
+      <div class="h-card-label">ENGAGEMENT</div>
+      <div class="h-card-text">平均花 <strong>${avgDur} 秒</strong>完成測驗，比一首歌還短</div>
+    </div>
+  `;
+}
+
+function renderQuestionInsights(rows){
+  const el = document.getElementById('qInsights');
+  // For each of 12 questions, count left vs right choices
+  const qStats = [];
+  for(let i = 1; i <= 12; i++){
+    const counts = {};
+    rows.forEach(r=>{
+      const v = (r['q'+i] || '').trim();
+      if(v) counts[v] = (counts[v]||0)+1;
+    });
+    const entries = Object.entries(counts);
+    if(entries.length < 2){ qStats.push(null); continue; }
+    const total = entries.reduce((a,b)=>a+b[1],0);
+    entries.sort((a,b)=>b[1]-a[1]);
+    qStats.push({
+      qIdx: i-1, total,
+      left: entries[0], right: entries[1] || ['',0],
+      polarization: Math.abs(entries[0][1] - (entries[1] ? entries[1][1] : 0)) / total
+    });
+  }
+  // Sort by least polarization (closest to 50/50)
+  const ranked = qStats.filter(q=>q && q.total>0).sort((a,b)=>a.polarization-b.polarization).slice(0,3);
+  if(ranked.length === 0){
+    el.innerHTML = '<div style="padding:20px;text-align:center;color:var(--g2);font-size:13px">尚無題目資料</div>';
+    return;
+  }
+  const axisToLabel = (axisName, letter)=>{
+    const cfg = AXIS_LABELS[axisName];
+    if(cfg.left.k === letter) return cfg.left.zh;
+    if(cfg.right.k === letter) return cfg.right.zh;
+    return letter;
+  };
+  el.innerHTML = ranked.map((q,rank)=>{
+    const axis = Q_AXES[q.qIdx];
+    const lPct = ((q.left[1]/q.total)*100).toFixed(0);
+    const rPct = ((q.right[1]/q.total)*100).toFixed(0);
+    const lLabel = axisToLabel(axis, q.left[0]);
+    const rLabel = q.right[0] ? axisToLabel(axis, q.right[0]) : '—';
+    return `
+      <div class="q-row">
+        <div class="q-rank">Q${String(q.qIdx+1).padStart(2,'0')}</div>
+        <div>
+          <div class="q-text">${Q_TEXT[q.qIdx]}…</div>
+          <div class="q-bar-pair">
+            <div class="q-side">
+              <div class="q-side-pct">${lPct}%</div>
+              <div class="q-side-txt">→ ${lLabel} (${q.left[0]})</div>
+              <div class="q-side-bar"><div style="width:${lPct}%"></div></div>
+            </div>
+            <div class="q-side">
+              <div class="q-side-pct">${rPct}%</div>
+              <div class="q-side-txt">→ ${rLabel} (${q.right[0]})</div>
+              <div class="q-side-bar"><div style="width:${rPct}%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderGeo(rows){
+  const el = document.getElementById('geoList');
+  // Count by country, with Taiwan broken down by city if available
+  const countryCounts = {};
+  const cityCounts = {};
+  rows.forEach(r=>{
+    const c = (r.country || '').trim();
+    const city = (r.city || '').trim();
+    if(c){ countryCounts[c] = (countryCounts[c]||0)+1; }
+    if(c === 'TW' && city){ cityCounts[city] = (cityCounts[city]||0)+1; }
+  });
+  const totalGeo = Object.values(countryCounts).reduce((a,b)=>a+b,0) || 1;
+  // Build a combined list: Taiwan cities (top 5) + other countries (top 5)
+  const tw = Object.entries(cityCounts).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const others = Object.entries(countryCounts).filter(([k])=>k!=='TW').sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const items = [];
+  tw.forEach(([city,n])=>{
+    items.push({label:`🏙️ ${city}`, count:n, pct:(n/totalGeo*100).toFixed(1)});
+  });
+  others.forEach(([cc,n])=>{
+    const meta = COUNTRY_LABELS[cc] || {em:'🌍',name:cc};
+    items.push({label:`${meta.em} ${meta.name}`, count:n, pct:(n/totalGeo*100).toFixed(1)});
+  });
+  if(items.length === 0){
+    el.innerHTML = '<div style="padding:20px;text-align:center;color:var(--g2);font-size:13px">尚無地區資料</div>';
+    return;
+  }
+  el.innerHTML = items.map(it=>`
+    <div class="geo-row">
+      <div class="place"><span>${it.label}</span></div>
+      <div class="pct">${it.pct}%<span class="n">${it.count} 人</span></div>
+    </div>
+  `).join('');
+}
+
+function renderAge(rows){
+  const el = document.getElementById('ageList');
+  const counts = {};
+  rows.forEach(r=>{
+    const a = (r.age || '').trim();
+    if(a) counts[a] = (counts[a]||0)+1;
+  });
+  const order = ['under14','15-17','18-24','25-34','35-44','45-54','55-64','65plus'];
+  const total = Object.values(counts).reduce((a,b)=>a+b,0) || 1;
+  const max = Math.max(...Object.values(counts), 1);
+  const haveData = Object.keys(counts).length > 0;
+  if(!haveData){
+    el.innerHTML = '<div style="padding:20px;text-align:center;color:var(--g2);font-size:13px">尚無年齡資料</div>';
+    return;
+  }
+  el.innerHTML = order.map(k=>{
+    const v = counts[k] || 0;
+    const w = v ? (v/max*100).toFixed(1) : 0;
+    const pct = v ? (v/total*100).toFixed(1) : '0.0';
+    return `
+      <div class="age-row">
+        <div class="label">${AGE_LABELS[k]}</div>
+        <div class="bar-w"><div class="bar" style="width:${w}%"></div></div>
+        <div class="v">${pct}%</div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* ============================
+   INIT
+   ============================ */
+// Detect iframe mode via ?embed=1
+if(new URLSearchParams(location.search).has('embed')){
+  document.body.classList.add('iframe-mode');
+}
+
+loadData();
+// Auto-refresh every 60 seconds
+setInterval(loadData, 60000);
+</script>
+</body>
+</html>

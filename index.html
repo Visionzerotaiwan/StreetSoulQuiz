@@ -1,0 +1,5314 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>你是哪種交通人格？— 16 型街道靈魂測驗 | Vision Zero Taiwan × TCAN</title>
+  <meta name="description" content="一個關於你、街道、與這座城市的測驗。Which Street Soul are you?">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://YOUR-DOMAIN-HERE.com/">
+  <meta property="og:title" content="你是哪種交通人格？— 16 型街道靈魂測驗">
+  <meta property="og:description" content="一場關於你、街道、與這座城市的測驗。Vision Zero Taiwan × TCAN 共同推出。">
+  <meta property="og:image" content="https://YOUR-DOMAIN-HERE.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="Vision Zero Taiwan × TCAN">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="你是哪種交通人格？— 16 型街道靈魂測驗">
+  <meta name="twitter:description" content="一場關於你、街道、與這座城市的測驗。">
+  <meta name="twitter:image" content="https://YOUR-DOMAIN-HERE.com/og-image.jpg">
+
+  <!-- html2canvas for share card generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=DM+Serif+Display&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --lime: #C8D400;
+      --lime-dk: #A8B200;
+      --lime-soft: #E8EE8C;
+      --coral: #FF6B5B;
+      --terra: #C9663B;
+      --terra-dk: #9B4D2A;
+      --cream: #FBF7EC;
+      --paper: #FFFCF2;
+      --black: #1A1A1A;
+      --ink: #252525;
+      --g1: #4A4A4A;
+      --g2: #8a8a8a;
+      --g3: #D0D0D0;
+      --g4: #F0F0EC;
+      --white: #FFFFFF;
+      --zh: 'Noto Sans TC', sans-serif;
+      --en: 'Space Grotesk', sans-serif;
+      --serif: 'DM Serif Display', serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    html,
+    body {
+      font-family: var(--zh);
+      background: var(--cream);
+      color: var(--black);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+      pointer-events: none;
+      opacity: .045;
+      z-index: 1;
+      mix-blend-mode: multiply
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 18px 22px 60px;
+      min-height: 100vh
+    }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0 28px;
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--g2)
+    }
+
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-weight: 600
+    }
+
+    .brand-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 3px rgba(200, 212, 0, .2)
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 2px;
+      background: var(--black);
+      padding: 3px;
+      border-radius: 100px
+    }
+
+    .lang-toggle button {
+      background: transparent;
+      border: none;
+      color: var(--g3);
+      padding: 5px 10px;
+      border-radius: 100px;
+      font-family: var(--en);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      cursor: pointer;
+      transition: .2s
+    }
+
+    .lang-toggle button.active {
+      background: var(--lime);
+      color: var(--black)
+    }
+
+    /* Screens */
+    .screen {
+      display: none;
+      animation: fadeUp .55s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .screen.active {
+      display: block
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(.7);
+        opacity: 0
+      }
+
+      60% {
+        transform: scale(1.08)
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+
+    /* Intro */
+    .intro-num {
+      font-family: var(--en);
+      font-size: 11px;
+      letter-spacing: .24em;
+      color: var(--lime-dk);
+      margin-bottom: 10px;
+      font-weight: 700
+    }
+
+    .intro-tag {
+      display: inline-block;
+      background: var(--black);
+      color: var(--lime);
+      font-family: var(--en);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .22em;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 18px
+    }
+
+    /* VZT × TCAN logo placements */
+    .org-logo {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      user-select: none;
+      -webkit-user-drag: none
+    }
+
+    /* Logo on landing (intro) screen — shown above the tag */
+    .intro-logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 340px;
+      width: 78%;
+      height: auto;
+      opacity: .95
+    }
+
+    @media (max-width:420px) {
+      .intro-logo {
+        max-width: 260px;
+        width: 84%
+      }
+    }
+
+    /* Logo block at end of result page — formal credit */
+    .exec-credit {
+      margin-top: 28px;
+      padding: 26px 22px 24px;
+      background: var(--cream);
+      border: 1.5px solid var(--black);
+      border-radius: 18px;
+      text-align: center;
+      position: relative
+    }
+
+    .exec-credit::before {
+      content: '';
+      position: absolute;
+      top: -1.5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--lime);
+      border-radius: 0 0 4px 4px
+    }
+
+    .exec-credit .ec-label {
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .28em;
+      color: var(--g2);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .exec-credit .ec-label::before,
+    .exec-credit .ec-label::after {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--g3)
+    }
+
+    .exec-credit .ec-logo {
+      display: block;
+      margin: 0 auto 16px;
+      max-width: 380px;
+      width: 82%;
+      height: auto
+    }
+
+    @media (max-width:420px) {
+      .exec-credit .ec-logo {
+        max-width: 280px;
+        width: 90%
+      }
+    }
+
+    .exec-credit .ec-orgs {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink);
+      font-weight: 600;
+      letter-spacing: .005em;
+      margin-bottom: 4px
+    }
+
+    .exec-credit .ec-orgs strong {
+      font-weight: 700
+    }
+
+    .exec-credit .ec-sub {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .2em;
+      color: var(--g2);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 9px
+    }
+
+    .intro-title {
+      font-size: clamp(38px, 9.5vw, 62px);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -.02em;
+      margin-bottom: 18px
+    }
+
+    .intro-title em {
+      font-style: normal;
+      position: relative;
+      display: inline-block
+    }
+
+    .intro-title em::after {
+      content: '';
+      position: absolute;
+      inset: auto -4px 4px;
+      height: .42em;
+      background: var(--lime);
+      z-index: -1;
+      transform: skew(-6deg)
+    }
+
+    .intro-sub {
+      font-family: var(--serif);
+      font-size: 21px;
+      line-height: 1.45;
+      color: var(--g1);
+      margin-bottom: 14px;
+      letter-spacing: .01em
+    }
+
+    .intro-sub-en {
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--g2);
+      font-style: italic;
+      margin-bottom: 30px
+    }
+
+    .intro-desc {
+      font-size: 14px;
+      line-height: 1.95;
+      color: var(--g1);
+      margin-bottom: 30px;
+      border-left: 3px solid var(--lime);
+      padding-left: 16px
+    }
+
+    .intro-desc-en {
+      font-family: var(--en);
+      font-size: 12.5px;
+      line-height: 1.7;
+      color: var(--g2);
+      font-style: italic;
+      margin-top: 8px
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 30px
+    }
+
+    .axis-card {
+      background: var(--white);
+      border: 1.5px solid var(--black);
+      padding: 14px 6px 12px;
+      border-radius: 14px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: .3s
+    }
+
+    .axis-card:nth-child(odd) {
+      transform: rotate(-1.2deg)
+    }
+
+    .axis-card:nth-child(even) {
+      transform: rotate(1deg)
+    }
+
+    .axis-card:hover {
+      transform: rotate(0) translateY(-3px);
+      background: var(--lime-soft)
+    }
+
+    .axis-card .emoji {
+      font-size: 22px;
+      margin-bottom: 4px;
+      line-height: 1
+    }
+
+    .axis-card .name {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2
+    }
+
+    .axis-card .vs {
+      font-family: var(--en);
+      font-size: 9px;
+      color: var(--g2);
+      margin: 3px 0;
+      font-weight: 600;
+      letter-spacing: .1em
+    }
+
+    .axis-card .name2 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--g1);
+      line-height: 1.2
+    }
+
+    .axis-card .sub {
+      font-family: var(--en);
+      font-size: 9px;
+      letter-spacing: .1em;
+      color: var(--g2);
+      margin-top: 6px;
+      text-transform: uppercase;
+      font-weight: 600
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: var(--black);
+      color: var(--lime);
+      border: none;
+      padding: 22px 24px;
+      border-radius: 100px;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: var(--zh);
+      letter-spacing: .06em;
+      cursor: pointer;
+      transition: .25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--lime);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s cubic-bezier(.65, 0, .35, 1);
+      z-index: 0
+    }
+
+    .btn-primary:hover::before {
+      transform: scaleX(1)
+    }
+
+    .btn-primary:hover {
+      color: var(--black)
+    }
+
+    .btn-primary span {
+      position: relative;
+      z-index: 1
+    }
+
+    .btn-primary .arrow {
+      transition: transform .25s;
+      font-family: var(--en)
+    }
+
+    .btn-primary:hover .arrow {
+      transform: translateX(6px)
+    }
+
+    .intro-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .15em;
+      color: var(--g2);
+      text-transform: uppercase
+    }
+
+    .intro-meta .dots {
+      display: flex;
+      gap: 4px
+    }
+
+    .intro-meta .dots i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--g3);
+      display: block
+    }
+
+    .intro-meta .dots i:first-child {
+      background: var(--lime)
+    }
+
+    /* Questions */
+    .q-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px
+    }
+
+    .q-num {
+      font-family: var(--en);
+      font-size: 11px;
+      letter-spacing: .2em;
+      color: var(--g2);
+      font-weight: 600
+    }
+
+    .q-num .current {
+      color: var(--black);
+      font-size: 18px;
+      font-weight: 700;
+      margin-right: 2px
+    }
+
+    .q-axis {
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .18em;
+      color: var(--lime-dk);
+      font-weight: 700;
+      background: var(--lime-soft);
+      padding: 5px 10px;
+      border-radius: 100px
+    }
+
+    .progress {
+      height: 5px;
+      background: var(--g4);
+      border: 1px solid var(--g3);
+      border-radius: 100px;
+      margin-bottom: 32px;
+      overflow: hidden
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--lime);
+      transition: width .45s cubic-bezier(.16, 1, .3, 1);
+      border-radius: 100px
+    }
+
+    .q-title {
+      font-size: clamp(22px, 5.5vw, 30px);
+      font-weight: 700;
+      line-height: 1.45;
+      margin: 6px 0 6px;
+      letter-spacing: .01em
+    }
+
+    .q-en {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--g2);
+      margin-bottom: 30px;
+      line-height: 1.55;
+      font-style: italic
+    }
+
+    .choices {
+      display: grid;
+      gap: 12px
+    }
+
+    .choice {
+      background: var(--white);
+      border: 2px solid var(--black);
+      padding: 20px 22px;
+      border-radius: 18px;
+      cursor: pointer;
+      transition: all .25s cubic-bezier(.16, 1, .3, 1);
+      text-align: left;
+      font-family: var(--zh);
+      position: relative;
+      overflow: hidden
+    }
+
+    .choice::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      background: var(--lime);
+      transition: width .3s
+    }
+
+    .choice:hover {
+      transform: translateX(8px);
+      border-color: var(--lime-dk)
+    }
+
+    .choice:hover::before {
+      width: 6px
+    }
+
+    .choice:active {
+      transform: scale(.98)
+    }
+
+    .choice .ch-icon {
+      font-size: 30px;
+      margin-bottom: 10px;
+      display: block;
+      line-height: 1
+    }
+
+    .choice .ch-zh {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.55;
+      margin-bottom: 5px
+    }
+
+    .choice .ch-en {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--g2);
+      line-height: 1.5;
+      font-style: italic
+    }
+
+    .q-back {
+      background: none;
+      border: none;
+      font-family: var(--en);
+      font-size: 11px;
+      letter-spacing: .15em;
+      color: var(--g2);
+      cursor: pointer;
+      margin-top: 20px;
+      padding: 10px 0;
+      font-weight: 600
+    }
+
+    .q-back:hover {
+      color: var(--black)
+    }
+
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 80px 20px
+    }
+
+    .loading-emoji {
+      font-size: 60px;
+      animation: spin 2s linear infinite;
+      display: inline-block;
+      margin-bottom: 24px
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0)
+      }
+
+      100% {
+        transform: rotate(360deg)
+      }
+    }
+
+    .loading-txt {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px
+    }
+
+    .loading-en {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--g2);
+      font-style: italic
+    }
+
+    /* Result */
+    .result-card {
+      background: var(--black);
+      border-radius: 24px;
+      padding: 38px 28px 32px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+      animation: pop .7s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .result-card::after {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -30%;
+      width: 90%;
+      height: 180%;
+      background: radial-gradient(ellipse, var(--lime) 0%, transparent 60%);
+      opacity: .18;
+      pointer-events: none
+    }
+
+    .result-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence baseFrequency='0.7'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+      opacity: .07;
+      pointer-events: none
+    }
+
+    .r-code-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1
+    }
+
+    .r-code {
+      font-family: var(--en);
+      font-size: 14px;
+      letter-spacing: .35em;
+      color: var(--lime);
+      font-weight: 700
+    }
+
+    .r-rarity {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(200, 212, 0, .15);
+      border: 1px solid var(--lime);
+      padding: 5px 11px;
+      border-radius: 100px;
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .15em;
+      color: var(--lime);
+      font-weight: 600
+    }
+
+    .r-rarity::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 6px var(--lime)
+    }
+
+    .r-emoji {
+      font-size: 96px;
+      line-height: 1;
+      margin: 12px 0 18px;
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      animation: wiggle 4s ease-in-out infinite
+    }
+
+    @keyframes wiggle {
+
+      0%,
+      100% {
+        transform: rotate(-3deg)
+      }
+
+      50% {
+        transform: rotate(3deg)
+      }
+    }
+
+    .r-name-zh {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1
+    }
+
+    .r-name-en {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--lime);
+      letter-spacing: .02em;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+      font-style: italic
+    }
+
+    .r-desc {
+      font-size: 15px;
+      line-height: 1.9;
+      color: rgba(255, 255, 255, .88);
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1
+    }
+
+    .r-desc-en {
+      font-family: var(--serif);
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .55);
+      font-style: italic;
+      position: relative;
+      z-index: 1
+    }
+
+    .r-axes {
+      display: flex;
+      gap: 6px;
+      margin-top: 22px;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap
+    }
+
+    .r-axis {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .2);
+      padding: 7px 12px;
+      border-radius: 100px;
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: rgba(255, 255, 255, .75);
+      font-weight: 600
+    }
+
+    .r-axis strong {
+      color: var(--lime)
+    }
+
+    /* Sections */
+    .section {
+      background: var(--white);
+      border: 1.5px solid var(--black);
+      border-radius: 20px;
+      padding: 24px 22px;
+      margin-bottom: 14px;
+      position: relative
+    }
+
+    .section:nth-of-type(2) {
+      transform: rotate(-.4deg)
+    }
+
+    .section:nth-of-type(3) {
+      transform: rotate(.3deg)
+    }
+
+    .s-label {
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .24em;
+      color: var(--lime-dk);
+      font-weight: 700;
+      margin-bottom: 10px
+    }
+
+    .s-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: .02em;
+      line-height: 1.3
+    }
+
+    .s-title-en {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--g2);
+      font-style: italic;
+      font-weight: 400;
+      display: block;
+      margin-top: 2px
+    }
+
+    .s-list {
+      list-style: none
+    }
+
+    .s-list li {
+      padding: 11px 0;
+      border-bottom: 1px dashed var(--g3);
+      font-size: 14.5px;
+      line-height: 1.6;
+      display: flex;
+      gap: 11px;
+      align-items: flex-start
+    }
+
+    .s-list li:last-child {
+      border: none;
+      padding-bottom: 0
+    }
+
+    .s-list li:first-child {
+      padding-top: 0
+    }
+
+    .s-list li::before {
+      content: '✦';
+      color: var(--lime-dk);
+      font-size: 13px;
+      margin-top: 3px;
+      flex-shrink: 0
+    }
+
+    .s-list .en {
+      font-family: var(--serif);
+      font-size: 12.5px;
+      color: var(--g2);
+      display: block;
+      margin-top: 3px;
+      line-height: 1.5;
+      font-style: italic
+    }
+
+    .action-card {
+      background: var(--lime);
+      border: 2px solid var(--black);
+      border-radius: 20px;
+      padding: 26px 22px;
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .action-card::before {
+      content: '→';
+      position: absolute;
+      top: -30px;
+      right: -10px;
+      font-size: 200px;
+      font-weight: 900;
+      color: rgba(0, 0, 0, .07);
+      font-family: var(--en);
+      line-height: 1
+    }
+
+    .action-card .s-label {
+      color: var(--black);
+      position: relative;
+      z-index: 1
+    }
+
+    .action-card .s-title {
+      position: relative;
+      z-index: 1
+    }
+
+    .action-card .a-text {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.75;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1
+    }
+
+    .action-card .a-en {
+      font-family: var(--serif);
+      font-size: 13.5px;
+      font-style: italic;
+      color: var(--g1);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1
+    }
+
+    .match-card {
+      display: block;
+      padding: 0;
+      background: var(--paper);
+      border: 1.5px solid var(--black);
+      border-radius: 20px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--black);
+      transition: .22s;
+      position: relative
+    }
+
+    .match-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 5px 5px 0 var(--black)
+    }
+
+    .match-card .m-top {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 18px 22px 14px;
+      border-bottom: 1px dashed var(--g3)
+    }
+
+    .match-card .m-emoji {
+      font-size: 44px;
+      line-height: 1;
+      flex-shrink: 0
+    }
+
+    .match-card .m-body {
+      flex: 1;
+      min-width: 0
+    }
+
+    .match-card .m-label {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .2em;
+      color: var(--g2);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 4px
+    }
+
+    .match-card .m-name {
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: .005em
+    }
+
+    .match-card .m-name-en {
+      font-family: var(--serif);
+      font-size: 12.5px;
+      color: var(--g2);
+      font-style: italic;
+      margin-top: 1px
+    }
+
+    .match-card .m-why {
+      font-size: 13px;
+      color: var(--g1);
+      line-height: 1.55;
+      margin-top: 5px
+    }
+
+    .match-card .m-article {
+      padding: 14px 22px 16px;
+      background: var(--white);
+      position: relative
+    }
+
+    .match-card .m-article::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 22px;
+      width: 36px;
+      height: 3px;
+      background: var(--lime)
+    }
+
+    .match-card .m-art-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 9px;
+      margin-bottom: 8px;
+      padding-top: 4px
+    }
+
+    .match-card .m-art-source {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .18em;
+      color: var(--lime-dk);
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .match-card .m-art-source::before {
+      content: '📰';
+      font-size: 11px
+    }
+
+    .match-card .m-art-cta {
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .14em;
+      color: var(--g2);
+      font-weight: 600;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px
+    }
+
+    .match-card .m-art-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: .005em;
+      margin-bottom: 7px;
+      color: var(--black)
+    }
+
+    .match-card .m-art-snippet {
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: var(--g1);
+      font-family: var(--serif);
+      font-style: italic
+    }
+
+    .match-card:hover .m-art-cta {
+      color: var(--black)
+    }
+
+    .match-card:hover .m-art-cta::after {
+      transform: translateX(3px)
+    }
+
+    .match-card .m-art-cta::after {
+      content: ' →';
+      transition: transform .22s;
+      display: inline-block;
+      margin-left: 2px
+    }
+
+    /* Demand card (your matched policy demand) */
+    .demand-card {
+      background: var(--paper);
+      border: 2px solid var(--black);
+      border-radius: 20px;
+      padding: 0;
+      margin-bottom: 14px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .demand-hero {
+      background: var(--black);
+      color: var(--white);
+      padding: 26px 22px 22px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .demand-hero::after {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -25%;
+      width: 70%;
+      height: 180%;
+      background: radial-gradient(ellipse, var(--lime) 0%, transparent 60%);
+      opacity: .16;
+      pointer-events: none
+    }
+
+    .demand-hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1
+    }
+
+    .demand-label {
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .24em;
+      color: var(--lime);
+      font-weight: 700;
+      text-transform: uppercase
+    }
+
+    .demand-pill {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .18em;
+      color: var(--lime);
+      font-weight: 600;
+      background: rgba(200, 212, 0, .15);
+      border: 1px solid rgba(200, 212, 0, .4);
+      padding: 5px 10px;
+      border-radius: 100px;
+      text-transform: uppercase
+    }
+
+    .demand-num-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 14px
+    }
+
+    .demand-num {
+      font-family: var(--en);
+      font-size: 80px;
+      font-weight: 300;
+      line-height: .85;
+      color: var(--lime);
+      letter-spacing: -.02em
+    }
+
+    .demand-meta {
+      flex: 1;
+      padding-bottom: 8px
+    }
+
+    .demand-en-tag {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .22em;
+      color: rgba(255, 255, 255, .5);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 4px
+    }
+
+    .demand-title {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: .005em;
+      line-height: 1.2;
+      color: var(--white)
+    }
+
+    .demand-desc {
+      position: relative;
+      z-index: 1;
+      font-family: var(--serif);
+      font-size: 15.5px;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, .85);
+      font-style: italic;
+      border-left: 3px solid var(--lime);
+      padding-left: 14px;
+      letter-spacing: .005em
+    }
+
+    .demand-body {
+      padding: 22px 22px 24px
+    }
+
+    .demand-why {
+      background: var(--lime-soft);
+      border: 1.5px dashed var(--lime-dk);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      font-size: 14.5px;
+      line-height: 1.75
+    }
+
+    .demand-why-label {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .22em;
+      color: var(--lime-dk);
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-transform: uppercase
+    }
+
+    .demand-subs {
+      margin-bottom: 20px
+    }
+
+    .demand-subs-title {
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .22em;
+      color: var(--g2);
+      font-weight: 700;
+      margin-bottom: 11px;
+      text-transform: uppercase
+    }
+
+    .demand-sub-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--g3);
+      font-size: 13.5px;
+      line-height: 1.55
+    }
+
+    .demand-sub-item:last-child {
+      border: none
+    }
+
+    .demand-sub-num {
+      font-family: var(--en);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--lime-dk);
+      letter-spacing: .05em;
+      padding-top: 2px
+    }
+
+    .demand-sub-name {
+      font-weight: 700;
+      color: var(--black);
+      margin-right: 6px
+    }
+
+    .demand-sub-text {
+      color: var(--g1)
+    }
+
+    .demand-cta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .demand-cta a,
+    .demand-cta button {
+      flex: 1;
+      min-width: 140px;
+      background: var(--white);
+      border: 1.5px solid var(--black);
+      padding: 13px 16px;
+      border-radius: 100px;
+      font-family: var(--zh);
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--black);
+      text-align: center;
+      cursor: pointer;
+      transition: .22s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px
+    }
+
+    .demand-cta a:hover,
+    .demand-cta button:hover {
+      background: var(--black);
+      color: var(--lime);
+      transform: translateY(-2px)
+    }
+
+    .demand-cta .primary {
+      background: var(--lime);
+      border-color: var(--black)
+    }
+
+    .demand-cta .primary:hover {
+      background: var(--black);
+      color: var(--lime)
+    }
+
+    /* Other demands collapsible */
+    .demand-others-wrap {
+      margin-top: 16px;
+      border-top: 1px dashed var(--g3);
+      padding-top: 18px
+    }
+
+    .demand-others-toggle {
+      width: 100%;
+      background: transparent;
+      border: none;
+      font-family: var(--zh);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--g1);
+      cursor: pointer;
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      letter-spacing: .02em
+    }
+
+    .demand-others-toggle:hover {
+      color: var(--black)
+    }
+
+    .demand-others-toggle .chev {
+      display: inline-block;
+      transition: transform .3s;
+      font-family: var(--en)
+    }
+
+    .demand-others-toggle.open .chev {
+      transform: rotate(180deg)
+    }
+
+    .demand-others-list {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px;
+      animation: fadeUp .4s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .demand-others-list.open {
+      display: flex
+    }
+
+    .demand-mini {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--white);
+      border: 1.5px solid var(--g3);
+      border-radius: 14px;
+      transition: .2s;
+      align-items: center
+    }
+
+    .demand-mini:hover {
+      border-color: var(--black);
+      transform: translateX(3px)
+    }
+
+    .demand-mini-num {
+      font-family: var(--en);
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--lime-dk);
+      line-height: 1;
+      letter-spacing: -.02em
+    }
+
+    .demand-mini-body {
+      min-width: 0
+    }
+
+    .demand-mini-en {
+      font-family: var(--en);
+      font-size: 9px;
+      letter-spacing: .18em;
+      color: var(--g2);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 2px
+    }
+
+    .demand-mini-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .005em;
+      line-height: 1.3;
+      margin-bottom: 2px
+    }
+
+    .demand-mini-sub {
+      font-size: 12px;
+      color: var(--g1);
+      line-height: 1.45
+    }
+
+    /* Manifesto box */
+    .manifesto {
+      background: var(--black);
+      color: var(--white);
+      padding: 28px 24px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .manifesto::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 14px;
+      font-family: var(--serif);
+      font-size: 140px;
+      color: var(--lime);
+      opacity: .7;
+      line-height: 1
+    }
+
+    .manifesto .m-label {
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .24em;
+      color: var(--lime);
+      font-weight: 700;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1
+    }
+
+    .manifesto .m-text {
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.5;
+      letter-spacing: .01em;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 8px
+    }
+
+    .manifesto .m-text-en {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: italic;
+      color: rgba(255, 255, 255, .6);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1
+    }
+
+    /* Action buttons */
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 22px
+    }
+
+    .btn-sec {
+      background: var(--white);
+      border: 2px solid var(--black);
+      padding: 16px 12px;
+      border-radius: 100px;
+      font-size: 13.5px;
+      font-weight: 700;
+      font-family: var(--zh);
+      cursor: pointer;
+      transition: .22s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px
+    }
+
+    .btn-sec:hover {
+      background: var(--black);
+      color: var(--lime);
+      transform: translateY(-2px)
+    }
+
+    .btn-sec:active {
+      transform: scale(.97)
+    }
+
+    /* All types preview */
+    .all-types {
+      margin-top: 28px;
+      padding: 24px 22px;
+      background: var(--paper);
+      border: 1.5px solid var(--g3);
+      border-radius: 20px
+    }
+
+    .all-types h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: .02em
+    }
+
+    .all-types .h3-en {
+      font-family: var(--serif);
+      font-size: 12.5px;
+      color: var(--g2);
+      font-style: italic;
+      margin-bottom: 18px
+    }
+
+    .all-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px
+    }
+
+    .all-cell {
+      background: var(--white);
+      border: 1px solid var(--g3);
+      border-radius: 10px;
+      padding: 9px 4px;
+      text-align: center;
+      font-family: var(--en);
+      font-size: 9px;
+      letter-spacing: .08em;
+      color: var(--g2);
+      transition: .2s;
+      cursor: default
+    }
+
+    .all-cell:hover {
+      background: var(--lime-soft);
+      transform: translateY(-2px)
+    }
+
+    .all-cell.current {
+      background: var(--black);
+      color: var(--lime);
+      font-weight: 700;
+      border-color: var(--black)
+    }
+
+    .all-cell .em {
+      font-size: 20px;
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1
+    }
+
+    .all-cell .nm {
+      font-size: 9.5px;
+      color: var(--black);
+      font-family: var(--zh);
+      font-weight: 500;
+      margin-top: 2px;
+      line-height: 1.2
+    }
+
+    .all-cell.current .nm {
+      color: var(--white)
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .18em;
+      color: var(--g2);
+      padding-top: 36px;
+      margin-top: 24px;
+      border-top: 1px solid var(--g3);
+      text-transform: uppercase;
+      line-height: 1.9
+    }
+
+    .footer strong {
+      color: var(--black);
+      font-weight: 700
+    }
+
+    .footer .heart {
+      color: var(--lime-dk)
+    }
+
+    /* Notice */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: var(--black);
+      color: var(--lime);
+      padding: 14px 22px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      z-index: 99;
+      transition: transform .4s cubic-bezier(.16, 1, .3, 1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .18)
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0)
+    }
+
+    /* Mobile */
+    @media (max-width:480px) {
+      .intro-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px
+      }
+
+      .container {
+        padding: 14px 16px 40px
+      }
+
+      .r-name-zh {
+        font-size: 32px
+      }
+
+      .all-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .btn-group {
+        grid-template-columns: 1fr
+      }
+
+      .topbar {
+        font-size: 9px
+      }
+    }
+
+    /* Language modes — single language only, no dual */
+    body.zh .en-only {
+      display: none !important
+    }
+
+    body.en .zh-only {
+      display: none !important
+    }
+
+    /* Hide secondary cross-language elements globally — pure mono-lingual */
+    .r-name-en,
+    .r-desc-en,
+    .m-text-en,
+    .s-title-en,
+    .a-en,
+    .m-name-en,
+    .all-types .h3-en,
+    .intro-sub-en,
+    .intro-desc-en,
+    .q-en,
+    .ch-en,
+    .loading-en {
+      display: none !important;
+    }
+
+    /* Picker mode — hide all other UI, only show picker */
+    body.picking .topbar,
+    body.picking .footer {
+      visibility: hidden
+    }
+
+    body.picking .screen {
+      display: none !important
+    }
+
+    body.picking #lang-pick {
+      display: block !important
+    }
+
+    #lang-pick {
+      display: none
+    }
+
+    /* Language picker screen */
+    .pick-wrap {
+      padding: 30px 0 20px;
+      text-align: center
+    }
+
+    .pick-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .28em;
+      color: var(--g2);
+      font-weight: 600;
+      margin-bottom: 32px;
+      text-transform: uppercase
+    }
+
+    .pick-mark::before,
+    .pick-mark::after {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--g3)
+    }
+
+    .pick-emoji {
+      font-size: 64px;
+      line-height: 1;
+      margin-bottom: 14px;
+      display: inline-block;
+      animation: float 3.5s ease-in-out infinite
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-4deg)
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(4deg)
+      }
+    }
+
+    .pick-title-zh {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.01em;
+      margin-bottom: 8px
+    }
+
+    .pick-title-zh em {
+      font-style: normal;
+      position: relative;
+      display: inline-block
+    }
+
+    .pick-title-zh em::after {
+      content: '';
+      position: absolute;
+      inset: auto -3px 3px;
+      height: .42em;
+      background: var(--lime);
+      z-index: -1;
+      transform: skew(-6deg)
+    }
+
+    .pick-title-en {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--g1);
+      font-style: italic;
+      letter-spacing: .01em;
+      line-height: 1.3;
+      margin-bottom: 32px
+    }
+
+    .pick-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 auto 22px;
+      max-width: 280px;
+      color: var(--g3);
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .3em;
+      font-weight: 600
+    }
+
+    .pick-divider::before,
+    .pick-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--g3)
+    }
+
+    .pick-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 8px
+    }
+
+    .pick-btn {
+      background: var(--white);
+      border: 2.5px solid var(--black);
+      border-radius: 24px;
+      padding: 26px 24px;
+      cursor: pointer;
+      text-align: left;
+      transition: all .3s cubic-bezier(.16, 1, .3, 1);
+      position: relative;
+      overflow: hidden;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 18px
+    }
+
+    .pick-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--lime);
+      transform: translateX(-101%);
+      transition: transform .4s cubic-bezier(.65, 0, .35, 1)
+    }
+
+    .pick-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 6px 6px 0 var(--black)
+    }
+
+    .pick-btn:hover::before {
+      transform: translateX(0)
+    }
+
+    .pick-btn:active {
+      transform: translateY(0);
+      box-shadow: 3px 3px 0 var(--black)
+    }
+
+    .pick-btn-emoji {
+      font-size: 42px;
+      line-height: 1;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1
+    }
+
+    .pick-btn-body {
+      flex: 1;
+      position: relative;
+      z-index: 1
+    }
+
+    .pick-btn-lang {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      line-height: 1.1;
+      margin-bottom: 3px
+    }
+
+    .pick-btn-sub {
+      font-family: var(--en);
+      font-size: 11px;
+      letter-spacing: .16em;
+      color: var(--g2);
+      font-weight: 600;
+      text-transform: uppercase
+    }
+
+    .pick-btn:hover .pick-btn-sub {
+      color: var(--ink)
+    }
+
+    .pick-btn-arrow {
+      font-family: var(--en);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--g3);
+      position: relative;
+      z-index: 1;
+      transition: transform .3s, color .3s
+    }
+
+    .pick-btn:hover .pick-btn-arrow {
+      color: var(--black);
+      transform: translateX(4px)
+    }
+
+    .pick-meta {
+      margin-top: 32px;
+      padding: 18px 20px;
+      background: var(--paper);
+      border: 1.5px dashed var(--g3);
+      border-radius: 18px;
+      font-family: var(--en);
+      font-size: 10.5px;
+      letter-spacing: .12em;
+      color: var(--g2);
+      line-height: 1.9;
+      text-transform: uppercase
+    }
+
+    .pick-meta strong {
+      color: var(--black);
+      font-weight: 700
+    }
+
+    .pick-meta .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px
+    }
+
+    .pick-meta .row+.row {
+      margin-top: 6px;
+      padding-top: 8px;
+      border-top: 1px solid var(--g4)
+    }
+
+    /* Demographics screen */
+    .demo-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 18px;
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .22em;
+      color: var(--lime-dk);
+      font-weight: 700;
+      text-transform: uppercase
+    }
+
+    .demo-step-en {
+      color: var(--g3)
+    }
+
+    .demo-title {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -.005em;
+      line-height: 1.3;
+      margin-bottom: 10px
+    }
+
+    .demo-sub {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--g1);
+      font-style: italic;
+      line-height: 1.55;
+      margin-bottom: 28px;
+      padding-left: 12px;
+      border-left: 3px solid var(--lime)
+    }
+
+    .demo-field {
+      margin-bottom: 26px
+    }
+
+    .demo-label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      color: var(--ink);
+      margin-bottom: 12px
+    }
+
+    .demo-label::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--lime);
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: middle
+    }
+
+    .demo-grid {
+      display: grid;
+      gap: 7px
+    }
+
+    .age-grid {
+      grid-template-columns: repeat(4, 1fr)
+    }
+
+    @media(max-width:480px) {
+      .age-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    .demo-opt {
+      background: var(--white);
+      border: 1.5px solid var(--black);
+      padding: 13px 8px;
+      border-radius: 14px;
+      font-family: var(--zh);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .22s
+    }
+
+    .demo-opt:hover {
+      background: var(--lime-soft);
+      transform: translateY(-2px)
+    }
+
+    .demo-opt.selected {
+      background: var(--black);
+      color: var(--lime);
+      border-color: var(--black)
+    }
+
+    .demo-opt.selected::after {
+      content: ' ✓';
+      color: var(--lime)
+    }
+
+    .demo-select {
+      width: 100%;
+      background: var(--white);
+      border: 1.5px solid var(--black);
+      padding: 15px 16px;
+      border-radius: 14px;
+      font-family: var(--zh);
+      font-size: 14.5px;
+      font-weight: 500;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path d='M5 8 L10 13 L15 8' fill='none' stroke='%231A1A1A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 48px
+    }
+
+    .demo-select:focus {
+      outline: none;
+      border-color: var(--lime-dk);
+      box-shadow: 0 0 0 3px var(--lime-soft)
+    }
+
+    .demo-actions {
+      margin-top: 30px
+    }
+
+    .btn-skip {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--g2);
+      font-family: var(--zh);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      cursor: pointer;
+      padding: 14px;
+      margin-top: 8px;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 4px
+    }
+
+    .btn-skip:hover {
+      color: var(--black)
+    }
+
+    /* Share section in result */
+    .share-section {
+      background: var(--white);
+      border: 1.5px solid var(--black);
+      border-radius: 20px;
+      padding: 24px 22px;
+      margin-bottom: 14px
+    }
+
+    /* Further reading — core text shown to everyone */
+    .further-card {
+      display: block;
+      background: var(--cream);
+      border: 2px solid var(--black);
+      border-radius: 20px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--black);
+      transition: .22s;
+      position: relative
+    }
+
+    .further-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 5px 5px 0 var(--coral)
+    }
+
+    .further-card .f-strip {
+      background: var(--coral);
+      color: var(--white);
+      padding: 9px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap
+    }
+
+    .further-card .f-strip-l {
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .24em;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px
+    }
+
+    .further-card .f-strip-l::before {
+      content: '📚';
+      font-size: 13px
+    }
+
+    .further-card .f-strip-r {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .18em;
+      font-weight: 600;
+      text-transform: uppercase;
+      opacity: .85
+    }
+
+    .further-card .f-body {
+      padding: 20px 22px 22px
+    }
+
+    .further-card .f-lead {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: italic;
+      color: var(--g1);
+      line-height: 1.55;
+      margin-bottom: 14px;
+      letter-spacing: .005em
+    }
+
+    .further-card .f-quote {
+      background: var(--white);
+      border-left: 4px solid var(--coral);
+      padding: 14px 16px;
+      margin: 14px 0;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--black);
+      letter-spacing: .005em;
+      border-radius: 0 12px 12px 0;
+      position: relative
+    }
+
+    .further-card .f-quote .stat {
+      display: inline-block;
+      font-family: var(--en);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--coral);
+      letter-spacing: -.01em;
+      line-height: 1;
+      margin: 0 1px
+    }
+
+    .further-card .f-source {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 9px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--g3);
+      flex-wrap: wrap
+    }
+
+    .further-card .f-source-l {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .18em;
+      color: var(--g2);
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .further-card .f-source-l::before {
+      content: '📰';
+      font-size: 11px
+    }
+
+    .further-card .f-cta {
+      font-family: var(--en);
+      font-size: 10.5px;
+      letter-spacing: .14em;
+      color: var(--coral);
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: .2s
+    }
+
+    .further-card .f-cta::after {
+      content: ' →';
+      transition: transform .22s;
+      display: inline-block;
+      margin-left: 2px
+    }
+
+    .further-card:hover .f-cta {
+      color: var(--black)
+    }
+
+    .further-card:hover .f-cta::after {
+      transform: translateX(4px)
+    }
+
+    .further-card .f-title {
+      font-size: 16.5px;
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 6px;
+      letter-spacing: .005em;
+      color: var(--black)
+    }
+
+    .further-card .f-subtitle {
+      font-size: 13px;
+      color: var(--g2);
+      font-family: var(--serif);
+      font-style: italic;
+      margin-bottom: 14px;
+      line-height: 1.5
+    }
+
+    /* Follow VZT — social cards shown to everyone */
+    .follow-card {
+      background: var(--black);
+      color: var(--white);
+      border: 2px solid var(--black);
+      border-radius: 20px;
+      padding: 24px 22px 22px;
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .follow-card::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -15%;
+      width: 50%;
+      height: 160%;
+      background: radial-gradient(ellipse, var(--lime) 0%, transparent 60%);
+      opacity: .16;
+      pointer-events: none
+    }
+
+    .follow-card .fc-label {
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .24em;
+      color: var(--lime);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px
+    }
+
+    .follow-card .fc-label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 3px rgba(200, 212, 0, .25)
+    }
+
+    .follow-card .fc-title {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: .005em;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1
+    }
+
+    .follow-card .fc-sub {
+      font-family: var(--serif);
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, .7);
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1
+    }
+
+    .follow-card .fc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      position: relative;
+      z-index: 1
+    }
+
+    @media (max-width:420px) {
+      .follow-card .fc-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .follow-card .fc-link {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 14px;
+      padding: 13px 15px;
+      text-decoration: none;
+      color: var(--white);
+      transition: .22s;
+      min-width: 0
+    }
+
+    .follow-card .fc-link:hover {
+      background: var(--lime);
+      color: var(--black);
+      border-color: var(--lime);
+      transform: translateY(-2px)
+    }
+
+    .follow-card .fc-link .fc-ico {
+      font-size: 24px;
+      line-height: 1;
+      flex-shrink: 0
+    }
+
+    .follow-card .fc-link .fc-meta {
+      min-width: 0;
+      flex: 1
+    }
+
+    .follow-card .fc-link .fc-plat {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .16em;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: .7;
+      margin-bottom: 1px;
+      display: block
+    }
+
+    .follow-card .fc-link:hover .fc-plat {
+      opacity: .9
+    }
+
+    .follow-card .fc-link .fc-handle {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: .005em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block
+    }
+
+    .follow-card .fc-link .fc-arrow {
+      font-family: var(--en);
+      font-size: 14px;
+      font-weight: 300;
+      opacity: .5;
+      flex-shrink: 0;
+      transition: .22s
+    }
+
+    .follow-card .fc-link:hover .fc-arrow {
+      opacity: 1;
+      transform: translateX(3px)
+    }
+
+    .follow-card .fc-foot {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255, 255, 255, .18);
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .16em;
+      color: rgba(255, 255, 255, .5);
+      text-transform: uppercase;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      line-height: 1.85
+    }
+
+    .follow-card .fc-foot strong {
+      color: rgba(255, 255, 255, .85);
+      font-weight: 700
+    }
+
+    /* Global South perspective — Bogotá article */
+    .south-card {
+      display: block;
+      background: var(--paper);
+      border: 2px solid var(--black);
+      border-radius: 20px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--black);
+      transition: .22s;
+      position: relative
+    }
+
+    .south-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 5px 5px 0 var(--terra)
+    }
+
+    .south-card .sc-strip {
+      background: var(--terra);
+      color: var(--paper);
+      padding: 10px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden
+    }
+
+    .south-card .sc-strip::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -10%;
+      width: 140px;
+      height: 140px;
+      border: 2px solid rgba(255, 252, 242, .16);
+      border-radius: 50%;
+      transform: translateY(-50%);
+      pointer-events: none
+    }
+
+    .south-card .sc-strip-l {
+      font-family: var(--en);
+      font-size: 10.5px;
+      letter-spacing: .24em;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      z-index: 1
+    }
+
+    .south-card .sc-strip-l::before {
+      content: '🧭';
+      font-size: 14px
+    }
+
+    .south-card .sc-strip-r {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .16em;
+      font-weight: 600;
+      text-transform: uppercase;
+      opacity: .82;
+      position: relative;
+      z-index: 1
+    }
+
+    .south-card .sc-body {
+      padding: 22px 22px 20px
+    }
+
+    .south-card .sc-tag {
+      display: inline-block;
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .18em;
+      color: var(--terra-dk);
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: rgba(201, 102, 59, .1);
+      border: 1px solid rgba(201, 102, 59, .25);
+      border-radius: 100px;
+      margin-bottom: 11px
+    }
+
+    .south-card .sc-title {
+      font-size: 19px;
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: .005em;
+      margin-bottom: 10px;
+      color: var(--black)
+    }
+
+    .south-card .sc-lead {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: italic;
+      color: var(--g1);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      letter-spacing: .005em
+    }
+
+    .south-card .sc-quote {
+      background: var(--white);
+      border: 1.5px solid var(--terra);
+      border-left-width: 5px;
+      padding: 16px 18px 14px;
+      margin: 16px 0;
+      border-radius: 0 14px 14px 0;
+      position: relative
+    }
+
+    .south-card .sc-quote::before {
+      content: '\201C';
+      position: absolute;
+      top: -8px;
+      left: 14px;
+      font-family: var(--serif);
+      font-size: 46px;
+      color: var(--terra);
+      line-height: 1;
+      font-weight: 700
+    }
+
+    .south-card .sc-quote-text {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: var(--black);
+      letter-spacing: .005em;
+      font-weight: 500;
+      padding-left: 6px
+    }
+
+    .south-card .sc-quote-attr {
+      margin-top: 9px;
+      font-family: var(--en);
+      font-size: 11px;
+      color: var(--terra-dk);
+      letter-spacing: .06em;
+      font-weight: 700;
+      padding-left: 6px
+    }
+
+    .south-card .sc-quote-attr-zh {
+      font-family: var(--zh);
+      font-size: 11.5px;
+      color: var(--g2);
+      font-weight: 600;
+      letter-spacing: .005em;
+      margin-top: 2px;
+      padding-left: 6px
+    }
+
+    .south-card .sc-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 9px;
+      margin-top: 14px;
+      padding-top: 13px;
+      border-top: 1px dashed var(--g3);
+      flex-wrap: wrap
+    }
+
+    .south-card .sc-source {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .16em;
+      color: var(--g2);
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .south-card .sc-source::before {
+      content: '📰';
+      font-size: 11px
+    }
+
+    .south-card .sc-cta {
+      font-family: var(--en);
+      font-size: 10.5px;
+      letter-spacing: .14em;
+      color: var(--terra-dk);
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: .22s
+    }
+
+    .south-card .sc-cta::after {
+      content: ' →';
+      transition: transform .22s;
+      display: inline-block;
+      margin-left: 2px
+    }
+
+    .south-card:hover .sc-cta {
+      color: var(--black)
+    }
+
+    .south-card:hover .sc-cta::after {
+      transform: translateX(4px)
+    }
+
+    /* TCAN policy articles section — from co-executing org */
+    .tcan-section {
+      margin-bottom: 14px
+    }
+
+    .tcan-header {
+      background: var(--lime);
+      border: 2px solid var(--black);
+      border-radius: 18px 18px 0 0;
+      padding: 14px 22px;
+      border-bottom: none;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 9px;
+      flex-wrap: wrap
+    }
+
+    .tcan-header::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 34px;
+      width: 50px;
+      height: 5px;
+      background: var(--black);
+      border-radius: 0 0 5px 5px
+    }
+
+    .tcan-header-l {
+      font-family: var(--en);
+      font-size: 11px;
+      letter-spacing: .22em;
+      color: var(--black);
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .tcan-header-l::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: var(--black);
+      transform: rotate(45deg)
+    }
+
+    .tcan-header-r {
+      font-family: var(--zh);
+      font-size: 11.5px;
+      color: var(--ink);
+      font-weight: 600;
+      letter-spacing: .01em
+    }
+
+    .tcan-frame {
+      background: var(--paper);
+      border: 2px solid var(--black);
+      border-top: none;
+      border-radius: 0 0 18px 18px;
+      padding: 22px 22px 22px
+    }
+
+    /* Featured card — 趙家緯 */
+    .tcan-featured {
+      display: block;
+      background: var(--white);
+      border: 2px solid var(--black);
+      border-radius: 16px;
+      padding: 0;
+      margin-bottom: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--black);
+      transition: .22s;
+      position: relative
+    }
+
+    .tcan-featured:hover {
+      transform: translateY(-3px);
+      box-shadow: 5px 5px 0 var(--lime-dk)
+    }
+
+    .tcan-featured .tf-strip {
+      background: var(--black);
+      color: var(--lime);
+      padding: 8px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 9px;
+      flex-wrap: wrap
+    }
+
+    .tcan-featured .tf-strip-l {
+      font-family: var(--en);
+      font-size: 10px;
+      letter-spacing: .22em;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .tcan-featured .tf-strip-l::before {
+      content: '⭐';
+      font-size: 11px
+    }
+
+    .tcan-featured .tf-strip-r {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .18em;
+      color: rgba(200, 212, 0, .7);
+      font-weight: 600;
+      text-transform: uppercase
+    }
+
+    .tcan-featured .tf-body {
+      padding: 18px 20px 18px
+    }
+
+    .tcan-featured .tf-author {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 10px;
+      padding-bottom: 11px;
+      border-bottom: 1px dashed var(--g3)
+    }
+
+    .tcan-featured .tf-author-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--lime);
+      border: 1.5px solid var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--black);
+      flex-shrink: 0;
+      line-height: 1
+    }
+
+    .tcan-featured .tf-author-meta {
+      flex: 1;
+      min-width: 0
+    }
+
+    .tcan-featured .tf-author-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: .005em;
+      line-height: 1.3;
+      margin-bottom: 1px
+    }
+
+    .tcan-featured .tf-author-role {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .14em;
+      color: var(--g2);
+      font-weight: 600;
+      text-transform: uppercase
+    }
+
+    .tcan-featured .tf-title {
+      font-size: 17px;
+      font-weight: 900;
+      line-height: 1.35;
+      letter-spacing: .005em;
+      margin-bottom: 8px;
+      color: var(--black)
+    }
+
+    .tcan-featured .tf-snippet {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--g1);
+      font-family: var(--serif);
+      font-style: italic;
+      margin-bottom: 12px
+    }
+
+    .tcan-featured .tf-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 9px;
+      padding-top: 11px;
+      border-top: 1px dashed var(--g3);
+      flex-wrap: wrap
+    }
+
+    .tcan-featured .tf-date {
+      font-family: var(--en);
+      font-size: 10px;
+      color: var(--g2);
+      letter-spacing: .1em;
+      font-weight: 600
+    }
+
+    .tcan-featured .tf-cta {
+      font-family: var(--en);
+      font-size: 10.5px;
+      letter-spacing: .14em;
+      color: var(--lime-dk);
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: .22s
+    }
+
+    .tcan-featured .tf-cta::after {
+      content: ' →';
+      transition: transform .22s;
+      display: inline-block;
+      margin-left: 2px
+    }
+
+    .tcan-featured:hover .tf-cta {
+      color: var(--black)
+    }
+
+    .tcan-featured:hover .tf-cta::after {
+      transform: translateX(4px)
+    }
+
+    /* Mini cards — utility & rollout articles */
+    .tcan-minis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px
+    }
+
+    @media (max-width:520px) {
+      .tcan-minis {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .tcan-mini {
+      display: block;
+      background: var(--white);
+      border: 1.5px solid var(--g3);
+      border-radius: 14px;
+      padding: 14px 15px;
+      text-decoration: none;
+      color: var(--black);
+      transition: .22s;
+      position: relative
+    }
+
+    .tcan-mini:hover {
+      border-color: var(--black);
+      transform: translateY(-2px);
+      box-shadow: 3px 3px 0 var(--black)
+    }
+
+    .tcan-mini .tm-tag {
+      font-family: var(--en);
+      font-size: 9px;
+      letter-spacing: .18em;
+      color: var(--lime-dk);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px
+    }
+
+    .tcan-mini .tm-tag::before {
+      content: '📄';
+      font-size: 10px
+    }
+
+    .tcan-mini .tm-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: .005em;
+      margin-bottom: 6px;
+      color: var(--black)
+    }
+
+    .tcan-mini .tm-meta {
+      font-family: var(--en);
+      font-size: 9.5px;
+      color: var(--g2);
+      font-weight: 600;
+      letter-spacing: .08em;
+      margin-top: 7px;
+      padding-top: 7px;
+      border-top: 1px dashed var(--g3);
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      align-items: center
+    }
+
+    .tcan-mini .tm-cta {
+      font-family: var(--en);
+      font-size: 9.5px;
+      letter-spacing: .14em;
+      color: var(--lime-dk);
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: .22s
+    }
+
+    .tcan-mini:hover .tm-cta {
+      color: var(--black)
+    }
+
+    .tcan-mini .tm-cta::after {
+      content: ' →';
+      display: inline-block;
+      margin-left: 2px;
+      transition: transform .22s
+    }
+
+    .tcan-mini:hover .tm-cta::after {
+      transform: translateX(3px)
+    }
+
+    .share-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 14px
+    }
+
+    .share-btn {
+      background: var(--white);
+      border: 1.5px solid var(--g3);
+      border-radius: 14px;
+      padding: 12px 6px;
+      cursor: pointer;
+      font-family: var(--zh);
+      text-align: center;
+      transition: .22s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px
+    }
+
+    .share-btn:hover {
+      border-color: var(--black);
+      transform: translateY(-3px);
+      background: var(--lime-soft)
+    }
+
+    .share-btn-icon {
+      font-size: 22px;
+      line-height: 1
+    }
+
+    .share-btn-label {
+      font-family: var(--en);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: var(--g1);
+      text-transform: uppercase
+    }
+
+    .share-btn:hover .share-btn-label {
+      color: var(--black)
+    }
+
+    .dl-card-btn {
+      width: 100%;
+      background: var(--lime);
+      border: 2px solid var(--black);
+      border-radius: 14px;
+      padding: 16px 18px;
+      cursor: pointer;
+      font-family: var(--zh);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      margin-top: 10px;
+      transition: .22s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px
+    }
+
+    .dl-card-btn:hover {
+      background: var(--black);
+      color: var(--lime);
+      transform: translateY(-2px)
+    }
+
+    .dl-card-btn.loading {
+      opacity: .6;
+      cursor: wait
+    }
+
+    .dl-card-btn .dl-icon {
+      font-size: 18px
+    }
+
+    /* Share card (off-screen render target) */
+    #shareCard {
+      position: fixed;
+      left: -9999px;
+      top: 0;
+      width: 1080px;
+      height: 1350px;
+      background: var(--cream);
+      font-family: var(--zh);
+      padding: 80px 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box
+    }
+
+    #shareCard * {
+      box-sizing: border-box
+    }
+
+    .sc-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start
+    }
+
+    .sc-brand {
+      font-family: var(--en);
+      font-size: 18px;
+      letter-spacing: .22em;
+      color: var(--g2);
+      font-weight: 600;
+      text-transform: uppercase
+    }
+
+    .sc-brand-dot {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 5px rgba(200, 212, 0, .2);
+      vertical-align: middle;
+      margin-right: 14px
+    }
+
+    .sc-rarity {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, .06);
+      border: 2px solid var(--black);
+      padding: 10px 18px;
+      border-radius: 100px;
+      font-family: var(--en);
+      font-size: 18px;
+      letter-spacing: .16em;
+      color: var(--black);
+      font-weight: 700
+    }
+
+    .sc-rarity::before {
+      content: '';
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--lime)
+    }
+
+    .sc-body {
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center
+    }
+
+    .sc-code {
+      font-family: var(--en);
+      font-size: 32px;
+      letter-spacing: .38em;
+      color: var(--lime-dk);
+      font-weight: 700;
+      margin-bottom: 30px
+    }
+
+    .sc-emoji {
+      font-size: 280px;
+      line-height: 1;
+      margin-bottom: 30px;
+      filter: drop-shadow(8px 8px 0 rgba(0, 0, 0, .08))
+    }
+
+    .sc-name {
+      font-size: 96px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      line-height: 1.1;
+      margin-bottom: 18px;
+      color: var(--black)
+    }
+
+    .sc-name em {
+      font-style: normal;
+      position: relative;
+      display: inline-block
+    }
+
+    .sc-name em::after {
+      content: '';
+      position: absolute;
+      inset: auto -10px 12px;
+      height: .4em;
+      background: var(--lime);
+      z-index: -1;
+      transform: skew(-6deg)
+    }
+
+    .sc-name-en {
+      font-family: var(--serif);
+      font-size: 42px;
+      color: var(--g1);
+      font-style: italic;
+      margin-bottom: 38px
+    }
+
+    .sc-quote {
+      font-family: var(--serif);
+      font-size: 34px;
+      color: var(--ink);
+      line-height: 1.5;
+      max-width: 880px;
+      letter-spacing: .005em
+    }
+
+    .sc-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 30px;
+      border-top: 3px solid var(--black)
+    }
+
+    .sc-axes {
+      display: flex;
+      gap: 10px
+    }
+
+    .sc-axis {
+      background: var(--black);
+      color: var(--lime);
+      font-family: var(--en);
+      font-size: 18px;
+      letter-spacing: .18em;
+      padding: 10px 18px;
+      border-radius: 100px;
+      font-weight: 700
+    }
+
+    .sc-cta {
+      text-align: right;
+      font-family: var(--en);
+      font-size: 15px;
+      letter-spacing: .16em;
+      color: var(--g1);
+      line-height: 1.7;
+      font-weight: 600;
+      text-transform: uppercase
+    }
+
+    .sc-cta strong {
+      color: var(--black);
+      display: block;
+      font-size: 18px;
+      letter-spacing: .18em
+    }
+
+    /* Image preview modal (after card generation) */
+    .img-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 26, 26, .88);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      animation: fadeIn .3s ease-out;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px)
+    }
+
+    .img-modal-inner {
+      background: var(--white);
+      border-radius: 22px;
+      padding: 18px;
+      max-width: 440px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative;
+      animation: fadeUp .4s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .img-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--g3);
+      background: var(--white);
+      border-radius: 50%;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 2;
+      font-family: var(--en);
+      font-weight: 600;
+      transition: .2s
+    }
+
+    .img-modal-close:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+      transform: rotate(90deg)
+    }
+
+    .img-modal-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      margin-bottom: 4px;
+      padding-right: 40px
+    }
+
+    .img-modal-sub {
+      font-family: var(--serif);
+      font-size: 12.5px;
+      color: var(--g2);
+      font-style: italic;
+      margin-bottom: 14px
+    }
+
+    .img-modal img {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+      border: 1.5px solid var(--g3);
+      margin-bottom: 14px;
+      -webkit-user-select: auto;
+      -webkit-touch-callout: default;
+      user-select: auto
+    }
+
+    .img-hint {
+      background: var(--lime-soft);
+      border: 1.5px dashed var(--lime-dk);
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--ink);
+      margin-bottom: 14px;
+      text-align: center
+    }
+
+    .img-hint strong {
+      color: var(--lime-dk);
+      font-weight: 700
+    }
+
+    .img-modal-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px
+    }
+
+    .img-modal-actions button {
+      background: var(--black);
+      color: var(--lime);
+      border: none;
+      padding: 14px 12px;
+      border-radius: 14px;
+      font-family: var(--zh);
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      cursor: pointer;
+      transition: .22s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px
+    }
+
+    .img-modal-actions button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, .15)
+    }
+
+    .img-modal-actions button.alt {
+      background: var(--white);
+      color: var(--black);
+      border: 1.5px solid var(--black)
+    }
+
+    .img-modal-actions button.alt:hover {
+      background: var(--lime);
+      color: var(--black)
+    }
+
+    @media (max-width:480px) {
+      .img-modal-actions {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* Smooth transitions */
+    .section,
+    .result-card,
+    .action-card,
+    .manifesto,
+    .match-card,
+    .all-types {
+      animation: fadeUp .55s cubic-bezier(.16, 1, .3, 1) backwards
+    }
+
+    .section:nth-of-type(1) {
+      animation-delay: .05s
+    }
+
+    .section:nth-of-type(2) {
+      animation-delay: .15s
+    }
+
+    .action-card {
+      animation-delay: .25s
+    }
+
+    .match-card {
+      animation-delay: .32s
+    }
+
+    .manifesto {
+      animation-delay: .4s
+    }
+
+    .all-types {
+      animation-delay: .5s
+    }
+  </style>
+</head>
+
+<body class="picking">
+
+  <div class="container">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>VZT × TCAN — <span class="zh-only">街道靈魂測驗</span><span class="en-only">Street Soul Quiz</span></span>
+      </div>
+      <div class="lang-toggle">
+        <button data-lang="zh">中文</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </div>
+
+    <!-- LANGUAGE PICKER (first screen) -->
+    <section class="screen" id="lang-pick">
+      <div class="pick-wrap">
+        <div class="pick-mark">VISION ZERO TAIWAN × TCAN</div>
+        <div class="pick-emoji">🚦</div>
+        <h1 class="pick-title-zh">街道<em>靈魂</em>測驗</h1>
+        <p class="pick-title-en">Street Soul Quiz</p>
+
+        <div class="pick-divider">CHOOSE LANGUAGE · 選擇語言</div>
+
+        <div class="pick-grid">
+          <button class="pick-btn" onclick="pickLanguage('zh')">
+            <span class="pick-btn-emoji">🥢</span>
+            <div class="pick-btn-body">
+              <div class="pick-btn-lang">中文</div>
+              <div class="pick-btn-sub">繁體中文 · Traditional Chinese</div>
+            </div>
+            <span class="pick-btn-arrow">→</span>
+          </button>
+          <button class="pick-btn" onclick="pickLanguage('en')">
+            <span class="pick-btn-emoji">☕</span>
+            <div class="pick-btn-body">
+              <div class="pick-btn-lang">English</div>
+              <div class="pick-btn-sub">英文版本 · International</div>
+            </div>
+            <span class="pick-btn-arrow">→</span>
+          </button>
+        </div>
+
+        <div class="pick-meta">
+          <div class="row">
+            <span>16 Street Souls</span>
+            <span><strong>12 Q · ~2 MIN</strong></span>
+          </div>
+          <div class="row">
+            <span>Project by VZT × TCAN</span>
+            <span>Curation · <strong>Yun Ching Wu</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="screen" id="intro">
+      <img class="org-logo intro-logo"
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAArwAAAJRCAMAAACQvpQtAAAAYFBMVEUK4P8Ny/8Ny/0My/8Nx/ofa/waaPcaZvcaZ+oIjtb/WWj/VWL/VVhAYMjjTVgxJSUcHBwbGxsSRpYaGhoZGRkYGBgBAWoBAWULCDkQAEwBAGkBAGYBAGIAAIcAADQAAABka+9FAAAAAXRSTlMAQObYZgAAIyZJREFUeNrtnYmyqziSQKleZqqmYzqULV0TFzvm/z9zjDcESCChBIN9TvRS9d69GMMhSaW2qhphLHwCUn0hVrjxH4D5TnkJvR8hb/WVEHk/IWmQL5UXez9AXou8QMqLvLCxvA554ahpw5fKy52nwUapDCiVbYwja0Deo2IEPoBvLTcAAAAAAAAAACxHzL0zRr63OxyOylVdY9r/mq8dRQfHlffeIeOukRd54VhpQ9cZjLxwzMiLvEDkBUBeAOQF5AVAXgDkBeRFXkBeAOQFQF5AXgDkBUBeAOQF5AVYSVAT3xtmX/K2qxuKGG7ZezFinvcgvuriRstJGdvOUduzvNY5ab29nub1wtnZ7/Oi/11c+M8H3/j5M4nzTeW2zrgYsS5x0VvJvr/tQ2tuc2FN+q88pm+F/nT6Csy/jZ19rHVmzVaLofVXhX5dhzbwXi+87FHe24m1M0AlYzsF113AwQvm+cd26jX0+u2kE7yenHdJTcos1dcnmJ8q9zNM6hxuE/yuJnhlFmnUyummlrs1mm9IGTwlz681udrwG+W9Wmp8NdLjlQmu4ykm5Qje8sNJl3R4cmY+4kjW2vrDS5AY0iR424zCCqfGddHPbLTtxWjzP3f/WjI6Af+xfJO8t3sUWwg49ZU5CNLeBVCSV8yim5Ylb2DPxqR3ggQfdg15X9/6Je/j8Xr+hTHry2vl5/4mmbo6b5BXnAsF3Ax5RaZvnJK8duHTlSOveIl61srQEnRdQ96nvW1kuP/TfcHx67/L4+u7jeQNRo/3ySttw2xmUe+MiGhys4YMeaMJn2LkjV0LkyGv9VJrFXmre6iV18Vyz9Xyxf/XNeRtW+yevGY6195WXrEmYdOA5KZ2r9GQ2OBLlje6N8eskunyWuOWXgQJPk1GaVX/q0Jeg+0hydMVr0WnK6+0a9/Yx6PhYjtMdJ+7obxtWUFpE6bXWXuiSlorOF3enh4i6ZcpXd749TA2R16rLe/18FJtWG14yOt9CWOHl0felzYYMYk7taQ80OOblCplsrzGb//f9DWJ8SZZXv/5MLfSaXqjTYJZRrm8tldOMTb6anCalTIr3jN4+5frtZPBo/m4XJvLa036Blkpje3xSXcPplGRtws6r1eBTSzNJ8s7LG47/27kyPu6ocXytmfgfclbEhpB1pJ32BAwva/s3d9N5LWJQffWX2FSzmOsYGolKzlCS+BZSnMiVV437irsYrG4HHmfbbZSee0ond2mdzgkrwyi2SjwbiHvrLq3fuF775hrm7IuR17zrDW4tNuWKm+BBqny2kAebVLfP+HoVCqv6UeAia2y2mbbSjmvBN/Fz+fKbijvTKp763FdsFOuDALtK4qJ1ZFXloeYVHlN4DOsJH4PCeZaxZHX+L//Y2QqbVBvsLVVONe98XpJlVd83kreSXXv8XbZpw7rDcnFgOS0YfllSZVXAsU9axIfGgmWJ4pz3l7v2U2mOIr7G9tXFe5Vj2t7iLuX9vMfTLWVvNH+CHdvwRflIv2bnHrP8yOvdavLaxTktdJPRKoSe58R4b5mfjjuiigKM+5huz4+N5HNRI19TXkl2kVlxJV+WH8Ex+s7iquUI+/9qV9X3lHkWyBvGynSixXTF8jMtNYeS+lXK8r7vJGDcnu1jbwxddsnVuFru17ekD5qJr9Udk9w2ljjnKq8wXd86otf1ts3W7bfttgNh3i4l40SL36vJa9E3BVRKrJ471fnVdJNpSRvNeq5vXdTfIG8Pasio5O0Bb+nJ6GBp9vLG1HXWL3tsgIdhym1gWR5w/l6SgOzSF7Zl7zRBre6vT8/P6+D/3RZ5WCGhawurw0O9GvTf9XYvmRIQLq8sX59savKa3clr5jVH4/xzTETTX6zdp03PApTec5TeLStVGryxux1xn6uvHYwjehZXe0XGlaTtzKD8SoSFMmuJ6/IBuqGb1/COz1nMHpkWIr5WHmdGdh7l3dwWe83eG15jafuYNrNUyZ1eSVwx2WVzrvAQ6IrbzsSbkm6d9yc17s44s0hG3wPu4K8jx677lkR6cva6+5y68gbGsK91qAJs2S0SNYEzOo+tTlzpPhxqw2+vM7PANdOG27X+OqJGfSz3SPfY6BF191mV5E3cKPNamVDWTSYMkve9hfcbbSbSS9plHRSvFnerqHdl3ftBttjVJkLvUy7QUsvu1bJeYPurlbZFlkQ4rPlfdY7vV+c+U468qb3sIWmsy7NeV+zXXYibz8R7GYI6cu7qbqBFMVUq8nbu1QryitLuocDQcMsvoWPV/ZdXv8S31/m8nynry3v45+d9Vci6V8ZRXnH6a7qkM/QJ2Y310rk7a6Vtrz+TDyTnVjb4Euo9I32GFvgt+Beg8RvyYWsK690gyAHnVFrTAMal0VV1wOKvMuzP69AXmt05Q2tkmIlO7EONl6L5DVPeXsNp/trW55nqRqY+vLKvXtY5uZwqMk7yo7ErD6+Y/C8SLVV5LUq8rpA3iCpr5HB7w5Dhym/lWKHM0Ltc4StrDQB04n/1TeTd5x/bjE0SfJ72zPkHZanUwe8J0fe8Zwf74/y5B12OCrI228GtufzmKyzQq2sJ6+ptpX3Pe72V6VIO/90eeW+sGngja6UNlTDLoFqyexhE6x6K8j7bDcZeU7alewWhoa83fqR68gr73G3/8xIpSrvfTWb27q8tzkvRr3O2xsYJ9fPyBkeN5K3nzioyWseLadb2iCblMr68nYv1J9VGmxDd7cbzSx5y0RVixYnye2ETpZ3YkEaky1vZBmSgpz3lvSa12k6209NZBN5/Yt9vye68tq3uds7fdXIO1GdVxuYM7EOpc1YBDiQhWhUG2z16N16va6f+cPiFu8O5ZXBnINN1/k1ubcrUV434a7eQntVbKG9nAXRgkGkRN5HJ1swNLXjD0TUs940eZ26vKMijas2RHLbD8XyiuJCe7HEIWVh31D3nI68j6KCBBrFjy4RI6vI+1ierO0Dcc86rz+jVj/ymrc01Ub1htTPTV4xR5bGxLzFpc2ShLeaGxhRIu+P6Z+9+NNQnXfaik22R6fes5PiVuephksPGPVqQ3/Cj9t65mk3573SlTe8XkrSyOS8PSlEFvXuBOWV8nUb/D4+aQ/z022fJP2f0lyfdzwZ8SVvNxZTW155W1tt8Diqy3sbzCtLRnfmyVv1ly1OHUEa1rR8YE7vWfJHM4v9GVqjFnrDk2Jm27KF8g7Cxht2w7L3xVuSHxpjMvYRa1dyf6wO0z74iR9iJGFLrb5yzw9JH8oU2bTKPL7fQq8mV5MWf70czRTRpq9/qyhvv9TjzParVWxUjnOrf7M3pFwTIfC+UtgcWrHKmMDyi7Jy9/BwISlTwcHp1tlLWFRZ7UVrhuJKJJlQlNe8s84Aq7wApItCdm4nBr2c9zUU0l9RSbxR8NKtxKYjr5X3ttVglcTBy/7EPfaDDie/ahX9RyLt+tnZrbnhh8T7dnAq8vazIrHc+M9IHAZR6Daud7hA7X01e9VPDby4jQxS0Vs7W0PefsJL3IW3NKWXySsr7q8BsKa8Iquk7gDry2soNMBB5RUaa3BQeQetNa4jHEdeEl44qrx+94Qj4YUDyUvSAMeVF3fhoPI6Q5UMDiqvZKwSDrAneUWoNMBB5TXvnfcDsFheZwi8cFB5TWBrboAjyDuYWw9wHHmFjBcOKq8Y+ifgoPL2BuT8cP3gOPL6pQZG8cKh5O1tZ4y8cCR5zV46hs1PGFeWiMcOez1u2flaOzge7YWt5fXrZOadNV4xYiKUWOFMnDJ7QydK3rWpvLKXUsPUlhEl8VEKFkRPvnJ5q/2Cjryym+baZ8h728EKBzeSV/YyquFT5GU89Gbymt30DH+OvDpth3ZFOou8U7fW7GYt3g+St7jxYB6rKRoxXzbYJEfe3ij0aq/yyuHkLTpyb4NrMV/VZZ8l737Gk5nY7ntlZzYlr6wlb5FvV11df5tri7wBnNnRIHSxMtgMXOPMPHnFep9Qvhqtf+DHZisao6KN+lP2BfLu6vF2eu9gWWuYvYzCrCjoForn7nvszZB3t6PQe1Gs0pFX++kcy+tHTd1c5GvszZDX7HXqmv8dquPI2xVvjKq731M7TpfXmr2OQte7a5vKWxXKG6+4OOSNKrKzeZd+iaD6Jnk32CDtA+U1e5JXjF42s2WDrduwftmLTCa3qETedVpFa8U0Vz5WyC+V9cpkRl9eW9hgs1Ol4+/IetPllX3K6/ummoGI1iDhgbwyjLsLqwPTm0tb5A3/4J5SXq/4rJDoRaOZnrz2sSt78Xwqg7zJ8u50jSfdR2oLeZUS1Jld2R3yhh90s8vT18hl3iLvsstpp+Ul8sau1Y4qDU51Z4x3yLvwxJE3XV7d3HKFpEGlEfkGeZc+dA550+WVHcrr3UCdAsjm8hbMYZtusJHzRtpru5HXaHebbFAqs73xtwXXcrIJKNR5d95e0y/e9eR1mi54l9noTGOd7qQg8obl3ctDbY368+R1D9uVHrTrBff7Jwoib3QyydesWL9A3r1kDSs0ITcamCMqQ4nk2/soUuX1m0Y7uTBW9BO8rUaVqbSsnHx54E2V1+6uc1i90rCpvConL/LdgTc58sreBiytMg1/s/G8Om1BwzSgpMi7t1fSOgsFd/Iau6q8OoOQw71sTMDcubz9/iXRGpLSG8+7zroNMnxxlLzjbaDiwNT3vcs7MstDR97+MaV0MY+hvEp1vt7Qyq9brz5RXtm3vAdaq0wqzdDbPgW9zcWE5Z6Qd3V59WaAtNOUbuv7mG9baM9my2uRV0Ne1RFxckvRv26h6nx5BXlV5N1f9fGQ8j4Wq5uR97WmHfKqyKs+GPkL5TX3UU5txuQmW7WPn5JvlVe05f2+7lx1eV83W6YSgpeyO4kSEztZSeGjvO5WVv7peV+CXYG+KtuJTU0o88DEj6vSthA/vX0VaYW8AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACpDw1jnG7mkZbDEzlC4J/ly8vvg4/sFalvx2bJF+CR/UvwxaJ657FQZ/4W1L4Aq1uO36Gfhjpa8Q/FZJ+KcztTWJxmYfrz1KVHZiKdv0tNuo1w3kvZ+k6ztqjNpmU7pXIbr/oLfxd5m8968+usa3rY7FrBRGk9zt7Yuwtryiuvtgmbz+hr8/oZPs33Lvx0sDb3cgp3sVTEzewp23gvI+N9ZYw92fwB7gc7s9rS6vd6Hdu+X1fr0nUWephAN1abzsNql3RlVeu6m8Ru/lMb5EkujuhpFXRM0ABXm7s+nlTjacHug9d4n7jC6Qt39R15V31Q18f/Yor1Xd+FVN3t7vRx4wo7bJn1nrKgzOWE9eiWdRbpXdZl/yRrPdzeUV8TIZhbyh1KegvM4E1bJq6br/AYNsu1je3sNQLu/Tn+eTcdu31003E1XlFevCLIm8ZUlafz9U2ZO8LphumVAyUdrK0twHdiyvKMr7Y6wX5B5h8H4sK6tuN/uQdyKqj5uLXd10YLEpKaiGL7PCdy6V14bCR+8UZVr04txJ9xEeeFosrzOhLNOtEIYi8spc+a73E+YRlX9GZ/yM1iUhZ3CZ5d3yukD1y4VTSKuW8g7ebuVNNhNrwqwor1i7qr3z8loz9ROifm7KZTeFNlTgAP0nzIxFKC2TDO+7urx2XXnb+OVdjHXsfaYNszFA5iKE1i7kw0tR3suqKK8Jv9TdOGsoO2sxmq2IycuqIK+XP3p96U81TGevWUXe+KP9akTOyqtzZnbYGix+KIrlDTygJtyDY6xq2Ukz9JpY7bO82nDNFp8Rzj7a/ddL/Xz+2jN/vaiMXUNeG+slNjZVXp2XwmSF+T3y/oxabBLOIPX6hs2KV2HwOOjUecfdsE93Ta84o1rvXdJJsaa8Mr5tRt4sbzXKboeB8XGKailvoBhZGnoD19UpyusG8tph0DOao4x2Kq+VyWEVb5J3eH8jL3W1Dt1Y811VXiva8nbn+BpcZ0ZRSTFz2Ju8ZtVhPkvvjOlX910kgZT1soY1Dnl/5HSeuHvkdcNP8w75tNfJ5vLGau7K8gbHCRW+aRRqr4OBDJGXupppYvRDb/CQfh1LQ96rDf6Qgn4jXtQHmL2qDf4MADv6s9lihJa8c8Mx3yNvr2fVhrrHRU2D4MOheRX8szZGqa7jesqEDxgeM1kub2icUdIjoiyv3xfujWeVd8srPXvDeZVaGzNS9Tf68uoVJV3oyRhehesnqA4vC/awZQx+15XXa66LtaIzLkVBXmNsHmq1BqM1WmJleW28PdibhLNGqUwCZ/IOebuntt8OfrO8lWSpK1q1hrbor9QKXFleiTy+t/41s9L04XDkleQuM1V5uyK/6d/FoqCjIm+WvWWXwptgZPsXxR4n8vZ7c8SsOZOi/2J+V847DLVWpbKtIa/Lk1f1Kuhc4U0ib1dqkMGnrmLvq9oQmjwxmFKxurxmmOQajTemyjBF2S7lHV6F4ftoz2nD69l73kDxChuryTtPeGCTprzjvh6VIufm8pa1rOyoSmo0cumV5fWqYMaPNhKdcr+pvHZDeWXUgLPvljd4ncJViLIrMZ4yp9L30Rs9b7TldZ28Pz15K79e8sHyyjjCeG9Mea+8Nti96oJOKzXXuha7RtXFnzDajmHUldd28joznJRq1kp7d5Q2eAskmGgW/C55YwNbAlKXVaVDqy9p5A1m0JUtqvI+6lNBeV9Rab0GW3+lPBv407UbbP4AAjfqtnq3vIGHWaqgBWXz1MWfEfhYI033KthYEl8q7/3RsiN5q1sNQL+91nUPh0fEyFwTWk9eP4bJeHby8sMrySvhmoI1qlmDzFwFW34VnJelaslrulb14xsMNVlz3YZgnJHER053UUTtXiulGb1m1HUfqUM4ncAbvgqiJW/gqVsu76O91r2KVNYGTI68waK82VJes6S9uKG889NodAdiZA2rXiDv+DkpkNer7a64sF6ivI/3gN1OXjcrr7xX3mED3QRe9MWNajvXfl4c0sbyjkLv8jP3X9+9qSUi75A39TlXk9fOlz3eK+9A0s4i0VynzW4n73gmXllmJt50kkcGYcSIs5vL60zaK1BN3vkeIPNeeaMLJg0WNSq5DHaLq+Bij8pieR+FMq+MYbp/FLNaDhGQ9/4vkvZ9tORNCLxLtdCSN5Z89hOeoqwhYfDaUhOC8holef2r23VXdOOq1hlUNpL3VqBx3ReT17dcV97eVIXQKKHljRUteXtm+Q6J2tI2Zour4GIhY/GiI/5b+seTVyZmVSiXykzbV9/VOfxwJ9FRQUry9qJXf4lVV9pkU4u8sfleVms1bBu/CqK3ZpWLpUKL1+f1V5WWrvDQ2zFiDX1dN/7R61jzvtjNXrnFFLeevN6YHDeRULxV3v7bIeJcUYFzIjmQ0vVMwvJajQmYva4C6a7CLd1dU9/w/EHfmvYj4wtFKsk7MfHWlcqnJq+N7ZWhlfJOnKkrXUkqLG+lEHkfg3JsO3j30Sf7fITlVm14fbCuvtbIxBCc1xp8zwn+q8k7eWtKZ5TryRs7ktWZZyZTuUHpTi0ReXu7BNmCwHNbWa9bGLK7NEY016udKyt2z4fpBeUV04bJIRRSqIbeHifRBMaoTKKY3ASpdB20mLy2eGXLZ3+WRC60HyE1I+94UElvt8tBKSV4BBV5zVQ9zJmyOtEK8g7Po/uLghFlMqmRK2yyRZ8vKxoNYtMbjy1DSWSFNSIH9XVjnMT2c4yI022gWXBirltf1QQfkKLPmD54ZpYl3nYhob9wJfJOfk21qyCxv1l48m1kNTd53TO1jWRcur0VDzndrdYQ2p1b5sLWeOpO0TMUXIXN25Joybe3kwfP8+s5wjYSk4u6QmfiRFczXNRbE78KUnx5HpNzH0M4g6cnrWqaGe+jFNfWyOJP3Wvm/Z72nYddYqZeb6K+JUXbFnTTT7IpzAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4Lv5dzZcM9iJu/+TC/LCbuT9VybIC0eVl8gLyAuAvIC8yAvIC4C8AMgLyIu8gLwAyAvIi7yAvADIC4C8gLzIC8gLgLwAyAvIC4C8AMgLyIu8gLwAyAuAvIC8AMgLgLyAvMgLyAvQ8Vc2yAs74R+ZP/9H9Rfywk7k/eNveSAv7EfeLJAXkBd5AXkBeZEXkBd5AXkBkBeQF3kBeZEXkBeQF3kBeZEXkBcAeQF5kReQF3kBeQGQF5AXeQF5AZAXkBd5AXmRF5AXAHkBeZEXkBcAeQF5kReQF3nBVy4b5IVjxssryAu7kTdvRWjkLeP3cucX9VTk/cbIezrXhZwveZ/YGls3p466/RPFOxk/1Sb3UOdlhwlf1Avy6sr7e/I1WkJzqnPCbX2+/kpzPtfX+9v+z7nleg6NnsATp5r7EZGrc1n0aw3yastbF0feOj3mXm9hG5TOA9o/adoQrJFDXE5qL4mqCR9mzt6Tyocj76y850Lqpk40tzmdQ+Y+j3Np/VUIv5c2sEc+45Qrb/gw59Nc2hACeQ8qbxt0z/Xcoeqrv6X6Xk6XqLzn3LwhdqTmgrxfI+9V3bpOOlpd5+TQwY+KPyTZr+5m2VOAvJ8j7zVhqM/nNHmv9zi/XdUvEEx9Uuah4zG8Qd6vkPdyShPXSymXt9wup8nP0pK3njwQ8n6IvL/1go+oFwffy8y51kqRd/IMkfcz5P3NDLvP1HepvY3qU9FMHQl5P1zeS1MvO+zCxPdymjtbHXmvx5k4EvJ+grytSwvtPS+yd07ezFJvM/W14yeIvB8gb9nRF9ibkKRkHbWZ/OJn5P1ceX9PZUfPt/cyW06u1eSdOBTyHl/eemnC+5T3nF3kTSlk/CrJGz8U8h5e3pmSa8qhL9mBd7YhmHXQZu5wyLs3eeODZ+qMLtdL8XORnTgk1jb0Cm+RBwF5t5K3GXGKBLC6OTWBn45E3lNzVrA3L2uY/8g665izxwsnDsi7zUyK8yVEE4kzYRYG3rqea13lveMT85ScJtusvOGKA/K+cw5b6P17jbu/OSJNFq1ab9uwPZGj5CcOyUm2mryRnkDk3Zu8ee30qfTzNoXtEfKb29yKKT0UX/LZoXcu572+G0IXBXnfKu+5LnvfTgTBdhabl2rcZ1hohN7kwNtc9B6HYLEFeQ8u75SOg2B1qSdUb9KnyOk3A5tlcRx5jyxv3N06OFZ3KmimJisZZeXkL9Isy0KQ99Dy5s6fuUSrc8mmpcubXsNIyqLH7wbkPbK8Tb42TbiFV8/MuPEOUMcOsDxvaJY1AJH3wPJGg2D+9IPkl3wgU2lP4rduCr5JWv1iVENE3s+Td2IQ4USenPix10ylHn3cNdCHa3a1pryj9wnyHljeSIlsplAcS5TrpE6FU2jW8PUDww9S4ldJSxtGVwZ5jytvLIbOrpJUsMRYxNHqNhd+8VdplhXfkPfI8kayhpnf+42MnUiZCH+Jprbh3sJGVd5BNRp5P03e+rTi3aviyUHobFILcMny9o+HvAeWV3FGZVGvyOmRgQfWpWxU5W0P+Iu8nyBvExlQtmLgPQeHwV3iL4K0vCFH3st75f17Bn/8fULef7xJ3n/tQt5LcBj6qlnD72nifAvqDTnj6b0Dbi7v36o/qtbHW0i9/ffxf/4/3oT944/n/0Qfg6zNLSbkzWUn8p63ljfYKHtVlZvFXcQZ8vqr/W8u71/VX1nEjLse6Z95/PXP/0SO9O/q33lU+5X3vOKq9tX0izzcT5Ey4Ccn8nqPw+by6vHnf2cSlfdtlMkbHqWworzBx6U73Zm/zpW3qS+hYRTeEjpHlve/MvkGeTPG5S6Rtw7NcphzcJm818vwf3Uz2VVxaHmJvOVrMGQVeWci6+K8ITIRNbLcxesjkfe48qosIFIYeHut/+AqUCln1MSy9+AKgq8Jbcj7YfKuWGy4zM4RDo/1bRbK2x65PgdThxPyIm9ekXf28y6nZd8nLm94PcrHIZH3wPLWm8p7aRbK2xTIGxsnfPtY5KXBlnqywRXUmoGFdWjFkAJ5q8hkkQZ5KZWVZQ3nwTbVC/OGKXkjAz/bYyLvh8m72r2L1MFS5D2XyBsd+fmLvB8m73o9bJHcM0HDZnYBq0l5I4tSni6/DfIeVt5IBX+tIm/S2OFwJ9zcN5qW9zccemMLrSLvIeTdciJFYjYb2a2iLpE3shRmbO0T5D2AvL+bjuc9J4b5pjnnL3w5I+/EykDIe0x5I7e8rrcLvIG63OV0yf9Kc/JmbemBvEeQd8s5bMFZw6EzDco7NzdpTt6sTWOQ9xDyhu/oGt0U4a7hYE05PLNu+jvNyludiLzfIO982/7S1CEu9W/mRwU/6LKKvBmhF3mPIG8sE5wJvb+hvYbafStOuTXlsLzhfoq6TN4Me5H3CPLGkt6ZA0QC75Rfv6eMSfbN9NydhfKm7/OJvMeQN7rE6eQv5SufNWThkp4f58g7v98x8n6GvOeJ34mtDj3xsaecskakS+FUKG/yVp/Iewh5qzrczdTmBRklr9lqVuYk+1P2t0qSNzVxQN5jyBuxqj1ouHTQxt0FWUPwl6LtwsiIoWJ5E7sqkPcY8sY2iIi81C9TeePEa/2UV5ELPyFTXytN3sSKA/IeRN5oHni1+jQcKH6VKvrinZqBEWmBNXkuTn1CorwVacMnyRvteapvsbF5brfdrid9mmquT31onduRF54aOlGKS5X3d3qnZeQ9lryT21G2O7ieTufm3Fz/r56671Nh8Td7Qb/swZqp8iZVHJD3KPJW02lgfanvQXgmYk0VsmK7B0ym4ues2UDJ8kbXJEbeI8qb1oiZ+ZnL1EcGQ/b0LOVLeJZDUy5vQuhF3sPIW9V1+mjBuNyTT0eTuwLZJatXI0feSBcI8h5T3qyB2uHKxKSJEVua/HbkRUPe+a4K5D2OvO3w76Ys7DbZg2bm1ja5NFm15Bx5L8j7QfLGXuzJ418nx8xERjjOnGMkXMd+K0fe2SwfeY8kb3VuLs3yxLc5TcfQ8MTdRUWQ2JCLLHkrIu8nyVudlrt7mVn8eeH8+qn18Url/Z0Ovch7LHmrxRWHesbdpVsORfopGg15Z9Je5D2YvL/t7n51fkutPs2sqBBZfn1+WZ4mZ1/kTHmnuyqQ92DyXmPvklZbPT/frV5Qa3hEx/Tvlivv5KwK5D2cvFlLGyTNzYkrmLI0RFY/Ra68k18WeY8n78RA82hTbfaDQpthJ24oHBkn36jIG9wEGXmPK29K12lvuZv6sjCaJ53gJTzMOPi7+fJOhF7kPaS81aU+JbXb6rpuUhbWiRR50+Q9pS8qkS/vhL3Ie0x52yO2s4Onh0le//aU9hmRroa0JYDDk4eCXcQL5K2IvB8n7y36nppz1N9rzD0lJAwTaUjZyu3B314ibzT0Iu9W8l4CS9eULvN4efjbH8b7WBanaecGpR6oOdfLz6+tZyUuzBP8nLkVqS+nS3jNNeTdhDq4bFjCZr3z/l7aqT9toesWg+vHlKDT5ZJ+b9tFzQIneErdOOAUXhQt4H74MpwWHf90Rt5tIm8YxYM3bZZw/c/1bZp95N9L2fnFfv1X6TpcVr18yAuAvIC8AMgLgLyAvMgLyAuAvADIC8iLvIC8AMgLyIu8gLwAyAuAvIC8yAvIC4C8gLzIC8gLgLwAyAvIi7yAvADIC4C8gLwAyAuAvIC8yAvIC4C8AMgLyAuAvADIC8iLvIC8AMgLgLyAvADIC4C8gLzIC8gLgLwAyAvIC4C8AMgLyIu8gLwAyAuAvIC8XDTYibz/zAV5YSf853/z+PNPrhkAAAAAAADAEfh/tP13xJjFNpUAAAAASUVORK5CYII="
+        alt="Vision Zero Taiwan × TCAN" />
+      <div class="intro-num">CHAPTER 00 / INTRO</div>
+      <div class="intro-tag">VISION ZERO TAIWAN × TCAN</div>
+      <h1 class="intro-title zh-only">你是哪種<br><em>交通人格</em>？</h1>
+      <h1 class="intro-title en-only">Which Street<br><em>Soul</em> are you?</h1>
+      <p class="intro-sub zh-only">一場關於你、街道、與這座城市的測驗。</p>
+      <p class="intro-sub-en en-only">A quiz about you, your street, and this city.</p>
+
+      <p class="intro-desc">
+        <span class="zh-only">每個人都跟街道有一段獨特的關係。你怎麼移動、跟誰移動、看見什麼樣的城市，組合成 16 種「交通人格」。沒有對錯，只有屬於你的街道靈魂。</span>
+        <span class="intro-desc-en en-only">Everyone has a unique relationship with the street. How you move, who you
+          move with, and what you see along the way combine into 16 distinct "street souls." No right or wrong—just the
+          one that's truly yours.</span>
+      </p>
+
+      <div class="intro-grid">
+        <div class="axis-card">
+          <div class="emoji">🐢</div>
+          <div class="name zh-only">漫</div>
+          <div class="name en-only">Mellow</div>
+          <div class="vs">vs</div>
+          <div class="name2 zh-only">速</div>
+          <div class="name2 en-only">Rapid</div>
+          <div class="sub">Pace</div>
+        </div>
+        <div class="axis-card">
+          <div class="emoji">🗺️</div>
+          <div class="name zh-only">探</div>
+          <div class="name en-only">Explore</div>
+          <div class="vs">vs</div>
+          <div class="name2 zh-only">熟</div>
+          <div class="name2 en-only">Habit</div>
+          <div class="sub">Path</div>
+        </div>
+        <div class="axis-card">
+          <div class="emoji">👥</div>
+          <div class="name zh-only">群</div>
+          <div class="name en-only">Crew</div>
+          <div class="vs">vs</div>
+          <div class="name2 zh-only">獨</div>
+          <div class="name2 en-only">Solo</div>
+          <div class="sub">Partner</div>
+        </div>
+        <div class="axis-card">
+          <div class="emoji">🔭</div>
+          <div class="name zh-only">系</div>
+          <div class="name en-only">System</div>
+          <div class="vs">vs</div>
+          <div class="name2 zh-only">我</div>
+          <div class="name2 en-only">Self</div>
+          <div class="sub">View</div>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="goDemographics()">
+        <span class="zh-only">開始測驗</span><span class="en-only">Begin Quiz</span>
+        <span class="arrow">→</span>
+      </button>
+
+      <div class="intro-meta">
+        <div class="dots"><i></i><i></i><i></i><i></i><i></i></div>
+        <div>12 Questions · ~2 min</div>
+      </div>
+    </section>
+
+    <!-- DEMOGRAPHICS (optional, before quiz) -->
+    <section class="screen" id="demographics">
+      <div class="demo-top">
+        <div class="demo-step">STEP 00 · 開始前</div>
+        <div class="demo-step-en">BEFORE WE BEGIN</div>
+      </div>
+      <h2 class="demo-title zh-only">兩個快速問題，幫助我們了解誰在參與</h2>
+      <h2 class="demo-title en-only">Two quick questions before we begin</h2>
+      <p class="demo-sub zh-only">這些資訊只用於匿名統計（沒有姓名、沒有 IP）。你也可以略過。</p>
+      <p class="demo-sub en-only">Anonymous stats only — no names, no IPs collected. Or skip if you'd rather not.</p>
+
+      <div class="demo-field">
+        <label class="demo-label zh-only">你的年齡區間</label>
+        <label class="demo-label en-only">Your age range</label>
+        <div class="demo-grid age-grid">
+          <button class="demo-opt" data-age="under14"><span class="zh-only">14 以下</span><span class="en-only">Under
+              14</span></button>
+          <button class="demo-opt" data-age="15-17">15–17</button>
+          <button class="demo-opt" data-age="18-24">18–24</button>
+          <button class="demo-opt" data-age="25-34">25–34</button>
+          <button class="demo-opt" data-age="35-44">35–44</button>
+          <button class="demo-opt" data-age="45-54">45–54</button>
+          <button class="demo-opt" data-age="55-64">55–64</button>
+          <button class="demo-opt" data-age="65plus">65+</button>
+        </div>
+      </div>
+
+      <div class="demo-field">
+        <label class="demo-label zh-only">你在哪個地區？</label>
+        <label class="demo-label en-only">Where are you?</label>
+        <select class="demo-select" id="demoCountry">
+          <option value="">— <span class="zh-only">請選擇</span><span class="en-only">Select</span> —</option>
+          <option value="TW">🇹🇼 台灣 · Taiwan</option>
+          <option value="JP">🇯🇵 日本 · Japan</option>
+          <option value="KR">🇰🇷 韓國 · Korea</option>
+          <option value="HK">🇭🇰 香港 · Hong Kong</option>
+          <option value="SG">🇸🇬 新加坡 · Singapore</option>
+          <option value="MY">🇲🇾 馬來西亞 · Malaysia</option>
+          <option value="CN">🇨🇳 中國 · China</option>
+          <option value="US">🇺🇸 美國 · USA</option>
+          <option value="CA">🇨🇦 加拿大 · Canada</option>
+          <option value="UK">🇬🇧 英國 · UK</option>
+          <option value="DE">🇩🇪 德國 · Germany</option>
+          <option value="FR">🇫🇷 法國 · France</option>
+          <option value="NL">🇳🇱 荷蘭 · Netherlands</option>
+          <option value="AU">🇦🇺 澳洲 · Australia</option>
+          <option value="OTHER">🌍 其他 · Other</option>
+        </select>
+        <select class="demo-select" id="demoCity" style="display:none;margin-top:8px">
+          <option value="">— <span class="zh-only">縣市</span><span class="en-only">City</span> —</option>
+          <option value="台北市">🏙️ 台北市 · Taipei</option>
+          <option value="新北市">🌆 新北市 · New Taipei</option>
+          <option value="桃園市">🌳 桃園市 · Taoyuan</option>
+          <option value="台中市">🌇 台中市 · Taichung</option>
+          <option value="台南市">🏛️ 台南市 · Tainan</option>
+          <option value="高雄市">⚓ 高雄市 · Kaohsiung</option>
+          <option value="基隆市">🌧️ 基隆市 · Keelung</option>
+          <option value="新竹市">💎 新竹市 · Hsinchu City</option>
+          <option value="新竹縣">🌾 新竹縣 · Hsinchu County</option>
+          <option value="苗栗縣">🍓 苗栗縣 · Miaoli</option>
+          <option value="彰化縣">🌻 彰化縣 · Changhua</option>
+          <option value="南投縣">🏔️ 南投縣 · Nantou</option>
+          <option value="雲林縣">🌽 雲林縣 · Yunlin</option>
+          <option value="嘉義市">🍜 嘉義市 · Chiayi City</option>
+          <option value="嘉義縣">🌾 嘉義縣 · Chiayi County</option>
+          <option value="屏東縣">🌴 屏東縣 · Pingtung</option>
+          <option value="宜蘭縣">🌊 宜蘭縣 · Yilan</option>
+          <option value="花蓮縣">⛰️ 花蓮縣 · Hualien</option>
+          <option value="台東縣">🌅 台東縣 · Taitung</option>
+          <option value="澎湖縣">🏝️ 澎湖縣 · Penghu</option>
+          <option value="金門縣">🏯 金門縣 · Kinmen</option>
+          <option value="連江縣">🪨 連江縣 · Lienchiang</option>
+        </select>
+      </div>
+
+      <div class="demo-actions">
+        <button class="btn-primary" onclick="submitDemographics()">
+          <span class="zh-only">繼續</span><span class="en-only">Continue</span>
+          <span class="arrow">→</span>
+        </button>
+        <button class="btn-skip" onclick="skipDemographics()">
+          <span class="zh-only">略過這步</span><span class="en-only">Skip this</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section class="screen" id="quiz">
+      <div class="q-top">
+        <div class="q-num"><span class="current" id="qCur">01</span><span>/ 12</span></div>
+        <div class="q-axis" id="qAxis">PACE</div>
+      </div>
+      <div class="progress">
+        <div class="progress-bar" id="qBar" style="width:8.3%"></div>
+      </div>
+
+      <h2 class="q-title" id="qTitle"></h2>
+      <p class="q-en" id="qEn"></p>
+
+      <div class="choices" id="qChoices"></div>
+
+      <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">← <span
+          class="zh-only">上一題</span><span class="en-only">Previous</span></button>
+    </section>
+
+    <!-- LOADING -->
+    <section class="screen" id="loading">
+      <div class="loading">
+        <div class="loading-emoji">🚦</div>
+        <div class="loading-txt zh-only">解讀你的街道靈魂中…</div>
+        <div class="loading-txt en-only">Reading your street soul…</div>
+        <div class="loading-en zh-only">Reading your street soul...</div>
+        <div class="loading-en en-only">解讀中…</div>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen" id="result"></section>
+
+    <div class="footer">
+      <div>A PROJECT BY <strong>Vision Zero Taiwan</strong> &nbsp;×&nbsp; <strong>TCAN</strong></div>
+      <div>還路於民行人路權促進會 · 台灣氣候行動網路</div>
+      <div style="margin-top:8px">CURATION & DATA · <strong>Yun Ching Wu</strong> <span class="heart">✦</span></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* ============================
+       QUESTIONS — 3 per axis
+       ============================ */
+    const QUESTIONS = [
+      // PACE — Mellow (M) vs Rapid (R)
+      {
+        axis: 'PACE',
+        zh: '下班路上，距離家走路 15 分鐘、騎車 5 分鐘，你會選哪一個？',
+        en: '15-minute walk or 5-minute scooter ride home from work. Which?',
+        choices: [
+          { icon: '🚶', zh: '走路，順便看看路上的店家和行道樹', en: 'Walk—I love noticing shops and street trees', val: { PACE: 'M' } },
+          { icon: '🛵', zh: '騎車快點到家煮飯比較實在', en: 'Scoot home fast and cook dinner', val: { PACE: 'R' } }
+        ]
+      },
+      {
+        axis: 'PACE',
+        zh: '紅燈倒數還有 30 秒，你的心情是？',
+        en: '30 seconds left on the red light. You feel:',
+        choices: [
+          { icon: '🌿', zh: '剛好可以看看路口的招牌或樹葉', en: 'Just enough time to enjoy the storefronts and leaves', val: { PACE: 'M' } },
+          { icon: '⏱️', zh: '好久啊，趕快變綠燈吧', en: 'Ugh, hurry up and turn green', val: { PACE: 'R' } }
+        ]
+      },
+      {
+        axis: 'PACE',
+        zh: '你心中理想的週末早晨是？',
+        en: 'Your ideal weekend morning is:',
+        choices: [
+          { icon: '☕', zh: '慢慢走去某家咖啡店，沒有特別目的', en: 'Strolling to a café with no real plan', val: { PACE: 'M' } },
+          { icon: '🎯', zh: '排好行程，把要去的地方一口氣解決', en: 'Planned itinerary, knock everything out', val: { PACE: 'R' } }
+        ]
+      },
+
+      // PATH — Explorer (E) vs Habitual (H)
+      {
+        axis: 'PATH',
+        zh: '通勤路線你的習慣是？',
+        en: 'When commuting, you usually:',
+        choices: [
+          { icon: '🗺️', zh: '偶爾換條路走，看不同風景', en: 'Switch it up to see different scenery', val: { PATH: 'E' } },
+          { icon: '📍', zh: '走最熟的那條，閉著眼睛都會到', en: 'Stick to the route I know by heart', val: { PATH: 'H' } }
+        ]
+      },
+      {
+        axis: 'PATH',
+        zh: '路過一條沒走過的小巷子…',
+        en: 'You pass an alley you\'ve never walked down…',
+        choices: [
+          { icon: '🐱', zh: '好奇地拐進去看看有什麼', en: 'Curious—I\'ll wander in and see', val: { PATH: 'E' } },
+          { icon: '🏠', zh: '下次再說，今天還是走原路', en: 'Maybe next time. Sticking to my route', val: { PATH: 'H' } }
+        ]
+      },
+      {
+        axis: 'PATH',
+        zh: '出國旅遊你比較像？',
+        en: 'When traveling abroad, you\'re more like:',
+        choices: [
+          { icon: '🎒', zh: '隨意走走逛逛，發現驚喜最棒', en: 'Wander, get lost, find surprises', val: { PATH: 'E' } },
+          { icon: '📋', zh: '規劃好景點清單，按表操課', en: 'A planned list of must-sees, checked off', val: { PATH: 'H' } }
+        ]
+      },
+
+      // PARTNER — Crew (C) vs Solo (S)
+      {
+        axis: 'PARTNER',
+        zh: '通勤時你最享受的時刻是？',
+        en: 'The best part of your commute is:',
+        choices: [
+          { icon: '💬', zh: '跟朋友、同事一起走或一起搭車', en: 'Walking or riding with friends/coworkers', val: { PARTNER: 'C' } },
+          { icon: '🎧', zh: '戴上耳機，一個人沉浸在自己的世界', en: 'Headphones in, in my own world', val: { PARTNER: 'S' } }
+        ]
+      },
+      {
+        axis: 'PARTNER',
+        zh: '週末想出門走走，你會？',
+        en: 'Free weekend, you\'ll probably:',
+        choices: [
+          { icon: '👯', zh: '揪一群人一起去比較開心', en: 'Round up some people—more fun together', val: { PARTNER: 'C' } },
+          { icon: '🚶', zh: '自己或兩個人輕鬆走就好', en: 'Solo or just one friend—keep it chill', val: { PARTNER: 'S' } }
+        ]
+      },
+      {
+        axis: 'PARTNER',
+        zh: '你覺得理想的街道氣氛是？',
+        en: 'Your ideal street vibe is:',
+        choices: [
+          { icon: '🏪', zh: '有店家有人潮，熱鬧有活力', en: 'Bustling shops, lively crowd, alive', val: { PARTNER: 'C' } },
+          { icon: '🌳', zh: '安靜舒服，可以放空獨處', en: 'Calm and quiet—space to breathe alone', val: { PARTNER: 'S' } }
+        ]
+      },
+
+      // PERSPECTIVE — System (Y) vs Self (I)
+      {
+        axis: 'PERSPECTIVE',
+        zh: '看到車禍新聞，你第一個想到的是？',
+        en: 'Seeing a crash on the news, you first think:',
+        choices: [
+          { icon: '🏗️', zh: '這個路口的設計是不是有問題？', en: 'Is something wrong with that intersection?', val: { PERSPECTIVE: 'Y' } },
+          { icon: '👤', zh: '駕駛或行人應該要更小心', en: 'Driver or pedestrian should be more careful', val: { PERSPECTIVE: 'I' } }
+        ]
+      },
+      {
+        axis: 'PERSPECTIVE',
+        zh: '要讓街道更安全，你覺得最關鍵的是？',
+        en: 'The key to safer streets is:',
+        choices: [
+          { icon: '🛤️', zh: '改造道路設計、加寬人行道、降低車速', en: 'Redesign roads, widen sidewalks, slow traffic', val: { PERSPECTIVE: 'Y' } },
+          { icon: '📚', zh: '加強駕駛教育與行人路權宣導', en: 'Better driver education & pedestrian awareness', val: { PERSPECTIVE: 'I' } }
+        ]
+      },
+      {
+        axis: 'PERSPECTIVE',
+        zh: '看到國小生騎電動自行車差點被撞，你會想？',
+        en: 'A kid on an e-bike almost gets hit. You think:',
+        choices: [
+          { icon: '🚲', zh: '為什麼這條路沒有自行車道？', en: 'Why doesn\'t this road have a bike lane?', val: { PERSPECTIVE: 'Y' } },
+          { icon: '⚠️', zh: '家長和學校應該要教他更小心', en: 'Parents and schools should teach kids caution', val: { PERSPECTIVE: 'I' } }
+        ]
+      }
+    ];
+
+    /* ============================
+       16 TYPES
+       ============================ */
+    const TYPES = {
+      // M = Mellow, R = Rapid | E = Explorer, H = Habitual | C = Crew, S = Solo | Y = System, I = Self
+
+      'MECY': {
+        emoji: '🦉',
+        zh_name: '城市觀察家',
+        en_name: 'The Urban Observer',
+        rarity: '4.2%',
+        desc_zh: '你走在街上總會看見別人忽略的細節 — 一棵新長的行道樹、人行道高低差、某個路口的危險彎角。你愛這座城市，更想看著它一點一滴變好。',
+        desc_en: 'You catch details others miss—a fresh street tree, an uneven sidewalk, a dangerous turn. You love this city, and you want to watch it grow better, block by block.',
+        strengths_zh: ['觀察入微，看得見系統性的問題', '願意把發現分享出去', '對城市保有溫柔的耐心'],
+        strengths_en: ['Sharp eye for systemic issues', 'Loves sharing what you see', 'Tender patience for cities'],
+        growth_zh: '有時候會因為太常看見「不對勁」而感到無力 — 記得你不是一個人在看。',
+        growth_en: 'You can get worn out from seeing "what\'s wrong" everywhere—remember, you\'re not watching alone.',
+        action_zh: '把你看見的「街道問題」拍下來，回報市府 1999、議員辦公室、或路權團體。你的觀察就是基礎設計改變的第一筆證據。',
+        action_en: 'Photograph the "street problems" you see and report them to your city hotline, council member, or advocacy group. Your observation is the first piece of evidence that drives infrastructure change.',
+        match_emoji: '🇳🇱',
+        match_zh: '烏特勒支',
+        match_en: 'Utrecht',
+        match_why_zh: '一座為「人」而設計、處處是觀察細節的城市',
+        match_why_en: 'A city designed for people, full of details to notice',
+        article_url: 'https://futurecity.cw.com.tw/article/2915',
+        article_title: '將快速道路改回環城運河，荷蘭老城烏特勒支變身「自行車城市」',
+        article_snippet: '荷蘭烏特勒支從汽車城市轉變為自行車與行人的城市，市政府把市中心車道變徒步區、停車格變人行道，店家生意還變更好。',
+        quote_zh: '「街道，是這座城市最誠實的自白。」',
+        quote_en: '"Streets are the most honest confession a city makes."'
+      },
+
+      'MECI': {
+        emoji: '🐱',
+        zh_name: '街角分享家',
+        en_name: 'The Corner Connector',
+        rarity: '5.8%',
+        desc_zh: '你走在街上會跟早餐店老闆寒暄、跟鄰居的狗打招呼、認識每個轉角賣花的阿姨。對你來說，街道不是路過的地方，是日常的客廳。',
+        desc_en: 'You chat with the breakfast shop owner, greet the neighbor\'s dog, know the auntie selling flowers at the corner. For you, streets aren\'t passages—they\'re living rooms.',
+        strengths_zh: ['天生的社區建立者', '讓陌生人變成熟人', '把街道變成有溫度的地方'],
+        strengths_en: ['A natural community builder', 'Turns strangers into neighbors', 'Makes streets feel warm'],
+        growth_zh: '你看見的是「人」，但別忘了支撐這些日常的，是人行道夠不夠寬、車速夠不夠慢。',
+        growth_en: 'You see people—but remember, what holds those daily moments is sidewalk width and traffic speed.',
+        action_zh: '下次社區有公園、人行道、學區安全的公聽會，去發言一次。你的故事比任何數據都動人。',
+        action_en: 'Next time there\'s a hearing about your park, sidewalk, or school zone safety—show up and speak. Your stories move people more than data.',
+        match_emoji: '🇯🇵',
+        match_zh: '京都四條通',
+        match_en: 'Shijō, Kyoto',
+        match_why_zh: '把車道讓給行人，巷弄回歸社區客廳',
+        match_why_en: 'Where streets became living rooms again',
+        article_url: 'https://futurecity.cw.com.tw/article/2937',
+        article_title: '車流僅人流 1/3，車道卻是人行道兩倍寬？京都人行道拓寬計畫',
+        article_snippet: '京都四條通的步行實驗 — 把車道讓給行人、減少左轉車延滯，最終改變了 40–50% 市民的生活模式。',
+        quote_zh: '「我們的街道，是我們的客廳。」',
+        quote_en: '"Our streets are our living rooms."'
+      },
+
+      'MESY': {
+        emoji: '🐢',
+        zh_name: '漫遊思考者',
+        en_name: 'The Wandering Thinker',
+        rarity: '3.1%',
+        desc_zh: '你常常一個人慢慢走，腦中浮現的不是待辦清單，是「為什麼這個路口要這樣設計？」、「如果這裡有人行道會怎樣？」你的散步是城市規劃的演練場。',
+        desc_en: 'You walk slowly alone, your mind drifting to "why is this intersection designed this way?" or "what if there were a sidewalk here?" Your strolls are urban planning rehearsals.',
+        strengths_zh: ['深度思考街道與城市的關係', '獨立判斷，不易被輿論帶風向', '願意花時間理解複雜問題'],
+        strengths_en: ['Deep thinking on streets & cities', 'Independent judgment, hard to sway', 'Patient with complex problems'],
+        growth_zh: '再多的思考也需要落地。試著把腦中的想像，寫成一篇文章或畫一張圖。',
+        growth_en: 'Thinking needs to land. Try writing your reflections, or sketching a redesigned intersection.',
+        action_zh: '追蹤一個你常經過的路口三個月，記錄事故、違停、行人困難 — 把資料整理成一份小報告寄給里長或議員。',
+        action_en: 'Pick one intersection you pass often. Track crashes, illegal parking, and pedestrian struggles for 3 months. Turn it into a mini-report for your council representative.',
+        match_emoji: '🇩🇰',
+        match_zh: '哥本哈根',
+        match_en: 'Copenhagen',
+        match_why_zh: '思考城市未來的最佳場景：碳中和首都',
+        match_why_en: 'The thinker\'s dream: a carbon-neutral capital',
+        article_url: 'https://futurecity.cw.com.tw/article/3255',
+        article_title: '哥本哈根：2050 年成世界首座「碳中和」城',
+        article_snippet: '60 萬市民人人有腳踏車，市內單車專用道道總長 375 公里。從減碳、運輸、跨海腳踏車渡輪到 2030 全面禁售燃油車。',
+        quote_zh: '「慢，是看見問題的速度。」',
+        quote_en: '"To walk slowly is to see clearly."'
+      },
+
+      'MESI': {
+        emoji: '🦋',
+        zh_name: '散步詩人',
+        en_name: 'The Stroll Poet',
+        rarity: '2.6%',
+        desc_zh: '你走路是為了走路本身。風吹過的方向、光的角度、突然出現的小貓 — 對你來說，街道是一首每天都長得不一樣的詩。',
+        desc_en: 'You walk for walking\'s sake. The angle of light, the breeze, a cat that suddenly appears—the street is a poem that changes daily.',
+        strengths_zh: ['感受敏銳，懂得欣賞日常之美', '跟街道有真實的情感連結', '提醒大家慢下來的價值'],
+        strengths_en: ['Deeply sensitive to daily beauty', 'True emotional bond with the street', 'Reminds us slowness matters'],
+        growth_zh: '你的美感是力量。把街道之美拍下來、寫下來，讓更多人想保護它。',
+        growth_en: 'Your aesthetic is power. Photograph it, write it—make others want to protect it too.',
+        action_zh: '用 #台灣街道日常 開一個 IG 帳號或部落格，記錄你的城市散步。美好的街道，需要被看見才會被守護。',
+        action_en: 'Start an IG account or blog with #StreetsOfTaiwan documenting your walks. Beautiful streets only get protected when they\'re seen.',
+        match_emoji: '🇫🇷',
+        match_zh: '巴黎',
+        match_en: 'Paris',
+        match_why_zh: '把街道從汽車手中拿回來，給詩意一個棲身之所',
+        match_why_en: 'Reclaiming streets from cars, making space for poetry',
+        article_url: 'https://futurecity.cw.com.tw/article/3016',
+        article_title: '2030 年巴黎將成「無車城」 市長伊達戈：珍貴空間不該被汽車主宰！',
+        article_snippet: '巴黎市長伊達戈索回塞納河畔的水岸空間、推「無車日」、規劃 15 分鐘城市。「城市的創造力不需依賴汽車」。',
+        quote_zh: '「街道，是我們寫給城市的情書。」',
+        quote_en: '"Streets are love letters written to the city."'
+      },
+
+      'MHCY': {
+        emoji: '🐶',
+        zh_name: '鄰里大使',
+        en_name: 'The Neighborhood Ambassador',
+        rarity: '6.4%',
+        desc_zh: '你熟悉社區的每一條巷弄。哪條路有違停、哪個路口接送小孩很危險、哪個阿伯都騎車逆向，你都門清。你也願意站出來把這些事說出來。',
+        desc_en: 'You know every alley in your neighborhood. Where the illegal parking is, which intersection is dangerous at school pickup, which uncle always rides the wrong way. And you\'re willing to speak up.',
+        strengths_zh: ['熟門熟路，超強在地知識', '願意倡議與行動', '人脈廣，能動員社區'],
+        strengths_en: ['Deep local knowledge', 'Willing to advocate and act', 'Connected, can mobilize neighbors'],
+        growth_zh: '記得：你不是一個人在扛。找到隊友，把短期改變變成長期制度。',
+        growth_en: 'You\'re not carrying this alone. Find teammates to turn quick fixes into lasting policy.',
+        action_zh: '發起一個「我家附近最危險的路口」社區走查，跟里長或學校一起，把改善需求送到區公所或交通局。',
+        action_en: 'Organize a "most dangerous intersection in our area" walk with neighbors and your local school. Bring improvement requests to the district office or transportation bureau.',
+        match_emoji: '🇳🇱',
+        match_zh: '荷蘭',
+        match_en: 'The Netherlands',
+        match_why_zh: '從鄰里抗爭走出來的人本城市典範',
+        match_why_en: 'Where neighborhood activism built the people-first city',
+        article_url: 'https://futurecity.cw.com.tw/article/3148',
+        article_title: '50 年前荷蘭：行人與自行車結盟｜人本城市3',
+        article_snippet: '1970 年代荷蘭家長、孩童、記者組成「停止謀殺兒童」公民團體，抗爭走向主流後孕育出 woonerf 生活街道 — 鄰里的力量。',
+        quote_zh: '「最了解這條街的人，就住在這條街上。」',
+        quote_en: '"The people who know this street best live on it."'
+      },
+
+      'MHCI': {
+        emoji: '🐰',
+        zh_name: '早市好朋友',
+        en_name: 'The Market Mingler',
+        rarity: '8.1%',
+        desc_zh: '你每天走同一條路去買菜、吃早餐、接小孩。這些短短的路程，是你跟世界連結的方式。一杯豆漿、一句「早安」，撐起了你的一天。',
+        desc_en: 'You walk the same route every day—for groceries, breakfast, school pickup. These short trips are how you connect with the world. A cup of soy milk, a "good morning"—that\'s your day.',
+        strengths_zh: ['日常街道的重度使用者', '支撐在地經濟與街道生命', '對街道安全的需求最切身'],
+        strengths_en: ['Heavy daily user of streets', 'Sustains local economy & street life', 'Most personally affected by street safety'],
+        growth_zh: '你最常用街道，所以最有發言權。下次街道不便利或不安全時，告訴別人。',
+        growth_en: 'You use streets most—so you have the right to speak. Next time something\'s unsafe or unwalkable, say it.',
+        action_zh: '下次去市場或學校的路上覺得「這裡好難走」，把它拍下來，傳到鄰里 Line 群 — 累積足夠的聲音才能促成改變。',
+        action_en: 'Next time something feels "hard to walk" on your way to the market or school, photograph it and share in your neighborhood group chat. Enough voices create change.',
+        match_emoji: '🇦🇹',
+        match_zh: '維也納',
+        match_en: 'Vienna',
+        match_why_zh: '35% 行程靠步行 — 日常通勤的友善典範',
+        match_why_en: '35% of trips on foot — the daily-life model',
+        article_url: 'https://futurecity.cw.com.tw/article/3559',
+        article_title: '全球最愛走路城市！35% 行程靠步行、首創行人專員，維也納打造步行天堂',
+        article_snippet: '維也納全球首創「行人專門委員」，主要負責溝通，路口限速 20 公里、放寬行人路權，開車比例從 40% 降至 27%。',
+        quote_zh: '「街道好不好走，問每天走的人。」',
+        quote_en: '"Ask the daily walker what a good street is."'
+      },
+
+      'MHSY': {
+        emoji: '🐼',
+        zh_name: '街道守護者',
+        en_name: 'The Street Steward',
+        rarity: '3.4%',
+        desc_zh: '你話不多，但對街道的長期觀察讓你看得透。你知道哪一年人行道被縮了、哪個路口紅燈秒數變短了。你是一座城市最沉默也最堅定的見證人。',
+        desc_en: 'You don\'t say much, but years of watching let you see clearly. You remember when the sidewalk got narrower, when the red light got shorter. You\'re the city\'s quietest, most steady witness.',
+        strengths_zh: ['長期記憶，能對照變化', '理性冷靜，不被情緒帶走', '對「制度倒退」最敏感'],
+        strengths_en: ['Long memory of changes over years', 'Calm, rational, unswayed by emotion', 'Most sensitive to policy backsliding'],
+        growth_zh: '你的見證很珍貴，但只有寫下來才會留下。試著把記憶整理成時間軸。',
+        growth_en: 'Your testimony is precious—but only writing it down keeps it. Try mapping your memory into a timeline.',
+        action_zh: '整理一份「我家附近 10 年來的街道變化」筆記，附上新舊照片。送給研究者、媒體、或路權團體 — 這些是台灣最缺的長期資料。',
+        action_en: 'Compile a "10 years of street change in my area" note with before-after photos. Send it to researchers, journalists, or advocacy groups—this is the long-term data Taiwan most needs.',
+        match_emoji: '🇸🇪',
+        match_zh: '瑞典',
+        match_en: 'Sweden',
+        match_why_zh: '零死亡願景發源地 — 把長期見證寫進法律',
+        match_why_en: 'Birthplace of Vision Zero — long watching, written into law',
+        article_url: 'https://futurecity.cw.com.tw/article/3057',
+        article_title: '如何降七成交通死亡率？瑞典「零死亡願景」：優先保護行人，圓環取代路口',
+        article_snippet: '1997 年瑞典立法通過 Vision Zero — 不是消除事故，而是減少死傷。25 年後死亡率降七成，死亡人數不到台灣 1/6。',
+        quote_zh: '「改變很慢，倒退很快 — 所以要有人記得。」',
+        quote_en: '"Progress is slow, regression is fast—so someone must remember."'
+      },
+
+      'MHSI': {
+        emoji: '🦔',
+        zh_name: '黃昏散步家',
+        en_name: 'The Twilight Stroller',
+        rarity: '4.7%',
+        desc_zh: '你習慣黃昏的固定路線，可能是公園一圈、河堤一段、或巷弄繞一輪。這段時間屬於自己，是這一天最完整的呼吸。',
+        desc_en: 'You have a regular twilight route—the park loop, the riverbank stretch, the same alleys. This time is yours, the day\'s deepest exhale.',
+        strengths_zh: ['懂得照顧自己的節奏', '對「安全步行」有切身的需求', '穩定的習慣，是城市觀察的最佳尺'],
+        strengths_en: ['Honors your own rhythm', 'Personally invested in walkable safety', 'Steady habits make for sharp observation'],
+        growth_zh: '你的「我想安心散步」是合理的訴求 — 別擔心提出來會打擾誰。',
+        growth_en: '"I want to walk safely" is a fair request—don\'t worry about who you\'re bothering by saying it.',
+        action_zh: '寫一封信給你常走那段街道的里長或議員，內容就是：「我希望這條路晚上也能安心走。」短短一句，就是路權倡議。',
+        action_en: 'Write a one-line letter to your council member about your evening route: "I want to walk this street safely at night." That\'s already advocacy.',
+        match_emoji: '🇫🇮',
+        match_zh: '赫爾辛基',
+        match_en: 'Helsinki',
+        match_why_zh: '連續 12 個月交通零死亡 — 真正能安心散步的城市',
+        match_why_en: 'Zero traffic deaths for 12 months — truly safe to stroll',
+        article_url: 'https://futurecity.cw.com.tw/article/3752',
+        article_title: '413 萬元的超速罰單、全市速限 30：赫爾辛基連續 12 個月交通零死亡的秘密',
+        article_snippet: '芬蘭首都赫爾辛基寫下新紀錄：連續 12 個月無人死於交通事故。半世紀的城市減速、全市限速 30、超速最高罰 413 萬。',
+        quote_zh: '「能安心走路的城市，才是好城市。」',
+        quote_en: '"A city you can walk safely is a city that\'s good."'
+      },
+
+      'RECY': {
+        emoji: '🦊',
+        zh_name: '通勤革新者',
+        en_name: 'The Commute Innovator',
+        rarity: '5.5%',
+        desc_zh: '你每天都在優化自己的通勤 — 哪一節車廂最快、哪條路最少塞、什麼時候出發最順。你享受系統運作得很好的瞬間，也最受不了它失靈。',
+        desc_en: 'You optimize your commute daily—which train car, which shortcut, which exact minute. You love when the system flows, and you can\'t stand it when it breaks.',
+        strengths_zh: ['看得見系統的瓶頸', '願意分享優化心得', '是大眾運輸最忠實的使用者'],
+        strengths_en: ['You spot system bottlenecks', 'Loves sharing optimization tips', 'A loyal transit user'],
+        growth_zh: '你不只是使用者，是測試員。記得把你發現的系統問題正式回報。',
+        growth_en: 'You\'re not just a user—you\'re a tester. Make sure to formally report what you find.',
+        action_zh: '用台鐵、捷運、公車的官方意見回饋系統，提交一次具體建議。每年累積三、五次，比任何路人都有影響力。',
+        action_en: 'Submit one specific feedback to your transit system every quarter. Over a year, you\'ll outweigh any random voice.',
+        match_emoji: '🇸🇬',
+        match_zh: '新加坡',
+        match_en: 'Singapore',
+        match_why_zh: '系統優化的極致：凍漲汽車量、建 1300 公里自行車道',
+        match_why_en: 'System optimization at scale: frozen car growth, 1300km of cycling',
+        article_url: 'https://futurecity.cw.com.tw/article/3274',
+        article_title: '有錢也買不到車！新加坡「2030 少車願景」：凍漲汽車量，建 1300 公里自行車道',
+        article_snippet: '新加坡疫情後重新思索人們在城市中移動的可能，成立「主動運輸」部門，投資 230 億台幣建 1300 公里自行車道。',
+        quote_zh: '「好的通勤系統，是一座城市的良心。」',
+        quote_en: '"A good commute is a city\'s conscience."'
+      },
+
+      'RECI': {
+        emoji: '🐬',
+        zh_name: '城市衝浪者',
+        en_name: 'The City Surfer',
+        rarity: '7.2%',
+        desc_zh: '你喜歡這座城市的節奏感 — 人潮、紅綠燈、店面、聲音。你穿梭其中像是在衝浪，每一天都是新的浪。城市的活力就是你的能量來源。',
+        desc_en: 'You love the city\'s rhythm—crowds, traffic lights, storefronts, sounds. You weave through it like surfing waves. Urban energy is your fuel.',
+        strengths_zh: ['充滿活力，能感染身邊的人', '適應力強，敢嘗試新工具', '看見城市的可能性'],
+        strengths_en: ['High energy, contagious', 'Adaptable, tries new tools fast', 'Sees urban possibility'],
+        growth_zh: '你的能量很寶貴，但別忘了：能讓你「衝浪」的城市，是無數人努力維護的成果。',
+        growth_en: 'Your energy matters—but remember, the city you "surf" is upheld by many people\'s daily work.',
+        action_zh: '試試看一週都不開車或騎車，全部用走路、自行車、大眾運輸完成。你會發現這座城市的人行道與車道，差很多。',
+        action_en: 'Try a week without driving or scootering—walk, bike, or take transit only. You\'ll feel exactly how unequal sidewalks and roads are.',
+        match_emoji: '🇫🇷',
+        match_zh: '巴黎',
+        match_en: 'Paris',
+        match_why_zh: '把街道流動還給所有人 — 不只開車的人',
+        match_why_en: 'Flow restored to everyone, not just drivers',
+        article_url: 'https://futurecity.cw.com.tw/article/3062',
+        article_title: '力推交通、社宅、減碳革命 巴黎首位女市長為何被指「政治自殺」？',
+        article_snippet: '巴黎市長伊達戈為行人和單車族奪回城市空間和乾淨空氣。「城市消耗全球超過 2/3 能源，空污每年導致 300 萬人死亡。」',
+        quote_zh: '「城市是動詞，不是名詞。」',
+        quote_en: '"City is a verb, not a noun."'
+      },
+
+      'RESY': {
+        emoji: '🦅',
+        zh_name: '路線設計師',
+        en_name: 'The Route Architect',
+        rarity: '4.1%',
+        desc_zh: '你看 Google 地圖像是看設計圖。哪裡該有自行車道、哪個路口要分流、哪個轉角該斜切 — 你腦中已經改造這座城市無數次。',
+        desc_en: 'You read Google Maps like a blueprint. Where the bike lane should go, where the intersection needs splitting, where the corner should be cut—you\'ve redesigned this city a hundred times in your head.',
+        strengths_zh: ['空間規劃直覺強', '看得見「未來的版本」', '邏輯清晰，能說服別人'],
+        strengths_en: ['Strong spatial intuition', 'Sees the "future version"', 'Logical, persuasive'],
+        growth_zh: '別讓你的好點子留在腦中。試著畫出來、寫出來，分享給能改變現狀的人。',
+        growth_en: 'Don\'t keep good ideas in your head. Sketch, write, send to people who can act on them.',
+        action_zh: '挑一個你常經過的危險路口，用 Figma 或紙筆畫出改善版設計，附上理由，貼到 PTT、Facebook、或路權社團。',
+        action_en: 'Pick one dangerous intersection. Sketch a redesign (paper or Figma), explain why, share to your community. Good designs travel.',
+        match_emoji: '🇳🇱',
+        match_zh: '格羅寧根',
+        match_en: 'Groningen',
+        match_why_zh: '設計師的革命：24 歲公務員把汽車趕出城',
+        match_why_en: 'A designer\'s revolution: 24-year-old shut cars out',
+        article_url: 'https://futurecity.cw.com.tw/article/3429',
+        article_title: '24 歲左派公務員，如何把汽車趕出城，把商機帶進來？｜格羅寧根半世紀變身（上）',
+        article_snippet: '24 歲范登伯格進入市政府，提出「交通循環計劃」— 機動車不再能任意穿梭市中心，自行車與行人可自由通行。革命的起點。',
+        quote_zh: '「先有想像，才有可能的街道。」',
+        quote_en: '"Streets begin in someone\'s imagination."'
+      },
+
+      'RESI': {
+        emoji: '🐎',
+        zh_name: '自由騎士',
+        en_name: 'The Free Rider',
+        rarity: '9.3%',
+        desc_zh: '機車、腳踏車、滑板車 — 你享受兩輪的自由，風從耳邊吹過、城市在身邊掠過。你不喜歡被綁住，但你也最知道兩輪族在台灣街道上的壓力。',
+        desc_en: 'Scooter, bike, kickboard—you love two-wheeled freedom. Wind in your ears, city flashing by. You hate being tied down—but you also know the pressure two-wheel riders face on Taiwan\'s streets.',
+        strengths_zh: ['親身了解兩輪族的痛點', '機動性高，能去任何地方', '對「安全車道」最有切身想像'],
+        strengths_en: ['Knows two-wheel pain firsthand', 'Highly mobile, goes anywhere', 'Vivid sense of "safe lanes"'],
+        growth_zh: '你的自由很珍貴，但這份自由不該建立在賭運氣上。安全的車道，是真正的自由。',
+        growth_en: 'Your freedom is real, but it shouldn\'t depend on luck. Safe lanes are real freedom.',
+        action_zh: '支持「實體分隔自行車道」相關連署或議題。對你來說，一條真正受保護的車道，比一百句「機車要小心」都有用。',
+        action_en: 'Support petitions for physically protected bike lanes. One real protected lane beats a hundred "ride carefully" reminders.',
+        match_emoji: '🇳🇱',
+        match_zh: '荷蘭',
+        match_en: 'The Netherlands',
+        match_why_zh: '兩輪族的天堂 — 實體分隔自行車道的故鄉',
+        match_why_en: 'Two-wheel paradise — home of protected lanes',
+        article_url: 'https://futurecity.cw.com.tw/article/3070',
+        article_title: '多元荷蘭 vs. 隱蔽日本：東西方自行車之國，城市文化大不同',
+        article_snippet: '荷蘭烏特勒支 30–50% 市民每天騎自行車通勤、98% 家庭擁有至少一台自行車，世界最大自行車停車場一萬兩千個車位。',
+        quote_zh: '「真正的自由，是不必擔心被撞。」',
+        quote_en: '"Real freedom means never fearing the next car."'
+      },
+
+      'RHCY': {
+        emoji: '🐘',
+        zh_name: '大眾運輸推手',
+        en_name: 'The Transit Advocate',
+        rarity: '6.0%',
+        desc_zh: '你深信「一個人少開一台車，城市就多一份呼吸」。你日復一日搭公車捷運，知道哪一條線該延伸、哪一站該加密。你是大眾運輸最堅定的擁護者。',
+        desc_en: 'You believe every car taken off the road gives the city a breath. Day in, day out you ride transit. You know which line needs extending, which stop needs more frequency. You\'re transit\'s firmest believer.',
+        strengths_zh: ['用行動實踐減碳生活', '看得見大眾運輸的價值', '願意推薦給身邊的人'],
+        strengths_en: ['Walks the talk on low-carbon life', 'Sees transit\'s real worth', 'Recommends it to others'],
+        growth_zh: '你的選擇是正確的，但別忘了不是每個人都有大眾運輸 — 偏鄉、長輩、夜班工作者，需要的是更廣的網絡。',
+        growth_en: 'Your choice is right, but remember—not everyone has transit. Rural areas, elders, night-shift workers need a wider network.',
+        action_zh: '下次選舉前，比較候選人的「大眾運輸延伸/班次政策」，把比較表分享給朋友。投票會改變班次表。',
+        action_en: 'Before the next election, compare candidates\' transit policies. Share a comparison sheet with friends. Votes change schedules.',
+        match_emoji: '🇸🇬',
+        match_zh: '新加坡',
+        match_en: 'Singapore',
+        match_why_zh: '步行城市典範：擁車成本 300 萬、處處有遮蔭',
+        match_why_en: 'A walking-city benchmark: cars cost NT$3M, shade everywhere',
+        article_url: 'https://futurecity.cw.com.tw/article/2778',
+        article_title: '到處是樹蔭、擁車成本 300 萬起跳！新加坡如何成步行城市典範？',
+        article_snippet: '新加坡組屋區每棟之間都有擋雨屋簷的人行道，連到熟食小販中心、超市、捷運站。基本服務都在步行五到十分鐘內。',
+        quote_zh: '「我們搭的不是車，是這座城市的未來。」',
+        quote_en: '"We\'re not just riding transit—we\'re riding the city\'s future."'
+      },
+
+      'RHCI': {
+        emoji: '🐝',
+        zh_name: '通勤好夥伴',
+        en_name: 'The Commute Companion',
+        rarity: '13.6%',
+        desc_zh: '每天通勤是你最日常的儀式。你跟同事一起搭車、跟鄰居在公車站閒聊、認識同一個時段的固定面孔。通勤對你來說，是城市裡的小型社交場。',
+        desc_en: 'Commuting is your daily ritual. You ride with coworkers, chat at the bus stop, recognize the same faces at the same hour. For you, commuting is the city\'s little social hour.',
+        strengths_zh: ['讓通勤變得有溫度', '是大眾運輸最重要的使用者', '透過日常維繫社群連結'],
+        strengths_en: ['Brings warmth to commuting', 'A vital transit user', 'Holds the social fabric of daily life'],
+        growth_zh: '你已經是減碳行動的一份子。下一步，是讓更多人覺得「搭車比較好」。',
+        growth_en: 'You\'re already doing climate work. Next step—help others feel "transit is the better choice."',
+        action_zh: '下次同事抱怨大眾運輸太慢，分享你的「通勤小撇步」。讓搭車變成酷的事，是你能做的軟性倡議。',
+        action_en: 'Next time a coworker complains transit is slow, share your "commute hacks." Making transit cool is soft advocacy.',
+        match_emoji: '🇩🇪',
+        match_zh: '科隆',
+        match_en: 'Cologne',
+        match_why_zh: '德國首位行人交通專員的家鄉 — 為通勤者發聲',
+        match_why_en: 'Home of Germany\'s first pedestrian commissioner',
+        article_url: 'https://futurecity.cw.com.tw/article/3283',
+        article_title: '他 38 歲，他是德國第一個「行人交通專員」',
+        article_snippet: '科隆 38 歲的拉特曼是德國首位行人交通專員，工作就是拆除人行道與官僚體系的障礙。「步行無所不在，卻沒有人為其發聲。」',
+        quote_zh: '「通勤不是孤獨的旅程。」',
+        quote_en: '"Commuting was never meant to be lonely."'
+      },
+
+      'RHSY': {
+        emoji: '🐜',
+        zh_name: '高效規劃師',
+        en_name: 'The Efficiency Designer',
+        rarity: '5.2%',
+        desc_zh: '你的每一次移動都有最佳化過。早上幾點出門能避開塞車、紅綠燈秒數該怎麼配、哪一段該走人行道哪一段該過馬路 — 你的大腦就是一台路線最佳化機器。',
+        desc_en: 'Every trip you take is pre-optimized. When to leave to dodge traffic, how the signal timing should work, which segment to walk vs cross—your brain is a routing engine.',
+        strengths_zh: ['系統思考能力極強', '看得見「最佳化版本」的城市', '能提出具體的改善方案'],
+        strengths_en: ['World-class systems thinker', 'Sees the "optimized version" of the city', 'Brings concrete improvement plans'],
+        growth_zh: '你的效率很驚人，但記得不是每個人都能「最佳化」。設計要照顧最慢的人，城市才公平。',
+        growth_en: 'Your efficiency is dazzling—but remember, not everyone can "optimize." Design must care for the slowest, or it\'s unjust.',
+        action_zh: '從你最受不了的路口開始 — 量秒數、畫流量圖、寫出問題與建議 — 寄給交通局。具體比情緒有用。',
+        action_en: 'Start with the intersection that bothers you most—time the signals, sketch flow, write the problem and your fix—send it to your transport bureau. Specifics beat anger.',
+        match_emoji: '🇳🇱',
+        match_zh: '格羅寧根',
+        match_en: 'Groningen',
+        match_why_zh: '整體系統最佳化：零碳排車才得進市中心',
+        match_why_en: 'System optimization: only zero-carbon vehicles in the center',
+        article_url: 'https://futurecity.cw.com.tw/article/3430',
+        article_title: '邁向「自行車首都」，2025 年零碳排車才得進市中心｜格羅寧根半世紀變身（下）',
+        article_snippet: '格羅寧根市中心劃為「零碳排區域」，2025 起只有碳中和車輛可進。城市總出行 60% 透過自行車完成，是規劃師的範本。',
+        quote_zh: '「最高的效率，是讓最慢的人也能順利通過。」',
+        quote_en: '"True efficiency is when even the slowest cross safely."'
+      },
+
+      'RHSI': {
+        emoji: '🦝',
+        zh_name: '通勤忍者',
+        en_name: 'The Commute Ninja',
+        rarity: '11.0%',
+        desc_zh: '你已經把通勤練到爐火純青 — 戴上耳機、戴上口罩、戴上眼鏡，無視一切，五分鐘抵達月台。你不是不關心，是這座城市的街道太累人，你只想安靜地通過。',
+        desc_en: 'You\'ve perfected commuting—headphones in, mask up, glasses on, tune out the world, hit the platform in five. You\'re not indifferent—the streets just exhaust you. You want to pass through quietly.',
+        strengths_zh: ['務實，能保護自己的能量', '對「失能的街道」感受最深', '一旦想行動，是真心的'],
+        strengths_en: ['Pragmatic, guards your energy', 'Feels broken streets most keenly', 'When you act, it\'s real'],
+        growth_zh: '你選擇「忍」是因為這座城市讓你不得不忍。但這份不舒服，正是改變的起點。',
+        growth_en: 'You "endure" because the city forces you to. But that discomfort is exactly where change begins.',
+        action_zh: '回想一次你最受不了的通勤瞬間 — 把它寫成 100 字，貼到任何地方。一個忍者開口，會帶動更多忍者。',
+        action_en: 'Recall the worst commuter moment you\'ve had. Write 100 words about it, post anywhere. One ninja speaking up wakes up more.',
+        match_emoji: '🇰🇷',
+        match_zh: '韓國',
+        match_en: 'South Korea',
+        match_why_zh: '不必再忍：28 年撕「行人地獄」標籤的證明',
+        match_why_en: 'No more enduring: proof that "pedestrian hell" can be erased',
+        article_url: 'https://futurecity.cw.com.tw/article/3095',
+        article_title: '死亡率降 63%！韓國如何花 28 年，撕「行人地獄」標籤？',
+        article_snippet: '韓國曾被形容為行人地獄，花 28 年讓兒童交通事故死亡率下降 96%、整體 63%。1995 年從《道路交通法》引進學區規定開始。',
+        quote_zh: '「不必再忍 — 是我們爭取來的權利。」',
+        quote_en: '"To stop enduring is a right we earn."'
+      }
+    };
+
+    /* ============================
+       FIVE DEMANDS — VZT × TCAN
+       交通雙齊零城市 · 五大訴求承諾書
+       ============================ */
+    const DEMANDS = {
+      '01': {
+        num: '01',
+        tag_en: 'LAW',
+        tag_zh: '立法',
+        en_label: 'LEGISLATIVE PROTECTION',
+        zh_title: '立法保障',
+        en_title: 'Legislative Protection',
+        zh_subtitle: '制定《雙零交通願景自治條例》',
+        en_subtitle: 'Enact the Dual-Zero Vision Ordinance',
+        desc_zh: '透過地方立法，把「零死亡、零碳排」的願景變成法律承諾 — 不再依賴個別首長意志，而是制度化的長期保證。',
+        desc_en: 'Turn the Dual-Zero vision into binding local law — so that "Zero Death, Zero Carbon" no longer depends on which mayor is in office, but on institutional commitment.',
+        subs: [
+          { num: '1.1', name_zh: '跨局處整合', name_en: 'Cross-Bureau', text_zh: '副市長層級以上統籌「交通雙零轉型」業務', text_en: 'Deputy-mayor level oversight of dual-zero transformation' },
+          { num: '1.2', name_zh: '預算專款', name_en: 'Dedicated Fund', text_zh: '設置「永續交通轉型基金」，撥入至少 50% 交通罰鍰收入及停車收益', text_en: 'Sustainable Transit Transformation Fund, with ≥50% of traffic fines and parking revenue earmarked' },
+          { num: '1.3', name_zh: '公民參與', name_en: 'Civic Voice', text_zh: '法制化邀集專家與民間團體，保障公民及多元族群席次比例', text_en: 'Mandate seat quotas for civic groups and underrepresented voices on decision-making boards' }
+        ]
+      },
+      '02': {
+        num: '02',
+        tag_en: 'SPACE',
+        tag_zh: '空間',
+        en_label: 'ROAD SPACE REDISTRIBUTION',
+        zh_title: '道路空間重分配',
+        en_title: 'Road Space Redistribution',
+        zh_subtitle: '打造實體防護的主動運輸路網',
+        en_subtitle: 'Build a physically-protected active mobility network',
+        desc_zh: '把街道空間從汽機車手中拿回來 — 不只是漆線，而是用實體緣石、植栽帶、安全島，給人和兩輪族真正的保護。',
+        desc_en: 'Reclaim street space from cars and scooters — not with paint, but with real curbs, planters, and refuges. True protection for pedestrians and cyclists.',
+        subs: [
+          { num: '2.1', name_zh: '實體防護', name_en: 'Real Protection', text_zh: '建置具實體庇護及遮蔭之自行車路網，推動連續無障礙人行道', text_en: 'Build physically-protected, shaded bike networks and continuous accessible sidewalks' },
+          { num: '2.2', name_zh: '改善時限', name_en: 'Deadlines', text_zh: '承諾三年內優先完成大眾運輸場站與各級學校周邊', text_en: 'Three-year priority completion around transit stations and schools' },
+          { num: '2.3', name_zh: '效率指標', name_en: 'KPIs', text_zh: '每年增加 1~2% 共享運具、大眾運輸與單車的市佔率', text_en: 'Annual 1–2% gain in shared mobility, transit, and cycling mode share' }
+        ]
+      },
+      '03': {
+        num: '03',
+        tag_en: 'STREET',
+        tag_zh: '街道',
+        en_label: 'LIVEABLE LIVING STREETS',
+        zh_title: '友善宜居',
+        en_title: 'Liveable Living Streets',
+        zh_subtitle: '落實住宅區生活街道建設',
+        en_subtitle: 'Build residential streets that are alive, not arteries',
+        desc_zh: '把巷弄還給人 — 區分「穿越型道路」與「服務街道」，讓住宅區回歸宜居安全，孩子能自己走路上學的那種街道。',
+        desc_en: 'Give the alleys back to people — distinguish "through-streets" from "service streets" so kids can walk to school again.',
+        subs: [
+          { num: '3.1', name_zh: '街道分級', name_en: 'Street Hierarchy', text_zh: '於各行政區辦理鄰里檢討，界定「穿越型道路」與「服務街道」', text_en: 'District-level review to classify "through" vs "service" streets' },
+          { num: '3.2', name_zh: '寧靜綠化', name_en: 'Calmed & Green', text_zh: '住宅區交通寧靜區改造，導入路幅縮減、減速平台等實體降速', text_en: 'Residential traffic-calming with road diets, speed tables, and other physical interventions' },
+          { num: '3.3', name_zh: 'TOD 與社宅', name_en: 'TOD & Housing', text_zh: '落實大眾運輸導向發展，場站周圍規定一定比例之社會住宅', text_en: 'True TOD with required share of social housing around transit hubs' }
+        ]
+      },
+      '04': {
+        num: '04',
+        tag_en: 'VOLUME',
+        tag_zh: '總量',
+        en_label: 'VOLUME MANAGEMENT',
+        zh_title: '總量管理',
+        en_title: 'Volume Management',
+        zh_subtitle: '以價制量與低碳管控',
+        en_subtitle: 'Manage demand through pricing and low-carbon controls',
+        desc_zh: '運具不是越多越好 — 用循證決策的停車總量、低碳交通區、車輛管理，把過剩的私人運具從城市中釋放出來。',
+        desc_en: 'More vehicles is not better. Use evidence-based parking caps, low-carbon zones, and vehicle controls to release the city from excess private vehicles.',
+        subs: [
+          { num: '4.1', name_zh: '停車總量', name_en: 'Parking Caps', text_zh: '訂定路外及路邊停車空間總量上限，把空間轉換為綠樹、遮陰、單車道', text_en: 'Set caps on parking supply; convert space to trees, shade, and bike lanes' },
+          { num: '4.2', name_zh: '低碳交通區', name_en: 'Low-Carbon Zones', text_zh: '任期內推動並指定「低碳交通區」，加強民眾溝通與協調', text_en: 'Designate and roll out low-carbon zones during the term, with proactive engagement' },
+          { num: '4.3', name_zh: '車輛管理', name_en: 'Vehicle Controls', text_zh: '協調中央監理機關推動燃油汽機車數量管理，結合駕駛訓練制度', text_en: 'Coordinate with national regulator on ICE vehicle quotas, paired with driver training' }
+        ]
+      },
+      '05': {
+        num: '05',
+        tag_en: 'WELFARE',
+        tag_zh: '幸福',
+        en_label: 'HAPPY COMMUTE',
+        zh_title: '幸福交通',
+        en_title: 'Happy Commute',
+        zh_subtitle: '友善勞動通勤與企業獎助',
+        en_subtitle: 'Frame commuting as a labour and welfare right',
+        desc_zh: '通勤不該是孤獨、痛苦、危險的 — 應該是社會福利與勞動權益的一部分。包容孩童、長輩、身障者，不讓任何人被交通轉型遺落。',
+        desc_en: 'Commuting should not be lonely, painful, or dangerous — it belongs to labour rights and welfare. Inclusive of children, elders, and disabled riders; no one left behind.',
+        subs: [
+          { num: '5.1', name_zh: '綠色通勤', name_en: 'Green Commute', text_zh: '獎勵企業推動「綠色通勤獎勵制度」，補助大眾運輸與單車通勤，鼓勵彈性工時', text_en: 'Incentivize employers to subsidize transit/bike commuting and offer flex hours' },
+          { num: '5.2', name_zh: '包容性', name_en: 'Inclusive', text_zh: '落實包容性設計，保障孩童、青少年、身障者、高齡者通行權利', text_en: 'Universal design protecting children, youth, disabled, and elderly travelers' }
+        ]
+      }
+    };
+
+    /* 16 personality types → primary demand mapping */
+    const TYPE_TO_DEMAND = {
+      'MECY': '01', 'MESY': '01', 'MHSY': '01',                 // observers, thinkers, stewards → LAW
+      'MHSI': '02', 'RECI': '02', 'RESY': '02', 'RESI': '02',     // bike & space-aware → SPACE
+      'MECI': '03', 'MESI': '03', 'MHCY': '03',                 // community & street-life → STREET
+      'RECY': '04', 'RHCY': '04', 'RHSY': '04',                 // system optimizers & transit → VOLUME
+      'MHCI': '05', 'RHCI': '05', 'RHSI': '05'                  // daily commuters → WELFARE
+    };
+
+    /* Per-type explanation: why this demand resonates with this personality */
+    const TYPE_DEMAND_WHY = {
+      'MECY': {
+        zh: '身為城市觀察家，你看見的每一個街道問題，都不是因為個人粗心，是因為制度沒到位。立法保障，正是要把這些「看見的問題」變成「法律的保障」。',
+        en: 'As an Urban Observer, every street problem you see points to systemic gaps, not personal carelessness. Legislative protection turns what you see into what the city must do.'
+      },
+      'MESY': {
+        zh: '漫遊思考者最受不了的事，是好想法停在腦中、沒有制度承接。雙零自治條例就是把長期思考變成長期承諾的法律容器。',
+        en: 'The Wandering Thinker\'s worst nightmare: good ideas with no institution to hold them. The Dual-Zero Ordinance is the legal vessel for long-term thinking.'
+      },
+      'MHSY': {
+        zh: '你見證了十年來街道倒退的瞬間 — 紅燈秒數縮短、人行道被蠶食。要讓改變不再被遺忘，需要的是寫進法律的保障。',
+        en: 'You\'ve witnessed a decade of subtle backsliding — shorter walk phases, eroded sidewalks. Stopping the regression takes more than memory. It takes law.'
+      },
+      'MHSI': {
+        zh: '你習慣的傍晚散步路線，需要的不是「再小心一點」，是真正的實體分隔人行道。空間重分配，是你最切身的訴求。',
+        en: 'Your twilight walk doesn\'t need "a bit more caution" — it needs a real, physically protected sidewalk. Space redistribution is the demand closest to your daily route.'
+      },
+      'RECI': {
+        zh: '你享受城市的流動感，但城市的流動不該以行人安全為代價。真正友善的街道空間，是讓所有人都能流動、不必互相提心吊膽。',
+        en: 'You love the city\'s flow — but flow shouldn\'t come at pedestrian safety. Truly redistributed streets let everyone move without fearing each other.'
+      },
+      'RESY': {
+        zh: '你腦中早已重新設計過這座城市無數次。空間重分配的訴求，就是把你的設計直覺變成全市的工程清單 — 從荷蘭式路口到實體分隔車道。',
+        en: 'You\'ve redesigned this city a hundred times in your head. Space redistribution turns your spatial intuition into the city\'s engineering checklist — from Dutch intersections to protected lanes.'
+      },
+      'RESI': {
+        zh: '作為兩輪族，你最知道一條真正的實體分隔自行車道，比一百句「騎車要小心」有用。這個訴求，是把你的安全從賭運氣變成基礎建設。',
+        en: 'As a two-wheel rider, you know one truly protected lane beats a hundred "be careful" reminders. This demand turns your safety from luck into infrastructure.'
+      },
+      'MECI': {
+        zh: '你跟早餐店老闆、轉角阿姨、鄰居的狗都熟。這條訴求是把街道從「車的通道」改回「人的客廳」 — 你最熟悉的那種客廳。',
+        en: 'You know the breakfast shop owner, the corner auntie, the neighbor\'s dog. This demand brings streets back from being arteries to being living rooms — the kind you already know.'
+      },
+      'MESI': {
+        zh: '你欣賞街道的詩意，但詩意需要安靜、需要慢、需要綠化。生活街道的訴求，就是要把這些詩意元素寫進城市規劃。',
+        en: 'You see streets as poetry — but poetry needs quiet, slowness, and greenery. The Liveable Streets demand writes those into urban planning.'
+      },
+      'MHCY': {
+        zh: '你最了解社區的危險路口在哪。生活街道訴求要做的，就是把你早就知道的問題 — 違停、超速、缺乏寧靜區 — 變成系統性的改造工程。',
+        en: 'You know exactly where the dangerous corners are. This demand turns the problems you already see — illegal parking, speeding, no calming — into systemic redesign.'
+      },
+      'RECY': {
+        zh: '通勤革新者最受不了系統失靈。總量管理訴求要做的，就是用循證決策把過剩的車輛從系統中釋放出來 — 讓你優化過的通勤真的能順起來。',
+        en: 'The Commute Innovator can\'t stand a broken system. Volume management uses evidence-based controls to release excess vehicles — so the commute you optimized can actually flow.'
+      },
+      'RHCY': {
+        zh: '你已經是大眾運輸最堅定的擁護者。要讓更多人也選擇搭車，需要的是停車總量管制與低碳交通區 — 讓「不開車」變成理性選擇。',
+        en: 'You\'re transit\'s firmest believer. Getting more people on board requires parking caps and low-carbon zones — making "not driving" the rational choice.'
+      },
+      'RHSY': {
+        zh: '你的腦中是一台路線最佳化機器。總量管理訴求 — 從停車總量到燃油車輛管控 — 就是把整座城市的運具系統做一次完整的最佳化。',
+        en: 'Your mind is a routing engine. Volume management — parking caps to ICE vehicle controls — optimizes the entire vehicle system at city scale.'
+      },
+      'MHCI': {
+        zh: '你每天走同一條路去市場、接小孩。幸福交通訴求要做的，就是把這些短短的日常通勤，變成被社福制度保障的權利。',
+        en: 'You walk the same daily routes — market, school pickup. This demand turns those short, vital trips into a labour and welfare right.'
+      },
+      'RHCI': {
+        zh: '通勤對你來說是日常社交。當企業願意補助大眾運輸、彈性工時、單車通勤 — 你跟同事一起搭車的時光，就成了被制度支持的選擇。',
+        en: 'Commuting is your daily socializing. When employers subsidize transit, flex hours, and bike commuting — riding with coworkers becomes a system-supported choice.'
+      },
+      'RHSI': {
+        zh: '你選擇「忍」是因為城市讓你不得不忍。幸福交通訴求要做的，是讓「不必再忍」變成勞動權益 — 通勤該是社福，不是修行。',
+        en: 'You endure because the city forces you to. This demand makes "no more enduring" a labour right — commuting belongs to welfare, not personal practice.'
+      }
+    };
+
+    /* Public URL to the Five Demands PDF (override to host your own) */
+    const DEMANDS_PDF_URL = 'https://visionzero.tw/five-demands.pdf'; // TODO: replace with your real URL
+
+    /* ============================
+       STATE
+       ============================ */
+    let answers = [];
+    let currentQ = 0;
+    let demographics = { age: '', country: '', city: '' };
+    const SESSION_ID = 'sss_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    const SESSION_START = Date.now();
+
+    /* ============================
+       GOOGLE SHEET WEBHOOK
+       ============================ */
+    // 部署 Google Apps Script 後，把下面這個網址換成你的 Web App URL
+    const SHEET_WEBHOOK_URL = 'https://script.google.com/a/macros/visionzero.tw/s/AKfycbysDlz0sGRLvzmeTiibvoitphgxWZldHFDj2s8WE7_fjdj8xE3ZeIoc83N5Le4YvgQ8Zg/exec';
+
+    /* ============================
+       FLOW
+       ============================ */
+    function goDemographics() {
+      showScreen('demographics');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitDemographics() {
+      const country = document.getElementById('demoCountry').value;
+      const city = document.getElementById('demoCity').value;
+      // collect chosen age from .selected button
+      const ageBtn = document.querySelector('.demo-opt.selected');
+      demographics = {
+        age: ageBtn ? ageBtn.dataset.age : '',
+        country: country || '',
+        city: country === 'TW' ? (city || '') : ''
+      };
+      startQuiz();
+    }
+
+    function skipDemographics() {
+      demographics = { age: '', country: '', city: '' };
+      startQuiz();
+    }
+
+    function startQuiz() {
+      answers = [];
+      currentQ = 0;
+      showScreen('quiz');
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderQuestion() {
+      const q = QUESTIONS[currentQ];
+      document.getElementById('qCur').textContent = String(currentQ + 1).padStart(2, '0');
+      document.getElementById('qAxis').textContent = q.axis;
+      document.getElementById('qBar').style.width = ((currentQ + 1) / QUESTIONS.length * 100) + '%';
+      document.getElementById('qTitle').innerHTML = `<span class="zh-only">${q.zh}</span><span class="en-only">${q.en}</span>`;
+      document.getElementById('qEn').innerHTML = `<span class="zh-only">${q.en}</span><span class="en-only">${q.zh}</span>`;
+
+      const choicesEl = document.getElementById('qChoices');
+      choicesEl.innerHTML = '';
+      q.choices.forEach((c, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'choice';
+        btn.style.animationDelay = (0.1 + i * 0.08) + 's';
+        btn.style.animation = 'fadeUp .5s cubic-bezier(.16,1,.3,1) backwards';
+        btn.innerHTML = `
+      <span class="ch-icon">${c.icon}</span>
+      <div class="ch-zh zh-only">${c.zh}</div>
+      <div class="ch-zh en-only">${c.en}</div>
+      <div class="ch-en zh-only">${c.en}</div>
+      <div class="ch-en en-only">${c.zh}</div>
+    `;
+        btn.onclick = () => answerQuestion(c.val);
+        choicesEl.appendChild(btn);
+      });
+
+      document.getElementById('qBack').style.display = currentQ > 0 ? 'inline-block' : 'none';
+    }
+
+    function answerQuestion(val) {
+      answers[currentQ] = val;
+      if (currentQ < QUESTIONS.length - 1) {
+        currentQ++;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        showResult();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQ > 0) {
+        currentQ--;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function calculateType() {
+      const score = { PACE: { M: 0, R: 0 }, PATH: { E: 0, H: 0 }, PARTNER: { C: 0, S: 0 }, PERSPECTIVE: { Y: 0, I: 0 } };
+      answers.forEach(a => {
+        Object.entries(a).forEach(([k, v]) => { score[k][v]++; });
+      });
+      const code =
+        (score.PACE.M >= score.PACE.R ? 'M' : 'R') +
+        (score.PATH.E >= score.PATH.H ? 'E' : 'H') +
+        (score.PARTNER.C >= score.PARTNER.S ? 'C' : 'S') +
+        (score.PERSPECTIVE.Y >= score.PERSPECTIVE.I ? 'Y' : 'I');
+      return code;
+    }
+
+    /* ============================
+       RENDER DEMAND SECTION
+       ============================ */
+    function renderDemandSection(code) {
+      const demandKey = TYPE_TO_DEMAND[code];
+      if (!demandKey) return '';
+      const d = DEMANDS[demandKey];
+      const why = TYPE_DEMAND_WHY[code] || { zh: '', en: '' };
+      const others = Object.values(DEMANDS).filter(x => x.num !== demandKey);
+
+      return `
+    <div class="demand-card">
+      <div class="demand-hero">
+        <div class="demand-hero-top">
+          <span class="demand-label">YOUR DEMAND · 對應的政策訴求</span>
+          <span class="demand-pill">${d.tag_en} · ${d.tag_zh}</span>
+        </div>
+        <div class="demand-num-wrap">
+          <div class="demand-num">${d.num}</div>
+          <div class="demand-meta">
+            <div class="demand-en-tag">DEMAND ${d.num} · ${d.en_label}</div>
+            <div class="demand-title zh-only">${d.zh_title} <span style="font-weight:300;color:rgba(255,255,255,.55)">— ${d.zh_subtitle}</span></div>
+            <div class="demand-title en-only">${d.en_title} <span style="font-weight:300;color:rgba(255,255,255,.55)">— ${d.en_subtitle}</span></div>
+          </div>
+        </div>
+        <div class="demand-desc zh-only">${d.desc_zh}</div>
+        <div class="demand-desc en-only">${d.desc_en}</div>
+      </div>
+
+      <div class="demand-body">
+        <div class="demand-why">
+          <div class="demand-why-label zh-only">為什麼這條訴求最能引起你的共鳴</div>
+          <div class="demand-why-label en-only">Why this resonates with you</div>
+          <div class="zh-only">${why.zh}</div>
+          <div class="en-only">${why.en}</div>
+        </div>
+
+        <div class="demand-subs">
+          <div class="demand-subs-title zh-only">這個訴求具體要做的事</div>
+          <div class="demand-subs-title en-only">What this demand specifically does</div>
+          ${d.subs.map(s => `
+            <div class="demand-sub-item">
+              <div class="demand-sub-num">${s.num}</div>
+              <div>
+                <span class="demand-sub-name zh-only">${s.name_zh}</span>
+                <span class="demand-sub-name en-only">${s.name_en}</span>
+                <span class="demand-sub-text zh-only">${s.text_zh}</span>
+                <span class="demand-sub-text en-only">${s.text_en}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="demand-cta">
+          <a class="primary" href="${DEMANDS_PDF_URL}" target="_blank" rel="noopener">
+            <span class="zh-only">📄 查看完整訴求書</span>
+            <span class="en-only">📄 Full pledge document</span>
+          </a>
+          <button onclick="toggleOtherDemands(this)">
+            <span class="zh-only">看其他 4 個訴求</span>
+            <span class="en-only">See the other 4 demands</span>
+          </button>
+        </div>
+
+        <div class="demand-others-wrap" style="display:none">
+          <div class="demand-others-list">
+            ${others.map(o => `
+              <div class="demand-mini">
+                <div class="demand-mini-num">${o.num}</div>
+                <div class="demand-mini-body">
+                  <div class="demand-mini-en">DEMAND ${o.num} · ${o.en_label}</div>
+                  <div class="demand-mini-title zh-only">${o.zh_title} — ${o.zh_subtitle}</div>
+                  <div class="demand-mini-title en-only">${o.en_title} — ${o.en_subtitle}</div>
+                  <div class="demand-mini-sub zh-only">${o.desc_zh}</div>
+                  <div class="demand-mini-sub en-only">${o.desc_en}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+    }
+
+    function toggleOtherDemands(btn) {
+      const wrap = btn.closest('.demand-cta').nextElementSibling;
+      const list = wrap.querySelector('.demand-others-list');
+      const isOpen = wrap.style.display === 'block';
+      const isEn = document.body.classList.contains('en');
+
+      if (isOpen) {
+        list.classList.remove('open');
+        wrap.style.display = 'none';
+        btn.innerHTML = isEn
+          ? '<span class="en-only">See the other 4 demands</span>'
+          : '<span class="zh-only">看其他 4 個訴求</span>';
+      } else {
+        wrap.style.display = 'block';
+        list.classList.add('open');
+        btn.innerHTML = isEn
+          ? '<span class="en-only">▲ Hide other demands</span>'
+          : '<span class="zh-only">▲ 收起其他訴求</span>';
+      }
+    }
+
+    function showResult() {
+      showScreen('loading');
+      setTimeout(() => {
+        const code = calculateType();
+        const t = TYPES[code];
+        if (!t) { document.getElementById('result').innerHTML = '<p>Error: ' + code + '</p>'; return; }
+
+        // Fire-and-forget log to Google Sheet
+        logToSheet(code);
+
+        const axisLabels = {
+          M: { zh: '漫', en: 'Mellow' }, R: { zh: '速', en: 'Rapid' },
+          E: { zh: '探', en: 'Explorer' }, H: { zh: '熟', en: 'Habit' },
+          C: { zh: '群', en: 'Crew' }, S: { zh: '獨', en: 'Solo' },
+          Y: { zh: '系', en: 'System' }, I: { zh: '我', en: 'Self' }
+        };
+        const a1 = code[0], a2 = code[1], a3 = code[2], a4 = code[3];
+
+        document.getElementById('result').innerHTML = `
+      <div class="result-card">
+        <div class="r-code-row">
+          <div class="r-code">TYPE · ${code}</div>
+          <div class="r-rarity">RARITY ${t.rarity}</div>
+        </div>
+        <div class="r-emoji">${t.emoji}</div>
+        <div class="r-name-zh zh-only">${t.zh_name}</div>
+        <div class="r-name-zh en-only">${t.en_name}</div>
+        <div class="r-name-en zh-only">${t.en_name}</div>
+        <div class="r-name-en en-only">${t.zh_name}</div>
+        <div class="r-desc zh-only">${t.desc_zh}</div>
+        <div class="r-desc en-only">${t.desc_en}</div>
+        <div class="r-desc-en zh-only">${t.desc_en}</div>
+        <div class="r-desc-en en-only">${t.desc_zh}</div>
+        <div class="r-axes">
+          <div class="r-axis"><strong>${axisLabels[a1].en[0]}</strong> · <span class="zh-only">${axisLabels[a1].zh}</span><span class="en-only">${axisLabels[a1].en}</span></div>
+          <div class="r-axis"><strong>${axisLabels[a2].en[0]}</strong> · <span class="zh-only">${axisLabels[a2].zh}</span><span class="en-only">${axisLabels[a2].en}</span></div>
+          <div class="r-axis"><strong>${axisLabels[a3].en[0]}</strong> · <span class="zh-only">${axisLabels[a3].zh}</span><span class="en-only">${axisLabels[a3].en}</span></div>
+          <div class="r-axis"><strong>${axisLabels[a4].en[0]}</strong> · <span class="zh-only">${axisLabels[a4].zh}</span><span class="en-only">${axisLabels[a4].en}</span></div>
+        </div>
+      </div>
+
+      <div class="manifesto">
+        <div class="m-label">MANIFESTO</div>
+        <div class="m-text zh-only">${t.quote_zh}</div>
+        <div class="m-text en-only">${t.quote_en}</div>
+        <div class="m-text-en zh-only">${t.quote_en}</div>
+        <div class="m-text-en en-only">${t.quote_zh}</div>
+      </div>
+
+      <div class="section">
+        <div class="s-label">STRENGTHS · 你的天賦</div>
+        <h3 class="s-title zh-only">你最閃閃發光的時刻 <span class="s-title-en">Where you shine</span></h3>
+        <h3 class="s-title en-only">Where you shine <span class="s-title-en">你最閃閃發光的時刻</span></h3>
+        <ul class="s-list">
+          ${t.strengths_zh.map((s, i) => `<li><div><span class="zh-only">${s}</span><span class="en-only">${t.strengths_en[i]}</span><span class="en zh-only">${t.strengths_en[i]}</span><span class="en en-only">${s}</span></div></li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="s-label">GROWTH · 成長空間</div>
+        <h3 class="s-title zh-only">給你的小提醒 <span class="s-title-en">A gentle nudge</span></h3>
+        <h3 class="s-title en-only">A gentle nudge <span class="s-title-en">給你的小提醒</span></h3>
+        <ul class="s-list">
+          <li><div><span class="zh-only">${t.growth_zh}</span><span class="en-only">${t.growth_en}</span><span class="en zh-only">${t.growth_en}</span><span class="en en-only">${t.growth_zh}</span></div></li>
+        </ul>
+      </div>
+
+      <div class="action-card">
+        <div class="s-label">VISION ZERO ACTION · 你能做的一件事</div>
+        <h3 class="s-title zh-only">你的「雙零行動」起點 <span class="s-title-en">Where to begin</span></h3>
+        <h3 class="s-title en-only">Where to begin <span class="s-title-en">你的「雙零行動」起點</span></h3>
+        <div class="a-text zh-only">${t.action_zh}</div>
+        <div class="a-text en-only">${t.action_en}</div>
+        <div class="a-en zh-only">${t.action_en}</div>
+        <div class="a-en en-only">${t.action_zh}</div>
+      </div>
+
+      ${renderDemandSection(code)}
+
+      <a class="match-card" href="${t.article_url}" target="_blank" rel="noopener">
+        <div class="m-top">
+          <div class="m-emoji">${t.match_emoji}</div>
+          <div class="m-body">
+            <div class="m-label">YOUR DREAM CITY · 與你最契合的城市</div>
+            <div class="m-name zh-only">${t.match_zh}</div>
+            <div class="m-name en-only">${t.match_en}</div>
+            <div class="m-why zh-only">${t.match_why_zh}</div>
+            <div class="m-why en-only">${t.match_why_en}</div>
+          </div>
+        </div>
+        <div class="m-article">
+          <div class="m-art-label">
+            <span class="m-art-source">天下未來城市</span>
+            <span class="m-art-cta zh-only">閱讀全文</span>
+            <span class="m-art-cta en-only">Read article</span>
+          </div>
+          <div class="m-art-title">${t.article_title}</div>
+          <div class="m-art-snippet">${t.article_snippet}</div>
+        </div>
+      </a>
+
+      <a class="further-card" href="https://futurecity.cw.com.tw/article/3729" target="_blank" rel="noopener">
+        <div class="f-strip">
+          <span class="f-strip-l zh-only">核心讀本 · 給每個做完測驗的人</span>
+          <span class="f-strip-l en-only">CORE READING · For everyone who took this quiz</span>
+          <span class="f-strip-r">FUTURECITY · CW</span>
+        </div>
+        <div class="f-body">
+          <div class="f-title zh-only">台灣為何誤解「15 分鐘城市」？從巴黎看交通轉型與居住公平如何並存</div>
+          <div class="f-title en-only">Why Taiwan Misreads the "15-Minute City": Transport & Housing Justice Together</div>
+          <div class="f-subtitle zh-only">這篇橫跨「交通正義 × 居住正義」的論述，剛好就是雙零訴求背後的世界觀</div>
+          <div class="f-subtitle en-only">A piece bridging transport and housing justice — the worldview behind Dual-Zero</div>
+
+          <div class="f-lead zh-only">「15 分鐘城市」不是炒房工具，是空間正義的實踐。當 30% 有車族佔用 50% 公共空間，誰才是真正的受害者？</div>
+          <div class="f-lead en-only">The "15-minute city" isn't gentrification — it's spatial justice. When 30% of car owners occupy 50% of public space, who really pays?</div>
+
+          <div class="f-quote zh-only">
+            巴黎市中心 <span class="stat">30%</span> 有車族卻佔用 <span class="stat">50%</span> 公共空間，真正受害者是 <span class="stat">70%</span> 無車市民 — 婦女、兒童、長者承受道路危險與空氣污染。交通限制區每日減少 <span class="stat">35 萬</span> 車次，把街道還給人。
+          </div>
+          <div class="f-quote en-only">
+            In central Paris, <span class="stat">30%</span> of residents own cars but occupy <span class="stat">50%</span> of public space. The real victims are the <span class="stat">70%</span> car-free — women, children, elders bearing road danger and pollution. Traffic-limited zones cut <span class="stat">350,000</span> daily trips, returning streets to people.
+          </div>
+
+          <div class="f-source">
+            <span class="f-source-l">天下未來城市 · 吳昀慶</span>
+            <span class="f-cta zh-only">閱讀全文</span>
+            <span class="f-cta en-only">Read full article</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="south-card" href="https://neighborrider.com/6257/project/%E9%97%9C%E6%96%BC%E8%87%AA%E8%A1%8C%E8%BB%8A%EF%BC%8C%E6%88%91%E5%80%91%E8%83%BD%E5%BE%9E%E6%B3%A2%E5%93%A5%E5%A4%A7%E5%AD%B8%E4%BA%9B%E4%BB%80%E9%BA%BC%EF%BC%9F/" target="_blank" rel="noopener">
+        <div class="sc-strip">
+          <span class="sc-strip-l zh-only">另一種可能 · 全球南方的城市轉型</span>
+          <span class="sc-strip-l en-only">ANOTHER WAY · Global South Voices</span>
+          <span class="sc-strip-r">BOGOTÁ · COLOMBIA</span>
+        </div>
+        <div class="sc-body">
+          <span class="sc-tag zh-only">不只是歐美 · 拉丁美洲的解答</span>
+          <span class="sc-tag en-only">Beyond the West · Latin America's Answer</span>
+          <div class="sc-title zh-only">關於自行車，我們能從波哥大學些什麼？</div>
+          <div class="sc-title en-only">What Can We Learn from Bogotá About Cycling?</div>
+          <div class="sc-lead zh-only">當我們講「城市改革」，多半想到紐約、倫敦、巴黎。但遠在南美的波哥大，從一個被毒品與暴力陰影籠罩的城市，靠 Ciclovía 制度與一位騎腳踏車上班的市長，走出了一條全球南方自己的路。</div>
+          <div class="sc-lead en-only">When we talk "urban reform" we think New York, London, Paris. But in South America, Bogotá emerged from a city overshadowed by drugs and violence — through the Ciclovía program and a mayor who biked to work — onto its own Global South path.</div>
+
+          <div class="sc-quote">
+            <div class="sc-quote-text zh-only">城市要繁榮，最重要的是要讓公民感到幸福；而幸福並非源自於財富，而是「<strong>生活品質</strong>」。</div>
+            <div class="sc-quote-text en-only">A prosperous city is one where citizens feel happy. And happiness doesn't come from wealth — it comes from <strong>quality of life</strong>.</div>
+            <div class="sc-quote-attr">— ENRIQUE PEÑALOSA</div>
+            <div class="sc-quote-attr-zh zh-only">前波哥大市長 · 取消公路擴建，改建數百公里自行車道</div>
+            <div class="sc-quote-attr-zh en-only">Former Mayor of Bogotá · Cancelled highway expansion, built hundreds of km of bike lanes</div>
+          </div>
+
+          <div class="sc-foot">
+            <span class="sc-source">巷口車 Neighbor Rider</span>
+            <span class="sc-cta zh-only">閱讀全文</span>
+            <span class="sc-cta en-only">Read full article</span>
+          </div>
+        </div>
+      </a>
+
+      <section class="tcan-section">
+        <div class="tcan-header">
+          <span class="tcan-header-l zh-only">TCAN 政策論述 · 來自共同執行單位的深度研究</span>
+          <span class="tcan-header-l en-only">TCAN POLICY · From the Co-Executing Org</span>
+          <span class="tcan-header-r zh-only">台灣氣候行動網絡</span>
+          <span class="tcan-header-r en-only">Taiwan Climate Action Network</span>
+        </div>
+        <div class="tcan-frame">
+
+          <a class="tcan-featured" href="https://tcan2050.org.tw/2025072306-2/" target="_blank" rel="noopener">
+            <div class="tf-strip">
+              <span class="tf-strip-l zh-only">TCAN 研究中心總監觀點</span>
+              <span class="tf-strip-l en-only">TCAN RESEARCH DIRECTOR</span>
+              <span class="tf-strip-r">FEATURED ARTICLE</span>
+            </div>
+            <div class="tf-body">
+              <div class="tf-author">
+                <div class="tf-author-avatar">趙</div>
+                <div class="tf-author-meta">
+                  <div class="tf-author-name zh-only">趙家緯 · 柯昀伶</div>
+                  <div class="tf-author-name en-only">Chao Chia-Wei · Ke Yun-Ling</div>
+                  <div class="tf-author-role">TCAN 研究中心總監 · 專案研究員</div>
+                </div>
+              </div>
+              <div class="tf-title zh-only">擺脫傳統能源安全窠臼，才能增進台灣韌性</div>
+              <div class="tf-title en-only">Beyond Conventional Energy Security: Building Taiwan's Resilience</div>
+              <div class="tf-snippet zh-only">「雙零」中的「淨零」不只是交通的事 — 能源轉型同樣是核心戰場。台灣每年化石燃料進口已從 97.67% 降至 95.16%，再生能源是新能源安全戰略的關鍵。當 74% 全球人口都住在能源進口國，我們該如何擺脫對化石燃料的依賴？</div>
+              <div class="tf-snippet en-only">Net-Zero isn't just about transport — energy transition is the other front. Taiwan's fossil fuel dependency has dropped from 97.67% to 95.16%, with renewables as the new energy security strategy.</div>
+              <div class="tf-foot">
+                <span class="tf-date">2025 · 07 · 11</span>
+                <span class="tf-cta zh-only">閱讀全文</span>
+                <span class="tf-cta en-only">Read full article</span>
+              </div>
+            </div>
+          </a>
+
+          <div class="tcan-minis">
+            <a class="tcan-mini" href="https://tcan2050.org.tw/%E5%B7%B4%E9%BB%8E%E9%81%8B%E8%BC%B8%E6%B7%A8%E9%9B%B6%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%B0%E7%95%A5%EF%BC%9A%E5%BB%BA%E7%AB%8B%E5%B0%88%E7%94%A8%E6%AD%A5%E8%A1%8C%E5%8D%80%E8%88%87%E8%85%B3%E8%B8%8F/" target="_blank" rel="noopener">
+              <div class="tm-tag">巴黎 · 雙零案例</div>
+              <div class="tm-title zh-only">巴黎運輸淨零的核心戰略：建立專用步行區與腳踏車專用道</div>
+              <div class="tm-title en-only">Paris Transport Net-Zero: Pedestrian & Bike-Only Zones</div>
+              <div class="tm-meta">
+                <span>利祐任 · 2024.09</span>
+                <span class="tm-cta">閱讀</span>
+              </div>
+            </a>
+            <a class="tcan-mini" href="https://tcan2050.org.tw/2025102901-2/" target="_blank" rel="noopener">
+              <div class="tm-tag">行人地獄 · A-S-I 治理</div>
+              <div class="tm-title zh-only">1101 氣候遊行主張什麼？加速「零死亡」與「淨零」的永續運輸轉型</div>
+              <div class="tm-title en-only">1101 Climate March: Accelerating Zero-Death + Net-Zero Transport</div>
+              <div class="tm-meta">
+                <span>利祐任 · 2025.10</span>
+                <span class="tm-cta">閱讀</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="share-section">
+        <div class="s-label">SHARE · 分享你的街道靈魂</div>
+        <h3 class="s-title zh-only">把這個結果分享出去</h3>
+        <h3 class="s-title en-only">Share your result</h3>
+
+        <button class="dl-card-btn" onclick="downloadShareCard()">
+          <span class="dl-icon">📸</span>
+          <span class="zh-only">下載 Instagram 分享圖卡</span>
+          <span class="en-only">Download Instagram share card</span>
+        </button>
+
+        <div class="share-grid">
+          <button class="share-btn" onclick="shareTo('line')">
+            <span class="share-btn-icon">💬</span>
+            <span class="share-btn-label">LINE</span>
+          </button>
+          <button class="share-btn" onclick="shareTo('threads')">
+            <span class="share-btn-icon">🧵</span>
+            <span class="share-btn-label">Threads</span>
+          </button>
+          <button class="share-btn" onclick="shareTo('facebook')">
+            <span class="share-btn-icon">📘</span>
+            <span class="share-btn-label">FB</span>
+          </button>
+          <button class="share-btn" onclick="shareTo('twitter')">
+            <span class="share-btn-icon">𝕏</span>
+            <span class="share-btn-label">X / Twitter</span>
+          </button>
+        </div>
+
+        <div class="btn-group" style="margin-top:14px">
+          <button class="btn-sec" onclick="copyShareLink()">
+            <span class="zh-only">📋 複製連結</span>
+            <span class="en-only">📋 Copy link</span>
+          </button>
+          <button class="btn-sec" onclick="restart()">
+            <span class="zh-only">↺ 再測一次</span>
+            <span class="en-only">↺ Restart</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="follow-card">
+        <span class="fc-label zh-only">FOLLOW US · 跟著我們繼續走下去</span>
+        <span class="fc-label en-only">FOLLOW US · Walk with us</span>
+        <div class="fc-title zh-only">街道改變不是一次的事 — 而是長期的對話</div>
+        <div class="fc-title en-only">Streets don't change overnight — it's a long conversation</div>
+        <div class="fc-sub zh-only">追蹤 VZT 與 TCAN，跟著倡議、政策、與每一場行動。每一次轉發，都讓街道離安全更近。</div>
+        <div class="fc-sub en-only">Follow VZT and TCAN for ongoing advocacy, policy, and actions. Every share brings safer streets closer.</div>
+        <div class="fc-grid">
+          <a class="fc-link" href="https://www.instagram.com/vision_zero_tw/" target="_blank" rel="noopener">
+            <span class="fc-ico">📷</span>
+            <span class="fc-meta">
+              <span class="fc-plat">VZT · Instagram</span>
+              <span class="fc-handle">@vision_zero_tw</span>
+            </span>
+            <span class="fc-arrow">↗</span>
+          </a>
+          <a class="fc-link" href="https://www.facebook.com/profile.php?id=61581075510401" target="_blank" rel="noopener">
+            <span class="fc-ico">📘</span>
+            <span class="fc-meta">
+              <span class="fc-plat">TCAN · Facebook</span>
+              <span class="fc-handle">台灣氣候行動網絡</span>
+            </span>
+            <span class="fc-arrow">↗</span>
+          </a>
+        </div>
+        <div class="fc-foot">
+          A PROJECT BY <strong>VZT × TCAN</strong><br>
+          還路於民行人路權促進會 · 台灣氣候行動網路
+        </div>
+      </div>
+
+      <div class="all-types">
+        <h3 class="zh-only">16 種街道靈魂</h3>
+        <h3 class="en-only">All 16 Street Souls</h3>
+        <div class="h3-en zh-only">All 16 Street Souls</div>
+        <div class="h3-en en-only">16 種街道靈魂</div>
+        <div class="all-grid">${Object.entries(TYPES).map(([k, v]) => `
+            <div class="all-cell${k === code ? ' current' : ''}" title="${v.zh_name}">
+              <span class="em">${v.emoji}</span>
+              <div>${k}</div>
+              <div class="nm zh-only">${v.zh_name}</div>
+              <div class="nm en-only">${v.en_name.replace('The ', '')}</div>
+            </div>
+          `).join('')
+          }</div>
+      </div>
+
+      <div class="exec-credit">
+        <div class="ec-label">CO-EXECUTED BY</div>
+        <img class="org-logo ec-logo" src="data:image/png;base64,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CPLGkt6ZA0QC75Rfv6eMSfbN9NydhfKm7/OJvMeQN7rE6eQv5SufNWThkp4f58g7v98x8n6GvOeJ34mtDj3xsaecskakS+FUKG/yVp/Iewh5qzrczdTmBRklr9lqVuYk+1P2t0qSNzVxQN5jyBuxqj1ouHTQxt0FWUPwl6LtwsiIoWJ5E7sqkPcY8sY2iIi81C9TeePEa/2UV5ELPyFTXytN3sSKA/IeRN5oHni1+jQcKH6VKvrinZqBEWmBNXkuTn1CorwVacMnyRvteapvsbF5brfdrid9mmquT31onduRF54aOlGKS5X3d3qnZeQ9lryT21G2O7ieTufm3Fz/r56671Nh8Td7Qb/swZqp8iZVHJD3KPJW02lgfanvQXgmYk0VsmK7B0ym4ues2UDJ8kbXJEbeI8qb1oiZ+ZnL1EcGQ/b0LOVLeJZDUy5vQuhF3sPIW9V1+mjBuNyTT0eTuwLZJatXI0feSBcI8h5T3qyB2uHKxKSJEVua/HbkRUPe+a4K5D2OvO3w76Ys7DbZg2bm1ja5NFm15Bx5L8j7QfLGXuzJ418nx8xERjjOnGMkXMd+K0fe2SwfeY8kb3VuLs3yxLc5TcfQ8MTdRUWQ2JCLLHkrIu8nyVudlrt7mVn8eeH8+qn18Url/Z0Ovch7LHmrxRWHesbdpVsORfopGg15Z9Je5D2YvL/t7n51fkutPs2sqBBZfn1+WZ4mZ1/kTHmnuyqQ92DyXmPvklZbPT/frV5Qa3hEx/Tvlivv5KwK5D2cvFlLGyTNzYkrmLI0RFY/Ra68k18WeY8n78RA82hTbfaDQpthJ24oHBkn36jIG9wEGXmPK29K12lvuZv6sjCaJ53gJTzMOPi7+fJOhF7kPaS81aU+JbXb6rpuUhbWiRR50+Q9pS8qkS/vhL3Ie0x52yO2s4Onh0le//aU9hmRroa0JYDDk4eCXcQL5K2IvB8n7y36nppz1N9rzD0lJAwTaUjZyu3B314ibzT0Iu9W8l4CS9eULvN4efjbH8b7WBanaecGpR6oOdfLz6+tZyUuzBP8nLkVqS+nS3jNNeTdhDq4bFjCZr3z/l7aqT9toesWg+vHlKDT5ZJ+b9tFzQIneErdOOAUXhQt4H74MpwWHf90Rt5tIm8YxYM3bZZw/c/1bZp95N9L2fnFfv1X6TpcVr18yAuAvIC8AMgLgLyAvMgLyAuAvADIC8iLvIC8AMgLyIu8gLwAyAuAvIC8yAvIC4C8gLzIC8gLgLwAyAvIi7yAvADIC4C8gLwAyAuAvIC8yAvIC4C8AMgLyAuAvADIC8iLvIC8AMgLgLyAvADIC4C8gLzIC8gLgLwAyAvIC4C8AMgLyIu8gLwAyAuAvIC8XDTYibz/zAV5YSf853/z+PNPrhkAAAAAAADAEfh/tP13xJjFNpUAAAAASUVORK5CYII=" alt="Vision Zero Taiwan × TCAN" />
+        <div class="ec-orgs zh-only"><strong>還路於民行人路權促進會</strong> × <strong>台灣氣候行動網絡</strong></div>
+        <div class="ec-orgs en-only"><strong>Vision Zero Taiwan</strong> × <strong>Taiwan Climate Action Network</strong></div>
+        <div class="ec-sub">A JOINT INITIATIVE · 2026</div>
+      </div>
+    `;
+        showScreen('result');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 1300);
+    }
+
+    function restart() {
+      answers = [];
+      currentQ = 0;
+      showScreen('intro');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function copyShareLink() {
+      const code = calculateType();
+      const t = TYPES[code];
+      const isEn = document.body.classList.contains('en');
+      const text = isEn
+        ? `I'm ${code} · ${t.en_name} ${t.emoji} — Street Soul Quiz by Vision Zero Taiwan × TCAN`
+        : `我是 ${code} · ${t.zh_name} ${t.emoji}｜街道靈魂測驗 by Vision Zero Taiwan × TCAN`;
+      const fullText = text + '\n' + location.href;
+      navigator.clipboard.writeText(fullText).then(() => {
+        showToast(isEn ? 'Copied to clipboard ✓' : '已複製到剪貼簿 ✓');
+      }).catch(() => {
+        showToast(isEn ? 'Copy failed' : '複製失敗，請手動複製');
+      });
+    }
+
+    function shareTo(platform) {
+      const code = calculateType();
+      const t = TYPES[code];
+      const isEn = document.body.classList.contains('en');
+      const text = isEn
+        ? `I'm ${code} · ${t.en_name} ${t.emoji} — Street Soul Quiz by Vision Zero Taiwan × TCAN`
+        : `我是 ${code} · ${t.zh_name} ${t.emoji}｜街道靈魂測驗 by Vision Zero Taiwan × TCAN`;
+      const url = location.href;
+      const enc = encodeURIComponent;
+      let shareUrl = '';
+
+      switch (platform) {
+        case 'line':
+          shareUrl = `https://social-plugins.line.me/lineit/share?url=${enc(url)}&text=${enc(text)}`;
+          break;
+        case 'threads':
+          shareUrl = `https://www.threads.net/intent/post?text=${enc(text + '\n\n' + url)}`;
+          break;
+        case 'facebook':
+          shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}&quote=${enc(text)}`;
+          break;
+        case 'twitter':
+          shareUrl = `https://twitter.com/intent/tweet?text=${enc(text)}&url=${enc(url)}`;
+          break;
+      }
+      if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=600,scrollbars=yes');
+    }
+
+    /* ============================
+       GENERATE & DOWNLOAD SHARE CARD
+       IG portrait 1080×1350
+       ============================ */
+    /* Detect iOS for image-save fallback */
+    function isIOS() {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    }
+
+    async function downloadShareCard() {
+      const code = calculateType();
+      const t = TYPES[code];
+      const isEn = document.body.classList.contains('en');
+      const btn = document.querySelector('.dl-card-btn');
+
+      if (!btn) return;
+      if (typeof html2canvas === 'undefined') {
+        showToast(isEn ? 'Image library not loaded' : '圖片函式庫未載入，請重新整理頁面');
+        return;
+      }
+
+      btn.classList.add('loading');
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = `<span class="dl-icon">⏳</span><span>${isEn ? 'Generating...' : '圖卡生成中…'}</span>`;
+
+      // Build or reuse the off-screen card
+      let card = document.getElementById('shareCard');
+      if (!card) {
+        card = document.createElement('div');
+        card.id = 'shareCard';
+        document.body.appendChild(card);
+      }
+
+      const axisLabels = { M: 'Mellow', R: 'Rapid', E: 'Explorer', H: 'Habit', C: 'Crew', S: 'Solo', Y: 'System', I: 'Self' };
+      const a1 = code[0], a2 = code[1], a3 = code[2], a4 = code[3];
+
+      card.innerHTML = `
+    <div class="sc-top">
+      <div class="sc-brand"><span class="sc-brand-dot"></span>VZT × TCAN</div>
+      <div class="sc-rarity">RARITY ${t.rarity}</div>
+    </div>
+    <div class="sc-body">
+      <div class="sc-code">TYPE · ${code}</div>
+      <div class="sc-emoji">${t.emoji}</div>
+      <div class="sc-name">${isEn ? t.en_name : t.zh_name}</div>
+      <div class="sc-name-en">${isEn ? t.zh_name : t.en_name}</div>
+      <div class="sc-quote">${isEn ? t.quote_en : t.quote_zh}</div>
+    </div>
+    <div class="sc-bottom">
+      <div class="sc-axes">
+        <div class="sc-axis">${a1} · ${axisLabels[a1]}</div>
+        <div class="sc-axis">${a2} · ${axisLabels[a2]}</div>
+        <div class="sc-axis">${a3} · ${axisLabels[a3]}</div>
+        <div class="sc-axis">${a4} · ${axisLabels[a4]}</div>
+      </div>
+      <div class="sc-cta">
+        ${isEn ? 'TAKE THE QUIZ' : '街道靈魂測驗'}<br>
+        <strong>${isEn ? 'STREET SOUL' : 'STREETSOUL.TW'}</strong>
+      </div>
+    </div>
+  `;
+
+      try {
+        // Wait for fonts and layout to settle
+        if (document.fonts && document.fonts.ready) {
+          await document.fonts.ready;
+        }
+        await new Promise(r => setTimeout(r, 250));
+
+        const canvas = await html2canvas(card, {
+          width: 1080,
+          height: 1350,
+          scale: 2,                  // higher res for retina
+          backgroundColor: '#FBF7EC',
+          logging: false,
+          useCORS: true,
+          allowTaint: true,
+          foreignObjectRendering: false
+        });
+
+        const dataUrl = canvas.toDataURL('image/png');
+
+        // Convert to blob for sharing
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        const fileName = `street-soul-${code}-${isEn ? 'EN' : 'ZH'}.png`;
+        const file = blob ? new File([blob], fileName, { type: 'image/png' }) : null;
+
+        btn.classList.remove('loading');
+        btn.innerHTML = originalHTML;
+
+        // Show modal with the result + 3 ways to save
+        showImageModal({ dataUrl, blob, file, fileName, isEn, code });
+      } catch (err) {
+        console.error('Share card generation failed:', err);
+        btn.classList.remove('loading');
+        btn.innerHTML = originalHTML;
+        showToast((isEn ? 'Failed: ' : '生成失敗：') + (err.message || 'unknown'));
+      }
+    }
+
+    function showImageModal({ dataUrl, blob, file, fileName, isEn, code }) {
+      const ios = isIOS();
+      const canShareFile = file && navigator.canShare && navigator.canShare({ files: [file] });
+
+      const modal = document.createElement('div');
+      modal.className = 'img-modal';
+      modal.innerHTML = `
+    <div class="img-modal-inner">
+      <button class="img-modal-close" aria-label="Close">✕</button>
+      <div class="img-modal-title">${isEn ? '✨ Your share card is ready' : '✨ 分享圖卡已生成'}</div>
+      <div class="img-modal-sub">${isEn ? 'Save to share on Instagram, Threads, anywhere.' : '儲存後即可貼到 Instagram、Threads 限時動態。'}</div>
+      <img src="${dataUrl}" alt="Your Street Soul share card">
+      ${ios
+          ? `<div class="img-hint">📱 <strong>${isEn ? 'iOS users:' : 'iPhone 用戶：'}</strong> ${isEn ? 'long-press the image above, then "Save to Photos"' : '長按上方圖片 → 「加入照片」'}</div>`
+          : `<div class="img-hint">💡 ${isEn ? 'Right-click the image to save, or use the buttons below' : '在電腦上可右鍵儲存圖片，或用下方按鈕'}</div>`
+        }
+      <div class="img-modal-actions">
+        ${canShareFile
+          ? `<button class="modal-share-btn">📤 ${isEn ? 'Share' : '分享'}</button>`
+          : `<button class="modal-download-btn">⬇ ${isEn ? 'Download' : '下載到電腦'}</button>`
+        }
+        <button class="alt modal-close-btn">${isEn ? 'Close' : '關閉'}</button>
+      </div>
+    </div>
+  `;
+      document.body.appendChild(modal);
+
+      // Wire up buttons
+      const close = () => {
+        modal.style.animation = 'fadeIn .2s reverse';
+        setTimeout(() => modal.remove(), 180);
+      };
+      modal.querySelector('.img-modal-close').onclick = close;
+      modal.querySelector('.modal-close-btn').onclick = close;
+      modal.addEventListener('click', e => {
+        if (e.target === modal) close();
+      });
+
+      const downloadBtn = modal.querySelector('.modal-download-btn');
+      if (downloadBtn) {
+        downloadBtn.onclick = () => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = fileName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+          showToast(isEn ? 'Saved ✓' : '已下載 ✓');
+        };
+      }
+
+      const shareBtn = modal.querySelector('.modal-share-btn');
+      if (shareBtn) {
+        shareBtn.onclick = async () => {
+          try {
+            await navigator.share({
+              files: [file],
+              title: isEn ? 'My Street Soul' : '我的街道靈魂',
+              text: isEn ? `I'm ${code} on the Street Soul Quiz!` : `我是 ${code} · 街道靈魂測驗`
+            });
+          } catch (err) {
+            if (err.name !== 'AbortError') {
+              console.error(err);
+              showToast(isEn ? 'Share canceled' : '分享已取消');
+            }
+          }
+        };
+      }
+    }
+
+    /* ============================
+       SEND TO GOOGLE SHEET
+       Anonymous data only, fire-and-forget
+       ============================ */
+    function logToSheet(code) {
+      if (!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL.includes('PASTE_YOUR')) {
+        console.log('Sheet webhook not configured — skipping log');
+        return;
+      }
+      const lang = document.body.classList.contains('en') ? 'en' : 'zh';
+      const payload = {
+        session_id: SESSION_ID,
+        timestamp: new Date().toISOString(),
+        type_code: code,
+        language: lang,
+        duration_sec: Math.round((Date.now() - SESSION_START) / 1000),
+        age: demographics.age || '',
+        country: demographics.country || '',
+        city: demographics.city || '',
+        // Per-question answers: q1..q12 as the axis-letter chosen
+        ...Object.fromEntries(
+          answers.map((a, i) => ['q' + (i + 1), Object.values(a || {})[0] || ''])
+        )
+      };
+      // Use no-cors mode so it's truly fire-and-forget; Apps Script accepts it
+      fetch(SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      }).catch(err => console.log('Sheet log failed (non-blocking):', err));
+    }
+
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    /* Pick language from initial screen */
+    function pickLanguage(lang) {
+      document.body.classList.remove('picking');
+      document.body.classList.add(lang);
+      // sync top bar toggle
+      document.querySelectorAll('.lang-toggle button').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+      showScreen('intro');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* Language toggle (top bar) — only active after initial pick */
+    document.querySelectorAll('.lang-toggle button').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const lang = btn.dataset.lang;
+        document.body.classList.remove('zh', 'en');
+        document.body.classList.add(lang);
+      };
+    });
+
+    /* Demographics screen interactivity */
+    document.querySelectorAll('.demo-opt').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('.demo-opt').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      };
+    });
+    document.getElementById('demoCountry').addEventListener('change', e => {
+      const cityField = document.getElementById('demoCity');
+      cityField.style.display = e.target.value === 'TW' ? 'block' : 'none';
+    });
+  </script>
+</body>
+
+</html>
