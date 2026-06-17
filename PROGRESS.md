@@ -1,7 +1,7 @@
 # 工作進度交接 · Session Handoff
 
 > 這份檔案是給「下一個對話視窗」用的交接文件，不是公開的專案說明（那是 `README.md`）。
-> 在新對話開始時，請先讀這份，就能無縫接續。最後更新：2026-06-17。
+> 在新對話開始時，請先讀這份，就能無縫接續。最後更新：2026-06-17（現已含中／英／日**三語**版，並已 push 上線）。
 
 ---
 
@@ -22,24 +22,28 @@
 
 ---
 
-## 🔴 1. 目前 git 狀態（重要：尚未 commit / push）
+## ✅ 1. 目前 git 狀態（已上線）
 
-```
- M VZT_petition_bilingual.html   (+1 / -1)
- M index.html                    (+622 / -207)
-?? pedestrian.png                (未追蹤！commit 前一定要 git add)
-```
+所有工作（前一批 + **日文版三語**）已 commit 並 push 到 `origin/main`，GitHub Pages 已部署，工作區乾淨。
 
-本 session 八項工作**全部完成且功能已驗證，但都還沒 commit**。上線指令：
+已涵蓋：`index.html`（中／英／日三語、配對好友/幸運兒、雙分享圖卡、可愛音效、地圖連結、小行人、雙齊零正名）、`pedestrian.png`（已追蹤）、`VZT_petition_bilingual.html`、`PROGRESS.md`（本檔）。
 
+**之後要再改 → 照常上線：**
 ```bash
 cd /Users/yunching0513/StreetSoulQuiz
-git add index.html VZT_petition_bilingual.html pedestrian.png   # ← pedestrian.png 別漏
-git commit -m "feat: 配對好友/幸運兒、雙圖卡、可愛音效、地圖連結、小行人、雙齊零正名"
-git push origin main
+git add -A && git commit -m "..." && git push origin main   # Pages 約 1 分鐘後更新
 ```
 
-> push 後 GitHub Pages 會自動更新 https://yunching0513.github.io/StreetSoulQuiz/（約 1 分鐘）。
+> 待辦：日後把改動同步到 `upstream`（Visionzerotaiwan/StreetSoulQuiz）— 目前先不做。
+
+### 🌐 三語架構（中／英／日）速記
+- 語言由 `<body>` 的 class 決定：`zh` / `en` / `ja`。helper `getLang()` 回傳三者之一。
+- CSS 互斥隱藏（約 line 320）：`body.zh` 藏 `.en-only,.ja-only`；`body.en` 藏 `.zh-only,.ja-only`；`body.ja` 藏 `.zh-only,.en-only`。
+- **靜態/模板**：每組 `.zh-only`/`.en-only` 旁都加一個 `.ja-only` 兄弟元素。
+- **資料**：日文走平行物件 `TYPES_JA`／`DEMANDS_JA`／`QUESTIONS_JA`／`TYPE_DEMAND_WHY_JA`（中英原資料沒動）。
+- **JS 條件**（圖卡/分享文案）：原本 `isEn ? en : zh` → 改 `const lang=getLang()` + `L(zh,en,ja)` 三選一；`buildBondsCard / downloadShareCard / showImageModal` 都吃 `lang`。
+- 語言選擇器與右上角 toggle 都已加「日本語」。
+- 新增文案 → 記得補 `.ja-only` + 對應 `_JA` 欄位，並用 Playwright 三語各驗一次（**務必 stub `logToSheet`**）。
 
 ---
 

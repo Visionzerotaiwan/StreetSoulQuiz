@@ -317,8 +317,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 }
 
 /* Language modes — single language only, no dual */
-body.zh .en-only{display:none!important}
-body.en .zh-only{display:none!important}
+body.zh .en-only,body.zh .ja-only{display:none!important}
+body.en .zh-only,body.en .ja-only{display:none!important}
+body.ja .zh-only,body.ja .en-only{display:none!important}
 
 /* Hide secondary cross-language elements globally — pure mono-lingual */
 .r-name-en,.r-desc-en,.m-text-en,.s-title-en,.a-en,.m-name-en,
@@ -809,13 +810,14 @@ body.picking #lang-pick{display:block!important}
   <div class="topbar">
     <div class="brand">
       <span class="brand-dot"></span>
-      <span>VZT × TCAN — <span class="zh-only">街道靈魂測驗</span><span class="en-only">Street Soul Quiz</span></span>
+      <span>VZT × TCAN — <span class="zh-only">街道靈魂測驗</span><span class="en-only">Street Soul Quiz</span><span class="ja-only">街の魂診断</span></span>
     </div>
     <div class="tb-right">
       <button id="soundToggle" class="sound-toggle" onclick="toggleSound()" aria-label="Toggle sound" title="音效 · Sound">🔊</button>
       <div class="lang-toggle">
         <button data-lang="zh">中文</button>
         <button data-lang="en">EN</button>
+        <button data-lang="ja">日本語</button>
       </div>
     </div>
   </div>
@@ -847,6 +849,14 @@ body.picking #lang-pick{display:block!important}
           </div>
           <span class="pick-btn-arrow">→</span>
         </button>
+        <button class="pick-btn" onclick="pickLanguage('ja')">
+          <span class="pick-btn-emoji">🍵</span>
+          <div class="pick-btn-body">
+            <div class="pick-btn-lang">日本語</div>
+            <div class="pick-btn-sub">日本語版 · Japanese</div>
+          </div>
+          <span class="pick-btn-arrow">→</span>
+        </button>
       </div>
 
       <div class="pick-meta">
@@ -871,8 +881,10 @@ body.picking #lang-pick{display:block!important}
       <div class="intro-hero-text">
         <h1 class="intro-title zh-only">你是哪種<br><em>街道靈魂</em>？</h1>
         <h1 class="intro-title en-only">Which Street<br><em>Soul</em> are you?</h1>
+        <h1 class="intro-title ja-only">あなたはどんな<br><em>街の魂</em>？</h1>
         <p class="intro-sub zh-only">一場關於你、街道、與這座城市的測驗。</p>
         <p class="intro-sub-en en-only">A quiz about you, your street, and this city.</p>
+        <p class="intro-sub ja-only">あなたと、街と、この都市についての診断。</p>
       </div>
       <img class="intro-art" src="pedestrian.png" alt="街道守護者推著載有小行人的嬰兒車" onerror="this.remove()" />
     </div>
@@ -880,6 +892,7 @@ body.picking #lang-pick{display:block!important}
     <p class="intro-desc">
       <span class="zh-only">每個人都跟街道有一段獨特的關係。你怎麼移動、跟誰移動、看見什麼樣的城市，組合成 16 種「街道靈魂」。沒有對錯，只有屬於你的街道靈魂。</span>
       <span class="intro-desc-en en-only">Everyone has a unique relationship with the street. How you move, who you move with, and what you see along the way combine into 16 distinct "street souls." No right or wrong—just the one that's truly yours.</span>
+      <span class="ja-only">だれもが街と、自分だけの関係を結んでいる。どう動くか、だれと動くか、どんな街を見ているか ― その組み合わせが16の「街の魂」になる。正解も間違いもない。あるのは、あなただけの街の魂。</span>
     </p>
 
     <div class="intro-grid">
@@ -888,37 +901,45 @@ body.picking #lang-pick{display:block!important}
         <div class="ax-code">PACE</div>
         <div class="ax-name zh-only">節奏</div>
         <div class="ax-name en-only">Pace</div>
+        <div class="ax-name ja-only">ペース</div>
         <div class="ax-q zh-only">你習慣怎麼移動？</div>
         <div class="ax-q en-only">How do you move?</div>
+        <div class="ax-q ja-only">どう動く？</div>
       </div>
       <div class="axis-card">
         <div class="ax-emoji">🗺️</div>
         <div class="ax-code">PATH</div>
         <div class="ax-name zh-only">路徑</div>
         <div class="ax-name en-only">Path</div>
+        <div class="ax-name ja-only">ルート</div>
         <div class="ax-q zh-only">你怎麼選擇要走的路？</div>
         <div class="ax-q en-only">How do you pick your route?</div>
+        <div class="ax-q ja-only">どの道を選ぶ？</div>
       </div>
       <div class="axis-card">
         <div class="ax-emoji">👥</div>
         <div class="ax-code">PARTNER</div>
         <div class="ax-name zh-only">同伴</div>
         <div class="ax-name en-only">Partner</div>
+        <div class="ax-name ja-only">同行者</div>
         <div class="ax-q zh-only">你喜歡跟誰一起移動？</div>
         <div class="ax-q en-only">Who do you move with?</div>
+        <div class="ax-q ja-only">だれと動く？</div>
       </div>
       <div class="axis-card">
         <div class="ax-emoji">🔭</div>
         <div class="ax-code">VIEW</div>
         <div class="ax-name zh-only">視角</div>
         <div class="ax-name en-only">View</div>
+        <div class="ax-name ja-only">視点</div>
         <div class="ax-q zh-only">你看見什麼樣的城市？</div>
         <div class="ax-q en-only">What kind of city do you see?</div>
+        <div class="ax-q ja-only">どんな街が見える？</div>
       </div>
     </div>
 
     <button class="btn-primary" onclick="goDemographics()">
-      <span class="zh-only">開始測驗</span><span class="en-only">Begin Quiz</span>
+      <span class="zh-only">開始測驗</span><span class="en-only">Begin Quiz</span><span class="ja-only">診断をはじめる</span>
       <span class="arrow">→</span>
     </button>
 
@@ -931,18 +952,21 @@ body.picking #lang-pick{display:block!important}
   <!-- DEMOGRAPHICS (optional, before quiz) -->
   <section class="screen" id="demographics">
     <div class="demo-top">
-      <div class="demo-step">STEP 00 · 開始前</div>
+      <div class="demo-step">STEP 00 · <span class="zh-only">開始前</span><span class="en-only">開始前</span><span class="ja-only">はじめる前に</span></div>
       <div class="demo-step-en">BEFORE WE BEGIN</div>
     </div>
     <h2 class="demo-title zh-only">兩個快速問題，幫助我們了解誰在參與</h2>
     <h2 class="demo-title en-only">Two quick questions before we begin</h2>
+    <h2 class="demo-title ja-only">はじめる前に、かんたんな2つの質問</h2>
     <p class="demo-sub zh-only">這些資訊只用於匿名統計（沒有 IP、沒有上傳）。所有欄位皆為選填，可直接略過。</p>
     <p class="demo-sub en-only">Anonymous stats only — no IP, no upload. Every field is optional. Skip if you prefer.</p>
+    <p class="demo-sub ja-only">この情報は匿名の統計にのみ使います（IPなし・アップロードなし）。すべて任意で、スキップもできます。</p>
 
     <div class="demo-field">
       <label class="demo-label" for="demoNickname">
         <span class="zh-only">想要個人化結果嗎？</span>
         <span class="en-only">Want a personalized result?</span>
+        <span class="ja-only">結果をパーソナライズする？</span>
         <span class="demo-label-opt">optional</span>
       </label>
       <div class="demo-input-wrap">
@@ -950,13 +974,15 @@ body.picking #lang-pick{display:block!important}
       </div>
       <div class="demo-hint zh-only">如果填了，結果頁與分享圖卡會以這個名字稱呼你。只儲存在你的瀏覽器，不會上傳。</div>
       <div class="demo-hint en-only">If filled, your result page and share card will address you by this name. Stored only in your browser, never uploaded.</div>
+      <div class="demo-hint ja-only">入力すると、結果ページとシェア画像がこの名前であなたに呼びかけます。ブラウザにのみ保存され、アップロードはされません。</div>
     </div>
 
     <div class="demo-field">
       <label class="demo-label zh-only">你的年齡區間</label>
       <label class="demo-label en-only">Your age range</label>
+      <label class="demo-label ja-only">年齢層</label>
       <div class="demo-grid age-grid">
-        <button class="demo-opt" data-age="under14"><span class="zh-only">14 以下</span><span class="en-only">Under 14</span></button>
+        <button class="demo-opt" data-age="under14"><span class="zh-only">14 以下</span><span class="en-only">Under 14</span><span class="ja-only">14歳未満</span></button>
         <button class="demo-opt" data-age="15-17">15–17</button>
         <button class="demo-opt" data-age="18-24">18–24</button>
         <button class="demo-opt" data-age="25-34">25–34</button>
@@ -970,6 +996,7 @@ body.picking #lang-pick{display:block!important}
     <div class="demo-field">
       <label class="demo-label zh-only">你在哪個地區？</label>
       <label class="demo-label en-only">Where are you?</label>
+      <label class="demo-label ja-only">お住まいの地域は？</label>
       <select class="demo-select" id="demoCountry">
         <option value="">— <span class="zh-only">請選擇</span><span class="en-only">Select</span> —</option>
         <option value="TW">🇹🇼 台灣 · Taiwan</option>
@@ -1017,11 +1044,11 @@ body.picking #lang-pick{display:block!important}
 
     <div class="demo-actions">
       <button class="btn-primary" onclick="submitDemographics()">
-        <span class="zh-only">繼續</span><span class="en-only">Continue</span>
+        <span class="zh-only">繼續</span><span class="en-only">Continue</span><span class="ja-only">続ける</span>
         <span class="arrow">→</span>
       </button>
       <button class="btn-skip" onclick="skipDemographics()">
-        <span class="zh-only">略過這步</span><span class="en-only">Skip this</span>
+        <span class="zh-only">略過這步</span><span class="en-only">Skip this</span><span class="ja-only">スキップ</span>
       </button>
     </div>
   </section>
@@ -1039,7 +1066,7 @@ body.picking #lang-pick{display:block!important}
 
     <div class="choices" id="qChoices"></div>
 
-    <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">← <span class="zh-only">上一題</span><span class="en-only">Previous</span></button>
+    <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">← <span class="zh-only">上一題</span><span class="en-only">Previous</span><span class="ja-only">前へ</span></button>
   </section>
 
   <!-- LOADING -->
@@ -1048,6 +1075,7 @@ body.picking #lang-pick{display:block!important}
       <div class="loading-emoji">🚦</div>
       <div class="loading-txt zh-only">解讀你的街道靈魂中…</div>
       <div class="loading-txt en-only">Reading your street soul…</div>
+      <div class="loading-txt ja-only">あなたの街の魂を読み解いています…</div>
       <div class="loading-en zh-only">Reading your street soul...</div>
       <div class="loading-en en-only">解讀中…</div>
     </div>
@@ -1066,6 +1094,9 @@ body.picking #lang-pick{display:block!important}
 <div class="toast" id="toast"></div>
 
 <script>
+/* Trilingual helper — returns 'zh' | 'en' | 'ja' from the <body> class */
+function getLang(){return document.body.classList.contains('ja')?'ja':(document.body.classList.contains('en')?'en':'zh');}
+
 /* ============================
    QUESTIONS — 3 per axis
    ============================ */
@@ -1173,6 +1204,22 @@ const QUESTIONS = [
      {icon:'⚠️',zh:'家長和學校應該要教他更小心',en:'Parents and schools should teach kids caution',val:{PERSPECTIVE:'I'}},
      {icon:'😟',zh:'先擔心孩子，但會想為什麼路設計成這樣',en:'Worried for the kid first, then ask why the road is like this',val:{PERSPECTIVE:['Y','I']}}
    ]}
+];
+
+/* Japanese question set — index-aligned to QUESTIONS (same .choices/.val order) */
+const QUESTIONS_JA = [
+  {q:'仕事帰り、家まで歩いて15分・バイクで5分。どっちを選ぶ？', c:['歩く。沿道のお店や街路樹を眺めるのが好き','さっとバイクで帰って、ごはんを作りたい','天気しだい。晴れなら歩く、雨ならバイク']},
+  {q:'信号が赤、あと30秒。あなたの気分は？', c:['ちょうどいい、看板や木の葉でも眺めよう','長いなぁ、早く青になって','眺めたり、急いだり。そのときの気分しだい']},
+  {q:'理想の週末の朝は？', c:['目的もなく、のんびりカフェまで歩く','予定を立てて、行きたい場所を一気に回る','ゆるく計画して、歩きながら決める']},
+  {q:'通勤・通学のルートは、いつもどうしてる？', c:['たまに道を変えて、違う景色を楽しむ','いつもの慣れた道。目をつぶっても着く','基本は定番ルート、たまに気分転換で変える']},
+  {q:'通ったことのない路地を見つけたら…', c:['気になって、ふらっと入ってみる','今日はやめておく、いつもの道で','時間しだい。急ぎならパス、余裕があれば入る']},
+  {q:'海外旅行のとき、あなたはどっち？', c:['気の向くまま歩いて、思わぬ発見を楽しむ','行きたい場所をリスト化して、計画通りに回る','要所だけ押さえて、あとは自由に歩く']},
+  {q:'通勤・通学でいちばん心地いい瞬間は？', c:['友だちや同僚と、一緒に歩いたり乗ったり','イヤホンをつけて、ひとりの世界に浸る','基本はひとりで充電、たまに知り合いに会えると嬉しい']},
+  {q:'週末ちょっと出かけるなら？', c:['みんなを誘って、わいわい行くのが楽しい','ひとり、または2人でのんびり歩くのがいい','気分しだい。誘いたい日も、ひとりがいい日も']},
+  {q:'理想の街の雰囲気は？', c:['お店も人も多くて、にぎやかで活気がある','静かで心地よく、ひとりでぼーっとできる','人の気配はあるけど混みすぎない、ちょうどいい活気']},
+  {q:'交通事故のニュースを見て、まず思うことは？', c:['この交差点の設計に問題があるのでは？','ドライバーや歩行者が、もっと気をつけるべき','まず当事者を心配して、それから仕組みの問題を考える']},
+  {q:'街をもっと安全にする鍵は、何だと思う？', c:['道路の設計を変える。歩道を広げ、車の速度を落とす','ドライバー教育と、歩行者の権利の啓発を強める','どちらも大事。でも良い設計が、教育をより効かせる']},
+  {q:'小学生が電動自転車で、危うくはねられそうに。あなたは？', c:['なぜこの道には自転車レーンがないの？','親や学校が、もっと注意を教えるべき','まず子どもが心配、でもなぜこんな道なのかと考える']}
 ];
 
 /* ============================
@@ -1583,6 +1630,28 @@ const TYPES = {
 };
 
 /* ============================
+   16 TYPES — 日本語 (parallel to TYPES; shares emoji / rarity / match_emoji / article_url)
+   ============================ */
+const TYPES_JA = {
+  'MECY':{name:'街の観察者',desc:'街を歩けば、みんなが見落とす細部に気づく ― 新しく植わった街路樹、段差のある歩道、ある交差点の危ない曲がり角。あなたはこの街を愛していて、少しずつ良くなっていく姿を見守りたいと思っている。',strengths:['細部までよく見え、仕組みの問題に気づく','見つけたことを進んで共有できる','街に対するやさしい根気'],growth:'いつも「何かおかしい」が見えてしまうから、ときどき無力感に襲われることも ― でも、見ているのはあなた一人じゃない。',action:'気づいた「街の問題」を写真に撮って、市の窓口・議員事務所・交通団体に伝えてみよう。あなたの観察は、インフラを変える最初の一つの証拠になる。',match:'ユトレヒト',match_why:'「人」のために設計された、観察したい細部であふれる街',quote:'「街は、その都市のいちばん正直な告白だ。」',article_title:'高速道路を運河に戻す ― オランダの古都ユトレヒトが「自転車の街」へ',article_snippet:'オランダ・ユトレヒトは車中心の街から、自転車と歩行者の街へ。中心部の車線を歩行者空間に、駐車枠を歩道に変え、店の売上もむしろ伸びた。'},
+  'MECI':{name:'街角のつなぎ手',desc:'街を歩けば、朝食屋の店主とおしゃべりし、近所の犬にあいさつし、角で花を売るおばさんとも顔なじみ。あなたにとって街は通り過ぎる場所じゃなく、日常のリビングだ。',strengths:['生まれながらのコミュニティづくりの名人','見知らぬ人を顔なじみに変える','街をあたたかい場所にする'],growth:'あなたが見ているのは「人」。でも、その日常を支えているのが歩道の広さや車の速度だということも、忘れないで。',action:'次に公園・歩道・通学路の安全をめぐる公聴会があったら、一度発言してみよう。あなたの物語は、どんなデータより人の心を動かす。',match:'京都・四条通',match_why:'車道を歩行者にゆずり、路地が街のリビングに戻った場所',quote:'「私たちの街は、私たちのリビングだ。」',article_title:'車の流れは人の1/3、なのに車道は歩道の倍? 京都・歩道拡幅プロジェクト',article_snippet:'京都・四条通の歩行実験 ― 車道を歩行者にゆずり、右折車の遅れを減らし、最終的に市民の40〜50%の暮らし方を変えた。'},
+  'MESY':{name:'歩く思索者',desc:'ひとりでゆっくり歩くことが多く、頭に浮かぶのはToDoリストじゃなく「なぜこの交差点はこんな設計なんだろう?」「ここに歩道があったらどうなる?」。あなたの散歩は、都市計画のリハーサルだ。',strengths:['街と都市の関係を深く考える','流されない、自分の判断軸がある','複雑な問題に時間をかけられる'],growth:'どんなに考えても、いつかは形にしないと。頭の中の想像を、一本の文章や一枚のスケッチにしてみよう。',action:'よく通る交差点を3か月追いかけて、事故・違法駐車・歩行者の困りごとを記録してみよう ― まとめた小さなレポートを、地域の代表や議員に送ってみて。',match:'コペンハーゲン',match_why:'街の未来を考えるのに最高の舞台 ― カーボンニュートラルの首都',quote:'「ゆっくり歩くことは、問題が見える速度だ。」',article_title:'コペンハーゲン ― 2050年に世界初の「カーボンニュートラル」都市へ',article_snippet:'60万市民が一人一台の自転車を持ち、市内の自転車専用道は総延長375km。脱炭素から海を渡る自転車フェリー、2030年のガソリン車販売全廃まで。'},
+  'MESI':{name:'散歩の詩人',desc:'あなたが歩くのは、歩くことそのもののため。風の向き、光の角度、ふいに現れた子猫 ― あなたにとって街は、毎日ちがう表情を見せる一篇の詩だ。',strengths:['感性が鋭く、日常の美を味わえる','街と本物の情緒的なつながりがある','立ち止まる価値を思い出させてくれる'],growth:'あなたの美意識は力だ。街の美しさを撮って、書いて ― もっと多くの人が守りたくなるように。',action:'#台湾の街の日常 のようなタグでInstagramやブログを始めて、あなたの街歩きを記録してみよう。美しい街は、見られてはじめて守られる。',match:'パリ',match_why:'街を車の手から取り戻し、詩情に居場所を与えた都市',quote:'「街は、私たちが都市に書くラブレターだ。」',article_title:'2030年、パリは「車のない街」へ ― イダルゴ市長「貴重な空間を車に支配させない」',article_snippet:'パリのイダルゴ市長はセーヌ河岸の空間を取り戻し、「ノーカーデー」を進め、15分都市を構想する。「街の創造性に、車は要らない」。'},
+  'MHCY':{name:'ご近所の大使',desc:'地域の路地という路地を知り尽くしている。どの道に違法駐車が多いか、どの交差点が子どもの送り迎えで危ないか、どのおじさんがいつも逆走しているか ― 全部お見通し。しかも、それを声に出して言える人だ。',strengths:['土地勘が抜群、強力なローカル知識','声をあげ、行動する意欲がある','顔が広く、地域を動かせる'],growth:'忘れないで ― 全部ひとりで背負わなくていい。仲間を見つけて、その場しのぎを長く続く制度に変えていこう。',action:'「うちの近所でいちばん危ない交差点」のまち歩き点検を呼びかけて、町内会や学校と一緒に、改善の要望を区役所や交通局へ届けよう。',match:'オランダ',match_why:'ご近所の運動から生まれた、人間中心の都市のお手本',quote:'「この道をいちばん知る人は、この道に住んでいる。」',article_title:'50年前のオランダ ― 歩行者と自転車が手を結んだ｜人間中心の都市3',article_snippet:'1970年代、オランダの親・子ども・記者が「子どもの殺害をやめろ」という市民団体を結成。運動が主流になり、woonerf(生活の道)が生まれた ― ご近所の力。'},
+  'MHCI':{name:'朝市の仲よし',desc:'毎日おなじ道を通って、買い物に、朝ごはんに、子どものお迎えに。その短い道のりが、あなたと世界をつなぐ方法だ。一杯の豆乳、ひと言の「おはよう」が、あなたの一日を支えている。',strengths:['日常の街のヘビーユーザー','地域経済と街の生命を支える','街の安全がいちばん自分ごと'],growth:'街をいちばん使うあなたには、いちばん発言する資格がある。次に不便や危険を感じたら、ぜひ口に出して。',action:'次に市場や学校への道で「ここ歩きにくいな」と思ったら、写真に撮って近所のグループチャットに送ってみよう ― 声が積み重なれば、変化は起きる。',match:'ウィーン',match_why:'移動の35%が徒歩 ― 日々の暮らしにやさしいお手本',quote:'「歩きやすい街かどうかは、毎日歩く人に聞け。」',article_title:'世界一の徒歩の街! 移動の35%が徒歩、世界初の歩行者専門官を置いたウィーン',article_snippet:'ウィーンは世界初の「歩行者専門官」を設置。主な役割は対話。交差点の制限速度20km/h、歩行者の権利を広げ、自動車の分担率を40%から27%へ。'},
+  'MHSY':{name:'街の見守り人',desc:'口数は多くないけれど、街を長く見てきたから本質が見える。どの年に歩道が削られたか、どの交差点で青信号の秒数が短くなったか。あなたはこの街の、いちばん静かでいちばん揺るがない証人だ。',strengths:['長い記憶で変化を照らし合わせられる','冷静で理性的、感情に流されない','「制度の後退」にいちばん敏感'],growth:'あなたの証言は貴重 ― でも、書き残してはじめて残る。記憶を一本の年表にまとめてみよう。',action:'「うちの近所、この10年の街の変化」というメモを、昔と今の写真つきでまとめてみよう。研究者・メディア・交通団体へ ― これは台湾にいちばん足りない長期データだ。',match:'スウェーデン',match_why:'ビジョン・ゼロ発祥の地 ― 長年の見守りを、法律に書き込んだ',quote:'「進歩はゆっくり、後退はあっという間 ― だから誰かが覚えていないと。」',article_title:'交通死を7割減らすには? スウェーデン「ビジョン・ゼロ」― 歩行者を最優先に、交差点をラウンドアバウトへ',article_snippet:'1997年、スウェーデンはビジョン・ゼロを立法化 ― 事故をなくすのではなく、死傷を減らす。25年後、死亡率は7割減り、死者数は台湾の1/6未満に。'},
+  'MHSI':{name:'たそがれの散歩人',desc:'夕暮れの決まったルートが習慣 ― 公園を一周、川沿いをひと区間、路地をぐるり。その時間は自分だけのもので、一日でいちばん深い呼吸だ。',strengths:['自分のペースを大切にできる','「安全に歩ける」ことが自分ごと','安定した習慣は、街を観察する最高のものさし'],growth:'「安心して散歩したい」は、まっとうな願いだ ― 口に出して誰かの迷惑になるなんて、心配しないで。',action:'よく歩く道の地域代表や議員に、一通の手紙を。中身はこれだけでいい ― 「この道を、夜も安心して歩けるようにしてほしい」。たった一言が、もう立派な提言だ。',match:'ヘルシンキ',match_why:'12か月連続で交通死ゼロ ― 本当に安心して散歩できる街',quote:'「安心して歩ける街こそ、良い街だ。」',article_title:'413万円のスピード違反、市内全域30km/h ― ヘルシンキ、12か月連続交通死ゼロの秘密',article_snippet:'フィンランドの首都ヘルシンキが新記録 ― 12か月連続で交通事故死者ゼロ。半世紀かけた減速、市内全域30km/h、スピード違反は最高413万円。'},
+  'RECY':{name:'通勤のイノベーター',desc:'毎日、自分の通勤を最適化している ― どの車両がいちばん速いか、どの道が混まないか、何時に出ればスムーズか。システムがうまく回る瞬間が好きで、止まると誰よりも我慢できない。',strengths:['システムのボトルネックが見える','最適化のコツを共有したい','公共交通のいちばん忠実な使い手'],growth:'あなたは使い手であると同時に、テスターでもある。見つけたシステムの問題は、ちゃんと正式に報告しよう。',action:'鉄道・地下鉄・バスの公式フィードバックから、具体的な提案を一つ出してみよう。年に三回、五回と積み重ねれば、どんな通りすがりの声より影響力がある。',match:'シンガポール',match_why:'システム最適化の極み ― 車の総量を凍結し、1300kmの自転車道を建設',quote:'「良い通勤システムは、その街の良心だ。」',article_title:'お金があっても車は買えない! シンガポール「2030少車ビジョン」― 車の総量を凍結、1300kmの自転車道',article_snippet:'シンガポールはコロナ後、人の移動を問い直し「アクティブ・モビリティ」部門を設立。230億台湾元を投じて1300kmの自転車道を整備。'},
+  'RECI':{name:'街のサーファー',desc:'この街のリズムが好き ― 人波、信号、店先、音。その中を縫うように進む姿は、まるでサーフィン。毎日が新しい波だ。街の活気が、あなたのエネルギー源。',strengths:['活気にあふれ、まわりに伝染する','適応力が高く、新しい道具を試せる','街の可能性が見える'],growth:'あなたのエネルギーは貴重 ― でも忘れないで。あなたが「サーフィン」できる街は、無数の人の日々の手入れの上に成り立っている。',action:'一週間、車もバイクも使わず、徒歩・自転車・公共交通だけで過ごしてみよう。この街の歩道と車道が、どれだけ不平等かを肌で感じるはず。',match:'パリ',match_why:'街の流れを、車の人だけでなくみんなに取り戻す',quote:'「街は名詞じゃない、動詞だ。」',article_title:'交通・公営住宅・脱炭素を推し進めるパリ初の女性市長、なぜ「政治的自殺」と言われた?',article_snippet:'パリのイダルゴ市長は歩行者と自転車のために、街の空間ときれいな空気を取り戻す。「都市は世界のエネルギーの2/3超を消費し、大気汚染は年300万人の命を奪う」。'},
+  'RESY':{name:'ルートの設計者',desc:'Googleマップを設計図のように読む。どこに自転車道を通すか、どの交差点を分流するか、どの角を斜めに切るか ― 頭の中で、もう何度もこの街を造り変えている。',strengths:['空間プランニングの直感が鋭い','「未来のバージョン」が見える','論理的で、人を説得できる'],growth:'いいアイデアを頭の中だけにしまわないで。描いて、書いて、動かせる人に届けよう。',action:'よく通る危ない交差点を一つ選んで、Figmaでも紙とペンでもいいから改善案を描き、理由を添えてSNSやコミュニティに投稿しよう。良い設計は広がっていく。',match:'フローニンゲン',match_why:'設計者の革命 ― 24歳の公務員が車を街から締め出した',quote:'「街は、まず誰かの想像から始まる。」',article_title:'24歳の左派公務員は、どうやって車を街から追い出し、商機を呼び込んだ?｜フローニンゲン半世紀の変身(上)',article_snippet:'24歳のファン・デン・ベルフが市政府に入り「交通循環計画」を提案 ― 自動車は中心部を自由に通り抜けられなくなり、自転車と歩行者は自由に。革命の起点。'},
+  'RESI':{name:'自由のライダー',desc:'バイク、自転車、キックボード ― 二輪の自由が好き。耳元を風が抜け、街が横を流れていく。縛られるのは苦手。でも、台湾の街で二輪が受けるプレッシャーも、誰よりよく知っている。',strengths:['二輪のつらさを身をもって知る','機動力が高く、どこへでも行ける','「安全なレーン」をいちばんリアルに想像できる'],growth:'あなたの自由は貴重。でもその自由は、運まかせの上にあってはいけない。安全なレーンこそ、本物の自由だ。',action:'「物理的に分離された自転車道」の署名やテーマを応援しよう。あなたにとって、ちゃんと守られたレーン一本は、「バイク気をつけて」百回よりずっと役に立つ。',match:'オランダ',match_why:'二輪の楽園 ― 物理分離された自転車道のふるさと',quote:'「本物の自由とは、はねられる心配がないこと。」',article_title:'多様なオランダ vs. 控えめな日本 ― 東西の自転車大国、街の文化はこんなに違う',article_snippet:'オランダ・ユトレヒトでは市民の30〜50%が毎日自転車通勤、98%の世帯が最低一台を所有。世界最大の駐輪場は1万2千台分。'},
+  'RHCY':{name:'公共交通の推進者',desc:'「一人が車を一台手放せば、街に一つ呼吸が増える」と信じている。来る日も来る日もバスや地下鉄に乗り、どの路線を延ばすべきか、どの駅を増便すべきか知っている。あなたは公共交通の、いちばん揺るがない味方だ。',strengths:['行動で脱炭素の暮らしを実践する','公共交通の価値が見える','まわりの人にすすめられる'],growth:'あなたの選択は正しい。でも、誰もが公共交通を使えるわけじゃない ― 過疎地、お年寄り、夜勤の人に必要なのは、もっと広いネットワークだ。',action:'次の選挙の前に、候補者の「公共交通の延伸・増便政策」を比べて、その比較表を友だちに共有しよう。投票が、ダイヤを変える。',match:'シンガポール',match_why:'歩く街のお手本 ― 車の保有コスト300万、いたるところに木陰',quote:'「私たちが乗っているのは車じゃない、この街の未来だ。」',article_title:'木陰だらけ、車の保有コストは300万超! シンガポールはどう「歩く街」のお手本になった?',article_snippet:'シンガポールの団地は棟と棟の間に雨よけの庇つき歩道があり、屋台街・スーパー・地下鉄駅へつながる。基本のサービスは徒歩5〜10分以内。'},
+  'RHCI':{name:'通勤の相棒',desc:'毎日の通勤は、あなたのいちばん日常的な儀式。同僚と一緒に乗り、バス停でご近所さんと立ち話し、同じ時間帯の常連の顔を覚えている。通勤はあなたにとって、街の小さな社交場だ。',strengths:['通勤にあたたかさを添える','公共交通のいちばん大切な使い手','日常を通してコミュニティのつながりを保つ'],growth:'あなたはもう脱炭素アクションの一員。次の一歩は、もっと多くの人に「乗ったほうがいい」と感じてもらうこと。',action:'同僚が「公共交通は遅い」とこぼしたら、あなたの「通勤の小ワザ」を教えてあげよう。乗ることをかっこよくするのは、あなたにできるやわらかな提言だ。',match:'ケルン',match_why:'ドイツ初の歩行者交通専門官のふるさと ― 通勤者の声を代弁',quote:'「通勤は、本来ひとりぼっちの旅じゃない。」',article_title:'38歳、彼はドイツ初の「歩行者交通専門官」',article_snippet:'ケルンの38歳ラートマンはドイツ初の歩行者交通専門官。仕事は歩道と官僚機構の障害を取り除くこと。「歩行はどこにでもあるのに、誰もその声を代弁してこなかった」。'},
+  'RHSY':{name:'効率のプランナー',desc:'あなたの移動は一回ごとに最適化されている。何時に出れば渋滞を避けられるか、信号のタイミングをどう組むべきか、どの区間を歩いてどこで渡るか ― あなたの脳は、ルート最適化エンジンそのものだ。',strengths:['システム思考がずば抜けている','街の「最適化バージョン」が見える','具体的な改善案を出せる'],growth:'あなたの効率は驚くほど。でも、誰もが「最適化」できるわけじゃない。設計はいちばん遅い人に寄りそってこそ、街は公平になる。',action:'いちばん我慢ならない交差点から始めよう ― 秒数を測り、交通量を図にし、問題と提案を書いて ― 交通局へ送ろう。具体性は、感情よりずっと効く。',match:'フローニンゲン',match_why:'システム全体の最適化 ― ゼロカーボン車だけが中心部に入れる',quote:'「最高の効率とは、いちばん遅い人もスムーズに通れること。」',article_title:'「自転車の首都」へ ― 2025年からゼロカーボン車だけが中心部に入れる｜フローニンゲン半世紀の変身(下)',article_snippet:'フローニンゲンは中心部を「ゼロカーボン区域」に。2025年からカーボンニュートラル車のみ進入可。市内の総移動の60%が自転車 ― プランナーのお手本だ。'},
+  'RHSI':{name:'通勤の忍者',desc:'通勤を極めの域まで磨き上げた ― イヤホン、マスク、メガネで武装し、すべてを無視して5分でホームに到着。関心がないんじゃない。この街の道が疲れさせるから、ただ静かに通り抜けたいだけ。',strengths:['現実的で、自分のエネルギーを守れる','「壊れた街」をいちばん深く感じている','いざ動くと、その気持ちは本物'],growth:'あなたが「耐える」のは、街がそうさせるから。でも、その居心地の悪さこそが、変化の出発点だ。',action:'いちばん我慢ならなかった通勤の瞬間を思い出して、100字に書いてどこかに投稿しよう。一人の忍者が口を開けば、もっと多くの忍者が動き出す。',match:'韓国',match_why:'もう耐えなくていい ― 28年で「歩行者地獄」の汚名をはがした証明',quote:'「もう耐えなくていい ― それは私たちが勝ち取った権利だ。」',article_title:'死亡率63%減! 韓国はどう28年かけて「歩行者地獄」の汚名をはがした?',article_snippet:'かつて歩行者地獄と呼ばれた韓国は、28年かけて子どもの交通事故死を96%、全体で63%減らした。1995年、道路交通法にスクールゾーン規定を導入したのが出発点。'}
+};
+
+/* ============================
    FIVE DEMANDS — VZT × TCAN
    交通雙齊零城市 · 五大訴求承諾書
    ============================ */
@@ -1750,6 +1819,35 @@ const TYPE_DEMAND_WHY = {
   }
 };
 
+/* FIVE DEMANDS — 日本語 (parallel to DEMANDS; shares num / en_label) */
+const DEMANDS_JA = {
+  '01':{tag:'立法',title:'立法による保障',subtitle:'《ダブルゼロ交通ビジョン自治条例》の制定',desc:'地方の立法を通じて「死亡ゼロ・排出ゼロ」のビジョンを法律の約束に変える ― 個々の首長の意思に頼るのではなく、制度として長期に保証する。',subs:[{name:'部局横断',text:'副市長級以上が「交通ダブルゼロ転換」業務を統括する'},{name:'専用予算',text:'「持続可能な交通転換基金」を設け、交通反則金と駐車収益の50%以上を繰り入れる'},{name:'市民参加',text:'専門家と市民団体の参加を制度化し、市民や多様な層の議席比率を保障する'}]},
+  '02':{tag:'空間',title:'道路空間の再配分',subtitle:'物理的に守られたアクティブ交通網をつくる',desc:'街の空間を自動車・バイクの手から取り戻す ― 線を引くだけでなく、実体のある縁石・植栽帯・安全地帯で、人と二輪に本物の保護を。',subs:[{name:'実体防護',text:'物理的に守られ日陰のある自転車網を整備し、連続したバリアフリー歩道を進める'},{name:'期限',text:'3年以内に、公共交通の駅や各学校の周辺を優先して完成させる'},{name:'指標',text:'シェアモビリティ・公共交通・自転車の分担率を毎年1〜2%増やす'}]},
+  '03':{tag:'街路',title:'暮らしやすい生活街路',subtitle:'住宅地に「生活の道」を根づかせる',desc:'路地を人に返す ― 「通り抜け道路」と「生活道路」を区分し、住宅地を安全で住みよく。子どもが自分で歩いて学校に行ける、そんな街路へ。',subs:[{name:'道路の格付け',text:'各区で近隣点検を行い「通り抜け道路」と「生活道路」を区分する'},{name:'静穏化と緑化',text:'住宅地を交通静穏化。車道の幅員縮小や減速ハンプなど物理的な減速を導入'},{name:'TODと社会住宅',text:'公共交通指向型開発を実現し、駅周辺に一定割合の社会住宅を義務づける'}]},
+  '04':{tag:'総量',title:'総量の管理',subtitle:'価格による調整と低炭素のコントロール',desc:'乗り物は多ければいいわけじゃない ― 証拠にもとづく駐車総量、低炭素交通区、車両管理で、過剰な自家用車を街から解き放つ。',subs:[{name:'駐車総量',text:'路外・路側の駐車スペースに上限を設け、空間を緑・日陰・自転車道に転換する'},{name:'低炭素交通区',text:'任期中に「低炭素交通区」を指定・展開し、市民との対話と調整を強める'},{name:'車両管理',text:'国の監理機関と連携し、ガソリン車・バイクの台数管理を、運転教育制度と組み合わせて進める'}]},
+  '05':{tag:'しあわせ',title:'しあわせな交通',subtitle:'通勤を労働と福祉の権利として',desc:'通勤は孤独で、つらく、危険なものであってはいけない ― それは社会福祉と労働の権利の一部だ。子ども・お年寄り・障害のある人を包みこみ、誰も交通の転換から取り残さない。',subs:[{name:'グリーン通勤',text:'企業に「グリーン通勤奨励制度」を促し、公共交通・自転車通勤を補助、フレックスタイムを後押し'},{name:'インクルーシブ',text:'インクルーシブ・デザインを実現し、子ども・若者・障害者・高齢者の通行の権利を保障する'}]}
+};
+
+/* Per-type demand rationale — 日本語 */
+const TYPE_DEMAND_WHY_JA = {
+  'MECY':'街の観察者であるあなたが見つける街の問題は、一人ひとりの不注意のせいじゃなく、仕組みが足りていないから。立法による保障は、その「見えた問題」を「法律の保障」に変えるためにある。',
+  'MESY':'歩く思索者がいちばん耐えられないのは、良いアイデアが頭の中で止まり、受け止める制度がないこと。ダブルゼロ自治条例は、長期の思考を長期の約束に変える法律の器だ。',
+  'MHSY':'あなたはこの10年、街が静かに後退する瞬間を見てきた ― 青信号の短縮、削られる歩道。後退を止めるには記憶だけじゃ足りない。法律に書き込んだ保障がいる。',
+  'MHSI':'あなたのいつもの夕暮れの散歩道に必要なのは「もう少し気をつける」ことじゃなく、本物の物理分離された歩道。空間の再配分は、あなたにいちばん身近な訴えだ。',
+  'RECI':'あなたは街の流れを楽しむ。でもその流れは、歩行者の安全を犠牲にしていいものじゃない。本当にやさしい街路空間は、みんながビクビクせずに流れられる場所だ。',
+  'RESY':'あなたは頭の中で、もう何度もこの街を設計し直してきた。空間の再配分は、その空間直感を街全体の工事リストに変える ― オランダ式交差点から物理分離レーンまで。',
+  'RESI':'二輪のあなたは、本物の物理分離自転車道一本が「気をつけて」百回より役立つと知っている。この訴えは、あなたの安全を運まかせからインフラへ変える。',
+  'MECI':'あなたは朝食屋の店主、角のおばさん、近所の犬とも顔なじみ。この訴えは街を「車の通り道」から「人のリビング」へ戻す ― あなたがいちばんよく知る、あのリビングへ。',
+  'MESI':'あなたは街の詩情を味わう。でも詩情には静けさと、ゆとりと、緑がいる。生活街路の訴えは、その詩的な要素を都市計画に書き込む。',
+  'MHCY':'あなたは地域の危ない交差点がどこか、いちばんよく知っている。生活街路の訴えがやるのは、あなたがとっくに知っている問題 ― 違法駐車、スピード、静穏化の不在 ― を、仕組みの改造工事に変えること。',
+  'RECY':'通勤のイノベーターはシステムの不調にいちばん耐えられない。総量管理は、証拠にもとづく管理で過剰な車を解き放つ ― あなたが最適化した通勤が、本当に流れるように。',
+  'RHCY':'あなたはもう公共交通のいちばん揺るがない味方。もっと多くの人に選んでもらうには、駐車総量の管理と低炭素交通区がいる ― 「車に乗らない」を理性的な選択にするために。',
+  'RHSY':'あなたの頭はルート最適化エンジン。総量管理 ― 駐車総量からガソリン車の管理まで ― は、街全体の乗り物システムを丸ごと一度、最適化することだ。',
+  'MHCI':'あなたは毎日おなじ道を市場へ、お迎えへ。しあわせな交通の訴えがやるのは、その短い日々の移動を、社会福祉制度に守られた権利に変えること。',
+  'RHCI':'通勤はあなたの日常の社交。企業が公共交通・フレックス・自転車通勤を補助すれば、同僚と一緒に乗る時間が、制度に支えられた選択になる。',
+  'RHSI':'あなたが「耐える」のは、街が耐えさせるから。しあわせな交通の訴えがやるのは「もう耐えなくていい」を労働の権利に変えること ― 通勤は修行じゃなく、福祉だ。'
+};
+
 /* Public URL to the Five Demands PDF (override to host your own) */
 const DEMANDS_PDF_URL = 'https://yunching0513.github.io/StreetSoulQuiz/VZT_petition_bilingual.html';
 
@@ -1807,8 +1905,8 @@ function goDemographics(){
     const saved = loadNickname();
     if(saved && !nickInput.value) nickInput.value = saved;
     // Set lang-aware placeholder
-    const isEn = document.body.classList.contains('lang-en');
-    nickInput.placeholder = isEn ? 'e.g. Alex, Wu, A-mei...' : '例如 小明、Wu、阿美…';
+    const lang = getLang();
+    nickInput.placeholder = lang==='ja' ? '例：たろう、Wu、あみ…' : lang==='en' ? 'e.g. Alex, Wu, A-mei...' : '例如 小明、Wu、阿美…';
   }
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -1925,10 +2023,11 @@ function startQuiz(){
 
 function renderQuestion(){
   const q = QUESTIONS[currentQ];
+  const qj = QUESTIONS_JA[currentQ] || {q:'',c:[]};
   document.getElementById('qCur').textContent = String(currentQ+1).padStart(2,'0');
   document.getElementById('qAxis').textContent = q.axis;
   document.getElementById('qBar').style.width = ((currentQ+1)/QUESTIONS.length*100)+'%';
-  document.getElementById('qTitle').innerHTML = `<span class="zh-only">${q.zh}</span><span class="en-only">${q.en}</span>`;
+  document.getElementById('qTitle').innerHTML = `<span class="zh-only">${q.zh}</span><span class="en-only">${q.en}</span><span class="ja-only">${qj.q}</span>`;
   document.getElementById('qEn').innerHTML = `<span class="zh-only">${q.en}</span><span class="en-only">${q.zh}</span>`;
 
   const choicesEl = document.getElementById('qChoices');
@@ -1942,6 +2041,7 @@ function renderQuestion(){
       <span class="ch-icon">${c.icon}</span>
       <div class="ch-zh zh-only">${c.zh}</div>
       <div class="ch-zh en-only">${c.en}</div>
+      <div class="ch-zh ja-only">${qj.c[i]||''}</div>
       <div class="ch-en zh-only">${c.en}</div>
       <div class="ch-en en-only">${c.zh}</div>
     `;
@@ -1996,15 +2096,17 @@ function renderDemandSection(code){
   const demandKey = TYPE_TO_DEMAND[code];
   if(!demandKey) return '';
   const d = DEMANDS[demandKey];
+  const dj = DEMANDS_JA[demandKey] || {subs:[]};
   const why = TYPE_DEMAND_WHY[code] || {zh:'',en:''};
+  const whyJ = TYPE_DEMAND_WHY_JA[code] || '';
   const others = Object.values(DEMANDS).filter(x=>x.num !== demandKey);
 
   return `
     <div class="demand-card">
       <div class="demand-hero">
         <div class="demand-hero-top">
-          <span class="demand-label">YOUR DEMAND · 對應的政策訴求</span>
-          <span class="demand-pill">${d.tag_en} · ${d.tag_zh}</span>
+          <span class="demand-label">YOUR DEMAND · <span class="zh-only">對應的政策訴求</span><span class="en-only">對應的政策訴求</span><span class="ja-only">あなたに響く政策提言</span></span>
+          <span class="demand-pill">${d.tag_en} · <span class="zh-only">${d.tag_zh}</span><span class="en-only">${d.tag_zh}</span><span class="ja-only">${dj.tag}</span></span>
         </div>
         <div class="demand-num-wrap">
           <div class="demand-num">${d.num}</div>
@@ -2012,31 +2114,38 @@ function renderDemandSection(code){
             <div class="demand-en-tag">DEMAND ${d.num} · ${d.en_label}</div>
             <div class="demand-title zh-only">${d.zh_title} <span style="font-weight:300;color:rgba(255,255,255,.55)">— ${d.zh_subtitle}</span></div>
             <div class="demand-title en-only">${d.en_title} <span style="font-weight:300;color:rgba(255,255,255,.55)">— ${d.en_subtitle}</span></div>
+            <div class="demand-title ja-only">${dj.title} <span style="font-weight:300;color:rgba(255,255,255,.55)">— ${dj.subtitle}</span></div>
           </div>
         </div>
         <div class="demand-desc zh-only">${d.desc_zh}</div>
         <div class="demand-desc en-only">${d.desc_en}</div>
+        <div class="demand-desc ja-only">${dj.desc}</div>
       </div>
 
       <div class="demand-body">
         <div class="demand-why">
           <div class="demand-why-label zh-only">為什麼這條訴求最能引起你的共鳴</div>
           <div class="demand-why-label en-only">Why this resonates with you</div>
+          <div class="demand-why-label ja-only">なぜこの訴えが、あなたにいちばん響くのか</div>
           <div class="zh-only">${why.zh}</div>
           <div class="en-only">${why.en}</div>
+          <div class="ja-only">${whyJ}</div>
         </div>
 
         <div class="demand-subs">
           <div class="demand-subs-title zh-only">這個訴求具體要做的事</div>
           <div class="demand-subs-title en-only">What this demand specifically does</div>
-          ${d.subs.map(s=>`
+          <div class="demand-subs-title ja-only">この訴えが具体的にやること</div>
+          ${d.subs.map((s,i)=>`
             <div class="demand-sub-item">
               <div class="demand-sub-num">${s.num}</div>
               <div>
                 <span class="demand-sub-name zh-only">${s.name_zh}</span>
                 <span class="demand-sub-name en-only">${s.name_en}</span>
+                <span class="demand-sub-name ja-only">${(dj.subs[i]||{}).name||''}</span>
                 <span class="demand-sub-text zh-only">${s.text_zh}</span>
                 <span class="demand-sub-text en-only">${s.text_en}</span>
+                <span class="demand-sub-text ja-only">${(dj.subs[i]||{}).text||''}</span>
               </div>
             </div>
           `).join('')}
@@ -2046,27 +2155,31 @@ function renderDemandSection(code){
           <a class="primary" href="${DEMANDS_PDF_URL}" target="_blank" rel="noopener">
             <span class="zh-only">📄 查看完整訴求書</span>
             <span class="en-only">📄 Full pledge document</span>
+            <span class="ja-only">📄 提言書の全文を見る</span>
           </a>
           <button onclick="toggleOtherDemands(this)">
             <span class="zh-only">看其他 4 個訴求</span>
             <span class="en-only">See the other 4 demands</span>
+            <span class="ja-only">ほかの4つの訴えを見る</span>
           </button>
         </div>
 
         <div class="demand-others-wrap" style="display:none">
           <div class="demand-others-list">
-            ${others.map(o=>`
+            ${others.map(o=>{const oj=DEMANDS_JA[o.num]||{};return `
               <div class="demand-mini">
                 <div class="demand-mini-num">${o.num}</div>
                 <div class="demand-mini-body">
                   <div class="demand-mini-en">DEMAND ${o.num} · ${o.en_label}</div>
                   <div class="demand-mini-title zh-only">${o.zh_title} — ${o.zh_subtitle}</div>
                   <div class="demand-mini-title en-only">${o.en_title} — ${o.en_subtitle}</div>
+                  <div class="demand-mini-title ja-only">${oj.title} — ${oj.subtitle}</div>
                   <div class="demand-mini-sub zh-only">${o.desc_zh}</div>
                   <div class="demand-mini-sub en-only">${o.desc_en}</div>
+                  <div class="demand-mini-sub ja-only">${oj.desc}</div>
                 </div>
               </div>
-            `).join('')}
+            `;}).join('')}
           </div>
         </div>
       </div>
@@ -2078,20 +2191,15 @@ function toggleOtherDemands(btn){
   const wrap = btn.closest('.demand-cta').nextElementSibling;
   const list = wrap.querySelector('.demand-others-list');
   const isOpen = wrap.style.display === 'block';
-  const isEn = document.body.classList.contains('en');
 
   if(isOpen){
     list.classList.remove('open');
     wrap.style.display = 'none';
-    btn.innerHTML = isEn
-      ? '<span class="en-only">See the other 4 demands</span>'
-      : '<span class="zh-only">看其他 4 個訴求</span>';
+    btn.innerHTML = '<span class="zh-only">看其他 4 個訴求</span><span class="en-only">See the other 4 demands</span><span class="ja-only">ほかの4つの訴えを見る</span>';
   } else {
     wrap.style.display = 'block';
     list.classList.add('open');
-    btn.innerHTML = isEn
-      ? '<span class="en-only">▲ Hide other demands</span>'
-      : '<span class="zh-only">▲ 收起其他訴求</span>';
+    btn.innerHTML = '<span class="zh-only">▲ 收起其他訴求</span><span class="en-only">▲ Hide other demands</span><span class="ja-only">▲ ほかの訴えを閉じる</span>';
   }
 }
 
@@ -2104,38 +2212,43 @@ const AXIS_OPP = {M:'R',R:'M',E:'H',H:'E',C:'S',S:'C',Y:'I',I:'Y'};
 function flipAxes(code,idxs){
   return code.split('').map((ch,i)=> idxs.includes(i) ? AXIS_OPP[ch] : ch).join('');
 }
-const BOND_PACE   = {M:{zh:'慢步調',en:'slow-paced'}, R:{zh:'快節奏',en:'fast-moving'}};
-const BOND_SOCIAL = {C:{zh:'愛呼朋引伴',en:'a people person'}, S:{zh:'愛獨自漫行',en:'a solo wanderer'}};
+const BOND_PACE   = {M:{zh:'慢步調',en:'slow-paced',ja:'ゆっくり派'}, R:{zh:'快節奏',en:'fast-moving',ja:'スピード派'}};
+const BOND_SOCIAL = {C:{zh:'愛呼朋引伴',en:'a people person',ja:'みんなと歩くのが好き'}, S:{zh:'愛獨自漫行',en:'a solo wanderer',ja:'ひとりで歩くのが好き'}};
 
 function buddyReason(code,buddyCode){
-  const pace=BOND_PACE[code[0]], you=BOND_SOCIAL[code[2]], them=BOND_SOCIAL[buddyCode[2]], t=TYPES[buddyCode];
+  const pace=BOND_PACE[code[0]], you=BOND_SOCIAL[code[2]], them=BOND_SOCIAL[buddyCode[2]], t=TYPES[buddyCode], tj=TYPES_JA[buddyCode]||{};
   return {
     zh:`和你一樣${pace.zh}，看街道的眼光也跟你同頻。唯一的差別 — 你${you.zh}、${t.zh_name}${them.zh}；一起散步時，一個開話題、一個靜靜走，剛剛好。`,
-    en:`A fellow ${pace.en} soul who reads the street on your wavelength. The one difference — you're ${you.en}, while ${t.en_name} is ${them.en}. On a walk, one starts the talk, the other lets it breathe. Just right.`
+    en:`A fellow ${pace.en} soul who reads the street on your wavelength. The one difference — you're ${you.en}, while ${t.en_name} is ${them.en}. On a walk, one starts the talk, the other lets it breathe. Just right.`,
+    ja:`あなたと同じ${pace.ja}。街を見るまなざしも同じ波長。ただ一つの違いは ― あなたは${you.ja}、${tj.name}は${them.ja}。一緒に歩けば、ひとりが話を切り出し、ひとりが静かに歩く。それがちょうどいい。`
   };
 }
 function luckyReason(code,luckyCode){
-  const you=BOND_PACE[code[0]], them=BOND_PACE[luckyCode[0]], t=TYPES[luckyCode];
+  const you=BOND_PACE[code[0]], them=BOND_PACE[luckyCode[0]], t=TYPES[luckyCode], tj=TYPES_JA[luckyCode]||{};
   return {
     zh:`${t.zh_name}幾乎是你的相反 — 你${you.zh}、${t.zh_name}${them.zh}，用完全不同的方式穿過同一座城。正因彼此相反，遇見對方總像推開一扇新的門 — 帶來意想不到的靈感與好運。`,
-    en:`${t.en_name} is almost your mirror opposite — you're ${you.en}, they're ${them.en}. You move through the same city in completely different ways. That's exactly why crossing paths feels like a door swinging open — unexpected inspiration, unexpected luck.`
+    en:`${t.en_name} is almost your mirror opposite — you're ${you.en}, they're ${them.en}. You move through the same city in completely different ways. That's exactly why crossing paths feels like a door swinging open — unexpected inspiration, unexpected luck.`,
+    ja:`${tj.name}は、ほとんどあなたの正反対 ― あなたは${you.ja}、${tj.name}は${them.ja}。同じ街を、まったく違うやり方で通り抜ける。正反対だからこそ、出会いはいつも新しい扉を開くよう ― 思いがけないひらめきと幸運を連れてくる。`
   };
 }
 function renderBondsSection(code){
   const buddyCode=flipAxes(code,[2]);
   const luckyCode=flipAxes(code,[0,1,2,3]);
   const buddy=TYPES[buddyCode], lucky=TYPES[luckyCode];
+  const buddyJ=TYPES_JA[buddyCode]||{}, luckyJ=TYPES_JA[luckyCode]||{};
   const bR=buddyReason(code,buddyCode), lR=luckyReason(code,luckyCode);
   return `
       <div class="bonds">
-        <div class="s-label">STREET BONDS · 你的街道緣分</div>
+        <div class="s-label">STREET BONDS · <span class="zh-only">你的街道緣分</span><span class="en-only">你的街道緣分</span><span class="ja-only">あなたの街のご縁</span></div>
         <h3 class="bonds-title zh-only">在這座城市裡，誰是你的漫步好朋友？<span class="s-title-en">Who's your strolling buddy?</span></h3>
         <h3 class="bonds-title en-only">Who's your strolling buddy?<span class="s-title-en">在這座城市裡，誰是你的漫步好朋友？</span></h3>
+        <h3 class="bonds-title ja-only">この街で、いっしょに歩く相棒はだれ？</h3>
         <div class="bond-grid">
           <div class="bond-card bond-buddy">
             <div class="bond-strip">
               <span class="bond-strip-label zh-only">🚶 最佳散步好夥伴</span>
               <span class="bond-strip-label en-only">🚶 Best Walking Buddy</span>
+              <span class="bond-strip-label ja-only">🚶 ベスト散歩バディ</span>
               <span class="bond-strip-en">BUDDY</span>
             </div>
             <div class="bond-body">
@@ -2143,16 +2256,20 @@ function renderBondsSection(code){
               <div class="bond-code">TYPE · ${buddyCode}</div>
               <div class="bond-name zh-only">${buddy.zh_name}</div>
               <div class="bond-name en-only">${buddy.en_name}</div>
+              <div class="bond-name ja-only">${buddyJ.name}</div>
               <div class="bond-name-en zh-only">${buddy.en_name}</div>
               <div class="bond-name-en en-only">${buddy.zh_name}</div>
+              <div class="bond-name-en ja-only">${buddy.en_name}</div>
               <div class="bond-why zh-only">${bR.zh}</div>
               <div class="bond-why en-only">${bR.en}</div>
+              <div class="bond-why ja-only">${bR.ja}</div>
             </div>
           </div>
           <div class="bond-card bond-lucky">
             <div class="bond-strip">
               <span class="bond-strip-label zh-only">🍀 街道幸運兒</span>
               <span class="bond-strip-label en-only">🍀 Street Lucky One</span>
+              <span class="bond-strip-label ja-only">🍀 街のラッキーパーソン</span>
               <span class="bond-strip-en">LUCKY</span>
             </div>
             <div class="bond-body">
@@ -2160,10 +2277,13 @@ function renderBondsSection(code){
               <div class="bond-code">TYPE · ${luckyCode}</div>
               <div class="bond-name zh-only">${lucky.zh_name}</div>
               <div class="bond-name en-only">${lucky.en_name}</div>
+              <div class="bond-name ja-only">${luckyJ.name}</div>
               <div class="bond-name-en zh-only">${lucky.en_name}</div>
               <div class="bond-name-en en-only">${lucky.zh_name}</div>
+              <div class="bond-name-en ja-only">${lucky.en_name}</div>
               <div class="bond-why zh-only">${lR.zh}</div>
               <div class="bond-why en-only">${lR.en}</div>
+              <div class="bond-why ja-only">${lR.ja}</div>
             </div>
           </div>
         </div>
@@ -2185,14 +2305,15 @@ function renderReadingTabs(){
   return `
       <div class="reading">
         <div class="reading-head">
-          <div class="s-label">FURTHER READING · 延伸閱讀</div>
+          <div class="s-label">FURTHER READING · <span class="zh-only">延伸閱讀</span><span class="en-only">延伸閱讀</span><span class="ja-only">もっと読む</span></div>
           <h3 class="reading-title zh-only">想再走深一點？<span class="s-title-en">Go deeper</span></h3>
           <h3 class="reading-title en-only">Go deeper<span class="s-title-en">想再走深一點？</span></h3>
+          <h3 class="reading-title ja-only">もう少し深く歩いてみる？</h3>
         </div>
         <div class="reading-tabs" role="tablist">
-          <button type="button" class="reading-tab active" onclick="switchReadingTab(this,0)"><span class="zh-only">核心讀本</span><span class="en-only">Core Reading</span></button>
-          <button type="button" class="reading-tab" onclick="switchReadingTab(this,1)"><span class="zh-only">另一種可能</span><span class="en-only">Another Way</span></button>
-          <button type="button" class="reading-tab" onclick="switchReadingTab(this,2)"><span class="zh-only">政策論述</span><span class="en-only">Policy</span></button>
+          <button type="button" class="reading-tab active" onclick="switchReadingTab(this,0)"><span class="zh-only">核心讀本</span><span class="en-only">Core Reading</span><span class="ja-only">コア読本</span></button>
+          <button type="button" class="reading-tab" onclick="switchReadingTab(this,1)"><span class="zh-only">另一種可能</span><span class="en-only">Another Way</span><span class="ja-only">もう一つの道</span></button>
+          <button type="button" class="reading-tab" onclick="switchReadingTab(this,2)"><span class="zh-only">政策論述</span><span class="en-only">Policy</span><span class="ja-only">政策論</span></button>
         </div>
         <div class="reading-panels">
 
@@ -2201,16 +2322,20 @@ function renderReadingTabs(){
               <div class="f-strip">
                 <span class="f-strip-l zh-only">核心讀本 · 給每個做完測驗的人</span>
                 <span class="f-strip-l en-only">CORE READING · For everyone who took this quiz</span>
+                <span class="f-strip-l ja-only">コア読本 · テストを終えたすべての人へ</span>
                 <span class="f-strip-r">FUTURECITY · CW</span>
               </div>
               <div class="f-body">
                 <div class="f-title zh-only">台灣為何誤解「15 分鐘城市」？從巴黎看交通轉型與居住公平如何並存</div>
                 <div class="f-title en-only">Why Taiwan Misreads the "15-Minute City": Transport & Housing Justice Together</div>
+                <div class="f-title ja-only">台湾はなぜ「15分都市」を誤解する？パリに見る、交通転換と住まいの公平の両立</div>
                 <div class="f-subtitle zh-only">這篇橫跨「交通正義 × 居住正義」的論述，剛好就是雙齊零訴求背後的世界觀</div>
                 <div class="f-subtitle en-only">A piece bridging transport and housing justice — the worldview behind Dual-Zero</div>
+                <div class="f-subtitle ja-only">「交通の正義 × 住まいの正義」を貫くこの論考は、ダブルゼロの訴えの背景にある世界観そのもの</div>
 
                 <div class="f-lead zh-only">「15 分鐘城市」不是炒房工具，是空間正義的實踐。當 30% 有車族佔用 50% 公共空間，誰才是真正的受害者？</div>
                 <div class="f-lead en-only">The "15-minute city" isn't gentrification — it's spatial justice. When 30% of car owners occupy 50% of public space, who really pays?</div>
+                <div class="f-lead ja-only">「15分都市」は不動産投機の道具じゃなく、空間正義の実践だ。車を持つ30%が公共空間の50%を占めるとき、本当の被害者は誰？</div>
 
                 <div class="f-quote zh-only">
                   巴黎市中心 <span class="stat">30%</span> 有車族卻佔用 <span class="stat">50%</span> 公共空間，真正受害者是 <span class="stat">70%</span> 無車市民 — 婦女、兒童、長者承受道路危險與空氣污染。交通限制區每日減少 <span class="stat">35 萬</span> 車次，把街道還給人。
@@ -2218,11 +2343,15 @@ function renderReadingTabs(){
                 <div class="f-quote en-only">
                   In central Paris, <span class="stat">30%</span> of residents own cars but occupy <span class="stat">50%</span> of public space. The real victims are the <span class="stat">70%</span> car-free — women, children, elders bearing road danger and pollution. Traffic-limited zones cut <span class="stat">350,000</span> daily trips, returning streets to people.
                 </div>
+                <div class="f-quote ja-only">
+                  パリ中心部では、車を持つ <span class="stat">30%</span> が公共空間の <span class="stat">50%</span> を占有。本当の被害者は車を持たない <span class="stat">70%</span> の市民 ― 女性・子ども・高齢者が道路の危険と大気汚染を引き受ける。交通制限区域は1日 <span class="stat">35万</span> 台の通行を減らし、街を人に返す。
+                </div>
 
                 <div class="f-source">
                   <span class="f-source-l">天下未來城市 · 吳昀慶</span>
                   <span class="f-cta zh-only">閱讀全文</span>
                   <span class="f-cta en-only">Read full article</span>
+                  <span class="f-cta ja-only">全文を読む</span>
                 </div>
               </div>
             </a>
@@ -2233,28 +2362,35 @@ function renderReadingTabs(){
               <div class="sc-strip">
                 <span class="sc-strip-l zh-only">另一種可能 · 全球南方的城市轉型</span>
                 <span class="sc-strip-l en-only">ANOTHER WAY · Global South Voices</span>
+                <span class="sc-strip-l ja-only">もう一つの道 · グローバルサウスの都市転換</span>
                 <span class="sc-strip-r">BOGOTÁ · COLOMBIA</span>
               </div>
               <div class="sc-body">
                 <span class="sc-tag zh-only">不只是歐美 · 拉丁美洲的解答</span>
                 <span class="sc-tag en-only">Beyond the West · Latin America's Answer</span>
+                <span class="sc-tag ja-only">欧米だけじゃない · ラテンアメリカの答え</span>
                 <div class="sc-title zh-only">關於自行車，我們能從波哥大學些什麼？</div>
                 <div class="sc-title en-only">What Can We Learn from Bogotá About Cycling?</div>
+                <div class="sc-title ja-only">自転車について、ボゴタから何を学べる？</div>
                 <div class="sc-lead zh-only">當我們講「城市改革」，多半想到紐約、倫敦、巴黎。但遠在南美的波哥大，從一個被毒品與暴力陰影籠罩的城市，靠 Ciclovía 制度與一位騎腳踏車上班的市長，走出了一條全球南方自己的路。</div>
                 <div class="sc-lead en-only">When we talk "urban reform" we think New York, London, Paris. But in South America, Bogotá emerged from a city overshadowed by drugs and violence — through the Ciclovía program and a mayor who biked to work — onto its own Global South path.</div>
+                <div class="sc-lead ja-only">「都市改革」と聞くと、たいていニューヨーク、ロンドン、パリを思い浮かべる。でも南米のボゴタは、麻薬と暴力の影に覆われた街から、Ciclovía制度と自転車通勤する市長とともに、グローバルサウスならではの道を切り開いた。</div>
 
                 <div class="sc-quote">
                   <div class="sc-quote-text zh-only">城市要繁榮，最重要的是要讓公民感到幸福；而幸福並非源自於財富，而是「<strong>生活品質</strong>」。</div>
                   <div class="sc-quote-text en-only">A prosperous city is one where citizens feel happy. And happiness doesn't come from wealth — it comes from <strong>quality of life</strong>.</div>
+                  <div class="sc-quote-text ja-only">都市が栄えるために何より大切なのは、市民が幸せを感じること。そして幸せは富からではなく「<strong>生活の質</strong>」から生まれる。</div>
                   <div class="sc-quote-attr">— ENRIQUE PEÑALOSA</div>
                   <div class="sc-quote-attr-zh zh-only">前波哥大市長 · 取消公路擴建，改建數百公里自行車道</div>
                   <div class="sc-quote-attr-zh en-only">Former Mayor of Bogotá · Cancelled highway expansion, built hundreds of km of bike lanes</div>
+                  <div class="sc-quote-attr-zh ja-only">元ボゴタ市長 · 高速道路の拡張を中止し、数百kmの自転車道を整備</div>
                 </div>
 
                 <div class="sc-foot">
                   <span class="sc-source">巷口車 Neighbor Rider</span>
                   <span class="sc-cta zh-only">閱讀全文</span>
                   <span class="sc-cta en-only">Read full article</span>
+                  <span class="sc-cta ja-only">全文を読む</span>
                 </div>
               </div>
             </a>
@@ -2265,8 +2401,10 @@ function renderReadingTabs(){
               <div class="tcan-header">
                 <span class="tcan-header-l zh-only">TCAN 政策論述 · 來自共同執行單位的深度研究</span>
                 <span class="tcan-header-l en-only">TCAN POLICY · From the Co-Executing Org</span>
+                <span class="tcan-header-l ja-only">TCAN 政策論 · 共同執行団体による深掘り研究</span>
                 <span class="tcan-header-r zh-only">台灣氣候行動網絡</span>
                 <span class="tcan-header-r en-only">Taiwan Climate Action Network</span>
+                <span class="tcan-header-r ja-only">台湾気候行動ネットワーク</span>
               </div>
               <div class="tcan-frame">
 
@@ -2274,6 +2412,7 @@ function renderReadingTabs(){
                   <div class="tf-strip">
                     <span class="tf-strip-l zh-only">TCAN 研究中心總監觀點</span>
                     <span class="tf-strip-l en-only">TCAN RESEARCH DIRECTOR</span>
+                    <span class="tf-strip-l ja-only">TCAN 研究センター長の視点</span>
                     <span class="tf-strip-r">FEATURED ARTICLE</span>
                   </div>
                   <div class="tf-body">
@@ -2282,38 +2421,44 @@ function renderReadingTabs(){
                       <div class="tf-author-meta">
                         <div class="tf-author-name zh-only">趙家緯 · 柯昀伶</div>
                         <div class="tf-author-name en-only">Chao Chia-Wei · Ke Yun-Ling</div>
+                        <div class="tf-author-name ja-only">趙家緯 · 柯昀伶</div>
                         <div class="tf-author-role">TCAN 研究中心總監 · 專案研究員</div>
                       </div>
                     </div>
                     <div class="tf-title zh-only">擺脫傳統能源安全窠臼，才能增進台灣韌性</div>
                     <div class="tf-title en-only">Beyond Conventional Energy Security: Building Taiwan's Resilience</div>
+                    <div class="tf-title ja-only">従来のエネルギー安全保障の枠を超えてこそ、台湾のレジリエンスは高まる</div>
                     <div class="tf-snippet zh-only">「雙齊零」中的「淨零」不只是交通的事 — 能源轉型同樣是核心戰場。台灣每年化石燃料進口已從 97.67% 降至 95.16%，再生能源是新能源安全戰略的關鍵。當 74% 全球人口都住在能源進口國，我們該如何擺脫對化石燃料的依賴？</div>
                     <div class="tf-snippet en-only">Net-Zero isn't just about transport — energy transition is the other front. Taiwan's fossil fuel dependency has dropped from 97.67% to 95.16%, with renewables as the new energy security strategy.</div>
+                    <div class="tf-snippet ja-only">「ダブルゼロ」の「ネットゼロ」は交通だけの話じゃない ― エネルギー転換も同じく主戦場だ。台湾の化石燃料の輸入依存はすでに97.67%から95.16%へ低下し、再生可能エネルギーが新たなエネルギー安全保障の鍵に。世界人口の74%がエネルギー輸入国に暮らすいま、どう化石燃料への依存から抜け出すか？</div>
                     <div class="tf-foot">
                       <span class="tf-date">2025 · 07 · 11</span>
                       <span class="tf-cta zh-only">閱讀全文</span>
                       <span class="tf-cta en-only">Read full article</span>
+                      <span class="tf-cta ja-only">全文を読む</span>
                     </div>
                   </div>
                 </a>
 
                 <div class="tcan-minis">
                   <a class="tcan-mini" href="https://tcan2050.org.tw/%E5%B7%B4%E9%BB%8E%E9%81%8B%E8%BC%B8%E6%B7%A8%E9%9B%B6%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%B0%E7%95%A5%EF%BC%9A%E5%BB%BA%E7%AB%8B%E5%B0%88%E7%94%A8%E6%AD%A5%E8%A1%8C%E5%8D%80%E8%88%87%E8%85%B3%E8%B8%8F/" target="_blank" rel="noopener">
-                    <div class="tm-tag">巴黎 · 雙齊零案例</div>
+                    <div class="tm-tag"><span class="zh-only">巴黎 · 雙齊零案例</span><span class="en-only">巴黎 · 雙齊零案例</span><span class="ja-only">パリ · ダブルゼロ事例</span></div>
                     <div class="tm-title zh-only">巴黎運輸淨零的核心戰略：建立專用步行區與腳踏車專用道</div>
                     <div class="tm-title en-only">Paris Transport Net-Zero: Pedestrian & Bike-Only Zones</div>
+                    <div class="tm-title ja-only">パリ交通ネットゼロの中核戦略 ― 専用歩行区と自転車専用道をつくる</div>
                     <div class="tm-meta">
                       <span>利祐任 · 2024.09</span>
-                      <span class="tm-cta">閱讀</span>
+                      <span class="tm-cta"><span class="zh-only">閱讀</span><span class="en-only">閱讀</span><span class="ja-only">読む</span></span>
                     </div>
                   </a>
                   <a class="tcan-mini" href="https://tcan2050.org.tw/2025102901-2/" target="_blank" rel="noopener">
-                    <div class="tm-tag">行人地獄 · A-S-I 治理</div>
+                    <div class="tm-tag"><span class="zh-only">行人地獄 · A-S-I 治理</span><span class="en-only">行人地獄 · A-S-I 治理</span><span class="ja-only">歩行者地獄 · A-S-I の統治</span></div>
                     <div class="tm-title zh-only">1101 氣候遊行主張什麼？加速「零死亡」與「淨零」的永續運輸轉型</div>
                     <div class="tm-title en-only">1101 Climate March: Accelerating Zero-Death + Net-Zero Transport</div>
+                    <div class="tm-title ja-only">1101 気候マーチは何を訴える？「死亡ゼロ」と「ネットゼロ」へ、持続可能な交通転換を加速</div>
                     <div class="tm-meta">
                       <span>利祐任 · 2025.10</span>
-                      <span class="tm-cta">閱讀</span>
+                      <span class="tm-cta"><span class="zh-only">閱讀</span><span class="en-only">閱讀</span><span class="ja-only">読む</span></span>
                     </div>
                   </a>
                 </div>
@@ -2332,15 +2477,17 @@ function showResult(){
     const code = calculateType();
     const t = TYPES[code];
     if(!t){ document.getElementById('result').innerHTML='<p>Error: '+code+'</p>'; return; }
+    const tj = TYPES_JA[code] || {};
+    const lang = getLang();
 
     // Fire-and-forget log to Google Sheet
     logToSheet(code);
 
     const axisLabels = {
-      M:{zh:'漫',en:'Mellow'}, R:{zh:'速',en:'Rapid'},
-      E:{zh:'探',en:'Explorer'}, H:{zh:'熟',en:'Habit'},
-      C:{zh:'群',en:'Crew'}, S:{zh:'獨',en:'Solo'},
-      Y:{zh:'系',en:'System'}, I:{zh:'我',en:'Self'}
+      M:{zh:'漫',en:'Mellow',ja:'のんびり'}, R:{zh:'速',en:'Rapid',ja:'スピード'},
+      E:{zh:'探',en:'Explorer',ja:'探検'}, H:{zh:'熟',en:'Habit',ja:'定番'},
+      C:{zh:'群',en:'Crew',ja:'みんな'}, S:{zh:'獨',en:'Solo',ja:'ひとり'},
+      Y:{zh:'系',en:'System',ja:'仕組み'}, I:{zh:'我',en:'Self',ja:'自分'}
     };
     const a1=code[0],a2=code[1],a3=code[2],a4=code[3];
 
@@ -2349,6 +2496,7 @@ function showResult(){
       <div class="r-greeting">
         <span class="zh-only"><strong>${escapeHtml(demographics.nickname)}</strong>，這是你的街道靈魂</span>
         <span class="en-only"><strong>${escapeHtml(demographics.nickname)}</strong>, here is your Street Soul</span>
+        <span class="ja-only"><strong>${escapeHtml(demographics.nickname)}</strong>さん、これがあなたの街の魂です</span>
         <span class="greet-en">YOUR RESULT</span>
       </div>
       ` : ''}
@@ -2360,17 +2508,20 @@ function showResult(){
         <div class="r-emoji">${t.emoji}</div>
         <div class="r-name-zh zh-only">${t.zh_name}</div>
         <div class="r-name-zh en-only">${t.en_name}</div>
+        <div class="r-name-zh ja-only">${tj.name}</div>
         <div class="r-name-en zh-only">${t.en_name}</div>
         <div class="r-name-en en-only">${t.zh_name}</div>
+        <div class="r-name-en ja-only">${t.en_name}</div>
         <div class="r-desc zh-only">${t.desc_zh}</div>
         <div class="r-desc en-only">${t.desc_en}</div>
+        <div class="r-desc ja-only">${tj.desc}</div>
         <div class="r-desc-en zh-only">${t.desc_en}</div>
         <div class="r-desc-en en-only">${t.desc_zh}</div>
         <div class="r-axes">
-          <div class="r-axis"><strong>${axisLabels[a1].en[0]}</strong> · <span class="zh-only">${axisLabels[a1].zh}</span><span class="en-only">${axisLabels[a1].en}</span></div>
-          <div class="r-axis"><strong>${axisLabels[a2].en[0]}</strong> · <span class="zh-only">${axisLabels[a2].zh}</span><span class="en-only">${axisLabels[a2].en}</span></div>
-          <div class="r-axis"><strong>${axisLabels[a3].en[0]}</strong> · <span class="zh-only">${axisLabels[a3].zh}</span><span class="en-only">${axisLabels[a3].en}</span></div>
-          <div class="r-axis"><strong>${axisLabels[a4].en[0]}</strong> · <span class="zh-only">${axisLabels[a4].zh}</span><span class="en-only">${axisLabels[a4].en}</span></div>
+          <div class="r-axis"><strong>${axisLabels[a1].en[0]}</strong> · <span class="zh-only">${axisLabels[a1].zh}</span><span class="en-only">${axisLabels[a1].en}</span><span class="ja-only">${axisLabels[a1].ja}</span></div>
+          <div class="r-axis"><strong>${axisLabels[a2].en[0]}</strong> · <span class="zh-only">${axisLabels[a2].zh}</span><span class="en-only">${axisLabels[a2].en}</span><span class="ja-only">${axisLabels[a2].ja}</span></div>
+          <div class="r-axis"><strong>${axisLabels[a3].en[0]}</strong> · <span class="zh-only">${axisLabels[a3].zh}</span><span class="en-only">${axisLabels[a3].en}</span><span class="ja-only">${axisLabels[a3].ja}</span></div>
+          <div class="r-axis"><strong>${axisLabels[a4].en[0]}</strong> · <span class="zh-only">${axisLabels[a4].zh}</span><span class="en-only">${axisLabels[a4].en}</span><span class="ja-only">${axisLabels[a4].ja}</span></div>
         </div>
       </div>
 
@@ -2378,34 +2529,39 @@ function showResult(){
         <div class="m-label">MANIFESTO</div>
         <div class="m-text zh-only">${t.quote_zh}</div>
         <div class="m-text en-only">${t.quote_en}</div>
+        <div class="m-text ja-only">${tj.quote}</div>
         <div class="m-text-en zh-only">${t.quote_en}</div>
         <div class="m-text-en en-only">${t.quote_zh}</div>
       </div>
 
       <div class="section">
-        <div class="s-label">STRENGTHS · 你的天賦</div>
+        <div class="s-label">STRENGTHS · <span class="zh-only">你的天賦</span><span class="en-only">你的天賦</span><span class="ja-only">あなたの才能</span></div>
         <h3 class="s-title zh-only">你最閃閃發光的時刻 <span class="s-title-en">Where you shine</span></h3>
         <h3 class="s-title en-only">Where you shine <span class="s-title-en">你最閃閃發光的時刻</span></h3>
+        <h3 class="s-title ja-only">あなたがいちばん輝く瞬間</h3>
         <ul class="s-list">
-          ${t.strengths_zh.map((s,i)=>`<li><div><span class="zh-only">${s}</span><span class="en-only">${t.strengths_en[i]}</span><span class="en zh-only">${t.strengths_en[i]}</span><span class="en en-only">${s}</span></div></li>`).join('')}
+          ${t.strengths_zh.map((s,i)=>`<li><div><span class="zh-only">${s}</span><span class="en-only">${t.strengths_en[i]}</span><span class="ja-only">${(tj.strengths||[])[i]||''}</span><span class="en zh-only">${t.strengths_en[i]}</span><span class="en en-only">${s}</span><span class="en ja-only">${t.strengths_en[i]}</span></div></li>`).join('')}
         </ul>
       </div>
 
       <div class="section">
-        <div class="s-label">GROWTH · 成長空間</div>
+        <div class="s-label">GROWTH · <span class="zh-only">成長空間</span><span class="en-only">成長空間</span><span class="ja-only">伸びしろ</span></div>
         <h3 class="s-title zh-only">給你的小提醒 <span class="s-title-en">A gentle nudge</span></h3>
         <h3 class="s-title en-only">A gentle nudge <span class="s-title-en">給你的小提醒</span></h3>
+        <h3 class="s-title ja-only">そっと、ひとこと</h3>
         <ul class="s-list">
-          <li><div><span class="zh-only">${t.growth_zh}</span><span class="en-only">${t.growth_en}</span><span class="en zh-only">${t.growth_en}</span><span class="en en-only">${t.growth_zh}</span></div></li>
+          <li><div><span class="zh-only">${t.growth_zh}</span><span class="en-only">${t.growth_en}</span><span class="ja-only">${tj.growth}</span><span class="en zh-only">${t.growth_en}</span><span class="en en-only">${t.growth_zh}</span><span class="en ja-only">${t.growth_en}</span></div></li>
         </ul>
       </div>
 
       <div class="action-card">
-        <div class="s-label">VISION ZERO ACTION · 你能做的一件事</div>
+        <div class="s-label">VISION ZERO ACTION · <span class="zh-only">你能做的一件事</span><span class="en-only">你能做的一件事</span><span class="ja-only">あなたにできる一歩</span></div>
         <h3 class="s-title zh-only">你的「雙齊零行動」起點 <span class="s-title-en">Where to begin</span></h3>
         <h3 class="s-title en-only">Where to begin <span class="s-title-en">你的「雙齊零行動」起點</span></h3>
+        <h3 class="s-title ja-only">あなたの「ダブルゼロ行動」の第一歩</h3>
         <div class="a-text zh-only">${t.action_zh}</div>
         <div class="a-text en-only">${t.action_en}</div>
+        <div class="a-text ja-only">${tj.action}</div>
         <div class="a-en zh-only">${t.action_en}</div>
         <div class="a-en en-only">${t.action_zh}</div>
       </div>
@@ -2414,11 +2570,13 @@ function showResult(){
         <div class="m-top">
           <div class="m-emoji">${t.match_emoji}</div>
           <div class="m-body">
-            <div class="m-label">YOUR DREAM CITY · 與你最契合的城市</div>
+            <div class="m-label">YOUR DREAM CITY · <span class="zh-only">與你最契合的城市</span><span class="en-only">與你最契合的城市</span><span class="ja-only">あなたにいちばん合う街</span></div>
             <div class="m-name zh-only">${t.match_zh}</div>
             <div class="m-name en-only">${t.match_en}</div>
+            <div class="m-name ja-only">${tj.match}</div>
             <div class="m-why zh-only">${t.match_why_zh}</div>
             <div class="m-why en-only">${t.match_why_en}</div>
+            <div class="m-why ja-only">${tj.match_why}</div>
           </div>
         </div>
         <div class="m-article">
@@ -2426,23 +2584,26 @@ function showResult(){
             <span class="m-art-source">天下未來城市</span>
             <span class="m-art-cta zh-only">閱讀全文</span>
             <span class="m-art-cta en-only">Read article</span>
+            <span class="m-art-cta ja-only">記事を読む</span>
           </div>
-          <div class="m-art-title">${t.article_title}</div>
-          <div class="m-art-snippet">${t.article_snippet}</div>
+          <div class="m-art-title">${lang==='ja' ? (tj.article_title||t.article_title) : t.article_title}</div>
+          <div class="m-art-snippet">${lang==='ja' ? (tj.article_snippet||t.article_snippet) : t.article_snippet}</div>
         </div>
       </a>
 
       ${renderBondsSection(code)}
 
       <div class="share-section">
-        <div class="s-label">SHARE · 分享你的街道靈魂</div>
+        <div class="s-label">SHARE · <span class="zh-only">分享你的街道靈魂</span><span class="en-only">分享你的街道靈魂</span><span class="ja-only">あなたの街の魂をシェア</span></div>
         <h3 class="s-title zh-only">把這個結果分享出去</h3>
         <h3 class="s-title en-only">Share your result</h3>
+        <h3 class="s-title ja-only">結果をシェアしよう</h3>
 
         <button class="dl-card-btn" onclick="downloadShareCard()">
           <span class="dl-icon">📸</span>
           <span class="zh-only">下載 Instagram 分享圖卡</span>
           <span class="en-only">Download Instagram share card</span>
+          <span class="ja-only">Instagram用シェア画像をダウンロード</span>
         </button>
 
         <div class="share-grid">
@@ -2468,10 +2629,12 @@ function showResult(){
           <button class="btn-sec" onclick="copyShareLink()">
             <span class="zh-only">📋 複製連結</span>
             <span class="en-only">📋 Copy link</span>
+            <span class="ja-only">📋 リンクをコピー</span>
           </button>
           <button class="btn-sec" onclick="restart()">
             <span class="zh-only">↺ 再測一次</span>
             <span class="en-only">↺ Restart</span>
+            <span class="ja-only">↺ もう一度</span>
           </button>
         </div>
       </div>
@@ -2480,19 +2643,24 @@ function showResult(){
         <div class="atlas-strip">
           <span class="atlas-strip-l zh-only">本次倡議 · 最重要的成果</span>
           <span class="atlas-strip-l en-only">OUR FLAGSHIP · The campaign's keystone</span>
+          <span class="atlas-strip-l ja-only">この運動 · 最重要の成果</span>
           <span class="atlas-strip-r">VZT · ATLAS</span>
         </div>
         <div class="atlas-body">
           <div class="atlas-emoji">🗺️</div>
           <div class="atlas-title zh-only">台灣交通安全地圖</div>
           <div class="atlas-title en-only">Taiwan Mobility Atlas</div>
+          <div class="atlas-title ja-only">台湾 交通安全マップ</div>
           <div class="atlas-sub zh-only">全國面量圖 · 十年回顧 2016–2025</div>
           <div class="atlas-sub en-only">National A1 Choropleth · 2016–2025</div>
+          <div class="atlas-sub ja-only">全国コロプレス図 · 10年の記録 2016–2025</div>
           <div class="atlas-desc zh-only">364 個鄉鎮區、橫跨十年的 A1 交通事故死亡資料，化成一張可互動的地圖 — 看見台灣街道安全的真實樣貌，也是「雙齊零願景」最有力的證據。</div>
           <div class="atlas-desc en-only">Ten years of A1 traffic-death data across all 364 districts, turned into one interactive map — the real state of Taiwan's streets, and the hardest evidence behind the Dual-Zero vision.</div>
+          <div class="atlas-desc ja-only">全364市区町村、10年分のA1(死亡)交通事故データを一枚のインタラクティブマップに ― 台湾の街の安全のリアルな姿、そして「ダブルゼロ・ビジョン」の何よりの証拠。</div>
           <span class="atlas-cta">
             <span class="zh-only">開啟互動地圖</span>
             <span class="en-only">Explore the interactive map</span>
+            <span class="ja-only">インタラクティブマップを開く</span>
             <span class="atlas-arrow">→</span>
           </span>
         </div>
@@ -2505,10 +2673,13 @@ function showResult(){
       <div class="follow-card">
         <span class="fc-label zh-only">FOLLOW US · 跟著我們繼續走下去</span>
         <span class="fc-label en-only">FOLLOW US · Walk with us</span>
+        <span class="fc-label ja-only">FOLLOW US · これからも一緒に</span>
         <div class="fc-title zh-only">街道改變不是一次的事 — 而是長期的對話</div>
         <div class="fc-title en-only">Streets don't change overnight — it's a long conversation</div>
+        <div class="fc-title ja-only">街は一度では変わらない ― 長い対話の積み重ねだ</div>
         <div class="fc-sub zh-only">追蹤 VZT 與 TCAN，跟著倡議、政策、與每一場行動。每一次轉發，都讓街道離安全更近。</div>
         <div class="fc-sub en-only">Follow VZT and TCAN for ongoing advocacy, policy, and actions. Every share brings safer streets closer.</div>
+        <div class="fc-sub ja-only">VZTとTCANをフォローして、提言・政策・一つひとつの行動を一緒に。シェアのたびに、街は安全へ少し近づく。</div>
         <div class="fc-grid">
           <a class="fc-link" href="https://www.instagram.com/vision_zero_tw/" target="_blank" rel="noopener">
             <span class="fc-ico">📷</span>
@@ -2536,6 +2707,7 @@ function showResult(){
       <div class="all-types">
         <h3 class="zh-only">16 種街道靈魂</h3>
         <h3 class="en-only">All 16 Street Souls</h3>
+        <h3 class="ja-only">16の街の魂</h3>
         <div class="h3-en zh-only">All 16 Street Souls</div>
         <div class="h3-en en-only">16 種街道靈魂</div>
         <div class="all-grid">${
@@ -2545,6 +2717,7 @@ function showResult(){
               <div>${k}</div>
               <div class="nm zh-only">${v.zh_name}</div>
               <div class="nm en-only">${v.en_name.replace('The ','')}</div>
+              <div class="nm ja-only">${(TYPES_JA[k]||{}).name||''}</div>
             </div>
           `).join('')
         }</div>
@@ -2555,6 +2728,7 @@ function showResult(){
         <img class="org-logo ec-logo" src="data:image/png;base64,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CPLGkt6ZA0QC75Rfv6eMSfbN9NydhfKm7/OJvMeQN7rE6eQv5SufNWThkp4f58g7v98x8n6GvOeJ34mtDj3xsaecskakS+FUKG/yVp/Iewh5qzrczdTmBRklr9lqVuYk+1P2t0qSNzVxQN5jyBuxqj1ouHTQxt0FWUPwl6LtwsiIoWJ5E7sqkPcY8sY2iIi81C9TeePEa/2UV5ELPyFTXytN3sSKA/IeRN5oHni1+jQcKH6VKvrinZqBEWmBNXkuTn1CorwVacMnyRvteapvsbF5brfdrid9mmquT31onduRF54aOlGKS5X3d3qnZeQ9lryT21G2O7ieTufm3Fz/r56671Nh8Td7Qb/swZqp8iZVHJD3KPJW02lgfanvQXgmYk0VsmK7B0ym4ues2UDJ8kbXJEbeI8qb1oiZ+ZnL1EcGQ/b0LOVLeJZDUy5vQuhF3sPIW9V1+mjBuNyTT0eTuwLZJatXI0feSBcI8h5T3qyB2uHKxKSJEVua/HbkRUPe+a4K5D2OvO3w76Ys7DbZg2bm1ja5NFm15Bx5L8j7QfLGXuzJ418nx8xERjjOnGMkXMd+K0fe2SwfeY8kb3VuLs3yxLc5TcfQ8MTdRUWQ2JCLLHkrIu8nyVudlrt7mVn8eeH8+qn18Url/Z0Ovch7LHmrxRWHesbdpVsORfopGg15Z9Je5D2YvL/t7n51fkutPs2sqBBZfn1+WZ4mZ1/kTHmnuyqQ92DyXmPvklZbPT/frV5Qa3hEx/Tvlivv5KwK5D2cvFlLGyTNzYkrmLI0RFY/Ra68k18WeY8n78RA82hTbfaDQpthJ24oHBkn36jIG9wEGXmPK29K12lvuZv6sjCaJ53gJTzMOPi7+fJOhF7kPaS81aU+JbXb6rpuUhbWiRR50+Q9pS8qkS/vhL3Ie0x52yO2s4Onh0le//aU9hmRroa0JYDDk4eCXcQL5K2IvB8n7y36nppz1N9rzD0lJAwTaUjZyu3B314ibzT0Iu9W8l4CS9eULvN4efjbH8b7WBanaecGpR6oOdfLz6+tZyUuzBP8nLkVqS+nS3jNNeTdhDq4bFjCZr3z/l7aqT9toesWg+vHlKDT5ZJ+b9tFzQIneErdOOAUXhQt4H74MpwWHf90Rt5tIm8YxYM3bZZw/c/1bZp95N9L2fnFfv1X6TpcVr18yAuAvIC8AMgLgLyAvMgLyAuAvADIC8iLvIC8AMgLyIu8gLwAyAuAvIC8yAvIC4C8gLzIC8gLgLwAyAvIi7yAvADIC4C8gLwAyAuAvIC8yAvIC4C8AMgLyAuAvADIC8iLvIC8AMgLgLyAvADIC4C8gLzIC8gLgLwAyAvIC4C8AMgLyIu8gLwAyAuAvIC8XDTYibz/zAV5YSf853/z+PNPrhkAAAAAAADAEfh/tP13xJjFNpUAAAAASUVORK5CYII=" alt="Vision Zero Taiwan × TCAN" />
         <div class="ec-orgs zh-only"><strong>還路於民行人路權促進會</strong> × <strong>台灣氣候行動網絡</strong></div>
         <div class="ec-orgs en-only"><strong>Vision Zero Taiwan</strong> × <strong>Taiwan Climate Action Network</strong></div>
+        <div class="ec-orgs ja-only"><strong>Vision Zero Taiwan</strong> × <strong>台湾気候行動ネットワーク</strong></div>
         <div class="ec-sub">A JOINT INITIATIVE · 2026</div>
 
         <div class="ec-credits">
@@ -2562,11 +2736,13 @@ function showResult(){
             <span class="ec-credit-label">Mascot</span>
             <span class="zh-only">吉祥物設計 <a href="https://www.instagram.com/tsaowenzee/" target="_blank" rel="noopener">艸文子</a> <span class="ec-credit-handle">@tsaowenzee</span></span>
             <span class="en-only">Character design by <a href="https://www.instagram.com/tsaowenzee/" target="_blank" rel="noopener">Tsaowenzee</a> <span class="ec-credit-handle">@tsaowenzee</span></span>
+            <span class="ja-only">マスコットデザイン <a href="https://www.instagram.com/tsaowenzee/" target="_blank" rel="noopener">艸文子</a> <span class="ec-credit-handle">@tsaowenzee</span></span>
           </div>
           <div class="ec-credit-row">
             <span class="ec-credit-label">Built by</span>
             <span class="zh-only">企劃製作 <a href="https://www.linkedin.com/in/yunching0513/" target="_blank" rel="noopener">吳昀慶</a></span>
             <span class="en-only">Produced by <a href="https://www.linkedin.com/in/yunching0513/" target="_blank" rel="noopener">Yun-Ching Wu</a></span>
+            <span class="ja-only">企画・制作 <a href="https://www.linkedin.com/in/yunching0513/" target="_blank" rel="noopener">呉昀慶</a></span>
           </div>
         </div>
       </div>
@@ -2587,23 +2763,29 @@ function restart(){
 function copyShareLink(){
   const code = calculateType();
   const t = TYPES[code];
-  const isEn = document.body.classList.contains('en');
-  const text = isEn
+  const lang = getLang();
+  const tj = TYPES_JA[code] || {};
+  const text = lang==='ja'
+    ? `わたしは ${code} · ${tj.name} ${t.emoji}｜街の魂診断 by Vision Zero Taiwan × TCAN`
+    : lang==='en'
     ? `I'm ${code} · ${t.en_name} ${t.emoji} — Street Soul Quiz by Vision Zero Taiwan × TCAN`
     : `我是 ${code} · ${t.zh_name} ${t.emoji}｜街道靈魂測驗 by Vision Zero Taiwan × TCAN`;
   const fullText = text + '\n' + location.href;
   navigator.clipboard.writeText(fullText).then(()=>{
-    showToast(isEn ? 'Copied to clipboard ✓' : '已複製到剪貼簿 ✓');
+    showToast(lang==='ja' ? 'クリップボードにコピーしました ✓' : lang==='en' ? 'Copied to clipboard ✓' : '已複製到剪貼簿 ✓');
   }).catch(()=>{
-    showToast(isEn ? 'Copy failed' : '複製失敗，請手動複製');
+    showToast(lang==='ja' ? 'コピーに失敗しました' : lang==='en' ? 'Copy failed' : '複製失敗，請手動複製');
   });
 }
 
 function shareTo(platform){
   const code = calculateType();
   const t = TYPES[code];
-  const isEn = document.body.classList.contains('en');
-  const text = isEn
+  const lang = getLang();
+  const tj = TYPES_JA[code] || {};
+  const text = lang==='ja'
+    ? `わたしは ${code} · ${tj.name} ${t.emoji}｜街の魂診断 by Vision Zero Taiwan × TCAN`
+    : lang==='en'
     ? `I'm ${code} · ${t.en_name} ${t.emoji} — Street Soul Quiz by Vision Zero Taiwan × TCAN`
     : `我是 ${code} · ${t.zh_name} ${t.emoji}｜街道靈魂測驗 by Vision Zero Taiwan × TCAN`;
   const url = location.href;
@@ -2639,14 +2821,14 @@ function isIOS(){
 
 /* Trait pill mapping — converts 4-axis code into 4 human-readable trait pills */
 const TRAIT_PILLS = {
-  'M':{emoji:'🌿', zh:'慢節奏', en:'Slow pace'},
-  'R':{emoji:'⚡', zh:'快步調', en:'Fast paced'},
-  'E':{emoji:'🔍', zh:'愛探索', en:'Explorer'},
-  'H':{emoji:'🏠', zh:'熟悉路', en:'Routine'},
-  'C':{emoji:'🤝', zh:'群體感', en:'Crew'},
-  'S':{emoji:'🎧', zh:'獨行者', en:'Solo'},
-  'Y':{emoji:'🌐', zh:'看系統', en:'Systems view'},
-  'I':{emoji:'💭', zh:'重個人', en:'Self-focused'}
+  'M':{emoji:'🌿', zh:'慢節奏', en:'Slow pace', ja:'スローペース'},
+  'R':{emoji:'⚡', zh:'快步調', en:'Fast paced', ja:'ハイテンポ'},
+  'E':{emoji:'🔍', zh:'愛探索', en:'Explorer', ja:'探検好き'},
+  'H':{emoji:'🏠', zh:'熟悉路', en:'Routine', ja:'いつもの道'},
+  'C':{emoji:'🤝', zh:'群體感', en:'Crew', ja:'みんなと'},
+  'S':{emoji:'🎧', zh:'獨行者', en:'Solo', ja:'ひとり派'},
+  'Y':{emoji:'🌐', zh:'看系統', en:'Systems view', ja:'仕組み目線'},
+  'I':{emoji:'💭', zh:'重個人', en:'Self-focused', ja:'自分目線'}
 };
 
 // Render whatever is currently in the off-screen #shareCard to {dataUrl, blob, file, fileName}
@@ -2668,68 +2850,70 @@ async function canvasFromShareCard(card, fileName){
 }
 
 // Card 2 — 「在這座城市裡，誰是你的漫步好朋友？」散步好夥伴 + 街道幸運兒 + 雙齊零行動起點
-function buildBondsCard(code, t, isEn){
-  const buddy = TYPES[flipAxes(code,[2])];
-  const lucky = TYPES[flipAxes(code,[0,1,2,3])];
+function buildBondsCard(code, t, lang){
+  const L=(zh,en,ja)=>lang==='ja'?ja:lang==='en'?en:zh;
+  const buddyCode=flipAxes(code,[2]), luckyCode=flipAxes(code,[0,1,2,3]);
+  const buddy = TYPES[buddyCode], lucky = TYPES[luckyCode];
+  const tj=TYPES_JA[code]||{}, buddyJ=TYPES_JA[buddyCode]||{}, luckyJ=TYPES_JA[luckyCode]||{};
   return `
     <div class="sc-top">
       <div class="sc-brand"><span class="sc-brand-dot"></span>VZT × TCAN</div>
       <div class="sc-you-chip">
         <span class="sc-you-emoji">${t.emoji}</span>
         <span class="sc-you-meta">
-          <span class="sc-you-lbl">${isEn ? 'YOU' : '你'}</span>
-          <span class="sc-you-name">${isEn ? t.en_name : t.zh_name}</span>
+          <span class="sc-you-lbl">${L('你','YOU','YOU')}</span>
+          <span class="sc-you-name">${L(t.zh_name, t.en_name, tj.name)}</span>
         </span>
       </div>
     </div>
 
     <div class="sc-body sc2-body">
-      <div class="sc2-kicker">${isEn ? 'YOUR STREET BONDS' : '你的街道緣分'}</div>
-      <div class="sc2-title">${isEn ? 'Who\'s your<br>strolling buddy?' : '在這座城市裡，<br>誰是你的漫步好朋友？'}</div>
+      <div class="sc2-kicker">${L('你的街道緣分','YOUR STREET BONDS','あなたの街のご縁')}</div>
+      <div class="sc2-title">${L('在這座城市裡，<br>誰是你的漫步好朋友？','Who\'s your<br>strolling buddy?','この街で、<br>いっしょに歩く相棒はだれ？')}</div>
 
       <div class="sc-bottom-info sc2-bonds">
         <div class="sc-info-cell">
           <div class="sc-info-cell-label">
-            <span class="sc-info-cell-zh">🚶 ${isEn ? 'Walking Buddy' : '最佳散步好夥伴'}</span>
-            <span class="sc-info-cell-en">${isEn ? '最佳散步好夥伴' : 'WALKING BUDDY'}</span>
+            <span class="sc-info-cell-zh">🚶 ${L('最佳散步好夥伴','Walking Buddy','散歩バディ')}</span>
+            <span class="sc-info-cell-en">${L('WALKING BUDDY','最佳散步好夥伴','WALKING BUDDY')}</span>
           </div>
           <div class="sc-info-cell-marker">${buddy.emoji}</div>
-          <div class="sc-info-cell-main">${isEn ? buddy.en_name : buddy.zh_name}</div>
-          <div class="sc-info-cell-sub">${isEn ? buddy.zh_name : buddy.en_name}</div>
+          <div class="sc-info-cell-main">${L(buddy.zh_name, buddy.en_name, buddyJ.name)}</div>
+          <div class="sc-info-cell-sub">${L(buddy.en_name, buddy.zh_name, buddy.en_name)}</div>
         </div>
         <div class="sc-info-cell">
           <div class="sc-info-cell-label">
-            <span class="sc-info-cell-zh">🍀 ${isEn ? 'Lucky One' : '街道幸運兒'}</span>
-            <span class="sc-info-cell-en">${isEn ? '街道幸運兒' : 'LUCKY ONE'}</span>
+            <span class="sc-info-cell-zh">🍀 ${L('街道幸運兒','Lucky One','街のラッキー')}</span>
+            <span class="sc-info-cell-en">${L('LUCKY ONE','街道幸運兒','LUCKY ONE')}</span>
           </div>
           <div class="sc-info-cell-marker">${lucky.emoji}</div>
-          <div class="sc-info-cell-main">${isEn ? lucky.en_name : lucky.zh_name}</div>
-          <div class="sc-info-cell-sub">${isEn ? lucky.zh_name : lucky.en_name}</div>
+          <div class="sc-info-cell-main">${L(lucky.zh_name, lucky.en_name, luckyJ.name)}</div>
+          <div class="sc-info-cell-sub">${L(lucky.en_name, lucky.zh_name, lucky.en_name)}</div>
         </div>
       </div>
 
       <div class="sc2-strengths">
         <div class="sc-info-divider">
-          <span class="sc-info-divider-zh">${isEn ? 'WHERE YOU SHINE' : '你最閃閃發光的時刻'}</span>
-          <span class="sc-info-divider-label">${isEn ? '你最閃閃發光的時刻' : 'WHERE YOU SHINE'}</span>
+          <span class="sc-info-divider-zh">${L('你最閃閃發光的時刻','WHERE YOU SHINE','あなたが輝く瞬間')}</span>
+          <span class="sc-info-divider-label">${L('WHERE YOU SHINE','你最閃閃發光的時刻','WHERE YOU SHINE')}</span>
         </div>
         <div class="sc2-str-list">
-          ${(isEn ? t.strengths_en : t.strengths_zh).map(s=>`<div class="sc2-str-item"><span class="sc2-str-mark">✦</span><span>${s}</span></div>`).join('')}
+          ${(lang==='ja'?(tj.strengths||[]):lang==='en'?t.strengths_en:t.strengths_zh).map(s=>`<div class="sc2-str-item"><span class="sc2-str-mark">✦</span><span>${s}</span></div>`).join('')}
         </div>
       </div>
 
       <div class="sc2-action">
         <div class="sc2-action-label">
-          <span class="sc2-action-zh">${isEn ? 'VISION ZERO ACTION' : '你的雙齊零行動起點'}</span>
-          <span class="sc2-action-en">${isEn ? '你的雙齊零行動起點' : 'WHERE TO BEGIN'}</span>
+          <span class="sc2-action-zh">${L('你的雙齊零行動起點','VISION ZERO ACTION','あなたのダブルゼロ行動')}</span>
+          <span class="sc2-action-en">${L('WHERE TO BEGIN','你的雙齊零行動起點','WHERE TO BEGIN')}</span>
         </div>
-        <div class="sc2-action-text">${isEn ? t.action_en : t.action_zh}</div>
+        <div class="sc2-action-text">${L(t.action_zh, t.action_en, tj.action)}</div>
       </div>
     </div>
 
     <div class="sc-bottom">
       <div class="sc-bottom-l">
-        <div class="sc-cta-zh">${isEn ? 'Take the quiz' : '測測你的街道靈魂'}</div>
+        <div class="sc-cta-zh">${L('測測你的街道靈魂','Take the quiz','街の魂を診断')}</div>
         <div class="sc-cta-url">STREETSOUL.TW</div>
       </div>
       <div class="sc-bottom-r">
@@ -2742,18 +2926,20 @@ function buildBondsCard(code, t, isEn){
 async function downloadShareCard(){
   const code = calculateType();
   const t = TYPES[code];
-  const isEn = document.body.classList.contains('en');
+  const lang = getLang();
+  const L = (zh,en,ja)=>lang==='ja'?ja:lang==='en'?en:zh;
+  const tj = TYPES_JA[code] || {};
   const btn = document.querySelector('.dl-card-btn');
 
   if(!btn) return;
   if(typeof html2canvas === 'undefined'){
-    showToast(isEn ? 'Image library not loaded' : '圖片函式庫未載入，請重新整理頁面');
+    showToast(L('圖片函式庫未載入，請重新整理頁面','Image library not loaded','画像ライブラリが読み込まれていません'));
     return;
   }
 
   btn.classList.add('loading');
   const originalHTML = btn.innerHTML;
-  btn.innerHTML = `<span class="dl-icon">⏳</span><span>${isEn?'Generating...':'圖卡生成中…'}</span>`;
+  btn.innerHTML = `<span class="dl-icon">⏳</span><span>${L('圖卡生成中…','Generating...','画像を生成中…')}</span>`;
 
   // Build or reuse the off-screen card
   let card = document.getElementById('shareCard');
@@ -2770,6 +2956,7 @@ async function downloadShareCard(){
   // Look up demand for this type
   const demandKey = TYPE_TO_DEMAND[code];
   const demand = demandKey ? DEMANDS[demandKey] : null;
+  const demandJa = demandKey ? (DEMANDS_JA[demandKey]||{}) : null;
 
   // Build 4 trait pills
   const pillsHtml = [a1,a2,a3,a4].map(letter => {
@@ -2777,7 +2964,7 @@ async function downloadShareCard(){
     if(!p) return '';
     return `<div class="sc-pill">
       <span class="sc-pill-emoji">${p.emoji}</span>
-      <span class="sc-pill-text">${isEn ? p.en : p.zh}</span>
+      <span class="sc-pill-text">${L(p.zh, p.en, p.ja)}</span>
     </div>`;
   }).join('');
 
@@ -2787,22 +2974,22 @@ async function downloadShareCard(){
       <div class="sc-rarity">
         <span class="sc-rarity-icon">★</span>
         <span class="sc-rarity-num">${t.rarity}</span>
-        <span class="sc-rarity-lbl">${isEn ? 'RARE' : '稀有'}</span>
+        <span class="sc-rarity-lbl">${L('稀有','RARE','レア')}</span>
       </div>
     </div>
 
     <div class="sc-body">
       <div class="sc-emoji">${t.emoji}</div>
-      <div class="sc-name">${isEn ? t.en_name : t.zh_name}</div>
-      <div class="sc-name-en">${isEn ? t.zh_name : t.en_name}</div>
-      <div class="sc-quote">${isEn ? t.quote_en : t.quote_zh}</div>
+      <div class="sc-name">${L(t.zh_name, t.en_name, tj.name)}</div>
+      <div class="sc-name-en">${L(t.en_name, t.zh_name, t.en_name)}</div>
+      <div class="sc-quote">${L(t.quote_zh, t.quote_en, tj.quote)}</div>
 
-      <div class="sc-desc">${isEn ? t.desc_en : t.desc_zh}</div>
+      <div class="sc-desc">${L(t.desc_zh, t.desc_en, tj.desc)}</div>
 
       <div class="sc-section sc-traits">
         <div class="sc-info-divider">
-          <span class="sc-info-divider-zh">${isEn ? 'YOUR TRAITS' : '你的特質'}</span>
-          <span class="sc-info-divider-label">${isEn ? '你的特質' : 'YOUR TRAITS'}</span>
+          <span class="sc-info-divider-zh">${L('你的特質','YOUR TRAITS','あなたの特質')}</span>
+          <span class="sc-info-divider-label">${L('YOUR TRAITS','你的特質','YOUR TRAITS')}</span>
         </div>
         <div class="sc-pills">${pillsHtml}</div>
       </div>
@@ -2810,23 +2997,23 @@ async function downloadShareCard(){
       <div class="sc-bottom-info">
         <div class="sc-info-cell">
           <div class="sc-info-cell-label">
-            <span class="sc-info-cell-zh">${isEn ? 'DREAM CITY' : '夢想城市'}</span>
-            <span class="sc-info-cell-en">${isEn ? '夢想城市' : 'DREAM CITY'}</span>
+            <span class="sc-info-cell-zh">${L('夢想城市','DREAM CITY','夢の街')}</span>
+            <span class="sc-info-cell-en">${L('DREAM CITY','夢想城市','DREAM CITY')}</span>
           </div>
           <div class="sc-info-cell-marker">${t.match_emoji}</div>
-          <div class="sc-info-cell-main">${isEn ? t.match_en : t.match_zh}</div>
-          <div class="sc-info-cell-sub">${isEn ? t.match_zh : t.match_en}</div>
+          <div class="sc-info-cell-main">${L(t.match_zh, t.match_en, tj.match)}</div>
+          <div class="sc-info-cell-sub">${L(t.match_en, t.match_zh, t.match_en)}</div>
         </div>
 
         ${demand ? `
         <div class="sc-info-cell">
           <div class="sc-info-cell-label">
-            <span class="sc-info-cell-zh">${isEn ? 'YOUR DEMAND' : '共鳴訴求'}</span>
-            <span class="sc-info-cell-en">${isEn ? '共鳴訴求' : 'YOUR DEMAND'}</span>
+            <span class="sc-info-cell-zh">${L('共鳴訴求','YOUR DEMAND','共鳴する訴え')}</span>
+            <span class="sc-info-cell-en">${L('YOUR DEMAND','共鳴訴求','YOUR DEMAND')}</span>
           </div>
           <div class="sc-info-cell-marker sc-info-cell-num">${demand.num}</div>
-          <div class="sc-info-cell-main">${isEn ? demand.en_title : demand.zh_title}</div>
-          <div class="sc-info-cell-sub">${isEn ? demand.zh_title : demand.en_title}</div>
+          <div class="sc-info-cell-main">${L(demand.zh_title, demand.en_title, (demandJa||{}).title||demand.zh_title)}</div>
+          <div class="sc-info-cell-sub">${L(demand.en_title, demand.zh_title, demand.en_title)}</div>
         </div>
         ` : ''}
       </div>
@@ -2834,7 +3021,7 @@ async function downloadShareCard(){
 
     <div class="sc-bottom">
       <div class="sc-bottom-l">
-        <div class="sc-cta-zh">${isEn ? 'Take the quiz' : '測測你的街道靈魂'}</div>
+        <div class="sc-cta-zh">${L('測測你的街道靈魂','Take the quiz','街の魂を診断')}</div>
         <div class="sc-cta-url">STREETSOUL.TW</div>
       </div>
       <div class="sc-bottom-r">
@@ -2851,29 +3038,32 @@ async function downloadShareCard(){
     await new Promise(r=>setTimeout(r,250));
 
     // Card 1 — the original Street Soul card (already in #shareCard)
-    const card1 = await canvasFromShareCard(card, `street-soul-${code}-${isEn?'EN':'ZH'}.png`);
+    const card1 = await canvasFromShareCard(card, `street-soul-${code}-${lang.toUpperCase()}.png`);
 
-    // Card 2 — 誰與你同行 + 雙齊零行動起點
-    card.innerHTML = buildBondsCard(code, t, isEn);
+    // Card 2 — 漫步好朋友 + 雙齊零行動起點
+    card.innerHTML = buildBondsCard(code, t, lang);
     await new Promise(r=>setTimeout(r,250));
-    const card2 = await canvasFromShareCard(card, `street-soul-${code}-bonds-${isEn?'EN':'ZH'}.png`);
+    const card2 = await canvasFromShareCard(card, `street-soul-${code}-bonds-${lang.toUpperCase()}.png`);
 
     btn.classList.remove('loading');
     btn.innerHTML = originalHTML;
 
     // Show modal with BOTH cards, each downloadable
-    showImageModal({cards:[card1, card2], isEn, code});
+    showImageModal({cards:[card1, card2], lang, code});
   } catch (err) {
     console.error('Share card generation failed:', err);
     btn.classList.remove('loading');
     btn.innerHTML = originalHTML;
-    showToast((isEn ? 'Failed: ' : '生成失敗：') + (err.message || 'unknown'));
+    showToast(L('生成失敗：','Failed: ','生成に失敗：') + (err.message || 'unknown'));
   }
 }
 
-function showImageModal({cards, isEn, code}){
+function showImageModal({cards, lang, code}){
+  const L = (zh,en,ja)=>lang==='ja'?ja:lang==='en'?en:zh;
   const ios = isIOS();
-  const caps = isEn
+  const caps = lang==='ja'
+    ? ['① あなたの街の魂', '② 散歩バディ · ダブルゼロ行動']
+    : lang==='en'
     ? ['① Your Street Soul', '② Your strolling buddy · your action']
     : ['① 你的街道靈魂', '② 漫步好朋友 · 雙齊零行動起點'];
 
@@ -2885,8 +3075,8 @@ function showImageModal({cards, isEn, code}){
         <img src="${c.dataUrl}" alt="Street Soul share card ${i+1}">
         <div class="img-card-actions">
           ${canShareFile
-            ? `<button class="modal-share-btn" data-i="${i}">📤 ${isEn ? 'Share' : '分享'}</button>`
-            : `<button class="modal-download-btn" data-i="${i}">⬇ ${isEn ? 'Download' : '下載到電腦'}</button>`
+            ? `<button class="modal-share-btn" data-i="${i}">📤 ${L('分享','Share','シェア')}</button>`
+            : `<button class="modal-download-btn" data-i="${i}">⬇ ${L('下載到電腦','Download','PCに保存')}</button>`
           }
         </div>
       </div>`;
@@ -2897,15 +3087,15 @@ function showImageModal({cards, isEn, code}){
   modal.innerHTML = `
     <div class="img-modal-inner">
       <button class="img-modal-close" aria-label="Close">✕</button>
-      <div class="img-modal-title">${isEn ? '✨ 2 share cards ready' : '✨ 兩張分享圖卡已生成'}</div>
-      <div class="img-modal-sub">${isEn ? 'Save both — share on Instagram, Threads, anywhere.' : '兩張都可儲存，貼到 Instagram、Threads 限時動態。'}</div>
+      <div class="img-modal-title">${L('✨ 兩張分享圖卡已生成','✨ 2 share cards ready','✨ シェア画像が2枚できました')}</div>
+      <div class="img-modal-sub">${L('兩張都可儲存，貼到 Instagram、Threads 限時動態。','Save both — share on Instagram, Threads, anywhere.','どちらも保存OK。Instagramやスレッズのストーリーズへ。')}</div>
       ${ios
-        ? `<div class="img-hint">📱 <strong>${isEn ? 'iOS users:' : 'iPhone 用戶：'}</strong> ${isEn ? 'long-press an image, then "Save to Photos"' : '長按圖片 → 「加入照片」'}</div>`
-        : `<div class="img-hint">💡 ${isEn ? 'Right-click an image to save, or use the buttons under each' : '在電腦上可右鍵儲存，或用各張下方按鈕'}</div>`
+        ? `<div class="img-hint">📱 <strong>${L('iPhone 用戶：','iOS users:','iPhoneの方：')}</strong> ${L('長按圖片 → 「加入照片」','long-press an image, then "Save to Photos"','画像を長押し →「写真に追加」')}</div>`
+        : `<div class="img-hint">💡 ${L('在電腦上可右鍵儲存，或用各張下方按鈕','Right-click an image to save, or use the buttons under each','右クリックで保存、または各画像の下のボタンから保存')}</div>`
       }
       <div class="img-cards">${cardsHtml}</div>
       <div class="img-modal-actions" style="grid-template-columns:1fr">
-        <button class="alt modal-close-btn">${isEn ? 'Close' : '關閉'}</button>
+        <button class="alt modal-close-btn">${L('關閉','Close','閉じる')}</button>
       </div>
     </div>
   `;
@@ -2933,7 +3123,7 @@ function showImageModal({cards, isEn, code}){
       a.click();
       document.body.removeChild(a);
       setTimeout(()=>URL.revokeObjectURL(url), 1000);
-      showToast(isEn ? 'Saved ✓' : '已下載 ✓');
+      showToast(L('已下載 ✓','Saved ✓','保存しました ✓'));
     };
   });
 
@@ -2943,13 +3133,13 @@ function showImageModal({cards, isEn, code}){
       try {
         await navigator.share({
           files: [c.file],
-          title: isEn ? 'My Street Soul' : '我的街道靈魂',
-          text: isEn ? `I'm ${code} on the Street Soul Quiz!` : `我是 ${code} · 街道靈魂測驗`
+          title: L('我的街道靈魂','My Street Soul','わたしの街の魂'),
+          text: L(`我是 ${code} · 街道靈魂測驗`, `I'm ${code} on the Street Soul Quiz!`, `わたしは ${code} · 街の魂診断`)
         });
       } catch(err){
         if(err.name !== 'AbortError'){
           console.error(err);
-          showToast(isEn ? 'Share canceled' : '分享已取消');
+          showToast(L('分享已取消','Share canceled','シェアをキャンセルしました'));
         }
       }
     };
@@ -2965,7 +3155,7 @@ function logToSheet(code){
     console.log('Sheet webhook not configured — skipping log');
     return;
   }
-  const lang = document.body.classList.contains('en') ? 'en' : 'zh';
+  const lang = getLang();
   const payload = {
     session_id: SESSION_ID,
     timestamp: new Date().toISOString(),
@@ -3020,7 +3210,7 @@ document.querySelectorAll('.lang-toggle button').forEach(btn=>{
     document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const lang = btn.dataset.lang;
-    document.body.classList.remove('zh','en');
+    document.body.classList.remove('zh','en','ja');
     document.body.classList.add(lang);
   };
 });
