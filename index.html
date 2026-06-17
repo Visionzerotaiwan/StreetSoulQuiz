@@ -746,7 +746,7 @@ body.picking #lang-pick{display:block!important}
 .sc-you-emoji{font-size:46px;line-height:1}
 .sc-you-meta{display:flex;flex-direction:column;align-items:flex-start;line-height:1.05}
 .sc-you-lbl{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--g2);font-weight:700;text-transform:uppercase}
-.sc-you-name{font-size:27px;font-weight:900;color:var(--black);letter-spacing:.01em;margin-top:3px}
+.sc-you-name{font-size:27px;font-weight:900;color:var(--black);letter-spacing:.01em}
 .sc2-kicker{font-family:var(--en);font-size:19px;letter-spacing:.3em;color:var(--lime-dk);font-weight:700;text-transform:uppercase}
 .sc2-title{font-size:74px;font-weight:900;color:var(--black);line-height:1.14;letter-spacing:.01em;margin:16px 0 6px}
 .sc2-bonds{margin-top:44px;gap:22px}
@@ -2865,7 +2865,6 @@ function buildBondsCard(code, t, lang){
       <div class="sc-you-chip">
         <span class="sc-you-emoji">${t.emoji}</span>
         <span class="sc-you-meta">
-          <span class="sc-you-lbl">${L('你','YOU','YOU')}</span>
           <span class="sc-you-name">${L(t.zh_name, t.en_name, tj.name)}</span>
         </span>
       </div>
