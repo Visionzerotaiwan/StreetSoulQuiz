@@ -705,6 +705,100 @@ body.picking #lang-pick{display:block!important}
 .match-card{animation-delay:.32s}
 .manifesto{animation-delay:.4s}
 .all-types{animation-delay:.5s}
+
+/* ===== STREET BONDS · 街道緣分配對 ===== */
+.bonds{margin-bottom:14px;animation:fadeUp .55s cubic-bezier(.16,1,.3,1) backwards;animation-delay:.3s}
+.bonds .s-label{text-align:center}
+.bonds-title{font-size:20px;font-weight:700;letter-spacing:.02em;line-height:1.3;text-align:center;margin-bottom:16px}
+.bond-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bond-card{background:var(--paper);border:1.5px solid var(--black);border-radius:20px;overflow:hidden;position:relative;transition:.22s;display:flex;flex-direction:column}
+.bond-card:hover{transform:translateY(-3px);box-shadow:5px 5px 0 var(--black)}
+.bond-strip{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:11px 15px;border-bottom:1.5px solid var(--black)}
+.bond-buddy .bond-strip{background:var(--lime)}
+.bond-lucky .bond-strip{background:var(--coral)}
+.bond-strip-label{font-size:13px;font-weight:900;letter-spacing:.01em;color:var(--black)}
+.bond-strip-en{font-family:var(--en);font-size:8px;letter-spacing:.16em;font-weight:700;color:rgba(0,0,0,.5)}
+.bond-body{padding:18px 16px 19px;text-align:center;display:flex;flex-direction:column;flex:1}
+.bond-emoji{font-size:58px;line-height:1;display:inline-block;margin-bottom:9px;animation:wiggle 4s ease-in-out infinite}
+.bond-code{font-family:var(--mono);font-size:9px;letter-spacing:.13em;color:var(--g2);margin-bottom:4px}
+.bond-name{font-size:17px;font-weight:900;line-height:1.22}
+.bond-name-en{font-family:var(--serif);font-size:12px;font-style:italic;color:var(--g2);margin-top:1px;margin-bottom:11px}
+.bond-why{font-size:12.5px;line-height:1.65;color:var(--g1);text-align:left;border-top:1px dashed var(--g3);padding-top:11px;margin-top:auto}
+@media(max-width:480px){.bond-grid{grid-template-columns:1fr}.bond-emoji{font-size:52px}}
+
+/* ===== FURTHER READING TABS · 延伸閱讀分頁 ===== */
+.reading{margin-bottom:14px;animation:fadeUp .55s cubic-bezier(.16,1,.3,1) backwards}
+.reading-head{margin-bottom:14px}
+.reading .s-label{text-align:center}
+.reading-title{font-size:20px;font-weight:700;letter-spacing:.02em;line-height:1.3;text-align:center}
+.reading-tabs{display:flex;gap:3px;background:var(--black);border-radius:100px;padding:4px;margin-bottom:16px}
+.reading-tab{flex:1;background:transparent;border:none;border-radius:100px;padding:10px 4px;font-family:var(--zh);font-size:13px;font-weight:700;color:var(--g3);cursor:pointer;transition:.2s;letter-spacing:.01em;white-space:nowrap}
+.reading-tab.active{background:var(--lime);color:var(--black)}
+.reading-tab:hover:not(.active){color:var(--paper)}
+.reading-panel{display:none}
+.reading-panel.active{display:block;animation:fadeUp .4s cubic-bezier(.16,1,.3,1)}
+.reading-panel .further-card,.reading-panel .south-card,.reading-panel .tcan-section{margin-bottom:0}
+
+/* ===== SHARE CARD 2 · 誰與你同行 + 雙齊零行動（1080×1350 座標系，字級偏大） ===== */
+.sc-body.sc2-body{justify-content:center}
+.sc-you-chip{display:inline-flex;align-items:center;gap:12px;background:var(--paper);border:2.5px solid var(--black);border-radius:100px;padding:8px 22px 8px 12px;box-shadow:4px 4px 0 var(--black)}
+.sc-you-emoji{font-size:46px;line-height:1}
+.sc-you-meta{display:flex;flex-direction:column;align-items:flex-start;line-height:1.05}
+.sc-you-lbl{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--g2);font-weight:700;text-transform:uppercase}
+.sc-you-name{font-size:27px;font-weight:900;color:var(--black);letter-spacing:.01em;margin-top:3px}
+.sc2-kicker{font-family:var(--en);font-size:19px;letter-spacing:.3em;color:var(--lime-dk);font-weight:700;text-transform:uppercase}
+.sc2-title{font-size:74px;font-weight:900;color:var(--black);line-height:1.14;letter-spacing:.01em;margin:16px 0 6px}
+.sc2-bonds{margin-top:40px}
+.sc2-action{width:100%;margin-top:36px;background:var(--lime);border:2.5px solid var(--black);border-radius:22px;padding:28px 32px;box-shadow:6px 6px 0 var(--black);text-align:left}
+.sc2-action-label{display:flex;flex-direction:column;gap:3px;margin-bottom:14px}
+.sc2-action-zh{font-size:28px;font-weight:900;color:var(--black);letter-spacing:.02em}
+.sc2-action-en{font-family:var(--en);font-size:14px;letter-spacing:.22em;color:rgba(0,0,0,.5);font-weight:700;text-transform:uppercase}
+.sc2-action-text{font-size:25px;line-height:1.62;color:var(--ink);font-weight:500;letter-spacing:.005em}
+.sc2-strengths{width:100%;margin-top:30px}
+.sc2-str-list{display:flex;flex-direction:column;gap:13px;max-width:780px;margin:14px auto 0;text-align:left}
+.sc2-str-item{display:flex;align-items:flex-start;gap:14px;font-size:25px;line-height:1.4;color:var(--ink);font-weight:600;letter-spacing:.005em}
+.sc2-str-mark{color:var(--lime-dk);font-size:23px;flex-shrink:0;line-height:1.45}
+
+/* ===== IMG MODAL · 多張圖卡 ===== */
+.img-cards{display:flex;flex-direction:column;gap:20px;margin-bottom:14px}
+.img-card{display:flex;flex-direction:column}
+.img-card-cap{font-size:13px;font-weight:800;color:var(--black);letter-spacing:.02em;margin-bottom:8px}
+.img-card img{margin-bottom:10px}
+.img-card-actions{display:flex}
+.img-card-actions button{flex:1;background:var(--black);color:var(--lime);border:none;padding:13px 12px;border-radius:14px;font-family:var(--zh);font-size:13.5px;font-weight:700;letter-spacing:.02em;cursor:pointer;transition:.22s;display:flex;align-items:center;justify-content:center;gap:7px}
+.img-card-actions button:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.15)}
+
+/* ===== SOUND TOGGLE ===== */
+.tb-right{display:flex;align-items:center;gap:9px}
+.sound-toggle{background:var(--black);color:var(--lime);border:none;width:32px;height:32px;border-radius:50%;font-size:14px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0;transition:.2s;flex-shrink:0}
+.sound-toggle:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(0,0,0,.18)}
+.sound-toggle.muted{background:var(--g4);color:var(--g2)}
+
+/* ===== ATLAS · 本次倡議最重要的成果（hero 卡） ===== */
+.atlas-card{display:block;text-decoration:none;color:var(--white);background:var(--ink);border:2px solid var(--black);border-radius:22px;margin-bottom:14px;overflow:hidden;position:relative;transition:.22s;animation:fadeUp .55s cubic-bezier(.16,1,.3,1) backwards}
+.atlas-card::after{content:'';position:absolute;top:-40%;right:-25%;width:80%;height:170%;background:radial-gradient(ellipse,var(--lime) 0%,transparent 62%);opacity:.18;pointer-events:none}
+.atlas-card:hover{transform:translateY(-3px);box-shadow:6px 6px 0 var(--lime-dk)}
+.atlas-strip{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 22px;border-bottom:1px solid rgba(255,255,255,.13);position:relative;z-index:1}
+.atlas-strip-l{font-family:var(--zh);font-size:12px;font-weight:800;letter-spacing:.03em;color:var(--lime)}
+.atlas-strip-r{font-family:var(--en);font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.45);font-weight:700}
+.atlas-body{padding:24px 22px 26px;position:relative;z-index:1}
+.atlas-emoji{font-size:50px;line-height:1;margin-bottom:12px;filter:drop-shadow(4px 4px 0 rgba(0,0,0,.25))}
+.atlas-title{font-size:27px;font-weight:900;letter-spacing:.01em;line-height:1.15;margin-bottom:6px}
+.atlas-sub{font-family:var(--en);font-size:12px;letter-spacing:.12em;color:var(--lime);font-weight:700;margin-bottom:14px;text-transform:uppercase}
+.atlas-desc{font-size:14px;line-height:1.7;color:rgba(255,255,255,.82);margin-bottom:20px}
+.atlas-cta{display:inline-flex;align-items:center;gap:10px;background:var(--lime);color:var(--black);font-family:var(--zh);font-size:14.5px;font-weight:800;letter-spacing:.02em;padding:13px 22px;border-radius:100px}
+.atlas-arrow{font-family:var(--en);font-size:18px;font-weight:900;transition:transform .22s}
+.atlas-card:hover .atlas-arrow{transform:translateX(4px)}
+
+/* ===== INTRO 小行人插圖（右側，RWD） ===== */
+.intro-hero{display:flex;align-items:center;gap:22px;margin-bottom:4px}
+.intro-hero-text{flex:1;min-width:0}
+.intro-art{width:40%;max-width:300px;height:auto;flex-shrink:0;-webkit-user-drag:none;user-select:none}
+@media (max-width:560px){
+  .intro-hero{flex-direction:column;gap:8px;margin-bottom:8px}
+  .intro-hero-text{width:100%}
+  .intro-art{width:70%;max-width:300px;align-self:center;margin-top:6px}
+}
 </style>
 </head>
 <body class="picking">
@@ -717,9 +811,12 @@ body.picking #lang-pick{display:block!important}
       <span class="brand-dot"></span>
       <span>VZT × TCAN — <span class="zh-only">街道靈魂測驗</span><span class="en-only">Street Soul Quiz</span></span>
     </div>
-    <div class="lang-toggle">
-      <button data-lang="zh">中文</button>
-      <button data-lang="en">EN</button>
+    <div class="tb-right">
+      <button id="soundToggle" class="sound-toggle" onclick="toggleSound()" aria-label="Toggle sound" title="音效 · Sound">🔊</button>
+      <div class="lang-toggle">
+        <button data-lang="zh">中文</button>
+        <button data-lang="en">EN</button>
+      </div>
     </div>
   </div>
 
@@ -770,10 +867,15 @@ body.picking #lang-pick{display:block!important}
     <img class="org-logo intro-logo" src="data:image/png;base64,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CPLGkt6ZA0QC75Rfv6eMSfbN9NydhfKm7/OJvMeQN7rE6eQv5SufNWThkp4f58g7v98x8n6GvOeJ34mtDj3xsaecskakS+FUKG/yVp/Iewh5qzrczdTmBRklr9lqVuYk+1P2t0qSNzVxQN5jyBuxqj1ouHTQxt0FWUPwl6LtwsiIoWJ5E7sqkPcY8sY2iIi81C9TeePEa/2UV5ELPyFTXytN3sSKA/IeRN5oHni1+jQcKH6VKvrinZqBEWmBNXkuTn1CorwVacMnyRvteapvsbF5brfdrid9mmquT31onduRF54aOlGKS5X3d3qnZeQ9lryT21G2O7ieTufm3Fz/r56671Nh8Td7Qb/swZqp8iZVHJD3KPJW02lgfanvQXgmYk0VsmK7B0ym4ues2UDJ8kbXJEbeI8qb1oiZ+ZnL1EcGQ/b0LOVLeJZDUy5vQuhF3sPIW9V1+mjBuNyTT0eTuwLZJatXI0feSBcI8h5T3qyB2uHKxKSJEVua/HbkRUPe+a4K5D2OvO3w76Ys7DbZg2bm1ja5NFm15Bx5L8j7QfLGXuzJ418nx8xERjjOnGMkXMd+K0fe2SwfeY8kb3VuLs3yxLc5TcfQ8MTdRUWQ2JCLLHkrIu8nyVudlrt7mVn8eeH8+qn18Url/Z0Ovch7LHmrxRWHesbdpVsORfopGg15Z9Je5D2YvL/t7n51fkutPs2sqBBZfn1+WZ4mZ1/kTHmnuyqQ92DyXmPvklZbPT/frV5Qa3hEx/Tvlivv5KwK5D2cvFlLGyTNzYkrmLI0RFY/Ra68k18WeY8n78RA82hTbfaDQpthJ24oHBkn36jIG9wEGXmPK29K12lvuZv6sjCaJ53gJTzMOPi7+fJOhF7kPaS81aU+JbXb6rpuUhbWiRR50+Q9pS8qkS/vhL3Ie0x52yO2s4Onh0le//aU9hmRroa0JYDDk4eCXcQL5K2IvB8n7y36nppz1N9rzD0lJAwTaUjZyu3B314ibzT0Iu9W8l4CS9eULvN4efjbH8b7WBanaecGpR6oOdfLz6+tZyUuzBP8nLkVqS+nS3jNNeTdhDq4bFjCZr3z/l7aqT9toesWg+vHlKDT5ZJ+b9tFzQIneErdOOAUXhQt4H74MpwWHf90Rt5tIm8YxYM3bZZw/c/1bZp95N9L2fnFfv1X6TpcVr18yAuAvIC8AMgLgLyAvMgLyAuAvADIC8iLvIC8AMgLyIu8gLwAyAuAvIC8yAvIC4C8gLzIC8gLgLwAyAvIi7yAvADIC4C8gLwAyAuAvIC8yAvIC4C8AMgLyAuAvADIC8iLvIC8AMgLgLyAvADIC4C8gLzIC8gLgLwAyAvIC4C8AMgLyIu8gLwAyAuAvIC8XDTYibz/zAV5YSf853/z+PNPrhkAAAAAAADAEfh/tP13xJjFNpUAAAAASUVORK5CYII=" alt="Vision Zero Taiwan × TCAN" />
     <div class="intro-num">CHAPTER 00 / INTRO</div>
     <div class="intro-tag">VISION ZERO TAIWAN × TCAN</div>
-    <h1 class="intro-title zh-only">你是哪種<br><em>街道靈魂</em>？</h1>
-    <h1 class="intro-title en-only">Which Street<br><em>Soul</em> are you?</h1>
-    <p class="intro-sub zh-only">一場關於你、街道、與這座城市的測驗。</p>
-    <p class="intro-sub-en en-only">A quiz about you, your street, and this city.</p>
+    <div class="intro-hero">
+      <div class="intro-hero-text">
+        <h1 class="intro-title zh-only">你是哪種<br><em>街道靈魂</em>？</h1>
+        <h1 class="intro-title en-only">Which Street<br><em>Soul</em> are you?</h1>
+        <p class="intro-sub zh-only">一場關於你、街道、與這座城市的測驗。</p>
+        <p class="intro-sub-en en-only">A quiz about you, your street, and this city.</p>
+      </div>
+      <img class="intro-art" src="pedestrian.png" alt="街道守護者推著載有小行人的嬰兒車" onerror="this.remove()" />
+    </div>
 
     <p class="intro-desc">
       <span class="zh-only">每個人都跟街道有一段獨特的關係。你怎麼移動、跟誰移動、看見什麼樣的城市，組合成 16 種「街道靈魂」。沒有對錯，只有屬於你的街道靈魂。</span>
@@ -1492,12 +1594,12 @@ const DEMANDS = {
     en_label:'LEGISLATIVE PROTECTION',
     zh_title:'立法保障',
     en_title:'Legislative Protection',
-    zh_subtitle:'制定《雙零交通願景自治條例》',
+    zh_subtitle:'制定《雙齊零交通願景自治條例》',
     en_subtitle:'Enact the Dual-Zero Vision Ordinance',
     desc_zh:'透過地方立法，把「零死亡、零碳排」的願景變成法律承諾 — 不再依賴個別首長意志，而是制度化的長期保證。',
     desc_en:'Turn the Dual-Zero vision into binding local law — so that "Zero Death, Zero Carbon" no longer depends on which mayor is in office, but on institutional commitment.',
     subs:[
-      {num:'1.1', name_zh:'跨局處整合', name_en:'Cross-Bureau', text_zh:'副市長層級以上統籌「交通雙零轉型」業務', text_en:'Deputy-mayor level oversight of dual-zero transformation'},
+      {num:'1.1', name_zh:'跨局處整合', name_en:'Cross-Bureau', text_zh:'副市長層級以上統籌「交通雙齊零轉型」業務', text_en:'Deputy-mayor level oversight of dual-zero transformation'},
       {num:'1.2', name_zh:'預算專款', name_en:'Dedicated Fund', text_zh:'設置「永續交通轉型基金」，撥入至少 50% 交通罰鍰收入及停車收益', text_en:'Sustainable Transit Transformation Fund, with ≥50% of traffic fines and parking revenue earmarked'},
       {num:'1.3', name_zh:'公民參與', name_en:'Civic Voice', text_zh:'法制化邀集專家與民間團體，保障公民及多元族群席次比例', text_en:'Mandate seat quotas for civic groups and underrepresented voices on decision-making boards'}
     ]
@@ -1587,7 +1689,7 @@ const TYPE_DEMAND_WHY = {
     en:'As an Urban Observer, every street problem you see points to systemic gaps, not personal carelessness. Legislative protection turns what you see into what the city must do.'
   },
   'MESY':{
-    zh:'漫遊思考者最受不了的事，是好想法停在腦中、沒有制度承接。雙零自治條例就是把長期思考變成長期承諾的法律容器。',
+    zh:'漫遊思考者最受不了的事，是好想法停在腦中、沒有制度承接。雙齊零自治條例就是把長期思考變成長期承諾的法律容器。',
     en:'The Wandering Thinker\'s worst nightmare: good ideas with no institution to hold them. The Dual-Zero Ordinance is the legal vessel for long-term thinking.'
   },
   'MHSY':{
@@ -1697,6 +1799,7 @@ const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbysDlz0sGRLvz
    FLOW
    ============================ */
 function goDemographics(){
+  SFX.pop();
   showScreen('demographics');
   // Pre-fill nickname if saved
   const nickInput = document.getElementById('demoNickname');
@@ -1733,7 +1836,86 @@ function skipDemographics(){
   startQuiz();
 }
 
+/* ============================
+   SFX · 可愛音效（Web Audio 即時合成，無音檔）
+   音色：三角波基頻 + 八度正弦泛音的「音樂盒」感，快起快落
+   音高走 C 大調五聲音階 → 怎麼點都和諧
+   ============================ */
+const SFX = (()=>{
+  let ctx=null, master=null, muted=false;
+  try { muted = localStorage.getItem('ssq-muted')==='1'; } catch(e){}
+  function ensure(){
+    if(!ctx){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return null;
+      ctx = new AC();
+      master = ctx.createGain();
+      master.gain.value = 0.5;
+      master.connect(ctx.destination);
+    }
+    if(ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+  // 一個柔軟的「音」：基頻 + 八度泛音，快起快落（音樂盒感）
+  function ping(freq, t0, opt){
+    opt = opt || {};
+    const dur = opt.dur||0.5, vol = opt.vol||0.2, type = opt.type||'triangle', glide = opt.glide||0;
+    const o = ctx.createOscillator();
+    o.type = type;
+    o.frequency.setValueAtTime(freq, t0);
+    if(glide) o.frequency.exponentialRampToValueAtTime(freq*glide, t0+dur*0.5);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(vol, t0+0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0+dur);
+    o.connect(g); g.connect(master);
+    o.start(t0); o.stop(t0+dur+0.03);
+    const o2 = ctx.createOscillator();              // 八度泛音 → 亮亮的可愛感
+    o2.type='sine'; o2.frequency.setValueAtTime(freq*2, t0);
+    const g2 = ctx.createGain();
+    g2.gain.setValueAtTime(0.0001, t0);
+    g2.gain.exponentialRampToValueAtTime(vol*0.4, t0+0.008);
+    g2.gain.exponentialRampToValueAtTime(0.0001, t0+dur*0.6);
+    o2.connect(g2); g2.connect(master);
+    o2.start(t0); o2.stop(t0+dur+0.03);
+  }
+  // C 大調五聲音階往上延伸（C5 D5 E5 G5 A5 C6 …）
+  const SCALE = [523.25,587.33,659.25,783.99,880.00,1046.50,1174.66,1318.51,1567.98,1760.00,2093.00,2349.32];
+  return {
+    isMuted(){ return muted; },
+    setMuted(m){ muted=m; try { localStorage.setItem('ssq-muted', m?'1':'0'); } catch(e){} },
+    // 答題「咚」：依題號往上爬 → 12 題串成一段旋律
+    tap(i){ const c=ensure(); if(!c||muted) return; const n=((i||0)%SCALE.length+SCALE.length)%SCALE.length; ping(SCALE[n], c.currentTime, {dur:0.42, vol:0.2}); },
+    // 柔軟「啵」：流程前進
+    pop(){ const c=ensure(); if(!c||muted) return; ping(659.25, c.currentTime, {dur:0.3, vol:0.17, glide:1.12}); },
+    // 選語言：兩音上行小招呼
+    pick(){ const c=ensure(); if(!c||muted) return; ping(659.25, c.currentTime, {dur:0.26, vol:0.17}); ping(987.77, c.currentTime+0.075, {dur:0.34, vol:0.14}); },
+    // 分頁/小切換：短促「叮」
+    blip(){ const c=ensure(); if(!c||muted) return; ping(1046.50, c.currentTime, {dur:0.15, vol:0.12, type:'sine'}); },
+    // 上一題：往下「咘」
+    back(){ const c=ensure(); if(!c||muted) return; ping(587.33, c.currentTime, {dur:0.2, vol:0.13, glide:0.8, type:'sine'}); },
+    // 結果揭曉：可愛上行琶音 + 閃亮 ✨
+    reveal(){ const c=ensure(); if(!c||muted) return; const t=c.currentTime;
+      [523.25,659.25,783.99,1046.50].forEach((f,k)=> ping(f, t+k*0.10, {dur:0.6, vol:0.2}));
+      ping(1567.98, t+0.42, {dur:0.5, vol:0.1, type:'sine'});
+      ping(2093.00, t+0.50, {dur:0.45, vol:0.07, type:'sine'});
+    }
+  };
+})();
+
+function toggleSound(){
+  const willMute = !SFX.isMuted();
+  SFX.setMuted(willMute);
+  const b = document.getElementById('soundToggle');
+  if(b){ b.textContent = willMute ? '🔇' : '🔊'; b.classList.toggle('muted', willMute); }
+  if(!willMute) SFX.blip();   // 取消靜音時給個回饋
+}
+
+// 依儲存偏好初始化靜音鈕圖示
+(function(){ const b=document.getElementById('soundToggle'); if(b){ b.textContent = SFX.isMuted() ? '🔇' : '🔊'; b.classList.toggle('muted', SFX.isMuted()); } })();
+
 function startQuiz(){
+  SFX.pop();
   answers = [];
   currentQ = 0;
   showScreen('quiz');
@@ -1771,6 +1953,7 @@ function renderQuestion(){
 }
 
 function answerQuestion(val){
+  SFX.tap(currentQ);
   answers[currentQ] = val;
   if(currentQ < QUESTIONS.length - 1){
     currentQ++;
@@ -1783,6 +1966,7 @@ function answerQuestion(val){
 
 function prevQuestion(){
   if(currentQ > 0){
+    SFX.back();
     currentQ--;
     renderQuestion();
     window.scrollTo({top:0,behavior:'smooth'});
@@ -1911,6 +2095,237 @@ function toggleOtherDemands(btn){
   }
 }
 
+/* ============================
+   STREET BONDS · 街道緣分配對
+   散步好夥伴 = 同步調、互補社交（翻轉「群/獨」軸）→ 互為夥伴
+   街道幸運兒 = 完全相反的靈魂（翻轉四軸）→ 互為幸運兒
+   ============================ */
+const AXIS_OPP = {M:'R',R:'M',E:'H',H:'E',C:'S',S:'C',Y:'I',I:'Y'};
+function flipAxes(code,idxs){
+  return code.split('').map((ch,i)=> idxs.includes(i) ? AXIS_OPP[ch] : ch).join('');
+}
+const BOND_PACE   = {M:{zh:'慢步調',en:'slow-paced'}, R:{zh:'快節奏',en:'fast-moving'}};
+const BOND_SOCIAL = {C:{zh:'愛呼朋引伴',en:'a people person'}, S:{zh:'愛獨自漫行',en:'a solo wanderer'}};
+
+function buddyReason(code,buddyCode){
+  const pace=BOND_PACE[code[0]], you=BOND_SOCIAL[code[2]], them=BOND_SOCIAL[buddyCode[2]], t=TYPES[buddyCode];
+  return {
+    zh:`和你一樣${pace.zh}，看街道的眼光也跟你同頻。唯一的差別 — 你${you.zh}、${t.zh_name}${them.zh}；一起散步時，一個開話題、一個靜靜走，剛剛好。`,
+    en:`A fellow ${pace.en} soul who reads the street on your wavelength. The one difference — you're ${you.en}, while ${t.en_name} is ${them.en}. On a walk, one starts the talk, the other lets it breathe. Just right.`
+  };
+}
+function luckyReason(code,luckyCode){
+  const you=BOND_PACE[code[0]], them=BOND_PACE[luckyCode[0]], t=TYPES[luckyCode];
+  return {
+    zh:`${t.zh_name}幾乎是你的相反 — 你${you.zh}、${t.zh_name}${them.zh}，用完全不同的方式穿過同一座城。正因彼此相反，遇見對方總像推開一扇新的門 — 帶來意想不到的靈感與好運。`,
+    en:`${t.en_name} is almost your mirror opposite — you're ${you.en}, they're ${them.en}. You move through the same city in completely different ways. That's exactly why crossing paths feels like a door swinging open — unexpected inspiration, unexpected luck.`
+  };
+}
+function renderBondsSection(code){
+  const buddyCode=flipAxes(code,[2]);
+  const luckyCode=flipAxes(code,[0,1,2,3]);
+  const buddy=TYPES[buddyCode], lucky=TYPES[luckyCode];
+  const bR=buddyReason(code,buddyCode), lR=luckyReason(code,luckyCode);
+  return `
+      <div class="bonds">
+        <div class="s-label">STREET BONDS · 你的街道緣分</div>
+        <h3 class="bonds-title zh-only">在這座城市裡，誰是你的漫步好朋友？<span class="s-title-en">Who's your strolling buddy?</span></h3>
+        <h3 class="bonds-title en-only">Who's your strolling buddy?<span class="s-title-en">在這座城市裡，誰是你的漫步好朋友？</span></h3>
+        <div class="bond-grid">
+          <div class="bond-card bond-buddy">
+            <div class="bond-strip">
+              <span class="bond-strip-label zh-only">🚶 最佳散步好夥伴</span>
+              <span class="bond-strip-label en-only">🚶 Best Walking Buddy</span>
+              <span class="bond-strip-en">BUDDY</span>
+            </div>
+            <div class="bond-body">
+              <div class="bond-emoji">${buddy.emoji}</div>
+              <div class="bond-code">TYPE · ${buddyCode}</div>
+              <div class="bond-name zh-only">${buddy.zh_name}</div>
+              <div class="bond-name en-only">${buddy.en_name}</div>
+              <div class="bond-name-en zh-only">${buddy.en_name}</div>
+              <div class="bond-name-en en-only">${buddy.zh_name}</div>
+              <div class="bond-why zh-only">${bR.zh}</div>
+              <div class="bond-why en-only">${bR.en}</div>
+            </div>
+          </div>
+          <div class="bond-card bond-lucky">
+            <div class="bond-strip">
+              <span class="bond-strip-label zh-only">🍀 街道幸運兒</span>
+              <span class="bond-strip-label en-only">🍀 Street Lucky One</span>
+              <span class="bond-strip-en">LUCKY</span>
+            </div>
+            <div class="bond-body">
+              <div class="bond-emoji">${lucky.emoji}</div>
+              <div class="bond-code">TYPE · ${luckyCode}</div>
+              <div class="bond-name zh-only">${lucky.zh_name}</div>
+              <div class="bond-name en-only">${lucky.en_name}</div>
+              <div class="bond-name-en zh-only">${lucky.en_name}</div>
+              <div class="bond-name-en en-only">${lucky.zh_name}</div>
+              <div class="bond-why zh-only">${lR.zh}</div>
+              <div class="bond-why en-only">${lR.en}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+`;
+}
+
+/* ============================
+   FURTHER READING · 延伸閱讀分頁
+   把「核心讀本 / 另一種可能 / 政策論述」三段收進一個 tab 元件
+   ============================ */
+function switchReadingTab(btn, idx){
+  SFX.blip();
+  const wrap = btn.closest('.reading');
+  wrap.querySelectorAll('.reading-tab').forEach((t,i)=>t.classList.toggle('active', i===idx));
+  wrap.querySelectorAll('.reading-panel').forEach((p,i)=>p.classList.toggle('active', i===idx));
+}
+function renderReadingTabs(){
+  return `
+      <div class="reading">
+        <div class="reading-head">
+          <div class="s-label">FURTHER READING · 延伸閱讀</div>
+          <h3 class="reading-title zh-only">想再走深一點？<span class="s-title-en">Go deeper</span></h3>
+          <h3 class="reading-title en-only">Go deeper<span class="s-title-en">想再走深一點？</span></h3>
+        </div>
+        <div class="reading-tabs" role="tablist">
+          <button type="button" class="reading-tab active" onclick="switchReadingTab(this,0)"><span class="zh-only">核心讀本</span><span class="en-only">Core Reading</span></button>
+          <button type="button" class="reading-tab" onclick="switchReadingTab(this,1)"><span class="zh-only">另一種可能</span><span class="en-only">Another Way</span></button>
+          <button type="button" class="reading-tab" onclick="switchReadingTab(this,2)"><span class="zh-only">政策論述</span><span class="en-only">Policy</span></button>
+        </div>
+        <div class="reading-panels">
+
+          <div class="reading-panel active">
+            <a class="further-card" href="https://futurecity.cw.com.tw/article/3729" target="_blank" rel="noopener">
+              <div class="f-strip">
+                <span class="f-strip-l zh-only">核心讀本 · 給每個做完測驗的人</span>
+                <span class="f-strip-l en-only">CORE READING · For everyone who took this quiz</span>
+                <span class="f-strip-r">FUTURECITY · CW</span>
+              </div>
+              <div class="f-body">
+                <div class="f-title zh-only">台灣為何誤解「15 分鐘城市」？從巴黎看交通轉型與居住公平如何並存</div>
+                <div class="f-title en-only">Why Taiwan Misreads the "15-Minute City": Transport & Housing Justice Together</div>
+                <div class="f-subtitle zh-only">這篇橫跨「交通正義 × 居住正義」的論述，剛好就是雙齊零訴求背後的世界觀</div>
+                <div class="f-subtitle en-only">A piece bridging transport and housing justice — the worldview behind Dual-Zero</div>
+
+                <div class="f-lead zh-only">「15 分鐘城市」不是炒房工具，是空間正義的實踐。當 30% 有車族佔用 50% 公共空間，誰才是真正的受害者？</div>
+                <div class="f-lead en-only">The "15-minute city" isn't gentrification — it's spatial justice. When 30% of car owners occupy 50% of public space, who really pays?</div>
+
+                <div class="f-quote zh-only">
+                  巴黎市中心 <span class="stat">30%</span> 有車族卻佔用 <span class="stat">50%</span> 公共空間，真正受害者是 <span class="stat">70%</span> 無車市民 — 婦女、兒童、長者承受道路危險與空氣污染。交通限制區每日減少 <span class="stat">35 萬</span> 車次，把街道還給人。
+                </div>
+                <div class="f-quote en-only">
+                  In central Paris, <span class="stat">30%</span> of residents own cars but occupy <span class="stat">50%</span> of public space. The real victims are the <span class="stat">70%</span> car-free — women, children, elders bearing road danger and pollution. Traffic-limited zones cut <span class="stat">350,000</span> daily trips, returning streets to people.
+                </div>
+
+                <div class="f-source">
+                  <span class="f-source-l">天下未來城市 · 吳昀慶</span>
+                  <span class="f-cta zh-only">閱讀全文</span>
+                  <span class="f-cta en-only">Read full article</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="reading-panel">
+            <a class="south-card" href="https://neighborrider.com/6257/project/%E9%97%9C%E6%96%BC%E8%87%AA%E8%A1%8C%E8%BB%8A%EF%BC%8C%E6%88%91%E5%80%91%E8%83%BD%E5%BE%9E%E6%B3%A2%E5%93%A5%E5%A4%A7%E5%AD%B8%E4%BA%9B%E4%BB%80%E9%BA%BC%EF%BC%9F/" target="_blank" rel="noopener">
+              <div class="sc-strip">
+                <span class="sc-strip-l zh-only">另一種可能 · 全球南方的城市轉型</span>
+                <span class="sc-strip-l en-only">ANOTHER WAY · Global South Voices</span>
+                <span class="sc-strip-r">BOGOTÁ · COLOMBIA</span>
+              </div>
+              <div class="sc-body">
+                <span class="sc-tag zh-only">不只是歐美 · 拉丁美洲的解答</span>
+                <span class="sc-tag en-only">Beyond the West · Latin America's Answer</span>
+                <div class="sc-title zh-only">關於自行車，我們能從波哥大學些什麼？</div>
+                <div class="sc-title en-only">What Can We Learn from Bogotá About Cycling?</div>
+                <div class="sc-lead zh-only">當我們講「城市改革」，多半想到紐約、倫敦、巴黎。但遠在南美的波哥大，從一個被毒品與暴力陰影籠罩的城市，靠 Ciclovía 制度與一位騎腳踏車上班的市長，走出了一條全球南方自己的路。</div>
+                <div class="sc-lead en-only">When we talk "urban reform" we think New York, London, Paris. But in South America, Bogotá emerged from a city overshadowed by drugs and violence — through the Ciclovía program and a mayor who biked to work — onto its own Global South path.</div>
+
+                <div class="sc-quote">
+                  <div class="sc-quote-text zh-only">城市要繁榮，最重要的是要讓公民感到幸福；而幸福並非源自於財富，而是「<strong>生活品質</strong>」。</div>
+                  <div class="sc-quote-text en-only">A prosperous city is one where citizens feel happy. And happiness doesn't come from wealth — it comes from <strong>quality of life</strong>.</div>
+                  <div class="sc-quote-attr">— ENRIQUE PEÑALOSA</div>
+                  <div class="sc-quote-attr-zh zh-only">前波哥大市長 · 取消公路擴建，改建數百公里自行車道</div>
+                  <div class="sc-quote-attr-zh en-only">Former Mayor of Bogotá · Cancelled highway expansion, built hundreds of km of bike lanes</div>
+                </div>
+
+                <div class="sc-foot">
+                  <span class="sc-source">巷口車 Neighbor Rider</span>
+                  <span class="sc-cta zh-only">閱讀全文</span>
+                  <span class="sc-cta en-only">Read full article</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="reading-panel">
+            <section class="tcan-section">
+              <div class="tcan-header">
+                <span class="tcan-header-l zh-only">TCAN 政策論述 · 來自共同執行單位的深度研究</span>
+                <span class="tcan-header-l en-only">TCAN POLICY · From the Co-Executing Org</span>
+                <span class="tcan-header-r zh-only">台灣氣候行動網絡</span>
+                <span class="tcan-header-r en-only">Taiwan Climate Action Network</span>
+              </div>
+              <div class="tcan-frame">
+
+                <a class="tcan-featured" href="https://tcan2050.org.tw/2025072306-2/" target="_blank" rel="noopener">
+                  <div class="tf-strip">
+                    <span class="tf-strip-l zh-only">TCAN 研究中心總監觀點</span>
+                    <span class="tf-strip-l en-only">TCAN RESEARCH DIRECTOR</span>
+                    <span class="tf-strip-r">FEATURED ARTICLE</span>
+                  </div>
+                  <div class="tf-body">
+                    <div class="tf-author">
+                      <div class="tf-author-avatar">趙</div>
+                      <div class="tf-author-meta">
+                        <div class="tf-author-name zh-only">趙家緯 · 柯昀伶</div>
+                        <div class="tf-author-name en-only">Chao Chia-Wei · Ke Yun-Ling</div>
+                        <div class="tf-author-role">TCAN 研究中心總監 · 專案研究員</div>
+                      </div>
+                    </div>
+                    <div class="tf-title zh-only">擺脫傳統能源安全窠臼，才能增進台灣韌性</div>
+                    <div class="tf-title en-only">Beyond Conventional Energy Security: Building Taiwan's Resilience</div>
+                    <div class="tf-snippet zh-only">「雙齊零」中的「淨零」不只是交通的事 — 能源轉型同樣是核心戰場。台灣每年化石燃料進口已從 97.67% 降至 95.16%，再生能源是新能源安全戰略的關鍵。當 74% 全球人口都住在能源進口國，我們該如何擺脫對化石燃料的依賴？</div>
+                    <div class="tf-snippet en-only">Net-Zero isn't just about transport — energy transition is the other front. Taiwan's fossil fuel dependency has dropped from 97.67% to 95.16%, with renewables as the new energy security strategy.</div>
+                    <div class="tf-foot">
+                      <span class="tf-date">2025 · 07 · 11</span>
+                      <span class="tf-cta zh-only">閱讀全文</span>
+                      <span class="tf-cta en-only">Read full article</span>
+                    </div>
+                  </div>
+                </a>
+
+                <div class="tcan-minis">
+                  <a class="tcan-mini" href="https://tcan2050.org.tw/%E5%B7%B4%E9%BB%8E%E9%81%8B%E8%BC%B8%E6%B7%A8%E9%9B%B6%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%B0%E7%95%A5%EF%BC%9A%E5%BB%BA%E7%AB%8B%E5%B0%88%E7%94%A8%E6%AD%A5%E8%A1%8C%E5%8D%80%E8%88%87%E8%85%B3%E8%B8%8F/" target="_blank" rel="noopener">
+                    <div class="tm-tag">巴黎 · 雙齊零案例</div>
+                    <div class="tm-title zh-only">巴黎運輸淨零的核心戰略：建立專用步行區與腳踏車專用道</div>
+                    <div class="tm-title en-only">Paris Transport Net-Zero: Pedestrian & Bike-Only Zones</div>
+                    <div class="tm-meta">
+                      <span>利祐任 · 2024.09</span>
+                      <span class="tm-cta">閱讀</span>
+                    </div>
+                  </a>
+                  <a class="tcan-mini" href="https://tcan2050.org.tw/2025102901-2/" target="_blank" rel="noopener">
+                    <div class="tm-tag">行人地獄 · A-S-I 治理</div>
+                    <div class="tm-title zh-only">1101 氣候遊行主張什麼？加速「零死亡」與「淨零」的永續運輸轉型</div>
+                    <div class="tm-title en-only">1101 Climate March: Accelerating Zero-Death + Net-Zero Transport</div>
+                    <div class="tm-meta">
+                      <span>利祐任 · 2025.10</span>
+                      <span class="tm-cta">閱讀</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </div>
+`;
+}
+
 function showResult(){
   showScreen('loading');
   setTimeout(()=>{
@@ -1967,6 +2382,58 @@ function showResult(){
         <div class="m-text-en en-only">${t.quote_zh}</div>
       </div>
 
+      <div class="section">
+        <div class="s-label">STRENGTHS · 你的天賦</div>
+        <h3 class="s-title zh-only">你最閃閃發光的時刻 <span class="s-title-en">Where you shine</span></h3>
+        <h3 class="s-title en-only">Where you shine <span class="s-title-en">你最閃閃發光的時刻</span></h3>
+        <ul class="s-list">
+          ${t.strengths_zh.map((s,i)=>`<li><div><span class="zh-only">${s}</span><span class="en-only">${t.strengths_en[i]}</span><span class="en zh-only">${t.strengths_en[i]}</span><span class="en en-only">${s}</span></div></li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="s-label">GROWTH · 成長空間</div>
+        <h3 class="s-title zh-only">給你的小提醒 <span class="s-title-en">A gentle nudge</span></h3>
+        <h3 class="s-title en-only">A gentle nudge <span class="s-title-en">給你的小提醒</span></h3>
+        <ul class="s-list">
+          <li><div><span class="zh-only">${t.growth_zh}</span><span class="en-only">${t.growth_en}</span><span class="en zh-only">${t.growth_en}</span><span class="en en-only">${t.growth_zh}</span></div></li>
+        </ul>
+      </div>
+
+      <div class="action-card">
+        <div class="s-label">VISION ZERO ACTION · 你能做的一件事</div>
+        <h3 class="s-title zh-only">你的「雙齊零行動」起點 <span class="s-title-en">Where to begin</span></h3>
+        <h3 class="s-title en-only">Where to begin <span class="s-title-en">你的「雙齊零行動」起點</span></h3>
+        <div class="a-text zh-only">${t.action_zh}</div>
+        <div class="a-text en-only">${t.action_en}</div>
+        <div class="a-en zh-only">${t.action_en}</div>
+        <div class="a-en en-only">${t.action_zh}</div>
+      </div>
+
+      <a class="match-card" href="${t.article_url}" target="_blank" rel="noopener">
+        <div class="m-top">
+          <div class="m-emoji">${t.match_emoji}</div>
+          <div class="m-body">
+            <div class="m-label">YOUR DREAM CITY · 與你最契合的城市</div>
+            <div class="m-name zh-only">${t.match_zh}</div>
+            <div class="m-name en-only">${t.match_en}</div>
+            <div class="m-why zh-only">${t.match_why_zh}</div>
+            <div class="m-why en-only">${t.match_why_en}</div>
+          </div>
+        </div>
+        <div class="m-article">
+          <div class="m-art-label">
+            <span class="m-art-source">天下未來城市</span>
+            <span class="m-art-cta zh-only">閱讀全文</span>
+            <span class="m-art-cta en-only">Read article</span>
+          </div>
+          <div class="m-art-title">${t.article_title}</div>
+          <div class="m-art-snippet">${t.article_snippet}</div>
+        </div>
+      </a>
+
+      ${renderBondsSection(code)}
+
       <div class="share-section">
         <div class="s-label">SHARE · 分享你的街道靈魂</div>
         <h3 class="s-title zh-only">把這個結果分享出去</h3>
@@ -2009,178 +2476,31 @@ function showResult(){
         </div>
       </div>
 
-      <div class="section">
-        <div class="s-label">STRENGTHS · 你的天賦</div>
-        <h3 class="s-title zh-only">你最閃閃發光的時刻 <span class="s-title-en">Where you shine</span></h3>
-        <h3 class="s-title en-only">Where you shine <span class="s-title-en">你最閃閃發光的時刻</span></h3>
-        <ul class="s-list">
-          ${t.strengths_zh.map((s,i)=>`<li><div><span class="zh-only">${s}</span><span class="en-only">${t.strengths_en[i]}</span><span class="en zh-only">${t.strengths_en[i]}</span><span class="en en-only">${s}</span></div></li>`).join('')}
-        </ul>
-      </div>
-
-      <div class="section">
-        <div class="s-label">GROWTH · 成長空間</div>
-        <h3 class="s-title zh-only">給你的小提醒 <span class="s-title-en">A gentle nudge</span></h3>
-        <h3 class="s-title en-only">A gentle nudge <span class="s-title-en">給你的小提醒</span></h3>
-        <ul class="s-list">
-          <li><div><span class="zh-only">${t.growth_zh}</span><span class="en-only">${t.growth_en}</span><span class="en zh-only">${t.growth_en}</span><span class="en en-only">${t.growth_zh}</span></div></li>
-        </ul>
-      </div>
-
-      <div class="action-card">
-        <div class="s-label">VISION ZERO ACTION · 你能做的一件事</div>
-        <h3 class="s-title zh-only">你的「雙零行動」起點 <span class="s-title-en">Where to begin</span></h3>
-        <h3 class="s-title en-only">Where to begin <span class="s-title-en">你的「雙零行動」起點</span></h3>
-        <div class="a-text zh-only">${t.action_zh}</div>
-        <div class="a-text en-only">${t.action_en}</div>
-        <div class="a-en zh-only">${t.action_en}</div>
-        <div class="a-en en-only">${t.action_zh}</div>
-      </div>
+      <a class="atlas-card" href="https://visionzerotaiwan.github.io/taiwan-mobility-atlas/" target="_blank" rel="noopener" onclick="SFX.pop()">
+        <div class="atlas-strip">
+          <span class="atlas-strip-l zh-only">本次倡議 · 最重要的成果</span>
+          <span class="atlas-strip-l en-only">OUR FLAGSHIP · The campaign's keystone</span>
+          <span class="atlas-strip-r">VZT · ATLAS</span>
+        </div>
+        <div class="atlas-body">
+          <div class="atlas-emoji">🗺️</div>
+          <div class="atlas-title zh-only">台灣交通安全地圖</div>
+          <div class="atlas-title en-only">Taiwan Mobility Atlas</div>
+          <div class="atlas-sub zh-only">全國面量圖 · 十年回顧 2016–2025</div>
+          <div class="atlas-sub en-only">National A1 Choropleth · 2016–2025</div>
+          <div class="atlas-desc zh-only">364 個鄉鎮區、橫跨十年的 A1 交通事故死亡資料，化成一張可互動的地圖 — 看見台灣街道安全的真實樣貌，也是「雙齊零願景」最有力的證據。</div>
+          <div class="atlas-desc en-only">Ten years of A1 traffic-death data across all 364 districts, turned into one interactive map — the real state of Taiwan's streets, and the hardest evidence behind the Dual-Zero vision.</div>
+          <span class="atlas-cta">
+            <span class="zh-only">開啟互動地圖</span>
+            <span class="en-only">Explore the interactive map</span>
+            <span class="atlas-arrow">→</span>
+          </span>
+        </div>
+      </a>
 
       ${renderDemandSection(code)}
 
-      <a class="match-card" href="${t.article_url}" target="_blank" rel="noopener">
-        <div class="m-top">
-          <div class="m-emoji">${t.match_emoji}</div>
-          <div class="m-body">
-            <div class="m-label">YOUR DREAM CITY · 與你最契合的城市</div>
-            <div class="m-name zh-only">${t.match_zh}</div>
-            <div class="m-name en-only">${t.match_en}</div>
-            <div class="m-why zh-only">${t.match_why_zh}</div>
-            <div class="m-why en-only">${t.match_why_en}</div>
-          </div>
-        </div>
-        <div class="m-article">
-          <div class="m-art-label">
-            <span class="m-art-source">天下未來城市</span>
-            <span class="m-art-cta zh-only">閱讀全文</span>
-            <span class="m-art-cta en-only">Read article</span>
-          </div>
-          <div class="m-art-title">${t.article_title}</div>
-          <div class="m-art-snippet">${t.article_snippet}</div>
-        </div>
-      </a>
-
-      <a class="further-card" href="https://futurecity.cw.com.tw/article/3729" target="_blank" rel="noopener">
-        <div class="f-strip">
-          <span class="f-strip-l zh-only">核心讀本 · 給每個做完測驗的人</span>
-          <span class="f-strip-l en-only">CORE READING · For everyone who took this quiz</span>
-          <span class="f-strip-r">FUTURECITY · CW</span>
-        </div>
-        <div class="f-body">
-          <div class="f-title zh-only">台灣為何誤解「15 分鐘城市」？從巴黎看交通轉型與居住公平如何並存</div>
-          <div class="f-title en-only">Why Taiwan Misreads the "15-Minute City": Transport & Housing Justice Together</div>
-          <div class="f-subtitle zh-only">這篇橫跨「交通正義 × 居住正義」的論述，剛好就是雙零訴求背後的世界觀</div>
-          <div class="f-subtitle en-only">A piece bridging transport and housing justice — the worldview behind Dual-Zero</div>
-
-          <div class="f-lead zh-only">「15 分鐘城市」不是炒房工具，是空間正義的實踐。當 30% 有車族佔用 50% 公共空間，誰才是真正的受害者？</div>
-          <div class="f-lead en-only">The "15-minute city" isn't gentrification — it's spatial justice. When 30% of car owners occupy 50% of public space, who really pays?</div>
-
-          <div class="f-quote zh-only">
-            巴黎市中心 <span class="stat">30%</span> 有車族卻佔用 <span class="stat">50%</span> 公共空間，真正受害者是 <span class="stat">70%</span> 無車市民 — 婦女、兒童、長者承受道路危險與空氣污染。交通限制區每日減少 <span class="stat">35 萬</span> 車次，把街道還給人。
-          </div>
-          <div class="f-quote en-only">
-            In central Paris, <span class="stat">30%</span> of residents own cars but occupy <span class="stat">50%</span> of public space. The real victims are the <span class="stat">70%</span> car-free — women, children, elders bearing road danger and pollution. Traffic-limited zones cut <span class="stat">350,000</span> daily trips, returning streets to people.
-          </div>
-
-          <div class="f-source">
-            <span class="f-source-l">天下未來城市 · 吳昀慶</span>
-            <span class="f-cta zh-only">閱讀全文</span>
-            <span class="f-cta en-only">Read full article</span>
-          </div>
-        </div>
-      </a>
-
-      <a class="south-card" href="https://neighborrider.com/6257/project/%E9%97%9C%E6%96%BC%E8%87%AA%E8%A1%8C%E8%BB%8A%EF%BC%8C%E6%88%91%E5%80%91%E8%83%BD%E5%BE%9E%E6%B3%A2%E5%93%A5%E5%A4%A7%E5%AD%B8%E4%BA%9B%E4%BB%80%E9%BA%BC%EF%BC%9F/" target="_blank" rel="noopener">
-        <div class="sc-strip">
-          <span class="sc-strip-l zh-only">另一種可能 · 全球南方的城市轉型</span>
-          <span class="sc-strip-l en-only">ANOTHER WAY · Global South Voices</span>
-          <span class="sc-strip-r">BOGOTÁ · COLOMBIA</span>
-        </div>
-        <div class="sc-body">
-          <span class="sc-tag zh-only">不只是歐美 · 拉丁美洲的解答</span>
-          <span class="sc-tag en-only">Beyond the West · Latin America's Answer</span>
-          <div class="sc-title zh-only">關於自行車，我們能從波哥大學些什麼？</div>
-          <div class="sc-title en-only">What Can We Learn from Bogotá About Cycling?</div>
-          <div class="sc-lead zh-only">當我們講「城市改革」，多半想到紐約、倫敦、巴黎。但遠在南美的波哥大，從一個被毒品與暴力陰影籠罩的城市，靠 Ciclovía 制度與一位騎腳踏車上班的市長，走出了一條全球南方自己的路。</div>
-          <div class="sc-lead en-only">When we talk "urban reform" we think New York, London, Paris. But in South America, Bogotá emerged from a city overshadowed by drugs and violence — through the Ciclovía program and a mayor who biked to work — onto its own Global South path.</div>
-
-          <div class="sc-quote">
-            <div class="sc-quote-text zh-only">城市要繁榮，最重要的是要讓公民感到幸福；而幸福並非源自於財富，而是「<strong>生活品質</strong>」。</div>
-            <div class="sc-quote-text en-only">A prosperous city is one where citizens feel happy. And happiness doesn't come from wealth — it comes from <strong>quality of life</strong>.</div>
-            <div class="sc-quote-attr">— ENRIQUE PEÑALOSA</div>
-            <div class="sc-quote-attr-zh zh-only">前波哥大市長 · 取消公路擴建，改建數百公里自行車道</div>
-            <div class="sc-quote-attr-zh en-only">Former Mayor of Bogotá · Cancelled highway expansion, built hundreds of km of bike lanes</div>
-          </div>
-
-          <div class="sc-foot">
-            <span class="sc-source">巷口車 Neighbor Rider</span>
-            <span class="sc-cta zh-only">閱讀全文</span>
-            <span class="sc-cta en-only">Read full article</span>
-          </div>
-        </div>
-      </a>
-
-
-      <section class="tcan-section">
-        <div class="tcan-header">
-          <span class="tcan-header-l zh-only">TCAN 政策論述 · 來自共同執行單位的深度研究</span>
-          <span class="tcan-header-l en-only">TCAN POLICY · From the Co-Executing Org</span>
-          <span class="tcan-header-r zh-only">台灣氣候行動網絡</span>
-          <span class="tcan-header-r en-only">Taiwan Climate Action Network</span>
-        </div>
-        <div class="tcan-frame">
-
-          <a class="tcan-featured" href="https://tcan2050.org.tw/2025072306-2/" target="_blank" rel="noopener">
-            <div class="tf-strip">
-              <span class="tf-strip-l zh-only">TCAN 研究中心總監觀點</span>
-              <span class="tf-strip-l en-only">TCAN RESEARCH DIRECTOR</span>
-              <span class="tf-strip-r">FEATURED ARTICLE</span>
-            </div>
-            <div class="tf-body">
-              <div class="tf-author">
-                <div class="tf-author-avatar">趙</div>
-                <div class="tf-author-meta">
-                  <div class="tf-author-name zh-only">趙家緯 · 柯昀伶</div>
-                  <div class="tf-author-name en-only">Chao Chia-Wei · Ke Yun-Ling</div>
-                  <div class="tf-author-role">TCAN 研究中心總監 · 專案研究員</div>
-                </div>
-              </div>
-              <div class="tf-title zh-only">擺脫傳統能源安全窠臼，才能增進台灣韌性</div>
-              <div class="tf-title en-only">Beyond Conventional Energy Security: Building Taiwan's Resilience</div>
-              <div class="tf-snippet zh-only">「雙零」中的「淨零」不只是交通的事 — 能源轉型同樣是核心戰場。台灣每年化石燃料進口已從 97.67% 降至 95.16%，再生能源是新能源安全戰略的關鍵。當 74% 全球人口都住在能源進口國，我們該如何擺脫對化石燃料的依賴？</div>
-              <div class="tf-snippet en-only">Net-Zero isn't just about transport — energy transition is the other front. Taiwan's fossil fuel dependency has dropped from 97.67% to 95.16%, with renewables as the new energy security strategy.</div>
-              <div class="tf-foot">
-                <span class="tf-date">2025 · 07 · 11</span>
-                <span class="tf-cta zh-only">閱讀全文</span>
-                <span class="tf-cta en-only">Read full article</span>
-              </div>
-            </div>
-          </a>
-
-          <div class="tcan-minis">
-            <a class="tcan-mini" href="https://tcan2050.org.tw/%E5%B7%B4%E9%BB%8E%E9%81%8B%E8%BC%B8%E6%B7%A8%E9%9B%B6%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%B0%E7%95%A5%EF%BC%9A%E5%BB%BA%E7%AB%8B%E5%B0%88%E7%94%A8%E6%AD%A5%E8%A1%8C%E5%8D%80%E8%88%87%E8%85%B3%E8%B8%8F/" target="_blank" rel="noopener">
-              <div class="tm-tag">巴黎 · 雙零案例</div>
-              <div class="tm-title zh-only">巴黎運輸淨零的核心戰略：建立專用步行區與腳踏車專用道</div>
-              <div class="tm-title en-only">Paris Transport Net-Zero: Pedestrian & Bike-Only Zones</div>
-              <div class="tm-meta">
-                <span>利祐任 · 2024.09</span>
-                <span class="tm-cta">閱讀</span>
-              </div>
-            </a>
-            <a class="tcan-mini" href="https://tcan2050.org.tw/2025102901-2/" target="_blank" rel="noopener">
-              <div class="tm-tag">行人地獄 · A-S-I 治理</div>
-              <div class="tm-title zh-only">1101 氣候遊行主張什麼？加速「零死亡」與「淨零」的永續運輸轉型</div>
-              <div class="tm-title en-only">1101 Climate March: Accelerating Zero-Death + Net-Zero Transport</div>
-              <div class="tm-meta">
-                <span>利祐任 · 2025.10</span>
-                <span class="tm-cta">閱讀</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
+      ${renderReadingTabs()}
 
       <div class="follow-card">
         <span class="fc-label zh-only">FOLLOW US · 跟著我們繼續走下去</span>
@@ -2252,6 +2572,7 @@ function showResult(){
       </div>
     `;
     showScreen('result');
+    SFX.reveal();
     window.scrollTo({top:0,behavior:'smooth'});
   }, 1300);
 }
@@ -2327,6 +2648,96 @@ const TRAIT_PILLS = {
   'Y':{emoji:'🌐', zh:'看系統', en:'Systems view'},
   'I':{emoji:'💭', zh:'重個人', en:'Self-focused'}
 };
+
+// Render whatever is currently in the off-screen #shareCard to {dataUrl, blob, file, fileName}
+async function canvasFromShareCard(card, fileName){
+  const canvas = await html2canvas(card, {
+    width: 1080,
+    height: 1350,
+    scale: 2,                  // higher res for retina
+    backgroundColor: '#FBF7EC',
+    logging: false,
+    useCORS: true,
+    allowTaint: true,
+    foreignObjectRendering: false
+  });
+  const dataUrl = canvas.toDataURL('image/png');
+  const blob = await new Promise(resolve=>canvas.toBlob(resolve, 'image/png'));
+  const file = blob ? new File([blob], fileName, {type:'image/png'}) : null;
+  return {dataUrl, blob, file, fileName};
+}
+
+// Card 2 — 「在這座城市裡，誰是你的漫步好朋友？」散步好夥伴 + 街道幸運兒 + 雙齊零行動起點
+function buildBondsCard(code, t, isEn){
+  const buddy = TYPES[flipAxes(code,[2])];
+  const lucky = TYPES[flipAxes(code,[0,1,2,3])];
+  return `
+    <div class="sc-top">
+      <div class="sc-brand"><span class="sc-brand-dot"></span>VZT × TCAN</div>
+      <div class="sc-you-chip">
+        <span class="sc-you-emoji">${t.emoji}</span>
+        <span class="sc-you-meta">
+          <span class="sc-you-lbl">${isEn ? 'YOU' : '你'}</span>
+          <span class="sc-you-name">${isEn ? t.en_name : t.zh_name}</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="sc-body sc2-body">
+      <div class="sc2-kicker">${isEn ? 'YOUR STREET BONDS' : '你的街道緣分'}</div>
+      <div class="sc2-title">${isEn ? 'Who\'s your<br>strolling buddy?' : '在這座城市裡，<br>誰是你的漫步好朋友？'}</div>
+
+      <div class="sc-bottom-info sc2-bonds">
+        <div class="sc-info-cell">
+          <div class="sc-info-cell-label">
+            <span class="sc-info-cell-zh">🚶 ${isEn ? 'Walking Buddy' : '最佳散步好夥伴'}</span>
+            <span class="sc-info-cell-en">${isEn ? '最佳散步好夥伴' : 'WALKING BUDDY'}</span>
+          </div>
+          <div class="sc-info-cell-marker">${buddy.emoji}</div>
+          <div class="sc-info-cell-main">${isEn ? buddy.en_name : buddy.zh_name}</div>
+          <div class="sc-info-cell-sub">${isEn ? buddy.zh_name : buddy.en_name}</div>
+        </div>
+        <div class="sc-info-cell">
+          <div class="sc-info-cell-label">
+            <span class="sc-info-cell-zh">🍀 ${isEn ? 'Lucky One' : '街道幸運兒'}</span>
+            <span class="sc-info-cell-en">${isEn ? '街道幸運兒' : 'LUCKY ONE'}</span>
+          </div>
+          <div class="sc-info-cell-marker">${lucky.emoji}</div>
+          <div class="sc-info-cell-main">${isEn ? lucky.en_name : lucky.zh_name}</div>
+          <div class="sc-info-cell-sub">${isEn ? lucky.zh_name : lucky.en_name}</div>
+        </div>
+      </div>
+
+      <div class="sc2-strengths">
+        <div class="sc-info-divider">
+          <span class="sc-info-divider-zh">${isEn ? 'WHERE YOU SHINE' : '你最閃閃發光的時刻'}</span>
+          <span class="sc-info-divider-label">${isEn ? '你最閃閃發光的時刻' : 'WHERE YOU SHINE'}</span>
+        </div>
+        <div class="sc2-str-list">
+          ${(isEn ? t.strengths_en : t.strengths_zh).map(s=>`<div class="sc2-str-item"><span class="sc2-str-mark">✦</span><span>${s}</span></div>`).join('')}
+        </div>
+      </div>
+
+      <div class="sc2-action">
+        <div class="sc2-action-label">
+          <span class="sc2-action-zh">${isEn ? 'VISION ZERO ACTION' : '你的雙齊零行動起點'}</span>
+          <span class="sc2-action-en">${isEn ? '你的雙齊零行動起點' : 'WHERE TO BEGIN'}</span>
+        </div>
+        <div class="sc2-action-text">${isEn ? t.action_en : t.action_zh}</div>
+      </div>
+    </div>
+
+    <div class="sc-bottom">
+      <div class="sc-bottom-l">
+        <div class="sc-cta-zh">${isEn ? 'Take the quiz' : '測測你的街道靈魂'}</div>
+        <div class="sc-cta-url">STREETSOUL.TW</div>
+      </div>
+      <div class="sc-bottom-r">
+        <div class="sc-bottom-arrow">→</div>
+      </div>
+    </div>
+  `;
+}
 
 async function downloadShareCard(){
   const code = calculateType();
@@ -2439,29 +2850,19 @@ async function downloadShareCard(){
     }
     await new Promise(r=>setTimeout(r,250));
 
-    const canvas = await html2canvas(card, {
-      width: 1080,
-      height: 1350,
-      scale: 2,                  // higher res for retina
-      backgroundColor: '#FBF7EC',
-      logging: false,
-      useCORS: true,
-      allowTaint: true,
-      foreignObjectRendering: false
-    });
+    // Card 1 — the original Street Soul card (already in #shareCard)
+    const card1 = await canvasFromShareCard(card, `street-soul-${code}-${isEn?'EN':'ZH'}.png`);
 
-    const dataUrl = canvas.toDataURL('image/png');
-
-    // Convert to blob for sharing
-    const blob = await new Promise(resolve=>canvas.toBlob(resolve, 'image/png'));
-    const fileName = `street-soul-${code}-${isEn?'EN':'ZH'}.png`;
-    const file = blob ? new File([blob], fileName, {type:'image/png'}) : null;
+    // Card 2 — 誰與你同行 + 雙齊零行動起點
+    card.innerHTML = buildBondsCard(code, t, isEn);
+    await new Promise(r=>setTimeout(r,250));
+    const card2 = await canvasFromShareCard(card, `street-soul-${code}-bonds-${isEn?'EN':'ZH'}.png`);
 
     btn.classList.remove('loading');
     btn.innerHTML = originalHTML;
 
-    // Show modal with the result + 3 ways to save
-    showImageModal({dataUrl, blob, file, fileName, isEn, code});
+    // Show modal with BOTH cards, each downloadable
+    showImageModal({cards:[card1, card2], isEn, code});
   } catch (err) {
     console.error('Share card generation failed:', err);
     btn.classList.remove('loading');
@@ -2470,27 +2871,40 @@ async function downloadShareCard(){
   }
 }
 
-function showImageModal({dataUrl, blob, file, fileName, isEn, code}){
+function showImageModal({cards, isEn, code}){
   const ios = isIOS();
-  const canShareFile = file && navigator.canShare && navigator.canShare({files:[file]});
+  const caps = isEn
+    ? ['① Your Street Soul', '② Your strolling buddy · your action']
+    : ['① 你的街道靈魂', '② 漫步好朋友 · 雙齊零行動起點'];
+
+  const cardsHtml = cards.map((c,i)=>{
+    const canShareFile = c.file && navigator.canShare && navigator.canShare({files:[c.file]});
+    return `
+      <div class="img-card">
+        <div class="img-card-cap">${caps[i] || ''}</div>
+        <img src="${c.dataUrl}" alt="Street Soul share card ${i+1}">
+        <div class="img-card-actions">
+          ${canShareFile
+            ? `<button class="modal-share-btn" data-i="${i}">📤 ${isEn ? 'Share' : '分享'}</button>`
+            : `<button class="modal-download-btn" data-i="${i}">⬇ ${isEn ? 'Download' : '下載到電腦'}</button>`
+          }
+        </div>
+      </div>`;
+  }).join('');
 
   const modal = document.createElement('div');
   modal.className = 'img-modal';
   modal.innerHTML = `
     <div class="img-modal-inner">
       <button class="img-modal-close" aria-label="Close">✕</button>
-      <div class="img-modal-title">${isEn ? '✨ Your share card is ready' : '✨ 分享圖卡已生成'}</div>
-      <div class="img-modal-sub">${isEn ? 'Save to share on Instagram, Threads, anywhere.' : '儲存後即可貼到 Instagram、Threads 限時動態。'}</div>
-      <img src="${dataUrl}" alt="Your Street Soul share card">
+      <div class="img-modal-title">${isEn ? '✨ 2 share cards ready' : '✨ 兩張分享圖卡已生成'}</div>
+      <div class="img-modal-sub">${isEn ? 'Save both — share on Instagram, Threads, anywhere.' : '兩張都可儲存，貼到 Instagram、Threads 限時動態。'}</div>
       ${ios
-        ? `<div class="img-hint">📱 <strong>${isEn ? 'iOS users:' : 'iPhone 用戶：'}</strong> ${isEn ? 'long-press the image above, then "Save to Photos"' : '長按上方圖片 → 「加入照片」'}</div>`
-        : `<div class="img-hint">💡 ${isEn ? 'Right-click the image to save, or use the buttons below' : '在電腦上可右鍵儲存圖片，或用下方按鈕'}</div>`
+        ? `<div class="img-hint">📱 <strong>${isEn ? 'iOS users:' : 'iPhone 用戶：'}</strong> ${isEn ? 'long-press an image, then "Save to Photos"' : '長按圖片 → 「加入照片」'}</div>`
+        : `<div class="img-hint">💡 ${isEn ? 'Right-click an image to save, or use the buttons under each' : '在電腦上可右鍵儲存，或用各張下方按鈕'}</div>`
       }
-      <div class="img-modal-actions">
-        ${canShareFile
-          ? `<button class="modal-share-btn">📤 ${isEn ? 'Share' : '分享'}</button>`
-          : `<button class="modal-download-btn">⬇ ${isEn ? 'Download' : '下載到電腦'}</button>`
-        }
+      <div class="img-cards">${cardsHtml}</div>
+      <div class="img-modal-actions" style="grid-template-columns:1fr">
         <button class="alt modal-close-btn">${isEn ? 'Close' : '關閉'}</button>
       </div>
     </div>
@@ -2508,27 +2922,27 @@ function showImageModal({dataUrl, blob, file, fileName, isEn, code}){
     if(e.target === modal) close();
   });
 
-  const downloadBtn = modal.querySelector('.modal-download-btn');
-  if(downloadBtn){
-    downloadBtn.onclick = ()=>{
-      const url = URL.createObjectURL(blob);
+  modal.querySelectorAll('.modal-download-btn').forEach(btn=>{
+    btn.onclick = ()=>{
+      const c = cards[+btn.dataset.i];
+      const url = URL.createObjectURL(c.blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = fileName;
+      a.download = c.fileName;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       setTimeout(()=>URL.revokeObjectURL(url), 1000);
       showToast(isEn ? 'Saved ✓' : '已下載 ✓');
     };
-  }
+  });
 
-  const shareBtn = modal.querySelector('.modal-share-btn');
-  if(shareBtn){
-    shareBtn.onclick = async ()=>{
+  modal.querySelectorAll('.modal-share-btn').forEach(btn=>{
+    btn.onclick = async ()=>{
+      const c = cards[+btn.dataset.i];
       try {
         await navigator.share({
-          files: [file],
+          files: [c.file],
           title: isEn ? 'My Street Soul' : '我的街道靈魂',
           text: isEn ? `I'm ${code} on the Street Soul Quiz!` : `我是 ${code} · 街道靈魂測驗`
         });
@@ -2539,7 +2953,7 @@ function showImageModal({dataUrl, blob, file, fileName, isEn, code}){
         }
       }
     };
-  }
+  });
 }
 
 /* ============================
@@ -2589,6 +3003,7 @@ function showToast(msg){
 
 /* Pick language from initial screen */
 function pickLanguage(lang){
+  SFX.pick();
   document.body.classList.remove('picking');
   document.body.classList.add(lang);
   // sync top bar toggle
