@@ -749,7 +749,11 @@ body.picking #lang-pick{display:block!important}
 .sc-you-name{font-size:27px;font-weight:900;color:var(--black);letter-spacing:.01em;margin-top:3px}
 .sc2-kicker{font-family:var(--en);font-size:19px;letter-spacing:.3em;color:var(--lime-dk);font-weight:700;text-transform:uppercase}
 .sc2-title{font-size:74px;font-weight:900;color:var(--black);line-height:1.14;letter-spacing:.01em;margin:16px 0 6px}
-.sc2-bonds{margin-top:40px}
+.sc2-bonds{margin-top:44px;gap:22px}
+.sc2-bonds .sc-info-cell{padding:34px 18px 32px}
+.sc2-bonds .sc-info-cell-marker{font-size:118px;margin-bottom:18px}
+.sc2-bonds .sc-info-cell-main{font-size:38px;margin-bottom:5px}
+.sc2-bonds .sc-info-cell-sub{font-size:20px}
 .sc2-action{width:100%;margin-top:36px;background:var(--lime);border:2.5px solid var(--black);border-radius:22px;padding:28px 32px;box-shadow:6px 6px 0 var(--black);text-align:left}
 .sc2-action-label{display:flex;flex-direction:column;gap:3px;margin-bottom:14px}
 .sc2-action-zh{font-size:28px;font-weight:900;color:var(--black);letter-spacing:.02em}
@@ -2889,16 +2893,6 @@ function buildBondsCard(code, t, lang){
           <div class="sc-info-cell-marker">${lucky.emoji}</div>
           <div class="sc-info-cell-main">${L(lucky.zh_name, lucky.en_name, luckyJ.name)}</div>
           <div class="sc-info-cell-sub">${L(lucky.en_name, lucky.zh_name, lucky.en_name)}</div>
-        </div>
-      </div>
-
-      <div class="sc2-strengths">
-        <div class="sc-info-divider">
-          <span class="sc-info-divider-zh">${L('你最閃閃發光的時刻','WHERE YOU SHINE','あなたが輝く瞬間')}</span>
-          <span class="sc-info-divider-label">${L('WHERE YOU SHINE','你最閃閃發光的時刻','WHERE YOU SHINE')}</span>
-        </div>
-        <div class="sc2-str-list">
-          ${(lang==='ja'?(tj.strengths||[]):lang==='en'?t.strengths_en:t.strengths_zh).map(s=>`<div class="sc2-str-item"><span class="sc2-str-mark">✦</span><span>${s}</span></div>`).join('')}
         </div>
       </div>
 
